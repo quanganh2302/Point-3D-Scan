@@ -1,0 +1,7 @@
+E:\Dynamic\1. Work_Space\On_Going\5. Point Scanner\Encoder_solution\chrocolib-T5-5-0-59-517aeeb0\chrocodilelib\libcore\lib\win\x64\CSharpSyncConsole.exe.config
+E:\Dynamic\1. Work_Space\On_Going\5. Point Scanner\Encoder_solution\chrocolib-T5-5-0-59-517aeeb0\chrocodilelib\libcore\lib\win\x64\CSharpSyncConsole.exe
+E:\Dynamic\1. Work_Space\On_Going\5. Point Scanner\Encoder_solution\chrocolib-T5-5-0-59-517aeeb0\chrocodilelib\libcore\lib\win\x64\CSharpSyncConsole.pdb
+E:\Dynamic\1. Work_Space\On_Going\5. Point Scanner\Encoder_solution\chrocolib-T5-5-0-59-517aeeb0\chrocodilelib\CSharpDemo\Basic\Console\obj\x64\Debug\CSharpSyncConsole.csproj.AssemblyReference.cache
+E:\Dynamic\1. Work_Space\On_Going\5. Point Scanner\Encoder_solution\chrocolib-T5-5-0-59-517aeeb0\chrocodilelib\CSharpDemo\Basic\Console\obj\x64\Debug\CSharpSyncConsole.csproj.CoreCompileInputs.cache
+E:\Dynamic\1. Work_Space\On_Going\5. Point Scanner\Encoder_solution\chrocolib-T5-5-0-59-517aeeb0\chrocodilelib\CSharpDemo\Basic\Console\obj\x64\Debug\CSharpSyncConsole.exe
+E:\Dynamic\1. Work_Space\On_Going\5. Point Scanner\Encoder_solution\chrocolib-T5-5-0-59-517aeeb0\chrocodilelib\CSharpDemo\Basic\Console\obj\x64\Debug\CSharpSyncConsole.pdb
