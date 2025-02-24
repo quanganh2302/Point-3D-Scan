@@ -124,9 +124,6 @@
   <data name="icon-home" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Accents\icon-home.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icon-triangle-left" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Accents\icon-triangle-left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="icon-circle" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Accents\icon-circle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -151,14 +148,17 @@
   <data name="icon-up" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Accents\icon-up.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="logo-DSM" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Accents\logo-DSM.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="icon-left" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Accents\icon-left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icon-45-deg" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Accents\icon-45-deg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="logo-DSM" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Accents\logo-DSM.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="icon-triangle-left" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Accents\icon-triangle-left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icon-Zmove" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Accents\icon-Zmove.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -171,5 +171,8 @@
   </data>
   <data name="Icon-Z-down" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Accents\Icon-Z-down.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon-Zmove-40" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Accents\icon-Zmove-40.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

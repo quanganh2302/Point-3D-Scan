@@ -151,7 +151,7 @@ namespace TCHRLibBasicRecordSample
 
             // Setting area
             PnlSettingGrid.BackColor = CardBg;
-            BtnResetSetting.BorderColor = EmergencyRed;
+            BtnSaveData.BorderColor = orange;
             LbXYCoor.ForeColor = ForeGroundWhite;
             LbZCoor.ForeColor = ForeGroundWhite;
 

@@ -88,7 +88,6 @@
             this.PnlChartGrid = new System.Windows.Forms.TableLayoutPanel();
             this.LbNameChart = new System.Windows.Forms.Label();
             this.PnlLineChartArea = new System.Windows.Forms.Panel();
-            this.chart4 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.PnlRightSite = new System.Windows.Forms.TableLayoutPanel();
             this.PnlSettingGrid = new System.Windows.Forms.TableLayoutPanel();
             this.PnlInfoCoorGrid = new System.Windows.Forms.TableLayoutPanel();
@@ -121,6 +120,7 @@
             this.LbPos2 = new System.Windows.Forms.Label();
             this.LbTitleSetting = new System.Windows.Forms.Label();
             this.LbTitleControl = new System.Windows.Forms.Label();
+            this.chart4 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.timerComboBox = new System.Windows.Forms.Timer(this.components);
             this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
             this.PbScan = new TCHRLibBasicRecordSample.Componets.DSM_ProgressBar();
@@ -128,7 +128,7 @@
             this.CbbSignalMode = new TCHRLibBasicRecordSample.Componets.TabControl.DSM_ComboBox();
             this.CbbScanArea = new TCHRLibBasicRecordSample.Componets.TabControl.DSM_ComboBox();
             this.CbbSaveMode = new TCHRLibBasicRecordSample.Componets.TabControl.DSM_ComboBox();
-            this.BtnResetSetting = new TCHRLibBasicRecordSample.Componets.DSM_Button();
+            this.BtnSaveData = new TCHRLibBasicRecordSample.Componets.DSM_Button();
             this.TbZControl = new TCHRLibBasicRecordSample.Componets.DSM_TrackBarImg();
             this.TbXYspeed = new TCHRLibBasicRecordSample.Componets.DSM_Trackbar();
             this.BtnXYDownSpeed = new TCHRLibBasicRecordSample.Componets.DSM_Button();
@@ -180,8 +180,6 @@
             this.panel9.SuspendLayout();
             this.panel2.SuspendLayout();
             this.PnlChartGrid.SuspendLayout();
-            this.PnlLineChartArea.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart4)).BeginInit();
             this.PnlRightSite.SuspendLayout();
             this.PnlSettingGrid.SuspendLayout();
             this.PnlInfoCoorGrid.SuspendLayout();
@@ -195,6 +193,7 @@
             this.PnlXYBtn.SuspendLayout();
             this.PnlTchAreaGrid.SuspendLayout();
             this.PnlTchGrid.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart4)).BeginInit();
             this.SuspendLayout();
             // 
             // timerData
@@ -470,7 +469,7 @@
             this.tabControl1.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(678, 19);
+            this.tabControl1.Size = new System.Drawing.Size(847, 24);
             this.tabControl1.TabIndex = 25;
             this.tabControl1.Visible = false;
             // 
@@ -482,7 +481,7 @@
             this.tabPage1.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(2, 4, 2, 4);
-            this.tabPage1.Size = new System.Drawing.Size(670, 0);
+            this.tabPage1.Size = new System.Drawing.Size(839, 0);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Default setting";
             // 
@@ -504,7 +503,7 @@
             this.panel10.Location = new System.Drawing.Point(2, 4);
             this.panel10.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(666, 0);
+            this.panel10.Size = new System.Drawing.Size(835, 0);
             this.panel10.TabIndex = 11;
             // 
             // axDBTriggerManager1
@@ -606,7 +605,7 @@
             this.TbConInfo.Location = new System.Drawing.Point(107, 15);
             this.TbConInfo.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.TbConInfo.Name = "TbConInfo";
-            this.TbConInfo.Size = new System.Drawing.Size(2, 17);
+            this.TbConInfo.Size = new System.Drawing.Size(2, 21);
             this.TbConInfo.TabIndex = 10;
             this.TbConInfo.Text = "192.168.170.2";
             // 
@@ -616,7 +615,7 @@
             this.label1.Location = new System.Drawing.Point(9, 15);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(76, 13);
+            this.label1.Size = new System.Drawing.Size(95, 16);
             this.label1.TabIndex = 9;
             this.label1.Text = "Connection Info";
             // 
@@ -629,7 +628,7 @@
             this.tabPage2.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(2, 4, 2, 4);
-            this.tabPage2.Size = new System.Drawing.Size(536, 0);
+            this.tabPage2.Size = new System.Drawing.Size(671, 0);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Advance setting";
             // 
@@ -647,7 +646,7 @@
             this.panel9.Location = new System.Drawing.Point(2, 4);
             this.panel9.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(338, 0);
+            this.panel9.Size = new System.Drawing.Size(668, 0);
             this.panel9.TabIndex = 11;
             // 
             // RBInterfero
@@ -680,7 +679,7 @@
             this.label6.Location = new System.Drawing.Point(5, 11);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(88, 13);
+            this.label6.Size = new System.Drawing.Size(110, 16);
             this.label6.TabIndex = 4;
             this.label6.Text = "Measuring Methos:";
             // 
@@ -689,7 +688,7 @@
             this.TBSHZ.Location = new System.Drawing.Point(107, 31);
             this.TBSHZ.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.TBSHZ.Name = "TBSHZ";
-            this.TBSHZ.Size = new System.Drawing.Size(2, 17);
+            this.TBSHZ.Size = new System.Drawing.Size(2, 21);
             this.TBSHZ.TabIndex = 3;
             this.TBSHZ.Text = "2000";
             // 
@@ -699,7 +698,7 @@
             this.label5.Location = new System.Drawing.Point(5, 33);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(49, 13);
+            this.label5.Size = new System.Drawing.Size(61, 16);
             this.label5.TabIndex = 2;
             this.label5.Text = "Scanrate:";
             // 
@@ -708,7 +707,7 @@
             this.TBSODX.Location = new System.Drawing.Point(107, 57);
             this.TBSODX.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.TBSODX.Name = "TBSODX";
-            this.TBSODX.Size = new System.Drawing.Size(2, 17);
+            this.TBSODX.Size = new System.Drawing.Size(2, 21);
             this.TBSODX.TabIndex = 1;
             this.TBSODX.Text = "83, 65, 66";
             // 
@@ -718,7 +717,7 @@
             this.label4.Location = new System.Drawing.Point(5, 59);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(77, 13);
+            this.label4.Size = new System.Drawing.Size(96, 16);
             this.label4.TabIndex = 0;
             this.label4.Text = "Selected signals:";
             // 
@@ -736,7 +735,7 @@
             this.panel2.Location = new System.Drawing.Point(2, 4);
             this.panel2.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(338, 0);
+            this.panel2.Size = new System.Drawing.Size(668, 0);
             this.panel2.TabIndex = 13;
             // 
             // button1
@@ -777,7 +776,7 @@
             this.TBSampleCount.Location = new System.Drawing.Point(6, 23);
             this.TBSampleCount.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.TBSampleCount.Name = "TBSampleCount";
-            this.TBSampleCount.Size = new System.Drawing.Size(2, 17);
+            this.TBSampleCount.Size = new System.Drawing.Size(2, 21);
             this.TBSampleCount.TabIndex = 4;
             this.TBSampleCount.Text = "10000";
             // 
@@ -787,7 +786,7 @@
             this.label2.Location = new System.Drawing.Point(0, 5);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(71, 13);
+            this.label2.Size = new System.Drawing.Size(89, 16);
             this.label2.TabIndex = 3;
             this.label2.Text = "Sample Count:";
             // 
@@ -851,42 +850,6 @@
             this.PnlLineChartArea.Name = "PnlLineChartArea";
             this.PnlLineChartArea.Size = new System.Drawing.Size(775, 192);
             this.PnlLineChartArea.TabIndex = 0;
-            // 
-            // chart4
-            // 
-            chartArea1.AxisX.IsLabelAutoFit = false;
-            chartArea1.AxisX.LabelStyle.Font = new System.Drawing.Font("Modern No. 20", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            chartArea1.AxisX.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
-            chartArea1.AxisX.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
-            chartArea1.AxisX.MajorTickMark.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
-            chartArea1.AxisX.MinorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
-            chartArea1.AxisX.MinorTickMark.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
-            chartArea1.AxisY.IsLabelAutoFit = false;
-            chartArea1.AxisY.IsStartedFromZero = false;
-            chartArea1.AxisY.LabelStyle.Font = new System.Drawing.Font("Modern No. 20", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            chartArea1.AxisY.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
-            chartArea1.AxisY.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
-            chartArea1.AxisY.MajorTickMark.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
-            chartArea1.AxisY.MinorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
-            chartArea1.AxisY.MinorTickMark.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
-            chartArea1.Name = "ChartArea1";
-            this.chart4.ChartAreas.Add(chartArea1);
-            this.chart4.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend1.Enabled = false;
-            legend1.Name = "Legend1";
-            this.chart4.Legends.Add(legend1);
-            this.chart4.Location = new System.Drawing.Point(0, 0);
-            this.chart4.Margin = new System.Windows.Forms.Padding(1);
-            this.chart4.Name = "chart4";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
-            series1.IsVisibleInLegend = false;
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chart4.Series.Add(series1);
-            this.chart4.Size = new System.Drawing.Size(775, 192);
-            this.chart4.TabIndex = 34;
-            this.chart4.Text = "chart4";
             // 
             // PnlRightSite
             // 
@@ -1120,7 +1083,7 @@
             this.PnlListBtnSetting.Controls.Add(this.CbbSignalMode, 0, 4);
             this.PnlListBtnSetting.Controls.Add(this.CbbScanArea, 0, 2);
             this.PnlListBtnSetting.Controls.Add(this.CbbSaveMode, 0, 6);
-            this.PnlListBtnSetting.Controls.Add(this.BtnResetSetting, 0, 8);
+            this.PnlListBtnSetting.Controls.Add(this.BtnSaveData, 0, 8);
             this.PnlListBtnSetting.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PnlListBtnSetting.Location = new System.Drawing.Point(36, 24);
             this.PnlListBtnSetting.Margin = new System.Windows.Forms.Padding(0, 0, 8, 0);
@@ -1383,6 +1346,42 @@
             this.LbTitleControl.Text = "Control";
             this.LbTitleControl.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // chart4
+            // 
+            chartArea1.AxisX.IsLabelAutoFit = false;
+            chartArea1.AxisX.LabelStyle.Font = new System.Drawing.Font("Modern No. 20", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            chartArea1.AxisX.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+            chartArea1.AxisX.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+            chartArea1.AxisX.MajorTickMark.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+            chartArea1.AxisX.MinorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+            chartArea1.AxisX.MinorTickMark.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+            chartArea1.AxisY.IsLabelAutoFit = false;
+            chartArea1.AxisY.IsStartedFromZero = false;
+            chartArea1.AxisY.LabelStyle.Font = new System.Drawing.Font("Modern No. 20", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            chartArea1.AxisY.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+            chartArea1.AxisY.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+            chartArea1.AxisY.MajorTickMark.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+            chartArea1.AxisY.MinorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+            chartArea1.AxisY.MinorTickMark.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+            chartArea1.Name = "ChartArea1";
+            this.chart4.ChartAreas.Add(chartArea1);
+            this.chart4.Dock = System.Windows.Forms.DockStyle.Fill;
+            legend1.Enabled = false;
+            legend1.Name = "Legend1";
+            this.chart4.Legends.Add(legend1);
+            this.chart4.Location = new System.Drawing.Point(0, 0);
+            this.chart4.Margin = new System.Windows.Forms.Padding(1);
+            this.chart4.Name = "chart4";
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
+            series1.IsVisibleInLegend = false;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chart4.Series.Add(series1);
+            this.chart4.Size = new System.Drawing.Size(775, 192);
+            this.chart4.TabIndex = 34;
+            this.chart4.Text = "chart4";
+            // 
             // timerComboBox
             // 
             this.timerComboBox.Interval = 1;
@@ -1454,7 +1453,7 @@
             this.CbbSignalMode.Padding = new System.Windows.Forms.Padding(1);
             this.CbbSignalMode.Size = new System.Drawing.Size(147, 35);
             this.CbbSignalMode.TabIndex = 8;
-            this.CbbSignalMode.Texts = "Signal mode";
+            this.CbbSignalMode.Texts = "Chart Info";
             // 
             // CbbScanArea
             // 
@@ -1506,26 +1505,26 @@
             this.CbbSaveMode.TabIndex = 32;
             this.CbbSaveMode.Texts = "Save mode";
             // 
-            // BtnResetSetting
+            // BtnSaveData
             // 
-            this.BtnResetSetting.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(67)))), ((int)(((byte)(63)))));
-            this.BtnResetSetting.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(67)))), ((int)(((byte)(63)))));
-            this.BtnResetSetting.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.BtnResetSetting.BorderRadius = 8;
-            this.BtnResetSetting.BorderSize = 1;
-            this.BtnResetSetting.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BtnResetSetting.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BtnResetSetting.FlatAppearance.BorderSize = 0;
-            this.BtnResetSetting.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnResetSetting.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnResetSetting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.BtnResetSetting.Location = new System.Drawing.Point(3, 219);
-            this.BtnResetSetting.Name = "BtnResetSetting";
-            this.BtnResetSetting.Size = new System.Drawing.Size(147, 38);
-            this.BtnResetSetting.TabIndex = 33;
-            this.BtnResetSetting.Text = "Reset Setting";
-            this.BtnResetSetting.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.BtnResetSetting.UseVisualStyleBackColor = false;
+            this.BtnSaveData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(67)))), ((int)(((byte)(63)))));
+            this.BtnSaveData.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(67)))), ((int)(((byte)(63)))));
+            this.BtnSaveData.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.BtnSaveData.BorderRadius = 8;
+            this.BtnSaveData.BorderSize = 1;
+            this.BtnSaveData.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnSaveData.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnSaveData.FlatAppearance.BorderSize = 0;
+            this.BtnSaveData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnSaveData.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnSaveData.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.BtnSaveData.Location = new System.Drawing.Point(3, 219);
+            this.BtnSaveData.Name = "BtnSaveData";
+            this.BtnSaveData.Size = new System.Drawing.Size(147, 38);
+            this.BtnSaveData.TabIndex = 33;
+            this.BtnSaveData.Text = "SAVE";
+            this.BtnSaveData.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.BtnSaveData.UseVisualStyleBackColor = false;
             // 
             // TbZControl
             // 
@@ -1538,6 +1537,8 @@
             this.TbZControl.Cursor = System.Windows.Forms.Cursors.Hand;
             this.TbZControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TbZControl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.TbZControl.LimitImageEnd = global::TCHRLibBasicRecordSample.Properties.Resources.Icon_Z_down;
+            this.TbZControl.LimitImageStart = global::TCHRLibBasicRecordSample.Properties.Resources.Icon_Z_up;
             this.TbZControl.Location = new System.Drawing.Point(10, 36);
             this.TbZControl.MaximumPercent = 100;
             this.TbZControl.MinimumPercent = 0;
@@ -1547,6 +1548,7 @@
             this.TbZControl.TabIndex = 63;
             this.TbZControl.Text = "dsM_TrackBarImg1";
             this.TbZControl.ThumbColor = System.Drawing.Color.Red;
+            this.TbZControl.ThumbImage = global::TCHRLibBasicRecordSample.Properties.Resources.icon_Zmove_40;
             this.TbZControl.ThumbSize = 40;
             this.TbZControl.TrackColorLeft = System.Drawing.Color.Blue;
             this.TbZControl.TrackColorRight = System.Drawing.Color.Gray;
@@ -1581,6 +1583,7 @@
             this.BtnXYDownSpeed.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnXYDownSpeed.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold);
             this.BtnXYDownSpeed.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.BtnXYDownSpeed.Image = global::TCHRLibBasicRecordSample.Properties.Resources.icon_triangle_left;
             this.BtnXYDownSpeed.Location = new System.Drawing.Point(3, 3);
             this.BtnXYDownSpeed.Name = "BtnXYDownSpeed";
             this.BtnXYDownSpeed.Size = new System.Drawing.Size(36, 36);
@@ -1600,6 +1603,7 @@
             this.BtnXYUpSpeed.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnXYUpSpeed.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold);
             this.BtnXYUpSpeed.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.BtnXYUpSpeed.Image = global::TCHRLibBasicRecordSample.Properties.Resources.icon_triangle_right;
             this.BtnXYUpSpeed.Location = new System.Drawing.Point(261, 3);
             this.BtnXYUpSpeed.Name = "BtnXYUpSpeed";
             this.BtnXYUpSpeed.Size = new System.Drawing.Size(36, 36);
@@ -1620,6 +1624,7 @@
             this.BtnDownLeft.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnDownLeft.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold);
             this.BtnDownLeft.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.BtnDownLeft.Image = global::TCHRLibBasicRecordSample.Properties.Resources.icon_215_deg;
             this.BtnDownLeft.Location = new System.Drawing.Point(60, 142);
             this.BtnDownLeft.Margin = new System.Windows.Forms.Padding(2);
             this.BtnDownLeft.Name = "BtnDownLeft";
@@ -1641,6 +1646,7 @@
             this.BtnLeftUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnLeftUp.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold);
             this.BtnLeftUp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.BtnLeftUp.Image = global::TCHRLibBasicRecordSample.Properties.Resources.icon_135_deg;
             this.BtnLeftUp.Location = new System.Drawing.Point(60, 23);
             this.BtnLeftUp.Margin = new System.Windows.Forms.Padding(2);
             this.BtnLeftUp.Name = "BtnLeftUp";
@@ -1661,6 +1667,7 @@
             this.BtnHome.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnHome.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold);
             this.BtnHome.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.BtnHome.Image = global::TCHRLibBasicRecordSample.Properties.Resources.icon_home;
             this.BtnHome.Location = new System.Drawing.Point(128, 90);
             this.BtnHome.Margin = new System.Windows.Forms.Padding(2);
             this.BtnHome.Name = "BtnHome";
@@ -1682,6 +1689,7 @@
             this.BtnRightDown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnRightDown.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold);
             this.BtnRightDown.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.BtnRightDown.Image = global::TCHRLibBasicRecordSample.Properties.Resources.icon_315_deg;
             this.BtnRightDown.Location = new System.Drawing.Point(180, 142);
             this.BtnRightDown.Margin = new System.Windows.Forms.Padding(2);
             this.BtnRightDown.Name = "BtnRightDown";
@@ -1702,6 +1710,7 @@
             this.BtnLeft.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnLeft.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold);
             this.BtnLeft.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.BtnLeft.Image = global::TCHRLibBasicRecordSample.Properties.Resources.icon_left;
             this.BtnLeft.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BtnLeft.Location = new System.Drawing.Point(60, 90);
             this.BtnLeft.Margin = new System.Windows.Forms.Padding(2);
@@ -1725,6 +1734,7 @@
             this.BtnUpRight.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnUpRight.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold);
             this.BtnUpRight.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.BtnUpRight.Image = global::TCHRLibBasicRecordSample.Properties.Resources.icon_45_deg;
             this.BtnUpRight.Location = new System.Drawing.Point(180, 23);
             this.BtnUpRight.Margin = new System.Windows.Forms.Padding(2);
             this.BtnUpRight.Name = "BtnUpRight";
@@ -1745,6 +1755,7 @@
             this.BtnRight.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnRight.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold);
             this.BtnRight.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.BtnRight.Image = global::TCHRLibBasicRecordSample.Properties.Resources.icon_right;
             this.BtnRight.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BtnRight.Location = new System.Drawing.Point(180, 90);
             this.BtnRight.Margin = new System.Windows.Forms.Padding(2);
@@ -1767,6 +1778,7 @@
             this.BtnDown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnDown.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold);
             this.BtnDown.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.BtnDown.Image = global::TCHRLibBasicRecordSample.Properties.Resources.icon_down;
             this.BtnDown.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.BtnDown.Location = new System.Drawing.Point(128, 142);
             this.BtnDown.Margin = new System.Windows.Forms.Padding(2);
@@ -1789,6 +1801,7 @@
             this.BtnUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnUp.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold);
             this.BtnUp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.BtnUp.Image = global::TCHRLibBasicRecordSample.Properties.Resources.icon_up;
             this.BtnUp.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.BtnUp.Location = new System.Drawing.Point(128, 23);
             this.BtnUp.Margin = new System.Windows.Forms.Padding(2);
@@ -2127,8 +2140,6 @@
             this.panel2.PerformLayout();
             this.PnlChartGrid.ResumeLayout(false);
             this.PnlChartGrid.PerformLayout();
-            this.PnlLineChartArea.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.chart4)).EndInit();
             this.PnlRightSite.ResumeLayout(false);
             this.PnlRightSite.PerformLayout();
             this.PnlSettingGrid.ResumeLayout(false);
@@ -2149,6 +2160,7 @@
             this.PnlTchAreaGrid.ResumeLayout(false);
             this.PnlTchGrid.ResumeLayout(false);
             this.PnlTchGrid.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart4)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2188,7 +2200,7 @@
         private System.Windows.Forms.Label LbYAxisCoor;
         private System.Windows.Forms.Label LbZAxisCoor;
         private Componets.TabControl.DSM_ComboBox CbbSaveMode;
-        private Componets.DSM_Button BtnResetSetting;
+        private Componets.DSM_Button BtnSaveData;
         private Componets.DSM_TextBox dsM_TextBox4;
         private Componets.DSM_TextBox dsM_TextBox1;
         private Componets.DSM_TextBox dsM_TextBox3;

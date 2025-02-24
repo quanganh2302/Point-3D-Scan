@@ -213,6 +213,16 @@ namespace TCHRLibBasicRecordSample.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icon_Zmove_40 {
+            get {
+                object obj = ResourceManager.GetObject("icon-Zmove-40", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_record_96 {
             get {
                 object obj = ResourceManager.GetObject("icons8-record-96", resourceCulture);
