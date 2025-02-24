@@ -70,48 +70,54 @@
   <ItemGroup>
     <None Include="App.config" />
     <Compile Include="ColorHeatMap.cs" />
-    <Compile Include="Componets\DSM_ProgressBar.cs">
+    <Compile Include="Components\DSM_ProgressBar.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Componets\DSM_SpecialButton.cs">
+    <Compile Include="Components\DSM_RadioButton.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Componets\DSM_Button.cs">
+    <Compile Include="Components\DSM_SpecialButton.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Componets\DSM_ComboBox.cs">
+    <Compile Include="Components\DSM_Button.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Components\DSM_ComboBox.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Componets\DSM_TabControl\UC_AdvanceSetting.cs">
+    <Compile Include="Components\DSM_TabControl\UC_AdvanceSetting.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Componets\DSM_TabControl\UC_AdvanceSetting.Designer.cs">
+    <Compile Include="Components\DSM_TabControl\UC_AdvanceSetting.Designer.cs">
       <DependentUpon>UC_AdvanceSetting.cs</DependentUpon>
     </Compile>
-    <Compile Include="Componets\DSM_TabControl\UC_DefaultSetting.cs">
+    <Compile Include="Components\DSM_TabControl\UC_DefaultSetting.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Componets\DSM_TabControl\UC_DefaultSetting.Designer.cs">
+    <Compile Include="Components\DSM_TabControl\UC_DefaultSetting.Designer.cs">
       <DependentUpon>UC_DefaultSetting.cs</DependentUpon>
     </Compile>
-    <Compile Include="Componets\DSM_TextBox.cs">
+    <Compile Include="Components\DSM_TextBox.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Componets\DSM_TextBox.Designer.cs">
+    <Compile Include="Components\DSM_TextBox.Designer.cs">
       <DependentUpon>DSM_TextBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="Componets\DSM_Trackbar.cs">
+    <Compile Include="Components\DSM_Trackbar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Components\DSM_TrackBarImg.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="DataProcessor.cs" />
     <Compile Include="Program.cs" />
-    <EmbeddedResource Include="Componets\DSM_TabControl\UC_AdvanceSetting.resx">
+    <EmbeddedResource Include="Components\DSM_TabControl\UC_AdvanceSetting.resx">
       <DependentUpon>UC_AdvanceSetting.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Componets\DSM_TabControl\UC_DefaultSetting.resx">
+    <EmbeddedResource Include="Components\DSM_TabControl\UC_DefaultSetting.resx">
       <DependentUpon>UC_DefaultSetting.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Componets\DSM_TextBox.resx">
+    <EmbeddedResource Include="Components\DSM_TextBox.resx">
       <DependentUpon>DSM_TextBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -200,6 +206,11 @@
     <Content Include="Accents\icon-315-deg.png" />
     <Content Include="Accents\icon-215-deg.png" />
     <Content Include="Accents\icon-home.png" />
+    <Content Include="Accents\icon-circle.png" />
+    <Content Include="Accents\Icon-Z-down.png" />
+    <Content Include="Accents\Icon-Z-up.png" />
+    <Content Include="Accents\icon-Zmove.png" />
+    <Content Include="Accents\icons8-record-96.png" />
     <Content Include="Accents\logo-01.png" />
     <Content Include="Accents\logo-DSM.png" />
     <Content Include="Accents\logo_01_Hts_icon.ico" />

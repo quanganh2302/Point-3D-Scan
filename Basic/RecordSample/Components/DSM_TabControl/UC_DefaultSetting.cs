@@ -10,23 +10,23 @@ using System.Windows.Forms;
 
 namespace TCHRLibBasicRecordSample.Componets.TabControl
 {
-    public partial class UC_AdvanceSetting : UserControl
+    public partial class UC_DefaultSetting : UserControl
     {
         // Declare the instance without initializing immediately.
         private TRecordSample _tRecordSample;
 
-        public UC_AdvanceSetting()
+        public UC_DefaultSetting()
         {
             InitializeComponent();
             // Optional: Set up other initialization here.
             this.BackColor = TRecordSample.CardBg;
             this.ForeColor = TRecordSample.ForeGroundWhite;
             panel1.BackColor = TRecordSample.MainBg;
-            InSR.Text = "2000";
-            InSS.Text = "83, 65, 66";
-            InSC.Text = "10000";
-
-
+            RbCHR1.CheckedColor = TRecordSample.orange;
+            RbCHR2.CheckedColor = TRecordSample.orange;
+            RbCHRC.CheckedColor = TRecordSample.orange;
+            RbCLS.CheckedColor = TRecordSample.orange;
+            RbCHRC.Checked = true;
             //if (SystemInformation.WorkingArea.Width < 1600)
             //{
             //    PnlSettingGrid.Padding = new Padding(36, MarginYScreenLg, 24, MarginYScreenLg);
@@ -36,7 +36,21 @@ namespace TCHRLibBasicRecordSample.Componets.TabControl
             //    PnlSettingGrid.Padding = new Padding(36, MarginYScreenXl, 24, MarginYScreenXl);
 
             //}
+            this.Load += UC_DefaultSetting_Load;
+        }
 
+        private void UC_DefaultSetting_Load(object sender, EventArgs e)
+        {
+            // Now that the UserControl is loaded, create the TRecordSample instance.
+            _tRecordSample = new TRecordSample();
+
+            // Now you can access properties that require a valid handle.
+
+
+            InConnect.Text = "192.168.170.2";
+
+            // Wire up the event handler.
+            BtnConnect.Click += _tRecordSample.BtConnect_Click;
         }
 
     }

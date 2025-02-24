@@ -103,6 +103,16 @@ namespace TCHRLibBasicRecordSample.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icon_circle {
+            get {
+                object obj = ResourceManager.GetObject("icon-circle", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icon_down {
             get {
                 object obj = ResourceManager.GetObject("icon-down", resourceCulture);
@@ -166,6 +176,46 @@ namespace TCHRLibBasicRecordSample.Properties {
         internal static System.Drawing.Bitmap icon_up {
             get {
                 object obj = ResourceManager.GetObject("icon-up", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Icon_Z_down {
+            get {
+                object obj = ResourceManager.GetObject("Icon-Z-down", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Icon_Z_up {
+            get {
+                object obj = ResourceManager.GetObject("Icon-Z-up", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icon_Zmove {
+            get {
+                object obj = ResourceManager.GetObject("icon-Zmove", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_record_96 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-record-96", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -10,18 +10,39 @@ using System.Windows.Forms;
 
 namespace TCHRLibBasicRecordSample.Componets.TabControl
 {
-    public partial class UC_DefaultSetting : UserControl
+    public partial class UC_AdvanceSetting : UserControl
     {
         // Declare the instance without initializing immediately.
         private TRecordSample _tRecordSample;
 
-        public UC_DefaultSetting()
+        public UC_AdvanceSetting()
         {
             InitializeComponent();
             // Optional: Set up other initialization here.
             this.BackColor = TRecordSample.CardBg;
             this.ForeColor = TRecordSample.ForeGroundWhite;
             panel1.BackColor = TRecordSample.MainBg;
+            InSR.Text = "2000";
+            InSS.Text = "83, 65, 66";
+            InSC.Text = "10000";
+            RbConfocal.Checked = true;
+            if (SystemInformation.WorkingArea.Width < 1600)
+            {
+                PnlCol1.Width = 132;
+                PnlCol2.Width = 150;
+                PnlCol3.Width = 120;
+                PnlCol4.Width = 205;
+
+            }
+            else
+            {
+                PnlCol1.Width = 165;
+                PnlCol2.Width = 208;
+                PnlCol3.Width = 186;
+                PnlCol4.Width = 205;
+
+            }
+
             //if (SystemInformation.WorkingArea.Width < 1600)
             //{
             //    PnlSettingGrid.Padding = new Padding(36, MarginYScreenLg, 24, MarginYScreenLg);
@@ -31,21 +52,7 @@ namespace TCHRLibBasicRecordSample.Componets.TabControl
             //    PnlSettingGrid.Padding = new Padding(36, MarginYScreenXl, 24, MarginYScreenXl);
 
             //}
-            this.Load += UC_DefaultSetting_Load;
-        }
 
-        private void UC_DefaultSetting_Load(object sender, EventArgs e)
-        {
-            // Now that the UserControl is loaded, create the TRecordSample instance.
-            _tRecordSample = new TRecordSample();
-
-            // Now you can access properties that require a valid handle.
-
-
-            InConnect.Text = "192.168.170.2";
-
-            // Wire up the event handler.
-            BtnConnect.Click += _tRecordSample.BtConnect_Click;
         }
 
     }

@@ -179,7 +179,7 @@ namespace TCHRLibBasicRecordSample
                 PnlControlGrid.Padding = new Padding(36, MarginYScreenLg, 24, MarginYScreenLg);
                 PnlControlGrid.ColumnStyles[1].Width = 23;
                 PnlControlGrid.ColumnStyles[2].Width = 76;
-                PnlControlGrid.ColumnStyles[3].Width = 1;
+                //PnlControlGrid.ColumnStyles[3].Width = 1;
 
                 BtnHome.Size = new Size(48, 48);
                 BtnHome.Location = new Point(128, 90);
@@ -224,7 +224,7 @@ namespace TCHRLibBasicRecordSample
                 PnlControlGrid.Padding = new Padding(36, MarginYScreenXl, 24, MarginYScreenXl);
                 PnlControlGrid.ColumnStyles[1].Width = 22;
                 PnlControlGrid.ColumnStyles[2].Width = 70;
-                PnlControlGrid.ColumnStyles[3].Width = 8;
+                //PnlControlGrid.ColumnStyles[3].Width = 8;
 
                 BtnHome.Size = new Size(60, 60);
                 BtnHome.Location = new Point(119, 126);
@@ -283,27 +283,45 @@ namespace TCHRLibBasicRecordSample
             TbXYspeed.TrackColorLeft = orange;
             TbXYspeed.TrackColorRight = ForeGroundWhite;
 
-            TbZCoor.ThumbColor = orange;
-            TbZCoor.TrackColorLeft = orange;
-            TbZCoor.TrackColorRight = ForeGroundWhite;
+            //TbZCoor.ThumbColor = orange;
+            //TbZCoor.TrackColorLeft = orange;
+            //TbZCoor.TrackColorRight = ForeGroundWhite;
+
+
             if (SystemInformation.WorkingArea.Width < 1600)
             {
                 //TbZCoor.Margin = new Padding(3, 0, 3, 3);
-                PnlZControl.Padding = new Padding(0, 20, 0, 8);
+                PnlZControl.Padding = new Padding(14, 20,14, 8);
                 LbZAxis.Location = new Point(0);
                 LbXYSpeed.Location = new Point(-4, 196);
+           
 
-                
+
             }
             else
             {
                 //TbZCoor.Margin = new Padding(3, 36, 3, 3);
-                PnlZControl.Padding = new Padding(0, 36, 0, 8);
+                PnlZControl.Padding = new Padding(36, 36, 36, 8);
                 LbZAxis.Location = new Point(0);
                 LbXYSpeed.Location = new Point(-4, 280);
-
             }
-
+            TbZControl.TrackColorLeft = orange;
+            TbZControl.TrackColorRight = BorderBtn;
+            TbZControl.BorderColor = BtnDefaultBg;
+            TbZControl.BorderInColor = Color.Gray;
+            TbZControl.BorderSize = 3;
+            TbZControl.BorderRadius = 36;
+            TbZControl.ThumbSize = 40;
+            TbZControl.VerticalReversed = true;
+            TbZControl.Dock = DockStyle.Fill;
+            if (SystemInformation.WorkingArea.Width < 1600)
+            {
+                TbZControl.BorderRadius = 32;
+            }
+            else
+            {
+                TbZControl.BorderRadius = 36;
+            }
             PnlChangeSpeedArea.BackColor = CardBg;
             PnlTchAreaGrid.BackColor = CardBg;
             if (SystemInformation.WorkingArea.Width < 1600)
