@@ -41,11 +41,15 @@ namespace TCHRLibBasicRecordSample
         public static int MarginYScreenLg = 12;
 
         private CustomUi.TabControl.UC_DefaultSetting ucDefaultSetting;
+        private CustomUi.TabControl.UC_AdvanceSetting ucAdvanceSetting;
+
         private bool RbCHR1;
         private bool RbCHR2;
         private bool RbCHRC;
         private bool RbCLS;
 
+        private bool RbConfocal;
+        private bool RbInterfero;
 
         public static readonly FontFamily CenturyGothic = new FontFamily("Century Gothic");
         #endregion
@@ -101,7 +105,11 @@ namespace TCHRLibBasicRecordSample
                     ShowDefaultSetting();
                     break;
                 case "BtnAdvanceSetting":
-                    add_UControls(new CustomUi.TabControl.UC_AdvanceSetting());
+                    if (ucAdvanceSetting == null)
+                    {
+                        ucAdvanceSetting = new CustomUi.TabControl.UC_AdvanceSetting();
+                    }
+                    add_UControls(ucAdvanceSetting);
                     PnlAdvanceSetting.BackColor = orange;
                     break;
             }
@@ -165,6 +173,10 @@ namespace TCHRLibBasicRecordSample
             ucDefaultSetting.RadioButtonChanged += UcDefaultSetting_RadioButtonChanged;
 
             add_UControls(ucDefaultSetting);
+
+            ucAdvanceSetting = new CustomUi.TabControl.UC_AdvanceSetting();
+
+            ucAdvanceSetting.RadioButtonChanged += UcAdvanceSetting_RadioButtonChanged;
 
             PnlNavSetting.BackColor = CardBg;
             PnlDefaultSetting.BackColor = orange;
@@ -450,6 +462,13 @@ namespace TCHRLibBasicRecordSample
 
         }
 
+        private void UcAdvanceSetting_RadioButtonChanged(object sender, string selectedRadioButtonName)
+        {
+            MessageBox.Show("Selected Radio Button: " + selectedRadioButtonName);
+            RbConfocal = (selectedRadioButtonName == "RbConfocal");
+            RbInterfero = (selectedRadioButtonName == "RbInterfero");
+        }
+
         private void UcDefaultSetting_RadioButtonChanged(object sender, string selectedRadioButtonName)
         {
             MessageBox.Show("Selected Radio Button: " + selectedRadioButtonName);
@@ -634,13 +653,13 @@ namespace TCHRLibBasicRecordSample
             {
                 try
                 {
-                    var DeviceType = CHRocodileLib.DeviceType.Chr1;
+                    var DeviceType = CHRocodileLib.DeviceType.ChrCMini;
                     if (RbCHR2)
                         DeviceType = CHRocodileLib.DeviceType.Chr2;
                     else if (RbCLS)
                         DeviceType = CHRocodileLib.DeviceType.MultiChannel;
-                    else if (RbCHRC)
-                        DeviceType = CHRocodileLib.DeviceType.ChrCMini;
+                    else if (RbCHR1)
+                        DeviceType = CHRocodileLib.DeviceType.Chr1; 
                     string strConInfo = TbConInfo.Text;
                     Conn = new CHRocodileLib.SynchronousConnection(strConInfo, DeviceType);
                     //set up device
@@ -669,7 +688,7 @@ namespace TCHRLibBasicRecordSample
         {
             //default signals are: Sample counter, peak 1 value, peak 1 quality/intensity
             //signal definition for CLS device, only 16bit integer signal for peak signal
-            if (RBCLS.Checked)
+            if (RbCLS)
                 SignalIDs = new int[] { 83, 16640, 16641 };
             //other devices, float values are ordered
             else
@@ -680,7 +699,7 @@ namespace TCHRLibBasicRecordSample
             //CLS device, normally maximum scan rate ist 2000
             //ScanRate = 2000;
             TBSHZ.Text = ScanRate.ToString();
-            if (!RBCLS.Checked && !RBCHRC.Checked)
+            if (!RbCLS && !RbCHRC)
             {
                 //set up measuring method (confocal or interferometric)
                 SetUpMeasuringMethod();
@@ -695,7 +714,7 @@ namespace TCHRLibBasicRecordSample
             try
             {
                 MeasurementMode nMMD = MeasurementMode.Confocal;
-                if (RBInterfero.Checked)
+                if (RbInterfero)
                     nMMD = MeasurementMode.Interferometric;
                 var oRsp = Conn.Exec(CHRocodileLib.CmdID.MeasuringMethod, nMMD);
                 MeasuringMethod = (MeasurementMode)oRsp.GetParam<int>(0);
@@ -705,9 +724,9 @@ namespace TCHRLibBasicRecordSample
                 Debug.Fail("Cannot set measuring method");
             }
             if (MeasuringMethod == MeasurementMode.Confocal)
-                RBConfocal.Checked = true;
+                RbConfocal = true;
             else
-                RBInterfero.Checked = true;
+                RbInterfero = true;
         }
 
         private void SetUpOutputSignals()

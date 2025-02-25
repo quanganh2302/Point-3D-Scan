@@ -94,7 +94,7 @@ namespace TCHRLibBasicRecordSample.CustomUi.TabControl
             this.PnlCol1.ColumnCount = 3;
             this.PnlCol1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.95786F));
             this.PnlCol1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.04214F));
-            this.PnlCol1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 87F));
+            this.PnlCol1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 88F));
             this.PnlCol1.Controls.Add(this.LbConnect, 0, 0);
             this.PnlCol1.Controls.Add(this.InConnect, 1, 0);
             this.PnlCol1.Controls.Add(this.BtnConnect, 2, 0);
@@ -113,7 +113,7 @@ namespace TCHRLibBasicRecordSample.CustomUi.TabControl
             this.LbConnect.Margin = new System.Windows.Forms.Padding(0);
             this.LbConnect.Name = "LbConnect";
             this.LbConnect.Padding = new System.Windows.Forms.Padding(36, 0, 0, 0);
-            this.LbConnect.Size = new System.Drawing.Size(143, 60);
+            this.LbConnect.Size = new System.Drawing.Size(142, 60);
             this.LbConnect.TabIndex = 2;
             this.LbConnect.Text = "Connection info";
             this.LbConnect.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -126,15 +126,16 @@ namespace TCHRLibBasicRecordSample.CustomUi.TabControl
             this.InConnect.BorderForcusColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(106)))), ((int)(((byte)(17)))));
             this.InConnect.BorderSize = 1;
             this.InConnect.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.InConnect.Location = new System.Drawing.Point(145, 13);
+            this.InConnect.Location = new System.Drawing.Point(144, 15);
             this.InConnect.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.InConnect.Multiline = false;
             this.InConnect.Name = "InConnect";
             this.InConnect.Padding = new System.Windows.Forms.Padding(8);
             this.InConnect.PasswordChar = false;
-            this.InConnect.Size = new System.Drawing.Size(133, 33);
+            this.InConnect.Size = new System.Drawing.Size(133, 30);
             this.InConnect.TabIndex = 7;
             this.InConnect.UnderlineStyle = false;
+            this.InConnect._TextChange += new System.EventHandler(this.InConnect__TextChange);
             // 
             // BtnConnect
             // 

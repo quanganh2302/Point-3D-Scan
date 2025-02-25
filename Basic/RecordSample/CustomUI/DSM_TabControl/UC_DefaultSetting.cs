@@ -12,31 +12,19 @@ namespace TCHRLibBasicRecordSample.CustomUi.TabControl
 {
     public partial class UC_DefaultSetting : UserControl
     {
+
+        private string connectAddress = "192.168.170.2";
+
         // Declare the instance without initializing immediately.
         private TRecordSample _tRecordSample;
+
+        public string ConnectAddress 
+        { 
+            get => InConnect.Text; 
+            set => InConnect.Text = value; 
+        }
+
         public event EventHandler<string> RadioButtonChanged; // Event to notify changes
-        public bool IsRbCHRCChecked
-        {
-            get { return RbCHRC.Checked; }
-            set { RbCHRC.Checked = value; }
-        }
-        public bool IsRbCHR1Checked
-        {
-            get { return RbCHR1.Checked; }
-            set { RbCHR1.Checked = value; }
-        }
-
-        public bool IsRbCHR2Checked
-        {
-            get { return RbCHR2.Checked; }
-            set { RbCHR2.Checked = value; }
-        }
-
-        public bool IsRbCLSChecked
-        {
-            get { return RbCLS.Checked; }
-            set { RbCLS.Checked = value; }
-        }
 
         public UC_DefaultSetting()
         {
@@ -69,7 +57,7 @@ namespace TCHRLibBasicRecordSample.CustomUi.TabControl
             // Now you can access properties that require a valid handle.
 
 
-            InConnect.Text = "192.168.170.2";
+            InConnect.Text = connectAddress;
 
             // Wire up the event handler.
             BtnConnect.Click += _tRecordSample.BtConnect_Click;
@@ -77,8 +65,6 @@ namespace TCHRLibBasicRecordSample.CustomUi.TabControl
 
         private void BtnConnect_Click(object sender, EventArgs e)
         {
-            string selected = SelectedRadioButtonName;
-            MessageBox.Show("Currently checked: " + selected);
         }
         private void RadioButton_CheckedChanged(object sender, EventArgs e)
         {
@@ -88,21 +74,10 @@ namespace TCHRLibBasicRecordSample.CustomUi.TabControl
                 RadioButtonChanged?.Invoke(this, rb.Name);
             }
         }
-        public string SelectedRadioButtonName
-        {
-            get
-            {
-                if (RbCHR1.Checked)
-                    return RbCHR1.Name;
-                if (RbCHR2.Checked)
-                    return RbCHR2.Name;
-                if (RbCHRC.Checked)
-                    return RbCHRC.Name;
-                if (RbCLS.Checked)
-                    return RbCLS.Name;
-                return string.Empty;
-            }
-        }
 
+        private void InConnect__TextChange(object sender, EventArgs e)
+        {
+
+        }
     }
 }

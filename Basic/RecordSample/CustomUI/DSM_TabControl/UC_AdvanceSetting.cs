@@ -13,8 +13,20 @@ namespace TCHRLibBasicRecordSample.CustomUi.TabControl
     public partial class UC_AdvanceSetting : UserControl
     {
         // Declare the instance without initializing immediately.
-        private TRecordSample _tRecordSample;
+        private string scanRate = "2000";
+        private string selectedSignals = "83, 65, 66";
+        private string sampleCount = "10000";
 
+
+        // Declare the instance without initializing immediately.
+
+        public string ScanRate { get => InSR.Text; set => InSR.Text = value; }
+        public string SelectedSignals { get => InSS.Text; set => InSS.Text = value; }
+        public string SampleCount { get => InSC.Text; set => InSC.Text = value; }
+
+
+        private TRecordSample _tRecordSample;
+        public event EventHandler<string> RadioButtonChanged; // Event to notify changes
         public UC_AdvanceSetting()
         {
             InitializeComponent();
@@ -22,9 +34,9 @@ namespace TCHRLibBasicRecordSample.CustomUi.TabControl
             this.BackColor = TRecordSample.CardBg;
             this.ForeColor = TRecordSample.ForeGroundWhite;
             panel1.BackColor = TRecordSample.MainBg;
-            InSR.Text = "2000";
-            InSS.Text = "83, 65, 66";
-            InSC.Text = "10000";
+            InSR.Text = scanRate;
+            InSS.Text = selectedSignals;
+            InSC.Text = sampleCount;
             RbConfocal.Checked = true;
             if (SystemInformation.WorkingArea.Width < 1600)
             {
@@ -32,7 +44,6 @@ namespace TCHRLibBasicRecordSample.CustomUi.TabControl
                 PnlCol2.Width = 150;
                 PnlCol3.Width = 120;
                 PnlCol4.Width = 205;
-
             }
             else
             {
@@ -40,20 +51,40 @@ namespace TCHRLibBasicRecordSample.CustomUi.TabControl
                 PnlCol2.Width = 208;
                 PnlCol3.Width = 186;
                 PnlCol4.Width = 205;
-
             }
 
-            //if (SystemInformation.WorkingArea.Width < 1600)
-            //{
-            //    PnlSettingGrid.Padding = new Padding(36, MarginYScreenLg, 24, MarginYScreenLg);
-            //}
-            //else
-            //{
-            //    PnlSettingGrid.Padding = new Padding(36, MarginYScreenXl, 24, MarginYScreenXl);
 
-            //}
+            RbConfocal.CheckedChanged += RadioButton_CheckedChanged;
+            RbInterfero.CheckedChanged += RadioButton_CheckedChanged;
 
         }
 
+        private void RadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            if (sender is RadioButton rb && rb.Checked)
+            {
+                // Fire the event when a radio button is checked
+                RadioButtonChanged?.Invoke(this, rb.Name);
+            }
+        }
+
+        public string SelectedRadioButtonName
+        {
+            get
+            {
+                if (RbConfocal.Checked)
+                    return RbConfocal.Name;
+                if (RbInterfero.Checked)
+                    return RbInterfero.Name;
+                return string.Empty;
+            }
+        }
+
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+            //string selected = SelectedRadioButtonName;
+            //MessageBox.Show("Currently checked: " + selected);
+        }
     }
 }

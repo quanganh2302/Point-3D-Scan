@@ -1,0 +1,10 @@
+E:\Dynamic\1. Work_Space\On_Going\5. Point Scanner\Point scanner\chrocolib-T5-5-0-59-517aeeb0\libcore\lib\win\Win32\CSharpSharedConn.exe.config
+E:\Dynamic\1. Work_Space\On_Going\5. Point Scanner\Point scanner\chrocolib-T5-5-0-59-517aeeb0\libcore\lib\win\Win32\CSharpSharedConn.exe
+E:\Dynamic\1. Work_Space\On_Going\5. Point Scanner\Point scanner\chrocolib-T5-5-0-59-517aeeb0\libcore\lib\win\Win32\CSharpSharedConn.pdb
+E:\Dynamic\1. Work_Space\On_Going\5. Point Scanner\Point scanner\chrocolib-T5-5-0-59-517aeeb0\chrocodilelib\CSharpDemo\SharedConn\obj\x86\Debug\CSharpSharedConn.csproj.AssemblyReference.cache
+E:\Dynamic\1. Work_Space\On_Going\5. Point Scanner\Point scanner\chrocolib-T5-5-0-59-517aeeb0\chrocodilelib\CSharpDemo\SharedConn\obj\x86\Debug\TCHRLibSharedConn.SharedConn.resources
+E:\Dynamic\1. Work_Space\On_Going\5. Point Scanner\Point scanner\chrocolib-T5-5-0-59-517aeeb0\chrocodilelib\CSharpDemo\SharedConn\obj\x86\Debug\TCHRLibSharedConn.Properties.Resources.resources
+E:\Dynamic\1. Work_Space\On_Going\5. Point Scanner\Point scanner\chrocolib-T5-5-0-59-517aeeb0\chrocodilelib\CSharpDemo\SharedConn\obj\x86\Debug\CSharpSharedConn.csproj.GenerateResource.cache
+E:\Dynamic\1. Work_Space\On_Going\5. Point Scanner\Point scanner\chrocolib-T5-5-0-59-517aeeb0\chrocodilelib\CSharpDemo\SharedConn\obj\x86\Debug\CSharpSharedConn.csproj.CoreCompileInputs.cache
+E:\Dynamic\1. Work_Space\On_Going\5. Point Scanner\Point scanner\chrocolib-T5-5-0-59-517aeeb0\chrocodilelib\CSharpDemo\SharedConn\obj\x86\Debug\CSharpSharedConn.exe
+E:\Dynamic\1. Work_Space\On_Going\5. Point Scanner\Point scanner\chrocolib-T5-5-0-59-517aeeb0\chrocodilelib\CSharpDemo\SharedConn\obj\x86\Debug\CSharpSharedConn.pdb

@@ -277,9 +277,10 @@ namespace TCHRLibBasicRecordSample.CustomUi.TabControl
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(3, 5);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(110, 16);
+            this.label3.Size = new System.Drawing.Size(118, 16);
             this.label3.TabIndex = 2;
-            this.label3.Text = "Measuring Methos:";
+            this.label3.Text = "Measuring Methods:";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // UC_AdvanceSetting
             // 
