@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
-namespace TCHRLibBasicRecordSample.Componets
+namespace TCHRLibBasicRecordSample.CustomUi
 {
     public class DSM_TrackBarImg : Control
     {
@@ -467,6 +467,27 @@ namespace TCHRLibBasicRecordSample.Componets
         protected virtual void OnValueChanged(EventArgs e)
         {
             ValueChanged?.Invoke(this, e);
+        }
+        protected override void OnMouseWheel(MouseEventArgs e)
+        {
+            // Define the change step. You could also expose this as a property.
+            int step = 2;
+
+            // If the mouse wheel is scrolled up (Delta > 0) increase the value,
+            // otherwise decrease the value.
+            if (e.Delta < 0)
+            {
+                Value = Math.Min(MaximumPercent, Value + step);
+            }
+            else if (e.Delta > 0)
+            {
+                Value = Math.Max(MinimumPercent, Value - step);
+            }
+
+            // Optionally, you can raise a Scroll event here if needed.
+            // OnScroll(EventArgs.Empty);
+
+            base.OnMouseWheel(e);
         }
     }
 }

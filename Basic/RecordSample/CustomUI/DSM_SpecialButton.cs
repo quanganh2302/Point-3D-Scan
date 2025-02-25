@@ -9,14 +9,15 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.ComponentModel;
 
-namespace TCHRLibBasicRecordSample.Componets
+namespace TCHRLibBasicRecordSample.CustomUi
 {
-    public class DSM_Button : Button
+    public class DSM_SpecialButton : Button
     {
         //Fields
         private int borderSize = 1;
         private int borderRadius = 8;
         private Color borderColor = Color.PaleVioletRed;
+        private int corner = 1;
 
         [Category("DSM properties")]
 
@@ -68,20 +69,32 @@ namespace TCHRLibBasicRecordSample.Componets
             set => this.ForeColor = value;
 
         }
+        [Category("DSM properties")]
+
+        public int Corner
+        {
+            get => corner;
+            set
+            {
+                corner = value;
+                this.Invalidate();
+            }
+        }
+
 
         // Contructor
-        public DSM_Button()
+        public DSM_SpecialButton()
         {
             this.FlatStyle = FlatStyle.Flat;
             this.Cursor = Cursors.Hand;
             this.FlatAppearance.BorderSize = 0;
             this.Size = new Size(90, 36);
             this.BackColor = TRecordSample.BtnDefaultBg;
-            this.ForeColor =  TRecordSample.ForeGroundWhite;
+            this.ForeColor = TRecordSample.ForeGroundWhite;
             this.borderColor = TRecordSample.ForeGroundWhite;
             this.Resize += new EventHandler(Button_Resize);
             this.Font = new Font(TRecordSample.CenturyGothic, this.Font.Size, FontStyle.Bold);
-            
+
         }
 
 
@@ -90,12 +103,52 @@ namespace TCHRLibBasicRecordSample.Componets
         private GraphicsPath GetFigurPath(RectangleF rect, float radius)
         {
             GraphicsPath path = new GraphicsPath();
-            path.StartFigure();
-            path.AddArc(rect.X, rect.Y, radius, radius, 180, 90);
-            path.AddArc(rect.Width - radius, rect.Y, radius, radius, 270, 90);
-            path.AddArc(rect.Width - radius, rect.Height - radius, radius, radius, 0, 90);
-            path.AddArc(rect.X, rect.Height - radius, radius, radius, 90, 90);
-            path.CloseFigure();
+            if (corner < 1 && corner > 4)
+            {
+                path.StartFigure();
+                path.AddArc(rect.X, rect.Y, radius, radius, 180, 90);
+                path.AddArc(rect.Width - radius * 16, rect.Y, radius * 16, radius * 16, 270, 90);
+                path.AddArc(rect.Width - radius, rect.Height - radius, radius, radius, 0, 90);
+                path.AddArc(rect.X, rect.Height - radius, radius, radius, 90, 90);
+                path.CloseFigure();
+            }
+            if (corner == 1)
+            {
+                path.StartFigure();
+                path.AddArc(rect.X, rect.Y, radius * 16, radius * 16, 180, 90);
+                path.AddArc(rect.Width - radius, rect.Y, radius, radius, 270, 90);
+                path.AddArc(rect.Width - radius, rect.Height - radius, radius, radius, 0, 90);
+                path.AddArc(rect.X, rect.Height - radius, radius, radius, 90, 90);
+                path.CloseFigure();
+            }
+            else if (corner == 3)
+            {
+                path.StartFigure();
+                path.AddArc(rect.X, rect.Y, radius, radius, 180, 90);
+                path.AddArc(rect.Width - radius, rect.Y, radius, radius, 270, 90);
+                path.AddArc(rect.Width - radius * 16, rect.Height - radius * 16, radius * 16, radius * 16, 0, 90);
+                path.AddArc(rect.X, rect.Height - radius, radius, radius, 90, 90);
+                path.CloseFigure();
+            }
+            else if (corner == 2)
+            {
+                path.StartFigure();
+                path.AddArc(rect.X, rect.Y, radius, radius, 180, 90);
+                path.AddArc(rect.Width - radius * 16, rect.Y, radius * 16, radius * 16, 270, 90);
+                path.AddArc(rect.Width - radius, rect.Height - radius, radius, radius, 0, 90);
+                path.AddArc(rect.X, rect.Height - radius, radius, radius, 90, 90);
+                path.CloseFigure();
+            }
+            else
+            {
+                path.StartFigure();
+                path.AddArc(rect.X, rect.Y, radius, radius, 180, 90);
+                path.AddArc(rect.Width - radius, rect.Y, radius, radius, 270, 90);
+                path.AddArc(rect.Width - radius, rect.Height - radius, radius, radius, 0, 90);
+                path.AddArc(rect.X, rect.Height - radius * 16, radius * 16, radius * 16, 90, 90);
+                path.CloseFigure();
+            }
+
 
             return path;
         }
@@ -111,7 +164,7 @@ namespace TCHRLibBasicRecordSample.Componets
             if (borderRadius > 2) // Rounded button
             {
                 using (GraphicsPath pathSurface = GetFigurPath(rectSurface, borderRadius))
-                using (GraphicsPath pathBorder = GetFigurPath(rectBorder, borderRadius - 1F))
+                using (GraphicsPath pathBorder = GetFigurPath(rectBorder, borderRadius - 0F))
                 using (Pen penSurface = new Pen(this.Parent.BackColor, 2))
                 using (Pen penBorder = new Pen(borderColor, borderSize))
                 {

@@ -22,6 +22,7 @@ namespace TCHRLibBasicRecordSample
 {
     public partial class TRecordSample : Form
     {
+        // Fields
         #region Color
         public static Color ForeGroundWhite = ColorTranslator.FromHtml("#E4E4E4");
         public static Color ForeGroundBlack = ColorTranslator.FromHtml("#010B13");
@@ -34,11 +35,16 @@ namespace TCHRLibBasicRecordSample
         public static Color EmergencyRed = ColorTranslator.FromHtml("#f92f60");
         public static Color orange = ColorTranslator.FromHtml("#ed6a11");
         public static Color BorderBtn = ColorTranslator.FromHtml("#343434");
-
+        public static Color GridBg = ColorTranslator.FromHtml("#2B2926");
 
         public static int MarginYScreenXl = 24;
         public static int MarginYScreenLg = 12;
 
+        private CustomUi.TabControl.UC_DefaultSetting ucDefaultSetting;
+        private bool RbCHR1;
+        private bool RbCHR2;
+        private bool RbCHRC;
+        private bool RbCLS;
 
 
         public static readonly FontFamily CenturyGothic = new FontFamily("Century Gothic");
@@ -72,6 +78,7 @@ namespace TCHRLibBasicRecordSample
 
         }
 
+
         private void add_UControls(UserControl userControl)
         {
             userControl.Dock = DockStyle.Fill;
@@ -82,7 +89,7 @@ namespace TCHRLibBasicRecordSample
 
         private void Btn_Click(object sender, EventArgs eventArgs)
         {
-            foreach(var pnl in PnlNavSetting.Controls.OfType<Panel>())
+            foreach (var pnl in PnlNavSetting.Controls.OfType<Panel>())
             {
                 pnl.BackColor = CardBg;
             }
@@ -90,14 +97,34 @@ namespace TCHRLibBasicRecordSample
             switch (btn.Name)
             {
                 case "BtnDefaultSetting":
-                    add_UControls(new Componets.TabControl.UC_DefaultSetting());
-                    PnlDefaultSetting.BackColor = orange;
+
+                    ShowDefaultSetting();
                     break;
                 case "BtnAdvanceSetting":
-                    add_UControls(new Componets.TabControl.UC_AdvanceSetting());
+                    add_UControls(new CustomUi.TabControl.UC_AdvanceSetting());
                     PnlAdvanceSetting.BackColor = orange;
                     break;
             }
+        }
+        private void ShowDefaultSetting()
+        {
+            if (ucDefaultSetting == null)
+            {
+                ucDefaultSetting = new CustomUi.TabControl.UC_DefaultSetting();
+            }
+
+            add_UControls(ucDefaultSetting);
+            PnlDefaultSetting.BackColor = orange;
+
+            RbCHR1 = ucDefaultSetting.IsRbCHR1Checked;
+            RbCHR2 = ucDefaultSetting.IsRbCHR2Checked;
+            RbCHRC = ucDefaultSetting.IsRbCHRCChecked;
+            RbCLS = ucDefaultSetting.IsRbCLSChecked;
+            //MessageBox.Show("RbCHR1:" + RbCHR1);
+            //MessageBox.Show("RbCHR2:" + RbCHR2);
+            //MessageBox.Show("RbCHRC:" + RbCHRC);
+            //MessageBox.Show("RbCLS:" + RbCLS);
+
         }
 
 
@@ -112,10 +139,15 @@ namespace TCHRLibBasicRecordSample
         CHRocodileLib.Data RecordData = null;
 
         private Timer timer;
+
+
         public TRecordSample()
         {
             InitializeComponent();
+
             //axDBCommManager1.Connect();
+            this.SetStyle(ControlStyles.Selectable, true);
+            this.TabStop = true;
             this.BackColor = MainBg;
             this.ForeColor = ForeGroundWhite;
             //Working area
@@ -139,7 +171,7 @@ namespace TCHRLibBasicRecordSample
             PnlLeftSite.BackColor = MainBg;
 
             //Connect area
-            add_UControls(new Componets.TabControl.UC_DefaultSetting());
+            add_UControls(new CustomUi.TabControl.UC_DefaultSetting());
             PnlNavSetting.BackColor = CardBg;
             PnlDefaultSetting.BackColor = orange;
             PnlAdvanceSetting.BackColor = CardBg;
@@ -155,8 +187,6 @@ namespace TCHRLibBasicRecordSample
             LbXYCoor.ForeColor = ForeGroundWhite;
             LbZCoor.ForeColor = ForeGroundWhite;
 
-
-
             LbXAxisCoor.ForeColor = ForeGroundWhite;
             LbXCoorValue.ForeColor = ForeGroundWhite;
             LbYAxisCoor.ForeColor = ForeGroundWhite;
@@ -166,12 +196,23 @@ namespace TCHRLibBasicRecordSample
             if (SystemInformation.WorkingArea.Width < 1600)
             {
                 PnlSettingGrid.Padding = new Padding(36, MarginYScreenLg, 24, MarginYScreenLg);
+                PnlZMap.GridSize = 23;
             }
             else
             {
                 PnlSettingGrid.Padding = new Padding(36, MarginYScreenXl, 24, MarginYScreenXl);
+                PnlZMap.GridSize = 20;
 
             }
+            PnlZMap.BorderColor = ForeGroundWhite;
+            PnlZMap.MainLineColor = ForeGroundWhite;
+            PnlZMap.LineColor = ForeGroundWhite;
+            PnlZMap.BackColor = GridBg;
+
+            PnlXYMap.BorderColor = ForeGroundWhite;
+            PnlXYMap.MainLineColor = ForeGroundWhite;
+            PnlXYMap.LineColor = ForeGroundWhite;
+            PnlXYMap.BackColor = GridBg;
 
             // Control area
             if (SystemInformation.WorkingArea.Width < 1600)
@@ -291,10 +332,10 @@ namespace TCHRLibBasicRecordSample
             if (SystemInformation.WorkingArea.Width < 1600)
             {
                 //TbZCoor.Margin = new Padding(3, 0, 3, 3);
-                PnlZControl.Padding = new Padding(14, 20,14, 8);
+                PnlZControl.Padding = new Padding(14, 20, 14, 8);
                 LbZAxis.Location = new Point(0);
                 LbXYSpeed.Location = new Point(-4, 196);
-           
+
 
 
             }
@@ -371,7 +412,7 @@ namespace TCHRLibBasicRecordSample
             // -> Scan area
             ImgAreaScan.BackColor = MainBg;
             PnlScanArea.BackColor = CardBg;
-            if(SystemInformation.WorkingArea.Width < 1600)
+            if (SystemInformation.WorkingArea.Width < 1600)
             {
                 ImgAreaScan.Width = 500;
                 ImgAreaScan.Height = 360;
@@ -409,7 +450,7 @@ namespace TCHRLibBasicRecordSample
                 PnlChartGrid.Padding = new Padding(36, MarginYScreenXl, 36, MarginYScreenXl);
             }
             PnlChartGrid.BackColor = CardBg;
-            PnlLineChartArea.BackColor = CardBg;
+            //PnlLineChartArea.BackColor = CardBg;
             LbNameChart.ForeColor = ForeGroundBlack;
             axDBTriggerManager1.Active = true;
 
@@ -418,105 +459,105 @@ namespace TCHRLibBasicRecordSample
         #region Draw Z coordiante area 
 
 
-        private void PnlXYMap_Paint(object sender, PaintEventArgs e)
-        {
-            Graphics g = e.Graphics; // Declare the draw function
-            ControlPaint.DrawBorder(g, this.PnlXYMap.ClientRectangle, ForeGroundWhite, ButtonBorderStyle.Solid);
+        //private void PnlXYMap_Paint(object sender, PaintEventArgs e)
+        //{
+        //    Graphics g = e.Graphics; // Declare the draw function
+        //    ControlPaint.DrawBorder(g, this.PnlXYMap.ClientRectangle, ForeGroundWhite, ButtonBorderStyle.Solid);
 
-            int width = PnlXYMap.Width; // width of area
-            int height = PnlXYMap.Height; // Height of area
+        //    int width = PnlXYMap.Width; // width of area
+        //    int height = PnlXYMap.Height; // Height of area
 
-            Pen penBorder = new Pen(ForeGroundWhite, 4);
-            g.DrawRectangle(penBorder, 0, 0, width - 1F, height - 1F);
+        //    Pen penBorder = new Pen(ForeGroundWhite, 4);
+        //    g.DrawRectangle(penBorder, 0, 0, width - 1F, height - 1F);
 
-            // Set up pens and brushes
-            Pen axisPen = new Pen(ForeGroundWhite, 1); // Pen(color, width of line)
-            Pen gridPen = new Pen(ForeGroundWhite, 1);
+        //    // Set up pens and brushes
+        //    Pen axisPen = new Pen(ForeGroundWhite, 1); // Pen(color, width of line)
+        //    Pen gridPen = new Pen(ForeGroundWhite, 1);
 
-            // Origin point (center of the panel)
-            Point origin = new Point(width / 2 - 1, height / 2 - 1);
+        //    // Origin point (center of the panel)
+        //    Point origin = new Point(width / 2 - 1, height / 2 - 1);
 
-            // Draw grid lines and labels
-            int step = 25; // size of grid lines
-            for (int i = 0; i < Math.Max(width, height); i += step)
-            {
-                // Vertical grid lines
-                if (i < width || i != width / 2)
-                {
-                    g.DrawLine(gridPen, origin.X + i, 0, origin.X + i, height);
-                    g.DrawLine(gridPen, origin.X - i, 0, origin.X - i, height);
-                }
-                // Horizontal grid lines
-                if (i < height || i != height / 2)
-                {
-                    g.DrawLine(gridPen, 0, origin.Y - i, width, origin.Y - i);
-                    g.DrawLine(gridPen, 0, origin.Y + i, width, origin.Y + i);
+        //    // Draw grid lines and labels
+        //    int step = 25; // size of grid lines
+        //    for (int i = 0; i < Math.Max(width, height); i += step)
+        //    {
+        //        // Vertical grid lines
+        //        if (i < width || i != width / 2)
+        //        {
+        //            g.DrawLine(gridPen, origin.X + i, 0, origin.X + i, height);
+        //            g.DrawLine(gridPen, origin.X - i, 0, origin.X - i, height);
+        //        }
+        //        // Horizontal grid lines
+        //        if (i < height || i != height / 2)
+        //        {
+        //            g.DrawLine(gridPen, 0, origin.Y - i, width, origin.Y - i);
+        //            g.DrawLine(gridPen, 0, origin.Y + i, width, origin.Y + i);
 
-                }
-            }
-        }
+        //        }
+        //    }
+        //}
 
-        private void PnlZMap_Paint(object sender, PaintEventArgs e)
-        {
-
-
-            Graphics g = e.Graphics; // Declare the draw function
-            ControlPaint.DrawBorder(g, this.PnlZMap.ClientRectangle, ForeGroundWhite, ButtonBorderStyle.Solid);
+        //private void PnlZMap_Paint(object sender, PaintEventArgs e)
+        //{
 
 
-            int width = PnlZMap.Width; // width of area
-            int height = PnlZMap.Height; // Height of area
+        //    Graphics g = e.Graphics; // Declare the draw function
+        //    ControlPaint.DrawBorder(g, this.PnlZMap.ClientRectangle, ForeGroundWhite, ButtonBorderStyle.Solid);
 
-            Pen penBorder = new Pen(ForeGroundWhite, 4);
-            g.DrawRectangle(penBorder, 0, 0, width - 2F, height - 2F);
 
-            // Set up pens and brushes
-            Pen axisPen = new Pen(ForeGroundWhite, 1); // Pen(color, width of line)
-            Pen gridPen = new Pen(ForeGroundWhite, 1);
+        //    int width = PnlZMap.Width; // width of area
+        //    int height = PnlZMap.Height; // Height of area
 
-            // Origin point (center of the panel)
-            Point origin = new Point(width / 2 - 1, height / 2 - 1);
+        //    Pen penBorder = new Pen(ForeGroundWhite, 4);
+        //    g.DrawRectangle(penBorder, 0, 0, width - 2F, height - 2F);
 
-            // Draw grid lines and labels
-            int step = 20; // size of grid lines
-            for (int i = 0; i < Math.Max(width, height); i += step)
-            {
-                // Vertical grid lines
-                if (i < width || i != width / 2)
-                {
-                    g.DrawLine(gridPen, origin.X + i, 0, origin.X + i, height);
-                    g.DrawLine(gridPen, origin.X - i, 0, origin.X - i, height);
-                }
-                // Horizontal grid lines
-                if (i < height || i != height / 2)
-                {
-                    g.DrawLine(gridPen, 0, origin.Y - i, width , origin.Y - i);
-                    g.DrawLine(gridPen, 0, origin.Y + i, width, origin.Y + i);
+        //    // Set up pens and brushes
+        //    Pen axisPen = new Pen(ForeGroundWhite, 1); // Pen(color, width of line)
+        //    Pen gridPen = new Pen(ForeGroundWhite, 1);
 
-                }
-            }
-            // Draw axes
-            //g.DrawLine(axisPen, origin.X, 10, origin.X, height - 10); // Y-axis
+        //    // Origin point (center of the panel)
+        //    Point origin = new Point(width / 2 - 1, height / 2 - 1);
 
-            //limitHome.Position = new Point(origin.X - 8, origin.Y - (int)(height * 0.45) - 15);
-            //limitNe.Position = new Point(origin.X - 8, origin.Y + (int)(height * 0.45) - 5);
+        //    // Draw grid lines and labels
+        //    int step = 20; // size of grid lines
+        //    for (int i = 0; i < Math.Max(width, height); i += step)
+        //    {
+        //        // Vertical grid lines
+        //        if (i < width || i != width / 2)
+        //        {
+        //            g.DrawLine(gridPen, origin.X + i, 0, origin.X + i, height);
+        //            g.DrawLine(gridPen, origin.X - i, 0, origin.X - i, height);
+        //        }
+        //        // Horizontal grid lines
+        //        if (i < height || i != height / 2)
+        //        {
+        //            g.DrawLine(gridPen, 0, origin.Y - i, width , origin.Y - i);
+        //            g.DrawLine(gridPen, 0, origin.Y + i, width, origin.Y + i);
 
-            // distance move display is 95% of Height 
-            int distance = (int)(height * 0.95 - 5);
-            // percent of distance move to total lenght
-            //int percent = (int)(distanceMove / distanceLimtit * 100);
-            //// Set limit display position value
-            //if (percent < 1)
-            //{
-            //    percent = 0;
-            //}
-            //else if (percent > 100)
-            //{
-            //    percent = 100;
-            //}
-            //currentPos.Position = new Point(origin.X - 8, percent * distance / 100);
-            //currentCoor.Location = new Point(origin.X + 10, percent * distance / 100);
-        }
+        //        }
+        //    }
+        //    // Draw axes
+        //    //g.DrawLine(axisPen, origin.X, 10, origin.X, height - 10); // Y-axis
+
+        //    //limitHome.Position = new Point(origin.X - 8, origin.Y - (int)(height * 0.45) - 15);
+        //    //limitNe.Position = new Point(origin.X - 8, origin.Y + (int)(height * 0.45) - 5);
+
+        //    // distance move display is 95% of Height 
+        //    int distance = (int)(height * 0.95 - 5);
+        //    // percent of distance move to total lenght
+        //    //int percent = (int)(distanceMove / distanceLimtit * 100);
+        //    //// Set limit display position value
+        //    //if (percent < 1)
+        //    //{
+        //    //    percent = 0;
+        //    //}
+        //    //else if (percent > 100)
+        //    //{
+        //    //    percent = 100;
+        //    //}
+        //    //currentPos.Position = new Point(origin.X - 8, percent * distance / 100);
+        //    //currentCoor.Location = new Point(origin.X + 10, percent * distance / 100);
+        //}
 
         //private void BlinkTimer_Tick(object sender, EventArgs e)
         //{
@@ -549,40 +590,82 @@ namespace TCHRLibBasicRecordSample
         }
         public void BtConnect_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("checking");
-            bool bConnect = false;
-            //connect to device
-            if (sender == BtConnect)
-            {
-                try
-                {
-                    var DeviceType = CHRocodileLib.DeviceType.Chr1;
-                    if (RBCHR2.Checked)
-                        DeviceType = CHRocodileLib.DeviceType.Chr2;
-                    else if (RBCLS.Checked)
-                        DeviceType = CHRocodileLib.DeviceType.MultiChannel;
-                    else if (RBCHRC.Checked)
-                        DeviceType = CHRocodileLib.DeviceType.ChrCMini;
-                    string strConInfo = TbConInfo.Text;
-                    Conn = new CHRocodileLib.SynchronousConnection(strConInfo, DeviceType);
-                    //set up device
-                    SetupDevice();
-                    bConnect = true;
-                    //labelRecordingHint.Visible = true;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
-            //close connection to device
-            else
-            {
-                StopRecording();
-                Conn.Close();
-                Conn = null;
-            }
-            EnableGui(bConnect);
+            //bool bConnect = false;
+            ////connect to device
+            //if (sender == BtConnect)
+            //{
+            //    try
+            //    {
+            //        var DeviceType = CHRocodileLib.DeviceType.Chr1;
+            //        if (RBCHR2.Checked)
+            //            DeviceType = CHRocodileLib.DeviceType.Chr2;
+            //        else if (RBCLS.Checked)
+            //            DeviceType = CHRocodileLib.DeviceType.MultiChannel;
+            //        else if (RBCHRC.Checked)
+            //            DeviceType = CHRocodileLib.DeviceType.ChrCMini;
+            //        string strConInfo = TbConInfo.Text;
+            //        Conn = new CHRocodileLib.SynchronousConnection(strConInfo, DeviceType);
+            //        //set up device
+            //        SetupDevice();
+            //        bConnect = true;
+            //        //labelRecordingHint.Visible = true;
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        MessageBox.Show(ex.Message);
+            //    }
+            //}
+            ////close connection to device
+            //else
+            //{
+            //    StopRecording();
+            //    Conn.Close();
+            //    Conn = null;
+            //}
+            //EnableGui(bConnect);
+
+            //bool bConnect = false;
+            ////connect to device
+            //if (sender == BtConnect)
+            //{
+            //    try
+            //    {
+            //        var DeviceType = CHRocodileLib.DeviceType.Chr1;
+            //        if (RbCHR2)
+            //            DeviceType = CHRocodileLib.DeviceType.Chr2;
+            //        else if (RbCLS)
+            //            DeviceType = CHRocodileLib.DeviceType.MultiChannel;
+            //        else if (RbCHRC)
+            //            DeviceType = CHRocodileLib.DeviceType.ChrCMini;
+            //        string strConInfo = TbConInfo.Text;
+            //        Conn = new CHRocodileLib.SynchronousConnection(strConInfo, DeviceType);
+            //        //set up device
+            //        SetupDevice();
+            //        bConnect = true;
+            //        //labelRecordingHint.Visible = true;
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        MessageBox.Show(ex.Message);
+            //    }
+            //}
+            ////close connection to device
+            //else
+            //{
+            //    StopRecording();
+            //    Conn.Close();
+            //    Conn = null;
+            //}
+            //EnableGui(bConnect);
+
+            // if (RbCHRC)
+            MessageBox.Show("RbCHR1:" + RbCHR1);
+            // else if (RbCHR2)
+                MessageBox.Show("RbCHR2:" + RbCHR2);
+            // else if (RbCLS)
+                MessageBox.Show("RbCLS:" + RbCLS);
+            // else if (RbCHRC)
+                MessageBox.Show("RbCHRC:" + RbCHRC);
 
         }
 
@@ -713,7 +796,7 @@ namespace TCHRLibBasicRecordSample
             Conn.StartRecording(SampleCount);
             initDataChart();
             CurrentDataPos = 0;
-            timerData.Enabled= true;
+            timerData.Enabled = true;
             EnableSetting(false);
             BtRecord.Text = "Stop Recording";
             BtRecord.Tag = 1;
@@ -736,7 +819,7 @@ namespace TCHRLibBasicRecordSample
         }
 
 
-        private void StopRecording() 
+        private void StopRecording()
         {
             timerData.Enabled = false;
             //stop recording, get recorded data buffer/object
@@ -829,7 +912,7 @@ namespace TCHRLibBasicRecordSample
                             aData[i] = s.Get(i);
                         //if not enough global signal, show peak signal. for peak signal, only shows the value for the first channel
                         else if (oData.Info.SignalGenInfo.GlobalSignalCount + oData.Info.SignalGenInfo.PeakSignalCount > i)
-                            aData[i] = s.Get(i, 0);                                        
+                            aData[i] = s.Get(i, 0);
                     }
                     //chart1.Series[0].Points[CurrentDataPos].YValues[0] = Double.IsNaN(aData[0]) ? 0 : aData[0];
                     //chart2.Series[0].Points[CurrentDataPos].YValues[0] = Double.IsNaN(aData[1]) ? 0 : aData[1];
@@ -838,7 +921,7 @@ namespace TCHRLibBasicRecordSample
                     double signalYValue = Double.IsNaN(aData[1]) ? 0 : aData[1];
                     double signalZValue = Double.IsNaN(aData[2]) ? 0 : aData[2];
                     recordedPoints.Add(new Point3D(signalXValue, signalYValue, signalZValue));
-                    CurrentDataPos++;                   
+                    CurrentDataPos++;
                 }
                 //chart1.ChartAreas[0].RecalculateAxesScale();
                 //chart1.Invalidate();
@@ -867,7 +950,7 @@ namespace TCHRLibBasicRecordSample
             if (SaveDlg.ShowDialog() == DialogResult.OK)
             {
                 StreamWriter writer = new StreamWriter(SaveDlg.OpenFile());
-                var nSigCount = RecordData.Info.SignalGenInfo.GlobalSignalCount 
+                var nSigCount = RecordData.Info.SignalGenInfo.GlobalSignalCount
                     + RecordData.Info.SignalGenInfo.PeakSignalCount;
 
                 //reread all the samples, save...
@@ -875,13 +958,13 @@ namespace TCHRLibBasicRecordSample
                 foreach (var s in RecordData.Samples())
                 {
                     StringBuilder sb = new StringBuilder();
-                    for (int j=0; j<nSigCount; j++)
+                    for (int j = 0; j < nSigCount; j++)
                     {
                         if (j < RecordData.Info.SignalGenInfo.GlobalSignalCount)
-                            sb.Append(s.Get(j)+", ");
+                            sb.Append(s.Get(j) + ", ");
                         else
                         {
-                            for (int k=0; k< RecordData.Info.SignalGenInfo.ChannelCount; k++)
+                            for (int k = 0; k < RecordData.Info.SignalGenInfo.ChannelCount; k++)
                                 sb.Append(s.Get(j, k) + ", ");
                         }
                     }
@@ -1048,7 +1131,7 @@ yoffset = 0
 voidpixels = {5}
 zmin = 0
 forcecurve = 0
-", headerSize, imgWidth, imgHeight, xLength /2 , yLength /2, numVoid);
+", headerSize, imgWidth, imgHeight, xLength / 2, yLength / 2, numVoid);
 
             // 6. Write the header and binary data to the file.
             try
@@ -1200,7 +1283,7 @@ forcecurve = 0
                 imgWidth = (int)(imgWidth * scale);
             else
                 imgHeight = (int)(imgHeight * scale);
-            if (imgWidth <= 0 ||  imgHeight <= 0)
+            if (imgWidth <= 0 || imgHeight <= 0)
             {
                 return new Bitmap(1, 1); // Use a 1x1 fallback
             }
@@ -1293,6 +1376,10 @@ forcecurve = 0
 
         }
 
+        private void TRecordSample_Load(object sender, EventArgs e)
+        {
+            //ShowDefaultSetting();
+        }
     }
 
 

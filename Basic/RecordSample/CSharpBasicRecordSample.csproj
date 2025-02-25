@@ -70,54 +70,57 @@
   <ItemGroup>
     <None Include="App.config" />
     <Compile Include="ColorHeatMap.cs" />
-    <Compile Include="Components\DSM_ProgressBar.cs">
+    <Compile Include="CustomUI\DSM_GridMap.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Components\DSM_RadioButton.cs">
+    <Compile Include="CustomUI\DSM_ProgressBar.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Components\DSM_SpecialButton.cs">
+    <Compile Include="CustomUI\DSM_RadioButton.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Components\DSM_Button.cs">
+    <Compile Include="CustomUI\DSM_SpecialButton.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Components\DSM_ComboBox.cs">
+    <Compile Include="CustomUI\DSM_Button.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CustomUI\DSM_ComboBox.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Components\DSM_TabControl\UC_AdvanceSetting.cs">
+    <Compile Include="CustomUI\DSM_TabControl\UC_AdvanceSetting.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Components\DSM_TabControl\UC_AdvanceSetting.Designer.cs">
+    <Compile Include="CustomUI\DSM_TabControl\UC_AdvanceSetting.Designer.cs">
       <DependentUpon>UC_AdvanceSetting.cs</DependentUpon>
     </Compile>
-    <Compile Include="Components\DSM_TabControl\UC_DefaultSetting.cs">
+    <Compile Include="CustomUI\DSM_TabControl\UC_DefaultSetting.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Components\DSM_TabControl\UC_DefaultSetting.Designer.cs">
+    <Compile Include="CustomUI\DSM_TabControl\UC_DefaultSetting.Designer.cs">
       <DependentUpon>UC_DefaultSetting.cs</DependentUpon>
     </Compile>
-    <Compile Include="Components\DSM_TextBox.cs">
+    <Compile Include="CustomUI\DSM_TextBox.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Components\DSM_TextBox.Designer.cs">
+    <Compile Include="CustomUI\DSM_TextBox.Designer.cs">
       <DependentUpon>DSM_TextBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="Components\DSM_Trackbar.cs">
+    <Compile Include="CustomUI\DSM_Trackbar.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Components\DSM_TrackBarImg.cs">
+    <Compile Include="CustomUI\DSM_TrackBarImg.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="DataProcessor.cs" />
     <Compile Include="Program.cs" />
-    <EmbeddedResource Include="Components\DSM_TabControl\UC_AdvanceSetting.resx">
+    <EmbeddedResource Include="CustomUI\DSM_TabControl\UC_AdvanceSetting.resx">
       <DependentUpon>UC_AdvanceSetting.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Components\DSM_TabControl\UC_DefaultSetting.resx">
+    <EmbeddedResource Include="CustomUI\DSM_TabControl\UC_DefaultSetting.resx">
       <DependentUpon>UC_DefaultSetting.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Components\DSM_TextBox.resx">
+    <EmbeddedResource Include="CustomUI\DSM_TextBox.resx">
       <DependentUpon>DSM_TextBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

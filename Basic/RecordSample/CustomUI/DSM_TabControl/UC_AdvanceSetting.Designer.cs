@@ -1,5 +1,5 @@
 ﻿
-namespace TCHRLibBasicRecordSample.Componets.TabControl
+namespace TCHRLibBasicRecordSample.CustomUi.TabControl
 {
     partial class UC_AdvanceSetting
     {
@@ -33,17 +33,17 @@ namespace TCHRLibBasicRecordSample.Componets.TabControl
             this.PnlMainGrid = new System.Windows.Forms.TableLayoutPanel();
             this.PnlContentGrid = new System.Windows.Forms.TableLayoutPanel();
             this.PnlCol1 = new System.Windows.Forms.TableLayoutPanel();
-            this.InSR = new TCHRLibBasicRecordSample.Componets.DSM_TextBox();
+            this.InSR = new TCHRLibBasicRecordSample.CustomUi.DSM_TextBox();
             this.LbSR = new System.Windows.Forms.Label();
             this.PnlCol3 = new System.Windows.Forms.TableLayoutPanel();
-            this.InSC = new TCHRLibBasicRecordSample.Componets.DSM_TextBox();
+            this.InSC = new TCHRLibBasicRecordSample.CustomUi.DSM_TextBox();
             this.LbSC = new System.Windows.Forms.Label();
             this.PnlCol2 = new System.Windows.Forms.TableLayoutPanel();
-            this.InSS = new TCHRLibBasicRecordSample.Componets.DSM_TextBox();
+            this.InSS = new TCHRLibBasicRecordSample.CustomUi.DSM_TextBox();
             this.LbSS = new System.Windows.Forms.Label();
             this.PnlCol4 = new System.Windows.Forms.Panel();
-            this.RbConfocal = new TCHRLibBasicRecordSample.Componets.DSM_RadioButton();
-            this.RbInterfero = new TCHRLibBasicRecordSample.Componets.DSM_RadioButton();
+            this.RbConfocal = new TCHRLibBasicRecordSample.CustomUi.DSM_RadioButton();
+            this.RbInterfero = new TCHRLibBasicRecordSample.CustomUi.DSM_RadioButton();
             this.label3 = new System.Windows.Forms.Label();
             this.PnlMainGrid.SuspendLayout();
             this.PnlContentGrid.SuspendLayout();

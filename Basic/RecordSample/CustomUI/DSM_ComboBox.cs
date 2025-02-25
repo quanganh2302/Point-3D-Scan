@@ -10,7 +10,7 @@ using System.Drawing.Drawing2D;
 using System.ComponentModel;
 using System.Drawing.Design;
 
-namespace TCHRLibBasicRecordSample.Componets.TabControl
+namespace TCHRLibBasicRecordSample.CustomUi.TabControl
 {
     class DSM_ComboBox : UserControl
     {

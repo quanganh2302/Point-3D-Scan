@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace TCHRLibBasicRecordSample.Componets
+namespace TCHRLibBasicRecordSample.CustomUi
 {
     [DefaultEvent("_TextChange")]
     public partial class DSM_TextBox : UserControl

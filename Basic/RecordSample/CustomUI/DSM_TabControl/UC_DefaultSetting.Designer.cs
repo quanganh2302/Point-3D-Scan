@@ -1,5 +1,5 @@
 ﻿
-namespace TCHRLibBasicRecordSample.Componets.TabControl
+namespace TCHRLibBasicRecordSample.CustomUi.TabControl
 {
     partial class UC_DefaultSetting
     {
@@ -34,13 +34,13 @@ namespace TCHRLibBasicRecordSample.Componets.TabControl
             this.PnlContentGrid = new System.Windows.Forms.TableLayoutPanel();
             this.PnlCol1 = new System.Windows.Forms.TableLayoutPanel();
             this.LbConnect = new System.Windows.Forms.Label();
-            this.InConnect = new TCHRLibBasicRecordSample.Componets.DSM_TextBox();
-            this.BtnConnect = new TCHRLibBasicRecordSample.Componets.DSM_Button();
+            this.InConnect = new TCHRLibBasicRecordSample.CustomUi.DSM_TextBox();
+            this.BtnConnect = new TCHRLibBasicRecordSample.CustomUi.DSM_Button();
             this.PnlListRb = new System.Windows.Forms.Panel();
-            this.RbCHR1 = new TCHRLibBasicRecordSample.Componets.DSM_RadioButton();
-            this.RbCHR2 = new TCHRLibBasicRecordSample.Componets.DSM_RadioButton();
-            this.RbCLS = new TCHRLibBasicRecordSample.Componets.DSM_RadioButton();
-            this.RbCHRC = new TCHRLibBasicRecordSample.Componets.DSM_RadioButton();
+            this.RbCHR1 = new TCHRLibBasicRecordSample.CustomUi.DSM_RadioButton();
+            this.RbCHR2 = new TCHRLibBasicRecordSample.CustomUi.DSM_RadioButton();
+            this.RbCLS = new TCHRLibBasicRecordSample.CustomUi.DSM_RadioButton();
+            this.RbCHRC = new TCHRLibBasicRecordSample.CustomUi.DSM_RadioButton();
             this.PnlMainGrid.SuspendLayout();
             this.PnlContentGrid.SuspendLayout();
             this.PnlCol1.SuspendLayout();
@@ -94,7 +94,7 @@ namespace TCHRLibBasicRecordSample.Componets.TabControl
             this.PnlCol1.ColumnCount = 3;
             this.PnlCol1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.95786F));
             this.PnlCol1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.04214F));
-            this.PnlCol1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 86F));
+            this.PnlCol1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 87F));
             this.PnlCol1.Controls.Add(this.LbConnect, 0, 0);
             this.PnlCol1.Controls.Add(this.InConnect, 1, 0);
             this.PnlCol1.Controls.Add(this.BtnConnect, 2, 0);
@@ -132,7 +132,7 @@ namespace TCHRLibBasicRecordSample.Componets.TabControl
             this.InConnect.Name = "InConnect";
             this.InConnect.Padding = new System.Windows.Forms.Padding(8);
             this.InConnect.PasswordChar = false;
-            this.InConnect.Size = new System.Drawing.Size(134, 33);
+            this.InConnect.Size = new System.Drawing.Size(133, 33);
             this.InConnect.TabIndex = 7;
             this.InConnect.UnderlineStyle = false;
             // 
@@ -149,13 +149,14 @@ namespace TCHRLibBasicRecordSample.Componets.TabControl
             this.BtnConnect.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnConnect.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold);
             this.BtnConnect.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.BtnConnect.Location = new System.Drawing.Point(289, 12);
+            this.BtnConnect.Location = new System.Drawing.Point(288, 12);
             this.BtnConnect.Name = "BtnConnect";
             this.BtnConnect.Size = new System.Drawing.Size(71, 36);
             this.BtnConnect.TabIndex = 8;
             this.BtnConnect.Text = "Connect";
             this.BtnConnect.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
             this.BtnConnect.UseVisualStyleBackColor = false;
+            this.BtnConnect.Click += new System.EventHandler(this.BtnConnect_Click);
             // 
             // PnlListRb
             // 
@@ -258,9 +259,9 @@ namespace TCHRLibBasicRecordSample.Componets.TabControl
         private System.Windows.Forms.Label LbConnect;
         private DSM_Button BtnConnect;
         private System.Windows.Forms.Panel PnlListRb;
-        private TCHRLibBasicRecordSample.Componets.DSM_RadioButton RbCHR1;
-        private TCHRLibBasicRecordSample.Componets.DSM_RadioButton RbCHR2;
-        private TCHRLibBasicRecordSample.Componets.DSM_RadioButton RbCLS;
-        private TCHRLibBasicRecordSample.Componets.DSM_RadioButton RbCHRC;
+        private TCHRLibBasicRecordSample.CustomUi.DSM_RadioButton RbCHR1;
+        private TCHRLibBasicRecordSample.CustomUi.DSM_RadioButton RbCHR2;
+        private TCHRLibBasicRecordSample.CustomUi.DSM_RadioButton RbCLS;
+        private TCHRLibBasicRecordSample.CustomUi.DSM_RadioButton RbCHRC;
     }
 }

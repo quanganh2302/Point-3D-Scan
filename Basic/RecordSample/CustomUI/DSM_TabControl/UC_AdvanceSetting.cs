@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace TCHRLibBasicRecordSample.Componets.TabControl
+namespace TCHRLibBasicRecordSample.CustomUi.TabControl
 {
     public partial class UC_AdvanceSetting : UserControl
     {

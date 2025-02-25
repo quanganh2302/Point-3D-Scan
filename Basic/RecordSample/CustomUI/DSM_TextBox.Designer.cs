@@ -1,5 +1,5 @@
 ﻿
-namespace TCHRLibBasicRecordSample.Componets
+namespace TCHRLibBasicRecordSample.CustomUi
 {
     partial class DSM_TextBox
     {
