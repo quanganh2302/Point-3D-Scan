@@ -77,7 +77,8 @@ namespace TCHRLibBasicRecordSample.CustomUi.TabControl
 
         private void BtnConnect_Click(object sender, EventArgs e)
         {
-
+            string selected = SelectedRadioButtonName;
+            MessageBox.Show("Currently checked: " + selected);
         }
         private void RadioButton_CheckedChanged(object sender, EventArgs e)
         {
@@ -87,5 +88,21 @@ namespace TCHRLibBasicRecordSample.CustomUi.TabControl
                 RadioButtonChanged?.Invoke(this, rb.Name);
             }
         }
+        public string SelectedRadioButtonName
+        {
+            get
+            {
+                if (RbCHR1.Checked)
+                    return RbCHR1.Name;
+                if (RbCHR2.Checked)
+                    return RbCHR2.Name;
+                if (RbCHRC.Checked)
+                    return RbCHRC.Name;
+                if (RbCLS.Checked)
+                    return RbCLS.Name;
+                return string.Empty;
+            }
+        }
+
     }
 }

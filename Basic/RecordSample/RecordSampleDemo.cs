@@ -115,16 +115,6 @@ namespace TCHRLibBasicRecordSample
 
             add_UControls(ucDefaultSetting);
             PnlDefaultSetting.BackColor = orange;
-
-            RbCHR1 = ucDefaultSetting.IsRbCHR1Checked;
-            RbCHR2 = ucDefaultSetting.IsRbCHR2Checked;
-            RbCHRC = ucDefaultSetting.IsRbCHRCChecked;
-            RbCLS = ucDefaultSetting.IsRbCLSChecked;
-            //MessageBox.Show("RbCHR1:" + RbCHR1);
-            //MessageBox.Show("RbCHR2:" + RbCHR2);
-            //MessageBox.Show("RbCHRC:" + RbCHRC);
-            //MessageBox.Show("RbCLS:" + RbCLS);
-
         }
 
 
@@ -144,7 +134,6 @@ namespace TCHRLibBasicRecordSample
         public TRecordSample()
         {
             InitializeComponent();
-
             //axDBCommManager1.Connect();
             this.SetStyle(ControlStyles.Selectable, true);
             this.TabStop = true;
@@ -171,7 +160,12 @@ namespace TCHRLibBasicRecordSample
             PnlLeftSite.BackColor = MainBg;
 
             //Connect area
-            add_UControls(new CustomUi.TabControl.UC_DefaultSetting());
+            ucDefaultSetting = new CustomUi.TabControl.UC_DefaultSetting();
+
+            ucDefaultSetting.RadioButtonChanged += UcDefaultSetting_RadioButtonChanged;
+
+            add_UControls(ucDefaultSetting);
+
             PnlNavSetting.BackColor = CardBg;
             PnlDefaultSetting.BackColor = orange;
             PnlAdvanceSetting.BackColor = CardBg;
@@ -456,6 +450,16 @@ namespace TCHRLibBasicRecordSample
 
         }
 
+        private void UcDefaultSetting_RadioButtonChanged(object sender, string selectedRadioButtonName)
+        {
+            MessageBox.Show("Selected Radio Button: " + selectedRadioButtonName);
+            RbCHR1 = (selectedRadioButtonName == "RbCHR1");
+            RbCHR2 = (selectedRadioButtonName == "RbCHR2");
+            RbCHRC = (selectedRadioButtonName == "RbCHRC");
+            RbCLS = (selectedRadioButtonName == "RbCLS");
+            // Now you have the name of the radio button that was checked.
+        }
+
         #region Draw Z coordiante area 
 
 
@@ -624,48 +628,39 @@ namespace TCHRLibBasicRecordSample
             //}
             //EnableGui(bConnect);
 
-            //bool bConnect = false;
-            ////connect to device
-            //if (sender == BtConnect)
-            //{
-            //    try
-            //    {
-            //        var DeviceType = CHRocodileLib.DeviceType.Chr1;
-            //        if (RbCHR2)
-            //            DeviceType = CHRocodileLib.DeviceType.Chr2;
-            //        else if (RbCLS)
-            //            DeviceType = CHRocodileLib.DeviceType.MultiChannel;
-            //        else if (RbCHRC)
-            //            DeviceType = CHRocodileLib.DeviceType.ChrCMini;
-            //        string strConInfo = TbConInfo.Text;
-            //        Conn = new CHRocodileLib.SynchronousConnection(strConInfo, DeviceType);
-            //        //set up device
-            //        SetupDevice();
-            //        bConnect = true;
-            //        //labelRecordingHint.Visible = true;
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        MessageBox.Show(ex.Message);
-            //    }
-            //}
-            ////close connection to device
-            //else
-            //{
-            //    StopRecording();
-            //    Conn.Close();
-            //    Conn = null;
-            //}
-            //EnableGui(bConnect);
-
-            // if (RbCHRC)
-            MessageBox.Show("RbCHR1:" + RbCHR1);
-            // else if (RbCHR2)
-                MessageBox.Show("RbCHR2:" + RbCHR2);
-            // else if (RbCLS)
-                MessageBox.Show("RbCLS:" + RbCLS);
-            // else if (RbCHRC)
-                MessageBox.Show("RbCHRC:" + RbCHRC);
+            bool bConnect = false;
+            //connect to device
+            if (sender == BtConnect)
+            {
+                try
+                {
+                    var DeviceType = CHRocodileLib.DeviceType.Chr1;
+                    if (RbCHR2)
+                        DeviceType = CHRocodileLib.DeviceType.Chr2;
+                    else if (RbCLS)
+                        DeviceType = CHRocodileLib.DeviceType.MultiChannel;
+                    else if (RbCHRC)
+                        DeviceType = CHRocodileLib.DeviceType.ChrCMini;
+                    string strConInfo = TbConInfo.Text;
+                    Conn = new CHRocodileLib.SynchronousConnection(strConInfo, DeviceType);
+                    //set up device
+                    SetupDevice();
+                    bConnect = true;
+                    //labelRecordingHint.Visible = true;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            //close connection to device
+            else
+            {
+                StopRecording();
+                Conn.Close();
+                Conn = null;
+            }
+            EnableGui(bConnect);
 
         }
 
@@ -1379,6 +1374,11 @@ forcecurve = 0
         private void TRecordSample_Load(object sender, EventArgs e)
         {
             //ShowDefaultSetting();
+
+        }
+
+        private void BtnHome_Click(object sender, EventArgs e)
+        {
         }
     }
 
