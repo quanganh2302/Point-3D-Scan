@@ -39,6 +39,7 @@ namespace TCHRLibBasicRecordSample
 
         public static int MarginYScreenXl = 24;
         public static int MarginYScreenLg = 12;
+        #endregion
 
         private CustomUi.TabControl.UC_DefaultSetting ucDefaultSetting;
         private CustomUi.TabControl.UC_AdvanceSetting ucAdvanceSetting;
@@ -51,8 +52,24 @@ namespace TCHRLibBasicRecordSample
         private bool RbConfocal;
         private bool RbInterfero;
 
-        public static readonly FontFamily CenturyGothic = new FontFamily("Century Gothic");
+        #region Control
+        float minSpeed = 2; // Min speed of track bar (m/s)
+        float maxSpeed = 10; // Max speed of track bar (m/s)
+        float XWorkingRange = 300;// distance of 2 limit X (mm)
+        float YWorkingRange = 300;// distance of 2 limit X (mm)
+        float ZWorkingRange = 300;// distance of 2 limit X (mm)
+
+        int threadPitch = 3; // Bước ren
+        int pulsesPerRevolution = 3600; // xung/vòng
+
+        float currentXCoor = 0F;
+        float currentYCoor = 0F;
+        float currentZCoor = 0F;
+
+
         #endregion
+
+        public static readonly FontFamily CenturyGothic = new FontFamily("Century Gothic");
 
         bool expand = false;
         private void timerComboBox_Tick(object sender, EventArgs e)
@@ -199,6 +216,7 @@ namespace TCHRLibBasicRecordSample
             LbYCoorValue.ForeColor = ForeGroundWhite;
             LbZAxisCoor.ForeColor = ForeGroundWhite;
             LbZCoorValue.ForeColor = ForeGroundWhite;
+            LbZCoorValue.Text = ZWorkingRange.ToString();
             if (SystemInformation.WorkingArea.Width < 1600)
             {
                 PnlSettingGrid.Padding = new Padding(36, MarginYScreenLg, 24, MarginYScreenLg);
@@ -214,6 +232,9 @@ namespace TCHRLibBasicRecordSample
             PnlZMap.MainLineColor = ForeGroundWhite;
             PnlZMap.LineColor = ForeGroundWhite;
             PnlZMap.BackColor = GridBg;
+            PnlZMap.PointColor = orange;
+            PnlZMap.CoordinateX = PnlZMap.Width / 2;
+            PnlZMap.CoordinateY = currentZCoor / ZWorkingRange * 100;
 
             PnlXYMap.BorderColor = ForeGroundWhite;
             PnlXYMap.MainLineColor = ForeGroundWhite;
@@ -329,6 +350,7 @@ namespace TCHRLibBasicRecordSample
             TbXYspeed.ThumbColor = orange;
             TbXYspeed.TrackColorLeft = orange;
             TbXYspeed.TrackColorRight = ForeGroundWhite;
+            TbXYspeed.ValueChanged += TbXYspeed_ValueChanged;
 
             //TbZCoor.ThumbColor = orange;
             //TbZCoor.TrackColorLeft = orange;
@@ -361,6 +383,8 @@ namespace TCHRLibBasicRecordSample
             TbZControl.ThumbSize = 40;
             TbZControl.VerticalReversed = true;
             TbZControl.Dock = DockStyle.Fill;
+            TbZControl.ValueChanged += TbZControl_ValueChanged;
+
             if (SystemInformation.WorkingArea.Width < 1600)
             {
                 TbZControl.BorderRadius = 32;
@@ -462,16 +486,16 @@ namespace TCHRLibBasicRecordSample
 
         }
 
+
+
         private void UcAdvanceSetting_RadioButtonChanged(object sender, string selectedRadioButtonName)
         {
-            MessageBox.Show("Selected Radio Button: " + selectedRadioButtonName);
             RbConfocal = (selectedRadioButtonName == "RbConfocal");
             RbInterfero = (selectedRadioButtonName == "RbInterfero");
         }
 
         private void UcDefaultSetting_RadioButtonChanged(object sender, string selectedRadioButtonName)
         {
-            MessageBox.Show("Selected Radio Button: " + selectedRadioButtonName);
             RbCHR1 = (selectedRadioButtonName == "RbCHR1");
             RbCHR2 = (selectedRadioButtonName == "RbCHR2");
             RbCHRC = (selectedRadioButtonName == "RbCHRC");
@@ -594,7 +618,18 @@ namespace TCHRLibBasicRecordSample
 
         private void BtnClose_Click(object sender, EventArgs e)
         {
+            try
+            {
+                axDBCommManager1.WriteDevice(DATABUILDERAXLibLB.DBPlcDevice.DKVNano_MR, "407", 1);
+            }
+            catch (Exception ex)
+            {
+                // Notify the user of an error
+                MessageBox.Show($"Error writing to device: MR407 {ex.Message}",
+                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             Close();
+
         }
 
         private void StartTimer()
@@ -651,6 +686,7 @@ namespace TCHRLibBasicRecordSample
             //connect to device
             if (sender == BtConnect)
             {
+                ConnectToPLC();
                 try
                 {
                     var DeviceType = CHRocodileLib.DeviceType.ChrCMini;
@@ -659,7 +695,7 @@ namespace TCHRLibBasicRecordSample
                     else if (RbCLS)
                         DeviceType = CHRocodileLib.DeviceType.MultiChannel;
                     else if (RbCHR1)
-                        DeviceType = CHRocodileLib.DeviceType.Chr1; 
+                        DeviceType = CHRocodileLib.DeviceType.Chr1;
                     string strConInfo = TbConInfo.Text;
                     Conn = new CHRocodileLib.SynchronousConnection(strConInfo, DeviceType);
                     //set up device
@@ -707,6 +743,14 @@ namespace TCHRLibBasicRecordSample
             SetUpMeasuringMethod();
             SetUpScanrate();
             SetUpOutputSignals();
+            SetUpPLCSignals();
+        }
+
+        private void SetUpPLCSignals()
+        {
+            maxSpeed = axDBCommManager1.ReadDevice(DATABUILDERAXLibLB.DBPlcDevice.DKVNano_DM, "212");
+            minSpeed = axDBCommManager1.ReadDevice(DATABUILDERAXLibLB.DBPlcDevice.DKVNano_DM, "224");
+
         }
 
         private void SetUpMeasuringMethod()
@@ -838,7 +882,7 @@ namespace TCHRLibBasicRecordSample
             timerData.Enabled = false;
             //stop recording, get recorded data buffer/object
             RecordData = Conn.StopRecording();
-            axDBCommManager1.WriteDevice(DATABUILDERAXLibLB.DBPlcDevice.DKVNano_MR, "402", 1);
+
             EnableSetting(true);
             BtRecord.Text = "Start Recording";
             BtRecord.Tag = 0;
@@ -1396,9 +1440,443 @@ forcecurve = 0
 
         }
 
+
+        private void ConnectToPLC()
+        {
+            // Connect to device
+            try
+            {
+                axDBCommManager1.Connect();
+                axDBTriggerManager1.Active = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Connection Failed: " + ex.Message, "Error",
+        MessageBoxButtons.RetryCancel, MessageBoxIcon.Error,
+        MessageBoxDefaultButton.Button1);
+            }
+        }
+        private void TbXYspeed_ValueChanged(object sender, EventArgs e)
+        {
+            float currentSpeed = ((TbXYspeed.Value / (float)100 * (maxSpeed - minSpeed)) + minSpeed); // Map to range of speed
+            //currentSpeedLabel.Text = $" {currentSpeed.ToString("F2")} mm/s"; //Display currentSpeed in the .00(F2) format.
+            //WriteSpeedToPLC("204", "205", currentSpeed); // Write speed value in register
+            //WriteSpeedToPLC("304", "305", currentSpeed); // Write speed value in register
+            LbXCoorValue.Text = currentSpeed.ToString();
+
+        }
+
+        private void TbZControl_ValueChanged(object sender, EventArgs e)
+        {
+            LbYCoorValue.Text = TbZControl.Value.ToString();
+        }
+
+
+
+        private void WriteSpeedToPLC(string lowerWord, string upperWord, float value)
+        {
+            try
+            {
+                // Convert the float value to a 32-bit integer representation
+                int intValue = BitConverter.ToInt32(BitConverter.GetBytes(value), 0);
+
+                // Split the 32-bit integer into two 16-bit words
+                int lower = intValue & 0xFFFF;       // Lower 16 bits
+                int upper = (intValue >> 16) & 0xFFFF; // Upper 16 bits
+                                                       // Write the lower word to the lower address
+                axDBCommManager1.WriteDevice(DATABUILDERAXLibLB.DBPlcDevice.DKVNano_DM, lowerWord, lower);
+
+                // Write the upper word to the upper address
+                axDBCommManager1.WriteDevice(DATABUILDERAXLibLB.DBPlcDevice.DKVNano_DM, upperWord, upper);
+            }
+            catch (Exception ex)
+            {
+                // Notify the user of an error
+                MessageBox.Show($"Error writing to device: {ex.Message}",
+                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
+        private void axDBDeviceManager1_BeforeRead(object sender, EventArgs e)
+        {
+            GetCurrentCoordinate();
+        }
+
+
+        private void GetCurrentCoordinate()
+        {
+            
+            ushort CM8830 = ushort.Parse(axDBDeviceManager1.Devices[1].ValueRead.ToString().ToString());
+            ushort CM8831 = ushort.Parse(axDBDeviceManager1.Devices[2].ValueRead.ToString().ToString());
+
+            ushort CM8870 = ushort.Parse(axDBDeviceManager1.Devices[3].ValueRead.ToString().ToString());
+            ushort CM8871 = ushort.Parse(axDBDeviceManager1.Devices[4].ValueRead.ToString().ToString());
+
+            ushort CM8910 = ushort.Parse(axDBDeviceManager1.Devices[5].ValueRead.ToString().ToString());
+            ushort CM8911 = ushort.Parse(axDBDeviceManager1.Devices[6].ValueRead.ToString().ToString());
+            //Combining Two 16-bit Integers
+            float xCoordinate = (CM8871 << 16) | CM8870;
+            float yCoordinate = (CM8911 << 16) | CM8910;
+            float zCoordinate = (CM8831 << 16) | CM8830;
+
+            //string currentCoordinate = (combined2 / (pulsesPerRevolution / threadPitch)).ToString("F2");
+            currentXCoor = (xCoordinate / -(pulsesPerRevolution / threadPitch));
+            currentYCoor = (yCoordinate / -(pulsesPerRevolution / threadPitch));
+            currentZCoor = (zCoordinate / -(pulsesPerRevolution / threadPitch));
+
+            //if (currentXCoor > XWorkingRange || currentYCoor> YWorkingRange || currentZCoor > ZWorkingRange)
+            //{
+            //    MessageBox.Show($"Something went wrong, Please restart app",
+            //                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    return; 
+            //}
+
+        }
+
         private void BtnHome_Click(object sender, EventArgs e)
         {
+            try
+            {
+                axDBCommManager1.WriteDevice(DATABUILDERAXLibLB.DBPlcDevice.DKVNano_MR, "400", 1);
+
+            }
+            catch (Exception ex)
+            {
+                // Notify the user of an error
+                MessageBox.Show($"Error writing to device: MR400 {ex.Message}",
+                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+
+        private void BtnSetPos1_Click(object sender, EventArgs e)
+        {
+
+
+        }
+        private void BtnSetPos1_MouseDown(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                axDBCommManager1.WriteDevice(DATABUILDERAXLibLB.DBPlcDevice.DKVNano_MR, "409", 1);
+            }
+            catch (Exception ex)
+            {
+                // Notify the user of an error
+                MessageBox.Show($"Error writing to device: MR409 {ex.Message}",
+                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void BtnSetPos1_MouseUp(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                axDBCommManager1.WriteDevice(DATABUILDERAXLibLB.DBPlcDevice.DKVNano_MR, "409", 0);
+            }
+            catch (Exception ex)
+            {
+                // Notify the user of an error
+                MessageBox.Show($"Error writing to device: MR409 {ex.Message}",
+                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+        private void BtnRunPos1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnRunPos1_MouseDown(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                axDBCommManager1.WriteDevice(DATABUILDERAXLibLB.DBPlcDevice.DKVNano_MR, "106", 1);
+                axDBCommManager1.WriteDevice(DATABUILDERAXLibLB.DBPlcDevice.DKVNano_MR, "206", 1);
+                axDBCommManager1.WriteDevice(DATABUILDERAXLibLB.DBPlcDevice.DKVNano_MR, "306", 1);
+            }
+            catch (Exception ex)
+            {
+                // Notify the user of an error
+                MessageBox.Show($"Error control PLC run Position Scan 1 {ex.Message}",
+                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void BtnRunPos1_MouseUp(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                axDBCommManager1.WriteDevice(DATABUILDERAXLibLB.DBPlcDevice.DKVNano_MR, "106", 0);
+                axDBCommManager1.WriteDevice(DATABUILDERAXLibLB.DBPlcDevice.DKVNano_MR, "206", 0);
+                axDBCommManager1.WriteDevice(DATABUILDERAXLibLB.DBPlcDevice.DKVNano_MR, "306", 0);
+            }
+            catch (Exception ex)
+            {
+                // Notify the user of an error
+                MessageBox.Show($"Error control PLC run Position Scan 1 {ex.Message}",
+                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void BtnUp_MouseDown(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                axDBCommManager1.WriteDevice(DATABUILDERAXLibLB.DBPlcDevice.DKVNano_MR, "300", 1);
+            }
+            catch (Exception ex)
+            {
+                // Notify the user of an error
+                MessageBox.Show($"Error writing to device: MR300 {ex.Message}",
+                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void BtnUp_MouseUp(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                axDBCommManager1.WriteDevice(DATABUILDERAXLibLB.DBPlcDevice.DKVNano_MR, "300", 0);
+            }
+            catch (Exception ex)
+            {
+                // Notify the user of an error
+                MessageBox.Show($"Error writing to device: MR300 {ex.Message}",
+                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void BtnDown_MouseDown(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                axDBCommManager1.WriteDevice(DATABUILDERAXLibLB.DBPlcDevice.DKVNano_MR, "301", 1);
+            }
+            catch (Exception ex)
+            {
+                // Notify the user of an error
+                MessageBox.Show($"Error writing to device: MR301 {ex.Message}",
+                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void BtnDown_MouseUp(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                axDBCommManager1.WriteDevice(DATABUILDERAXLibLB.DBPlcDevice.DKVNano_MR, "301", 0);
+            }
+            catch (Exception ex)
+            {
+                // Notify the user of an error
+                MessageBox.Show($"Error writing to device: MR301 {ex.Message}",
+                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void BtnRight_MouseDown(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                axDBCommManager1.WriteDevice(DATABUILDERAXLibLB.DBPlcDevice.DKVNano_MR, "200", 1);
+
+            }
+            catch (Exception ex)
+            {
+                // Notify the user of an error
+                MessageBox.Show($"Error writing to device: MR200 {ex.Message}",
+                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void BtnRight_MouseUp(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                axDBCommManager1.WriteDevice(DATABUILDERAXLibLB.DBPlcDevice.DKVNano_MR, "200", 0);
+
+            }
+            catch (Exception ex)
+            {
+                // Notify the user of an error
+                MessageBox.Show($"Error writing to device: MR200 {ex.Message}",
+                               "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void BtnLeft_MouseDown(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                axDBCommManager1.WriteDevice(DATABUILDERAXLibLB.DBPlcDevice.DKVNano_MR, "201", 1);
+            }
+            catch (Exception ex)
+            {
+                // Notify the user of an error
+                MessageBox.Show($"Error writing to device: MR201 {ex.Message}",
+                               "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void BtnLeft_MouseUp(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                axDBCommManager1.WriteDevice(DATABUILDERAXLibLB.DBPlcDevice.DKVNano_MR, "201", 0);
+            }
+            catch (Exception ex)
+            {
+                // Notify the user of an error
+                MessageBox.Show($"Error writing to device: MR201 {ex.Message}",
+                               "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void BtnUpRight_MouseDown(object sender, MouseEventArgs e)
+        {
+
+            try
+            {
+                axDBCommManager1.WriteDevice(DATABUILDERAXLibLB.DBPlcDevice.DKVNano_MR, "300", 1);
+                axDBCommManager1.WriteDevice(DATABUILDERAXLibLB.DBPlcDevice.DKVNano_MR, "200", 1);
+            }
+            catch (Exception ex)
+            {
+                // Notify the user of an error
+                MessageBox.Show($"Error writing to device: MR200, MR300 {ex.Message}",
+                               "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void BtnUpRight_MouseUp(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                axDBCommManager1.WriteDevice(DATABUILDERAXLibLB.DBPlcDevice.DKVNano_MR, "300", 0);
+                axDBCommManager1.WriteDevice(DATABUILDERAXLibLB.DBPlcDevice.DKVNano_MR, "200", 0);
+            }
+            catch (Exception ex)
+            {
+                // Notify the user of an error
+                MessageBox.Show($"Error writing to device: MR200, MR300 {ex.Message}",
+                               "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
+        private void BtnRightDown_MouseDown(object sender, MouseEventArgs e)
+        {
+
+            try
+            {
+                axDBCommManager1.WriteDevice(DATABUILDERAXLibLB.DBPlcDevice.DKVNano_MR, "301", 1);
+                axDBCommManager1.WriteDevice(DATABUILDERAXLibLB.DBPlcDevice.DKVNano_MR, "200", 1);
+            }
+            catch (Exception ex)
+            {
+                // Notify the user of an error
+                MessageBox.Show($"Error writing to device: MR201, MR301 {ex.Message}",
+                               "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void BtnRightDown_MouseUp(object sender, MouseEventArgs e)
+        {
+
+            try
+            {
+                axDBCommManager1.WriteDevice(DATABUILDERAXLibLB.DBPlcDevice.DKVNano_MR, "301", 0);
+                axDBCommManager1.WriteDevice(DATABUILDERAXLibLB.DBPlcDevice.DKVNano_MR, "200", 0);
+            }
+            catch (Exception ex)
+            {
+                // Notify the user of an error
+                MessageBox.Show($"Error writing to device: MR200, MR301 {ex.Message}",
+                               "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void BtnDownLeft_MouseDown(object sender, MouseEventArgs e)
+        {
+
+            try
+            {
+                axDBCommManager1.WriteDevice(DATABUILDERAXLibLB.DBPlcDevice.DKVNano_MR, "301", 1);
+                axDBCommManager1.WriteDevice(DATABUILDERAXLibLB.DBPlcDevice.DKVNano_MR, "201", 1);
+            }
+            catch (Exception ex)
+            {
+                // Notify the user of an error
+                MessageBox.Show($"Error writing to device: MR201, MR301 {ex.Message}",
+                               "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void BtnDownLeft_MouseUp(object sender, MouseEventArgs e)
+        {
+
+            try
+            {
+                axDBCommManager1.WriteDevice(DATABUILDERAXLibLB.DBPlcDevice.DKVNano_MR, "301", 0);
+                axDBCommManager1.WriteDevice(DATABUILDERAXLibLB.DBPlcDevice.DKVNano_MR, "201", 0);
+            }
+            catch (Exception ex)
+            {
+                // Notify the user of an error
+                MessageBox.Show($"Error writing to device: MR201, MR301 {ex.Message}",
+                               "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void BtnLeftUp_MouseDown(object sender, MouseEventArgs e)
+        {
+
+            try
+            {
+                axDBCommManager1.WriteDevice(DATABUILDERAXLibLB.DBPlcDevice.DKVNano_MR, "300", 1);
+                axDBCommManager1.WriteDevice(DATABUILDERAXLibLB.DBPlcDevice.DKVNano_MR, "201", 1);
+            }
+            catch (Exception ex)
+            {
+                // Notify the user of an error
+                MessageBox.Show($"Error writing to device: MR201, MR300 {ex.Message}",
+                               "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void BtnLeftUp_MouseUp(object sender, MouseEventArgs e)
+        {
+
+            try
+            {
+                axDBCommManager1.WriteDevice(DATABUILDERAXLibLB.DBPlcDevice.DKVNano_MR, "300", 0);
+                axDBCommManager1.WriteDevice(DATABUILDERAXLibLB.DBPlcDevice.DKVNano_MR, "201", 0);
+            }
+            catch (Exception ex)
+            {
+                // Notify the user of an error
+                MessageBox.Show($"Error writing to device: MR201, MR300 {ex.Message}",
+                               "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void BtnRunScan_Click(object sender, EventArgs e)
+        {
+            StartRecording();
+        }
+
+        private void BtnXYDownSpeed_Click(object sender, EventArgs e)
+        {
+            ConnectToPLC();
+        }
+
+        //private void PnlXYMap_MouseMove(object sender, MouseEventArgs e)
+        //{
+        //    Point mousePosition = this.PointToClient(Cursor.Position);
+        //    PnlXYMap.PointX = mousePosition.X;
+        //    PnlXYMap.PointY = mousePosition.Y;
+        //}
     }
 
 

@@ -57,9 +57,6 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.panel10 = new System.Windows.Forms.Panel();
-            this.axDBTriggerManager1 = new AxDATABUILDERAXLibLB.AxDBTriggerManager();
-            this.axDBDeviceManager1 = new AxDATABUILDERAXLibLB.AxDBDeviceManager();
-            this.axDBCommManager1 = new AxDATABUILDERAXLibLB.AxDBCommManager();
             this.RBCHRC = new System.Windows.Forms.RadioButton();
             this.BtDisCon = new System.Windows.Forms.Button();
             this.BtConnect = new System.Windows.Forms.Button();
@@ -107,6 +104,9 @@
             this.PnlXYControl = new System.Windows.Forms.TableLayoutPanel();
             this.PnlChangeSpeedArea = new System.Windows.Forms.TableLayoutPanel();
             this.PnlXYBtn = new System.Windows.Forms.Panel();
+            this.axDBDeviceManager1 = new AxDATABUILDERAXLibLB.AxDBDeviceManager();
+            this.axDBTriggerManager1 = new AxDATABUILDERAXLibLB.AxDBTriggerManager();
+            this.axDBCommManager1 = new AxDATABUILDERAXLibLB.AxDBCommManager();
             this.LbXYSpeed = new System.Windows.Forms.Label();
             this.LbXYAxis = new System.Windows.Forms.Label();
             this.PnlTchAreaGrid = new System.Windows.Forms.TableLayoutPanel();
@@ -143,16 +143,16 @@
             this.BtnUp = new TCHRLibBasicRecordSample.CustomUi.DSM_Button();
             this.BtnRsTch = new TCHRLibBasicRecordSample.CustomUi.DSM_Button();
             this.BtnRunScan = new TCHRLibBasicRecordSample.CustomUi.DSM_Button();
-            this.dsM_Button8 = new TCHRLibBasicRecordSample.CustomUi.DSM_Button();
+            this.BtnSetPos4 = new TCHRLibBasicRecordSample.CustomUi.DSM_Button();
             this.dsM_TextBox4 = new TCHRLibBasicRecordSample.CustomUi.DSM_TextBox();
-            this.dsM_Button9 = new TCHRLibBasicRecordSample.CustomUi.DSM_Button();
-            this.dsM_Button12 = new TCHRLibBasicRecordSample.CustomUi.DSM_Button();
-            this.dsM_Button11 = new TCHRLibBasicRecordSample.CustomUi.DSM_Button();
+            this.BtnRunPos4 = new TCHRLibBasicRecordSample.CustomUi.DSM_Button();
+            this.BtnRunPos3 = new TCHRLibBasicRecordSample.CustomUi.DSM_Button();
+            this.BtnSetPos3 = new TCHRLibBasicRecordSample.CustomUi.DSM_Button();
             this.dsM_TextBox3 = new TCHRLibBasicRecordSample.CustomUi.DSM_TextBox();
-            this.dsM_Button1 = new TCHRLibBasicRecordSample.CustomUi.DSM_Button();
-            this.dsM_Button2 = new TCHRLibBasicRecordSample.CustomUi.DSM_Button();
-            this.dsM_Button6 = new TCHRLibBasicRecordSample.CustomUi.DSM_Button();
-            this.dsM_Button5 = new TCHRLibBasicRecordSample.CustomUi.DSM_Button();
+            this.BtnRunPos1 = new TCHRLibBasicRecordSample.CustomUi.DSM_Button();
+            this.BtnSetPos1 = new TCHRLibBasicRecordSample.CustomUi.DSM_Button();
+            this.BtnRunPos2 = new TCHRLibBasicRecordSample.CustomUi.DSM_Button();
+            this.BtnSetPos2 = new TCHRLibBasicRecordSample.CustomUi.DSM_Button();
             this.dsM_TextBox2 = new TCHRLibBasicRecordSample.CustomUi.DSM_TextBox();
             this.dsM_TextBox1 = new TCHRLibBasicRecordSample.CustomUi.DSM_TextBox();
             this.PnlSetting.SuspendLayout();
@@ -172,9 +172,6 @@
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panel10.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.axDBTriggerManager1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.axDBDeviceManager1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.axDBCommManager1)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.panel9.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -190,6 +187,9 @@
             this.PnlXYControl.SuspendLayout();
             this.PnlChangeSpeedArea.SuspendLayout();
             this.PnlXYBtn.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.axDBDeviceManager1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.axDBTriggerManager1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.axDBCommManager1)).BeginInit();
             this.PnlTchAreaGrid.SuspendLayout();
             this.PnlTchGrid.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart4)).BeginInit();
@@ -487,9 +487,6 @@
             // panel10
             // 
             this.panel10.BackColor = System.Drawing.Color.DarkGray;
-            this.panel10.Controls.Add(this.axDBTriggerManager1);
-            this.panel10.Controls.Add(this.axDBDeviceManager1);
-            this.panel10.Controls.Add(this.axDBCommManager1);
             this.panel10.Controls.Add(this.RBCHRC);
             this.panel10.Controls.Add(this.BtDisCon);
             this.panel10.Controls.Add(this.BtConnect);
@@ -504,33 +501,6 @@
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(835, 0);
             this.panel10.TabIndex = 11;
-            // 
-            // axDBTriggerManager1
-            // 
-            this.axDBTriggerManager1.Enabled = true;
-            this.axDBTriggerManager1.Location = new System.Drawing.Point(486, 13);
-            this.axDBTriggerManager1.Name = "axDBTriggerManager1";
-            this.axDBTriggerManager1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axDBTriggerManager1.OcxState")));
-            this.axDBTriggerManager1.Size = new System.Drawing.Size(24, 24);
-            this.axDBTriggerManager1.TabIndex = 19;
-            // 
-            // axDBDeviceManager1
-            // 
-            this.axDBDeviceManager1.Enabled = true;
-            this.axDBDeviceManager1.Location = new System.Drawing.Point(456, 15);
-            this.axDBDeviceManager1.Name = "axDBDeviceManager1";
-            this.axDBDeviceManager1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axDBDeviceManager1.OcxState")));
-            this.axDBDeviceManager1.Size = new System.Drawing.Size(24, 24);
-            this.axDBDeviceManager1.TabIndex = 18;
-            // 
-            // axDBCommManager1
-            // 
-            this.axDBCommManager1.Enabled = true;
-            this.axDBCommManager1.Location = new System.Drawing.Point(425, 15);
-            this.axDBCommManager1.Name = "axDBCommManager1";
-            this.axDBCommManager1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axDBCommManager1.OcxState")));
-            this.axDBCommManager1.Size = new System.Drawing.Size(24, 24);
-            this.axDBCommManager1.TabIndex = 17;
             // 
             // RBCHRC
             // 
@@ -1142,6 +1112,9 @@
             // 
             // PnlXYBtn
             // 
+            this.PnlXYBtn.Controls.Add(this.axDBDeviceManager1);
+            this.PnlXYBtn.Controls.Add(this.axDBTriggerManager1);
+            this.PnlXYBtn.Controls.Add(this.axDBCommManager1);
             this.PnlXYBtn.Controls.Add(this.BtnDownLeft);
             this.PnlXYBtn.Controls.Add(this.LbXYSpeed);
             this.PnlXYBtn.Controls.Add(this.LbXYAxis);
@@ -1159,6 +1132,34 @@
             this.PnlXYBtn.Name = "PnlXYBtn";
             this.PnlXYBtn.Size = new System.Drawing.Size(300, 219);
             this.PnlXYBtn.TabIndex = 27;
+            // 
+            // axDBDeviceManager1
+            // 
+            this.axDBDeviceManager1.Enabled = true;
+            this.axDBDeviceManager1.Location = new System.Drawing.Point(273, 63);
+            this.axDBDeviceManager1.Name = "axDBDeviceManager1";
+            this.axDBDeviceManager1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axDBDeviceManager1.OcxState")));
+            this.axDBDeviceManager1.Size = new System.Drawing.Size(24, 24);
+            this.axDBDeviceManager1.TabIndex = 65;
+            this.axDBDeviceManager1.BeforeRead += new System.EventHandler(this.axDBDeviceManager1_BeforeRead);
+            // 
+            // axDBTriggerManager1
+            // 
+            this.axDBTriggerManager1.Enabled = true;
+            this.axDBTriggerManager1.Location = new System.Drawing.Point(273, 33);
+            this.axDBTriggerManager1.Name = "axDBTriggerManager1";
+            this.axDBTriggerManager1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axDBTriggerManager1.OcxState")));
+            this.axDBTriggerManager1.Size = new System.Drawing.Size(24, 24);
+            this.axDBTriggerManager1.TabIndex = 64;
+            // 
+            // axDBCommManager1
+            // 
+            this.axDBCommManager1.Enabled = true;
+            this.axDBCommManager1.Location = new System.Drawing.Point(273, 3);
+            this.axDBCommManager1.Name = "axDBCommManager1";
+            this.axDBCommManager1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axDBCommManager1.OcxState")));
+            this.axDBCommManager1.Size = new System.Drawing.Size(24, 24);
+            this.axDBCommManager1.TabIndex = 63;
             // 
             // LbXYSpeed
             // 
@@ -1211,18 +1212,18 @@
             this.PnlTchGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.PnlTchGrid.Controls.Add(this.LbPos4, 0, 3);
             this.PnlTchGrid.Controls.Add(this.LbPos1, 0, 0);
-            this.PnlTchGrid.Controls.Add(this.dsM_Button8, 3, 3);
+            this.PnlTchGrid.Controls.Add(this.BtnSetPos4, 3, 3);
             this.PnlTchGrid.Controls.Add(this.dsM_TextBox4, 1, 3);
-            this.PnlTchGrid.Controls.Add(this.dsM_Button9, 2, 3);
+            this.PnlTchGrid.Controls.Add(this.BtnRunPos4, 2, 3);
             this.PnlTchGrid.Controls.Add(this.LbPos3, 0, 2);
             this.PnlTchGrid.Controls.Add(this.LbPos2, 0, 1);
-            this.PnlTchGrid.Controls.Add(this.dsM_Button12, 2, 2);
-            this.PnlTchGrid.Controls.Add(this.dsM_Button11, 3, 2);
+            this.PnlTchGrid.Controls.Add(this.BtnRunPos3, 2, 2);
+            this.PnlTchGrid.Controls.Add(this.BtnSetPos3, 3, 2);
             this.PnlTchGrid.Controls.Add(this.dsM_TextBox3, 1, 2);
-            this.PnlTchGrid.Controls.Add(this.dsM_Button1, 2, 0);
-            this.PnlTchGrid.Controls.Add(this.dsM_Button2, 3, 0);
-            this.PnlTchGrid.Controls.Add(this.dsM_Button6, 2, 1);
-            this.PnlTchGrid.Controls.Add(this.dsM_Button5, 3, 1);
+            this.PnlTchGrid.Controls.Add(this.BtnRunPos1, 2, 0);
+            this.PnlTchGrid.Controls.Add(this.BtnSetPos1, 3, 0);
+            this.PnlTchGrid.Controls.Add(this.BtnRunPos2, 2, 1);
+            this.PnlTchGrid.Controls.Add(this.BtnSetPos2, 3, 1);
             this.PnlTchGrid.Controls.Add(this.dsM_TextBox2, 1, 1);
             this.PnlTchGrid.Controls.Add(this.dsM_TextBox1, 1, 0);
             this.PnlTchGrid.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1386,13 +1387,15 @@
             this.PnlZMap.Name = "PnlZMap";
             this.PnlZMap.PointColor = System.Drawing.Color.Orange;
             this.PnlZMap.PointSize = 20;
+            this.PnlZMap.PointX = 0;
+            this.PnlZMap.PointY = 0;
             this.PnlZMap.Size = new System.Drawing.Size(81, 234);
             this.PnlZMap.TabIndex = 23;
             this.PnlZMap.Text = "dsM_GridMap2";
             // 
             // PnlXYMap
             // 
-            this.PnlXYMap.BackGroundColor = System.Drawing.Color.Gray;
+            this.PnlXYMap.BackGroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
             this.PnlXYMap.BorderColor = System.Drawing.Color.SlateBlue;
             this.PnlXYMap.BorderSize = 2;
             this.PnlXYMap.CoordinateX = 0D;
@@ -1401,17 +1404,18 @@
             this.PnlXYMap.GridSize = 25;
             this.PnlXYMap.LineColor = System.Drawing.Color.White;
             this.PnlXYMap.LineSize = 1;
-            this.PnlXYMap.Location = new System.Drawing.Point(12, 0);
+            this.PnlXYMap.Location = new System.Drawing.Point(3, 3);
             this.PnlXYMap.MainLineColor = System.Drawing.Color.White;
             this.PnlXYMap.MainLineSizeX = 2;
             this.PnlXYMap.MainLineSizeY = 2;
-            this.PnlXYMap.Margin = new System.Windows.Forms.Padding(12, 0, 12, 0);
             this.PnlXYMap.Name = "PnlXYMap";
             this.PnlXYMap.PointColor = System.Drawing.Color.Orange;
-            this.PnlXYMap.PointSize = 20;
-            this.PnlXYMap.Size = new System.Drawing.Size(250, 234);
+            this.PnlXYMap.PointSize = 24;
+            this.PnlXYMap.PointX = 0;
+            this.PnlXYMap.PointY = 0;
+            this.PnlXYMap.Size = new System.Drawing.Size(268, 228);
             this.PnlXYMap.TabIndex = 23;
-            this.PnlXYMap.Text = "dsM_GridMap2";
+            this.PnlXYMap.Text = "dsM_GridMap1";
             // 
             // CbbRunMode
             // 
@@ -1554,7 +1558,6 @@
             this.TbZControl.Orientation = TCHRLibBasicRecordSample.CustomUi.DSM_TrackBarImg.TrackbarOrientation.Vertical;
             this.TbZControl.Size = new System.Drawing.Size(45, 211);
             this.TbZControl.TabIndex = 63;
-            this.TbZControl.Text = "dsM_TrackBarImg1";
             this.TbZControl.ThumbColor = System.Drawing.Color.Red;
             this.TbZControl.ThumbImage = global::TCHRLibBasicRecordSample.Properties.Resources.icon_Zmove;
             this.TbZControl.ThumbSize = 40;
@@ -1573,7 +1576,6 @@
             this.TbXYspeed.Orientation = TCHRLibBasicRecordSample.CustomUi.DSM_Trackbar.TrackbarOrientation.Horizontal;
             this.TbXYspeed.Size = new System.Drawing.Size(210, 36);
             this.TbXYspeed.TabIndex = 27;
-            this.TbXYspeed.Text = "dsM_Trackbar2";
             this.TbXYspeed.ThumbColor = System.Drawing.Color.Red;
             this.TbXYspeed.TrackColorLeft = System.Drawing.Color.Blue;
             this.TbXYspeed.TrackColorRight = System.Drawing.Color.Gray;
@@ -1598,6 +1600,7 @@
             this.BtnXYDownSpeed.TabIndex = 28;
             this.BtnXYDownSpeed.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
             this.BtnXYDownSpeed.UseVisualStyleBackColor = false;
+            this.BtnXYDownSpeed.Click += new System.EventHandler(this.BtnXYDownSpeed_Click);
             // 
             // BtnXYUpSpeed
             // 
@@ -1640,6 +1643,8 @@
             this.BtnDownLeft.TabIndex = 9;
             this.BtnDownLeft.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
             this.BtnDownLeft.UseVisualStyleBackColor = false;
+            this.BtnDownLeft.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnDownLeft_MouseDown);
+            this.BtnDownLeft.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BtnDownLeft_MouseUp);
             // 
             // BtnLeftUp
             // 
@@ -1662,6 +1667,8 @@
             this.BtnLeftUp.TabIndex = 8;
             this.BtnLeftUp.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
             this.BtnLeftUp.UseVisualStyleBackColor = false;
+            this.BtnLeftUp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnLeftUp_MouseDown);
+            this.BtnLeftUp.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BtnLeftUp_MouseUp);
             // 
             // BtnHome
             // 
@@ -1706,6 +1713,8 @@
             this.BtnRightDown.TabIndex = 10;
             this.BtnRightDown.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
             this.BtnRightDown.UseVisualStyleBackColor = false;
+            this.BtnRightDown.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnRightDown_MouseDown);
+            this.BtnRightDown.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BtnRightDown_MouseUp);
             // 
             // BtnLeft
             // 
@@ -1729,6 +1738,8 @@
             this.BtnLeft.TabIndex = 4;
             this.BtnLeft.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
             this.BtnLeft.UseVisualStyleBackColor = false;
+            this.BtnLeft.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnLeft_MouseDown);
+            this.BtnLeft.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BtnLeft_MouseUp);
             // 
             // BtnUpRight
             // 
@@ -1751,6 +1762,8 @@
             this.BtnUpRight.TabIndex = 11;
             this.BtnUpRight.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
             this.BtnUpRight.UseVisualStyleBackColor = false;
+            this.BtnUpRight.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnUpRight_MouseDown);
+            this.BtnUpRight.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BtnUpRight_MouseUp);
             // 
             // BtnRight
             // 
@@ -1774,6 +1787,8 @@
             this.BtnRight.TabIndex = 5;
             this.BtnRight.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
             this.BtnRight.UseVisualStyleBackColor = false;
+            this.BtnRight.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnRight_MouseDown);
+            this.BtnRight.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BtnRight_MouseUp);
             // 
             // BtnDown
             // 
@@ -1797,6 +1812,8 @@
             this.BtnDown.TabIndex = 6;
             this.BtnDown.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
             this.BtnDown.UseVisualStyleBackColor = false;
+            this.BtnDown.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnDown_MouseDown);
+            this.BtnDown.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BtnDown_MouseUp);
             // 
             // BtnUp
             // 
@@ -1820,6 +1837,8 @@
             this.BtnUp.TabIndex = 7;
             this.BtnUp.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
             this.BtnUp.UseVisualStyleBackColor = false;
+            this.BtnUp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnUp_MouseDown);
+            this.BtnUp.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BtnUp_MouseUp);
             // 
             // BtnRsTch
             // 
@@ -1863,27 +1882,28 @@
             this.BtnRunScan.Text = "START SCAN";
             this.BtnRunScan.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
             this.BtnRunScan.UseVisualStyleBackColor = false;
+            this.BtnRunScan.Click += new System.EventHandler(this.BtRecord_Click);
             // 
-            // dsM_Button8
+            // BtnSetPos4
             // 
-            this.dsM_Button8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(67)))), ((int)(((byte)(63)))));
-            this.dsM_Button8.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(67)))), ((int)(((byte)(63)))));
-            this.dsM_Button8.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.dsM_Button8.BorderRadius = 8;
-            this.dsM_Button8.BorderSize = 1;
-            this.dsM_Button8.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.dsM_Button8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dsM_Button8.FlatAppearance.BorderSize = 0;
-            this.dsM_Button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.dsM_Button8.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold);
-            this.dsM_Button8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.dsM_Button8.Location = new System.Drawing.Point(193, 132);
-            this.dsM_Button8.Name = "dsM_Button8";
-            this.dsM_Button8.Size = new System.Drawing.Size(44, 37);
-            this.dsM_Button8.TabIndex = 52;
-            this.dsM_Button8.Text = "Set";
-            this.dsM_Button8.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.dsM_Button8.UseVisualStyleBackColor = false;
+            this.BtnSetPos4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(67)))), ((int)(((byte)(63)))));
+            this.BtnSetPos4.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(67)))), ((int)(((byte)(63)))));
+            this.BtnSetPos4.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.BtnSetPos4.BorderRadius = 8;
+            this.BtnSetPos4.BorderSize = 1;
+            this.BtnSetPos4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnSetPos4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnSetPos4.FlatAppearance.BorderSize = 0;
+            this.BtnSetPos4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnSetPos4.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold);
+            this.BtnSetPos4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.BtnSetPos4.Location = new System.Drawing.Point(193, 132);
+            this.BtnSetPos4.Name = "BtnSetPos4";
+            this.BtnSetPos4.Size = new System.Drawing.Size(44, 37);
+            this.BtnSetPos4.TabIndex = 52;
+            this.BtnSetPos4.Text = "Set";
+            this.BtnSetPos4.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.BtnSetPos4.UseVisualStyleBackColor = false;
             // 
             // dsM_TextBox4
             // 
@@ -1903,68 +1923,68 @@
             this.dsM_TextBox4.TabIndex = 57;
             this.dsM_TextBox4.UnderlineStyle = false;
             // 
-            // dsM_Button9
+            // BtnRunPos4
             // 
-            this.dsM_Button9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(67)))), ((int)(((byte)(63)))));
-            this.dsM_Button9.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(67)))), ((int)(((byte)(63)))));
-            this.dsM_Button9.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.dsM_Button9.BorderRadius = 8;
-            this.dsM_Button9.BorderSize = 1;
-            this.dsM_Button9.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.dsM_Button9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dsM_Button9.FlatAppearance.BorderSize = 0;
-            this.dsM_Button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.dsM_Button9.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold);
-            this.dsM_Button9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.dsM_Button9.Location = new System.Drawing.Point(145, 132);
-            this.dsM_Button9.Name = "dsM_Button9";
-            this.dsM_Button9.Size = new System.Drawing.Size(42, 37);
-            this.dsM_Button9.TabIndex = 53;
-            this.dsM_Button9.Text = "Run";
-            this.dsM_Button9.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.dsM_Button9.UseVisualStyleBackColor = false;
+            this.BtnRunPos4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(67)))), ((int)(((byte)(63)))));
+            this.BtnRunPos4.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(67)))), ((int)(((byte)(63)))));
+            this.BtnRunPos4.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.BtnRunPos4.BorderRadius = 8;
+            this.BtnRunPos4.BorderSize = 1;
+            this.BtnRunPos4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnRunPos4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnRunPos4.FlatAppearance.BorderSize = 0;
+            this.BtnRunPos4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnRunPos4.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold);
+            this.BtnRunPos4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.BtnRunPos4.Location = new System.Drawing.Point(145, 132);
+            this.BtnRunPos4.Name = "BtnRunPos4";
+            this.BtnRunPos4.Size = new System.Drawing.Size(42, 37);
+            this.BtnRunPos4.TabIndex = 53;
+            this.BtnRunPos4.Text = "Run";
+            this.BtnRunPos4.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.BtnRunPos4.UseVisualStyleBackColor = false;
             // 
-            // dsM_Button12
+            // BtnRunPos3
             // 
-            this.dsM_Button12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(67)))), ((int)(((byte)(63)))));
-            this.dsM_Button12.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(67)))), ((int)(((byte)(63)))));
-            this.dsM_Button12.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.dsM_Button12.BorderRadius = 8;
-            this.dsM_Button12.BorderSize = 1;
-            this.dsM_Button12.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.dsM_Button12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dsM_Button12.FlatAppearance.BorderSize = 0;
-            this.dsM_Button12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.dsM_Button12.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold);
-            this.dsM_Button12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.dsM_Button12.Location = new System.Drawing.Point(145, 89);
-            this.dsM_Button12.Name = "dsM_Button12";
-            this.dsM_Button12.Size = new System.Drawing.Size(42, 37);
-            this.dsM_Button12.TabIndex = 49;
-            this.dsM_Button12.Text = "Run";
-            this.dsM_Button12.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.dsM_Button12.UseVisualStyleBackColor = false;
+            this.BtnRunPos3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(67)))), ((int)(((byte)(63)))));
+            this.BtnRunPos3.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(67)))), ((int)(((byte)(63)))));
+            this.BtnRunPos3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.BtnRunPos3.BorderRadius = 8;
+            this.BtnRunPos3.BorderSize = 1;
+            this.BtnRunPos3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnRunPos3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnRunPos3.FlatAppearance.BorderSize = 0;
+            this.BtnRunPos3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnRunPos3.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold);
+            this.BtnRunPos3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.BtnRunPos3.Location = new System.Drawing.Point(145, 89);
+            this.BtnRunPos3.Name = "BtnRunPos3";
+            this.BtnRunPos3.Size = new System.Drawing.Size(42, 37);
+            this.BtnRunPos3.TabIndex = 49;
+            this.BtnRunPos3.Text = "Run";
+            this.BtnRunPos3.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.BtnRunPos3.UseVisualStyleBackColor = false;
             // 
-            // dsM_Button11
+            // BtnSetPos3
             // 
-            this.dsM_Button11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(67)))), ((int)(((byte)(63)))));
-            this.dsM_Button11.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(67)))), ((int)(((byte)(63)))));
-            this.dsM_Button11.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.dsM_Button11.BorderRadius = 8;
-            this.dsM_Button11.BorderSize = 1;
-            this.dsM_Button11.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.dsM_Button11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dsM_Button11.FlatAppearance.BorderSize = 0;
-            this.dsM_Button11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.dsM_Button11.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold);
-            this.dsM_Button11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.dsM_Button11.Location = new System.Drawing.Point(193, 89);
-            this.dsM_Button11.Name = "dsM_Button11";
-            this.dsM_Button11.Size = new System.Drawing.Size(44, 37);
-            this.dsM_Button11.TabIndex = 48;
-            this.dsM_Button11.Text = "Set";
-            this.dsM_Button11.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.dsM_Button11.UseVisualStyleBackColor = false;
+            this.BtnSetPos3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(67)))), ((int)(((byte)(63)))));
+            this.BtnSetPos3.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(67)))), ((int)(((byte)(63)))));
+            this.BtnSetPos3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.BtnSetPos3.BorderRadius = 8;
+            this.BtnSetPos3.BorderSize = 1;
+            this.BtnSetPos3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnSetPos3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnSetPos3.FlatAppearance.BorderSize = 0;
+            this.BtnSetPos3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnSetPos3.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold);
+            this.BtnSetPos3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.BtnSetPos3.Location = new System.Drawing.Point(193, 89);
+            this.BtnSetPos3.Name = "BtnSetPos3";
+            this.BtnSetPos3.Size = new System.Drawing.Size(44, 37);
+            this.BtnSetPos3.TabIndex = 48;
+            this.BtnSetPos3.Text = "Set";
+            this.BtnSetPos3.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.BtnSetPos3.UseVisualStyleBackColor = false;
             // 
             // dsM_TextBox3
             // 
@@ -1984,89 +2004,95 @@
             this.dsM_TextBox3.TabIndex = 55;
             this.dsM_TextBox3.UnderlineStyle = false;
             // 
-            // dsM_Button1
+            // BtnRunPos1
             // 
-            this.dsM_Button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(67)))), ((int)(((byte)(63)))));
-            this.dsM_Button1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(67)))), ((int)(((byte)(63)))));
-            this.dsM_Button1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.dsM_Button1.BorderRadius = 8;
-            this.dsM_Button1.BorderSize = 1;
-            this.dsM_Button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.dsM_Button1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dsM_Button1.FlatAppearance.BorderSize = 0;
-            this.dsM_Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.dsM_Button1.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold);
-            this.dsM_Button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.dsM_Button1.Location = new System.Drawing.Point(145, 3);
-            this.dsM_Button1.Name = "dsM_Button1";
-            this.dsM_Button1.Size = new System.Drawing.Size(42, 37);
-            this.dsM_Button1.TabIndex = 41;
-            this.dsM_Button1.Text = "Run";
-            this.dsM_Button1.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.dsM_Button1.UseVisualStyleBackColor = false;
+            this.BtnRunPos1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(67)))), ((int)(((byte)(63)))));
+            this.BtnRunPos1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(67)))), ((int)(((byte)(63)))));
+            this.BtnRunPos1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.BtnRunPos1.BorderRadius = 8;
+            this.BtnRunPos1.BorderSize = 1;
+            this.BtnRunPos1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnRunPos1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnRunPos1.FlatAppearance.BorderSize = 0;
+            this.BtnRunPos1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnRunPos1.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold);
+            this.BtnRunPos1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.BtnRunPos1.Location = new System.Drawing.Point(145, 3);
+            this.BtnRunPos1.Name = "BtnRunPos1";
+            this.BtnRunPos1.Size = new System.Drawing.Size(42, 37);
+            this.BtnRunPos1.TabIndex = 41;
+            this.BtnRunPos1.Text = "Run";
+            this.BtnRunPos1.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.BtnRunPos1.UseVisualStyleBackColor = false;
+            this.BtnRunPos1.Click += new System.EventHandler(this.BtnRunPos1_Click);
+            this.BtnRunPos1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnRunPos1_MouseDown);
+            this.BtnRunPos1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BtnRunPos1_MouseUp);
             // 
-            // dsM_Button2
+            // BtnSetPos1
             // 
-            this.dsM_Button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(67)))), ((int)(((byte)(63)))));
-            this.dsM_Button2.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(67)))), ((int)(((byte)(63)))));
-            this.dsM_Button2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.dsM_Button2.BorderRadius = 8;
-            this.dsM_Button2.BorderSize = 1;
-            this.dsM_Button2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.dsM_Button2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dsM_Button2.FlatAppearance.BorderSize = 0;
-            this.dsM_Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.dsM_Button2.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold);
-            this.dsM_Button2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.dsM_Button2.Location = new System.Drawing.Point(193, 3);
-            this.dsM_Button2.Name = "dsM_Button2";
-            this.dsM_Button2.Size = new System.Drawing.Size(44, 37);
-            this.dsM_Button2.TabIndex = 41;
-            this.dsM_Button2.Text = "Set";
-            this.dsM_Button2.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.dsM_Button2.UseVisualStyleBackColor = false;
+            this.BtnSetPos1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(67)))), ((int)(((byte)(63)))));
+            this.BtnSetPos1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(67)))), ((int)(((byte)(63)))));
+            this.BtnSetPos1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.BtnSetPos1.BorderRadius = 8;
+            this.BtnSetPos1.BorderSize = 1;
+            this.BtnSetPos1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnSetPos1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnSetPos1.FlatAppearance.BorderSize = 0;
+            this.BtnSetPos1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnSetPos1.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold);
+            this.BtnSetPos1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.BtnSetPos1.Location = new System.Drawing.Point(193, 3);
+            this.BtnSetPos1.Name = "BtnSetPos1";
+            this.BtnSetPos1.Size = new System.Drawing.Size(44, 37);
+            this.BtnSetPos1.TabIndex = 41;
+            this.BtnSetPos1.Text = "Set";
+            this.BtnSetPos1.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.BtnSetPos1.UseVisualStyleBackColor = false;
+            this.BtnSetPos1.Click += new System.EventHandler(this.BtnSetPos1_Click);
+            this.BtnSetPos1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnSetPos1_MouseDown);
+            this.BtnSetPos1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BtnSetPos1_MouseUp);
             // 
-            // dsM_Button6
+            // BtnRunPos2
             // 
-            this.dsM_Button6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(67)))), ((int)(((byte)(63)))));
-            this.dsM_Button6.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(67)))), ((int)(((byte)(63)))));
-            this.dsM_Button6.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.dsM_Button6.BorderRadius = 8;
-            this.dsM_Button6.BorderSize = 1;
-            this.dsM_Button6.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.dsM_Button6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dsM_Button6.FlatAppearance.BorderSize = 0;
-            this.dsM_Button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.dsM_Button6.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold);
-            this.dsM_Button6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.dsM_Button6.Location = new System.Drawing.Point(145, 46);
-            this.dsM_Button6.Name = "dsM_Button6";
-            this.dsM_Button6.Size = new System.Drawing.Size(42, 37);
-            this.dsM_Button6.TabIndex = 45;
-            this.dsM_Button6.Text = "Run";
-            this.dsM_Button6.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.dsM_Button6.UseVisualStyleBackColor = false;
+            this.BtnRunPos2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(67)))), ((int)(((byte)(63)))));
+            this.BtnRunPos2.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(67)))), ((int)(((byte)(63)))));
+            this.BtnRunPos2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.BtnRunPos2.BorderRadius = 8;
+            this.BtnRunPos2.BorderSize = 1;
+            this.BtnRunPos2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnRunPos2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnRunPos2.FlatAppearance.BorderSize = 0;
+            this.BtnRunPos2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnRunPos2.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold);
+            this.BtnRunPos2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.BtnRunPos2.Location = new System.Drawing.Point(145, 46);
+            this.BtnRunPos2.Name = "BtnRunPos2";
+            this.BtnRunPos2.Size = new System.Drawing.Size(42, 37);
+            this.BtnRunPos2.TabIndex = 45;
+            this.BtnRunPos2.Text = "Run";
+            this.BtnRunPos2.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.BtnRunPos2.UseVisualStyleBackColor = false;
             // 
-            // dsM_Button5
+            // BtnSetPos2
             // 
-            this.dsM_Button5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(67)))), ((int)(((byte)(63)))));
-            this.dsM_Button5.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(67)))), ((int)(((byte)(63)))));
-            this.dsM_Button5.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.dsM_Button5.BorderRadius = 8;
-            this.dsM_Button5.BorderSize = 1;
-            this.dsM_Button5.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.dsM_Button5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dsM_Button5.FlatAppearance.BorderSize = 0;
-            this.dsM_Button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.dsM_Button5.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold);
-            this.dsM_Button5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.dsM_Button5.Location = new System.Drawing.Point(193, 46);
-            this.dsM_Button5.Name = "dsM_Button5";
-            this.dsM_Button5.Size = new System.Drawing.Size(44, 37);
-            this.dsM_Button5.TabIndex = 44;
-            this.dsM_Button5.Text = "Set";
-            this.dsM_Button5.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.dsM_Button5.UseVisualStyleBackColor = false;
+            this.BtnSetPos2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(67)))), ((int)(((byte)(63)))));
+            this.BtnSetPos2.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(67)))), ((int)(((byte)(63)))));
+            this.BtnSetPos2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.BtnSetPos2.BorderRadius = 8;
+            this.BtnSetPos2.BorderSize = 1;
+            this.BtnSetPos2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnSetPos2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnSetPos2.FlatAppearance.BorderSize = 0;
+            this.BtnSetPos2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnSetPos2.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold);
+            this.BtnSetPos2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.BtnSetPos2.Location = new System.Drawing.Point(193, 46);
+            this.BtnSetPos2.Name = "BtnSetPos2";
+            this.BtnSetPos2.Size = new System.Drawing.Size(44, 37);
+            this.BtnSetPos2.TabIndex = 44;
+            this.BtnSetPos2.Text = "Set";
+            this.BtnSetPos2.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.BtnSetPos2.UseVisualStyleBackColor = false;
             // 
             // dsM_TextBox2
             // 
@@ -2140,9 +2166,6 @@
             this.tabPage1.ResumeLayout(false);
             this.panel10.ResumeLayout(false);
             this.panel10.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.axDBTriggerManager1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.axDBDeviceManager1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.axDBCommManager1)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.panel9.ResumeLayout(false);
             this.panel9.PerformLayout();
@@ -2167,6 +2190,9 @@
             this.PnlChangeSpeedArea.ResumeLayout(false);
             this.PnlXYBtn.ResumeLayout(false);
             this.PnlXYBtn.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.axDBDeviceManager1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.axDBTriggerManager1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.axDBCommManager1)).EndInit();
             this.PnlTchAreaGrid.ResumeLayout(false);
             this.PnlTchGrid.ResumeLayout(false);
             this.PnlTchGrid.PerformLayout();
@@ -2213,14 +2239,14 @@
         private CustomUi.DSM_TextBox dsM_TextBox1;
         private CustomUi.DSM_TextBox dsM_TextBox3;
         private CustomUi.DSM_TextBox dsM_TextBox2;
-        private CustomUi.DSM_Button dsM_Button8;
-        private CustomUi.DSM_Button dsM_Button9;
-        private CustomUi.DSM_Button dsM_Button11;
-        private CustomUi.DSM_Button dsM_Button12;
-        private CustomUi.DSM_Button dsM_Button5;
-        private CustomUi.DSM_Button dsM_Button6;
-        private CustomUi.DSM_Button dsM_Button2;
-        private CustomUi.DSM_Button dsM_Button1;
+        private CustomUi.DSM_Button BtnSetPos4;
+        private CustomUi.DSM_Button BtnRunPos4;
+        private CustomUi.DSM_Button BtnSetPos3;
+        private CustomUi.DSM_Button BtnRunPos3;
+        private CustomUi.DSM_Button BtnSetPos2;
+        private CustomUi.DSM_Button BtnRunPos2;
+        private CustomUi.DSM_Button BtnSetPos1;
+        private CustomUi.DSM_Button BtnRunPos1;
         private CustomUi.DSM_Button BtnRsTch;
         private CustomUi.DSM_Button BtnRunScan;
         private System.Windows.Forms.TableLayoutPanel PnlControlGrid;
@@ -2244,9 +2270,6 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.Panel panel10;
-        private AxDATABUILDERAXLibLB.AxDBTriggerManager axDBTriggerManager1;
-        private AxDATABUILDERAXLibLB.AxDBDeviceManager axDBDeviceManager1;
-        private AxDATABUILDERAXLibLB.AxDBCommManager axDBCommManager1;
         private System.Windows.Forms.RadioButton RBCHRC;
         private System.Windows.Forms.Button BtDisCon;
         private System.Windows.Forms.Button BtConnect;
@@ -2297,8 +2320,11 @@
         private System.ComponentModel.BackgroundWorker backgroundWorker2;
         private CustomUi.DSM_TrackBarImg TbZControl;
         private CustomUi.DSM_GridMap PnlZMap;
-        private CustomUi.DSM_GridMap PnlXYMap;
         private System.ComponentModel.IContainer components;
+        private AxDATABUILDERAXLibLB.AxDBDeviceManager axDBDeviceManager1;
+        private AxDATABUILDERAXLibLB.AxDBTriggerManager axDBTriggerManager1;
+        private AxDATABUILDERAXLibLB.AxDBCommManager axDBCommManager1;
+        private CustomUi.DSM_GridMap PnlXYMap;
     }
 }
 
