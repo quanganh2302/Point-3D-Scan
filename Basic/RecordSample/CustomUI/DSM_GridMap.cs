@@ -11,6 +11,11 @@ using System.ComponentModel;
 
 namespace TCHRLibBasicRecordSample.CustomUi
 {
+    public enum PointDisplayStyle
+    {
+        Circle,
+        Plus
+    }
     public class DSM_GridMap : Control
     {
         // Custom EventArgs to pass point coordinates.
@@ -27,6 +32,9 @@ namespace TCHRLibBasicRecordSample.CustomUi
 
 
         // Fields
+
+
+
         //private int widthMap = 200;
         //private int heightMap = 200;
         private int gridSize = 25;
@@ -40,8 +48,8 @@ namespace TCHRLibBasicRecordSample.CustomUi
         private double coordinateY = 0F;
 
         private int pointSize = 20;
-        private int pointX = 0;
-        private int pointY = 0;
+        private int pointX;
+        private int pointY;
 
 
         private Color backGroundColor = TRecordSample.BorderBtn;
@@ -49,19 +57,29 @@ namespace TCHRLibBasicRecordSample.CustomUi
         private Color lineColor = Color.White;
         private Color mainLineColor = Color.White;
         private Color pointColor = Color.Orange;
+        private PointDisplayStyle pointDisplayStyle = PointDisplayStyle.Plus;
+
+        // Timer that repaints the control while dragging
+        private Timer gridTimer;
 
         // Dragging fields
         private bool isDragging = false;
         private Point dragOffset;
-
-        private Timer gridTimer;
-        //public int WidthMap 
-        //{ get => widthMap; 
-        //    set => 
-        //        widthMap = value; 
-
-        //}
-        //public int HeightMap { get => heightMap; set => heightMap = value; }
+        // Enable/disable dragging
+        private bool dragEnabled = true;
+        [Category("DSM Properties")]
+        public bool DragEnabled
+        {
+            get => dragEnabled;
+            set => dragEnabled = value;
+        }
+        // New property: choose display style (Circle or Plus)
+        [Category("DSM Properties")]
+        public PointDisplayStyle PointDisplayStyle
+        {
+            get => pointDisplayStyle;
+            set { pointDisplayStyle = value; Invalidate(); }
+        }
         [Category("DSM Properties")]
 
         public int GridSize
@@ -228,11 +246,16 @@ namespace TCHRLibBasicRecordSample.CustomUi
             }
         }
         // Define the event
-        public event EventHandler<PointChangedEventArgs> PointChanged;
         // Contructor
         public DSM_GridMap()
         {
-            this.DoubleBuffered = true; // Helps reduce flicker
+            this.DoubleBuffered = true;
+            // Optimized painting styles for smooth redrawing
+            this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
+            this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+            this.SetStyle(ControlStyles.ResizeRedraw, true);
+            this.SetStyle(ControlStyles.UserPaint, true);
+
             this.Click += DSM_GridMap_Click;
             this.MouseDown += DSM_GridMap_MouseDown;
             this.MouseMove += DSM_GridMap_MouseMove;
@@ -245,8 +268,11 @@ namespace TCHRLibBasicRecordSample.CustomUi
             mainLineSizeX = 2;
             mainLineSizeY = 2;
 
-            coordinateX = 0F;
-            coordinateY = 0F;
+            coordinateX = 0;
+            coordinateY = 0;
+
+            pointX = this.Width / 2;
+            pointY = this.Height / 2;
 
             pointSize = 20;
 
@@ -254,6 +280,10 @@ namespace TCHRLibBasicRecordSample.CustomUi
             lineColor = Color.White;
             mainLineColor = Color.White;
             pointColor = Color.Orange;
+            // Create the timer but do not start it immediately.
+            gridTimer = new Timer();
+            gridTimer.Interval = 1; // Nominally 1 ms (actual interval depends on system)
+            gridTimer.Tick += GridTimer_Tick;
         }
 
         // Override OnPaintBackground to ensure full background clear
@@ -268,12 +298,17 @@ namespace TCHRLibBasicRecordSample.CustomUi
         // MouseDown: Begin dragging if the click is inside the point.
         private void DSM_GridMap_MouseDown(object sender, MouseEventArgs e)
         {
+            // Only allow dragging if enabled.
+            if (!DragEnabled)
+                return;
             // Determine if the mouse is within the point's area.
             Rectangle pointRect = new Rectangle(pointX - pointSize / 2, pointY - pointSize / 2, pointSize, pointSize);
             if (pointRect.Contains(e.Location))
             {
                 isDragging = true;
                 dragOffset = new Point(e.X - pointX, e.Y - pointY);
+                // Start the timer when dragging begins.
+                gridTimer.Start();
             }
         }
         // MouseMove: If dragging, update the point's position.
@@ -314,6 +349,8 @@ namespace TCHRLibBasicRecordSample.CustomUi
         private void DSM_GridMap_MouseUp(object sender, MouseEventArgs e)
         {
             isDragging = false;
+            // Stop the timer when dragging ends.
+            gridTimer.Stop();
         }
 
         private void DSM_GridMap_Click(object sender, EventArgs e)
@@ -332,6 +369,9 @@ namespace TCHRLibBasicRecordSample.CustomUi
             int height = this.Height;
 
             // Draw grid lines.
+            Pen axisXPen = new Pen(mainLineColor, MainLineSizeX); // Pen(color, width of line)
+            Pen axisYPen = new Pen(mainLineColor, MainLineSizeY); // Pen(color, width of line)
+
             using (Pen gridPen = new Pen(lineColor, 1))
             {
                 Point origin = new Point(width / 2, height / 2);
@@ -350,6 +390,9 @@ namespace TCHRLibBasicRecordSample.CustomUi
                 }
             }
 
+            e.Graphics.DrawLine(axisXPen, 0, height / 2, width, height / 2); // Y-axis
+            e.Graphics.DrawLine(axisYPen, width / 2, 0, width / 2, height ); // Y-axis
+
             // Draw a thicker border around the control.
             using (Pen penBorder = new Pen(borderColor, 4))
             {
@@ -358,25 +401,49 @@ namespace TCHRLibBasicRecordSample.CustomUi
 
             // Draw the draggable point as a bordered circle with a plus sign.
             Rectangle pointCircle = new Rectangle(pointX - pointSize / 2, pointY - pointSize / 2, pointSize, pointSize);
-            // Draw the circle border.
-            using (Pen circlePen = new Pen(pointColor, 2))
+            // Draw based on the selected display style.
+            if (PointDisplayStyle == PointDisplayStyle.Plus)
             {
-                e.Graphics.DrawEllipse(circlePen, pointCircle);
+                // Draw the circle border.
+                using (Pen circlePen = new Pen(pointColor, 2))
+                {
+                    e.Graphics.DrawEllipse(circlePen, pointCircle);
+                }
+
+                // Determine the length of the plus sign lines (e.g. 60% of the point size)
+                int plusLength = (int)(pointSize);
+                int halfPlus = plusLength / 2;
+                Point center = new Point(pointX, pointY);
+
+                // Draw the plus sign using two perpendicular lines.
+                using (Pen plusPen = new Pen(pointColor, 2))
+                {
+                    // Horizontal line.
+                    e.Graphics.DrawLine(plusPen, center.X - halfPlus, center.Y, center.X + halfPlus, center.Y);
+                    // Vertical line.
+                    e.Graphics.DrawLine(plusPen, center.X, center.Y - halfPlus, center.X, center.Y + halfPlus);
+                }
             }
-
-            // Determine the length of the plus sign lines (e.g. 60% of the point size)
-            int plusLength = (int)(pointSize);
-            int halfPlus = plusLength / 2;
-            Point center = new Point(pointX, pointY);
-
-            // Draw the plus sign using two perpendicular lines.
-            using (Pen plusPen = new Pen(pointColor, 2))
+            else // PointDisplayStyle.Circle
             {
-                // Horizontal line.
-                e.Graphics.DrawLine(plusPen, center.X - halfPlus, center.Y, center.X + halfPlus, center.Y);
-                // Vertical line.
-                e.Graphics.DrawLine(plusPen, center.X, center.Y - halfPlus, center.X, center.Y + halfPlus);
+                // Draw a filled circle.
+                using (SolidBrush brush = new SolidBrush(pointColor))
+                {
+                    e.Graphics.FillEllipse(brush, pointCircle);
+                }
+                // Draw its border.
+                using (Pen circlePen = new Pen(borderColor, 2))
+                {
+                    e.Graphics.DrawEllipse(circlePen, pointCircle);
+                }
             }
+        }
+        private void GridTimer_Tick(object sender, EventArgs e)
+        {
+            // For example, if you had animation logic, update it here.
+            // For this sample, we simply invalidate the point region to force a redraw.
+            // If nothing is changing, you might avoid calling Invalidate() to save resources.
+            Invalidate();
         }
     }
 }

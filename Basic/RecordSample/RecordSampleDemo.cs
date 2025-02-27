@@ -57,7 +57,9 @@ namespace TCHRLibBasicRecordSample
         float maxSpeed = 10; // Max speed of track bar (m/s)
         float XWorkingRange = 300;// distance of 2 limit X (mm)
         float YWorkingRange = 300;// distance of 2 limit X (mm)
-        float ZWorkingRange = 300;// distance of 2 limit X (mm)
+        float ZDistanceMin = -5;// distance of 2 limit X (mm)
+        float ZDistanceMax = -40;// distance of 2 limit X (mm)
+
 
         int threadPitch = 3; // Bước ren
         int pulsesPerRevolution = 3600; // xung/vòng
@@ -66,6 +68,7 @@ namespace TCHRLibBasicRecordSample
         float currentYCoor = 0F;
         float currentZCoor = 0F;
 
+        private Timer blinkTimer;
 
         #endregion
 
@@ -159,6 +162,10 @@ namespace TCHRLibBasicRecordSample
         public TRecordSample()
         {
             InitializeComponent();
+            // Initialize and start the blink timer
+            blinkTimer = new Timer();
+            blinkTimer.Interval = 1; // set delay time
+            blinkTimer.Tick += BlinkTimer_Tick; // create funtion that performs a task when called
             //axDBCommManager1.Connect();
             this.SetStyle(ControlStyles.Selectable, true);
             this.TabStop = true;
@@ -216,7 +223,7 @@ namespace TCHRLibBasicRecordSample
             LbYCoorValue.ForeColor = ForeGroundWhite;
             LbZAxisCoor.ForeColor = ForeGroundWhite;
             LbZCoorValue.ForeColor = ForeGroundWhite;
-            LbZCoorValue.Text = ZWorkingRange.ToString();
+            LbZCoorValue.Text = "0.00";
             if (SystemInformation.WorkingArea.Width < 1600)
             {
                 PnlSettingGrid.Padding = new Padding(36, MarginYScreenLg, 24, MarginYScreenLg);
@@ -233,13 +240,17 @@ namespace TCHRLibBasicRecordSample
             PnlZMap.LineColor = ForeGroundWhite;
             PnlZMap.BackColor = GridBg;
             PnlZMap.PointColor = orange;
-            PnlZMap.CoordinateX = PnlZMap.Width / 2;
-            PnlZMap.CoordinateY = currentZCoor / ZWorkingRange * 100;
+            PnlZMap.PointX = PnlZMap.Width / 2;
+            PnlZMap.PointY = 0 + PnlZMap.PointSize / 2;
+
+
+
 
             PnlXYMap.BorderColor = ForeGroundWhite;
             PnlXYMap.MainLineColor = ForeGroundWhite;
             PnlXYMap.LineColor = ForeGroundWhite;
             PnlXYMap.BackColor = GridBg;
+            PnlXYMap.GridSize = PnlXYMap.Width / 2;
 
             // Control area
             if (SystemInformation.WorkingArea.Width < 1600)
@@ -385,6 +396,8 @@ namespace TCHRLibBasicRecordSample
             TbZControl.Dock = DockStyle.Fill;
             TbZControl.ValueChanged += TbZControl_ValueChanged;
 
+
+
             if (SystemInformation.WorkingArea.Width < 1600)
             {
                 TbZControl.BorderRadius = 32;
@@ -435,6 +448,9 @@ namespace TCHRLibBasicRecordSample
                 BtnRsTch.Visible = true;
 
             }
+
+
+
 
             // Left site
             PnlHidden.BackColor = CardBg;
@@ -506,111 +522,12 @@ namespace TCHRLibBasicRecordSample
         #region Draw Z coordiante area 
 
 
-        //private void PnlXYMap_Paint(object sender, PaintEventArgs e)
-        //{
-        //    Graphics g = e.Graphics; // Declare the draw function
-        //    ControlPaint.DrawBorder(g, this.PnlXYMap.ClientRectangle, ForeGroundWhite, ButtonBorderStyle.Solid);
-
-        //    int width = PnlXYMap.Width; // width of area
-        //    int height = PnlXYMap.Height; // Height of area
-
-        //    Pen penBorder = new Pen(ForeGroundWhite, 4);
-        //    g.DrawRectangle(penBorder, 0, 0, width - 1F, height - 1F);
-
-        //    // Set up pens and brushes
-        //    Pen axisPen = new Pen(ForeGroundWhite, 1); // Pen(color, width of line)
-        //    Pen gridPen = new Pen(ForeGroundWhite, 1);
-
-        //    // Origin point (center of the panel)
-        //    Point origin = new Point(width / 2 - 1, height / 2 - 1);
-
-        //    // Draw grid lines and labels
-        //    int step = 25; // size of grid lines
-        //    for (int i = 0; i < Math.Max(width, height); i += step)
-        //    {
-        //        // Vertical grid lines
-        //        if (i < width || i != width / 2)
-        //        {
-        //            g.DrawLine(gridPen, origin.X + i, 0, origin.X + i, height);
-        //            g.DrawLine(gridPen, origin.X - i, 0, origin.X - i, height);
-        //        }
-        //        // Horizontal grid lines
-        //        if (i < height || i != height / 2)
-        //        {
-        //            g.DrawLine(gridPen, 0, origin.Y - i, width, origin.Y - i);
-        //            g.DrawLine(gridPen, 0, origin.Y + i, width, origin.Y + i);
-
-        //        }
-        //    }
-        //}
-
-        //private void PnlZMap_Paint(object sender, PaintEventArgs e)
-        //{
-
-
-        //    Graphics g = e.Graphics; // Declare the draw function
-        //    ControlPaint.DrawBorder(g, this.PnlZMap.ClientRectangle, ForeGroundWhite, ButtonBorderStyle.Solid);
-
-
-        //    int width = PnlZMap.Width; // width of area
-        //    int height = PnlZMap.Height; // Height of area
-
-        //    Pen penBorder = new Pen(ForeGroundWhite, 4);
-        //    g.DrawRectangle(penBorder, 0, 0, width - 2F, height - 2F);
-
-        //    // Set up pens and brushes
-        //    Pen axisPen = new Pen(ForeGroundWhite, 1); // Pen(color, width of line)
-        //    Pen gridPen = new Pen(ForeGroundWhite, 1);
-
-        //    // Origin point (center of the panel)
-        //    Point origin = new Point(width / 2 - 1, height / 2 - 1);
-
-        //    // Draw grid lines and labels
-        //    int step = 20; // size of grid lines
-        //    for (int i = 0; i < Math.Max(width, height); i += step)
-        //    {
-        //        // Vertical grid lines
-        //        if (i < width || i != width / 2)
-        //        {
-        //            g.DrawLine(gridPen, origin.X + i, 0, origin.X + i, height);
-        //            g.DrawLine(gridPen, origin.X - i, 0, origin.X - i, height);
-        //        }
-        //        // Horizontal grid lines
-        //        if (i < height || i != height / 2)
-        //        {
-        //            g.DrawLine(gridPen, 0, origin.Y - i, width , origin.Y - i);
-        //            g.DrawLine(gridPen, 0, origin.Y + i, width, origin.Y + i);
-
-        //        }
-        //    }
-        //    // Draw axes
-        //    //g.DrawLine(axisPen, origin.X, 10, origin.X, height - 10); // Y-axis
-
-        //    //limitHome.Position = new Point(origin.X - 8, origin.Y - (int)(height * 0.45) - 15);
-        //    //limitNe.Position = new Point(origin.X - 8, origin.Y + (int)(height * 0.45) - 5);
-
-        //    // distance move display is 95% of Height 
-        //    int distance = (int)(height * 0.95 - 5);
-        //    // percent of distance move to total lenght
-        //    //int percent = (int)(distanceMove / distanceLimtit * 100);
-        //    //// Set limit display position value
-        //    //if (percent < 1)
-        //    //{
-        //    //    percent = 0;
-        //    //}
-        //    //else if (percent > 100)
-        //    //{
-        //    //    percent = 100;
-        //    //}
-        //    //currentPos.Position = new Point(origin.X - 8, percent * distance / 100);
-        //    //currentCoor.Location = new Point(origin.X + 10, percent * distance / 100);
-        //}
-
-        //private void BlinkTimer_Tick(object sender, EventArgs e)
-        //{
-        //    isButtonVisible = !isButtonVisible;
-        //    currentPos.Visible = isButtonVisible;
-        //}
+        private void BlinkTimer_Tick(object sender, EventArgs e)
+        {
+            LbZCoorValue.Text = ReadFloatFromPLC("140", "141").ToString("F2") + "mm";
+            PnlZMap.PointY = (int)(((ReadFloatFromPLC("140", "141") - ZDistanceMin) / (float)(ZDistanceMax - ZDistanceMin)) * (PnlZMap.Height - PnlZMap.PointSize));
+            Invalidate();
+        }
 
         #endregion
 
@@ -625,7 +542,7 @@ namespace TCHRLibBasicRecordSample
             catch (Exception ex)
             {
                 // Notify the user of an error
-                MessageBox.Show($"Error writing to device: MR407 {ex.Message}",
+                MessageBox.Show($"Error writing to PLC: MR407 {ex.Message}",
                                 "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             Close();
@@ -748,8 +665,8 @@ namespace TCHRLibBasicRecordSample
 
         private void SetUpPLCSignals()
         {
-            maxSpeed = axDBCommManager1.ReadDevice(DATABUILDERAXLibLB.DBPlcDevice.DKVNano_DM, "212");
-            minSpeed = axDBCommManager1.ReadDevice(DATABUILDERAXLibLB.DBPlcDevice.DKVNano_DM, "224");
+            maxSpeed = ReadFloatFromPLC("212", "213");
+            minSpeed = ReadFloatFromPLC("224", "225");
 
         }
 
@@ -1438,6 +1355,7 @@ forcecurve = 0
         {
             //ShowDefaultSetting();
 
+
         }
 
 
@@ -1448,6 +1366,11 @@ forcecurve = 0
             {
                 axDBCommManager1.Connect();
                 axDBTriggerManager1.Active = true;
+                TbZControl.Value = (int)(((ReadFloatFromPLC("140", "141") - ZDistanceMin) / (float)(ZDistanceMax - ZDistanceMin)) * 100);
+                PnlZMap.PointY = (int)(((ReadFloatFromPLC("140", "141") - ZDistanceMin) / (float)(ZDistanceMax - ZDistanceMin)) * (PnlZMap.Height - PnlZMap.PointSize)) ;
+                LbZCoorValue.Text = ReadFloatFromPLC("140", "141").ToString("F2") + "mm";
+                blinkTimer.Start(); // start delay time
+
             }
             catch (Exception ex)
             {
@@ -1458,22 +1381,77 @@ forcecurve = 0
         }
         private void TbXYspeed_ValueChanged(object sender, EventArgs e)
         {
+
+            SetUpPLCSignals();
             float currentSpeed = ((TbXYspeed.Value / (float)100 * (maxSpeed - minSpeed)) + minSpeed); // Map to range of speed
-            //currentSpeedLabel.Text = $" {currentSpeed.ToString("F2")} mm/s"; //Display currentSpeed in the .00(F2) format.
-            //WriteSpeedToPLC("204", "205", currentSpeed); // Write speed value in register
-            //WriteSpeedToPLC("304", "305", currentSpeed); // Write speed value in register
-            LbXCoorValue.Text = currentSpeed.ToString();
+            WriteDMToPLC("204", "205", currentSpeed); // Write speed value in register
+            WriteDMToPLC("304", "305", currentSpeed); // Write speed value in register
+            //LbXCoorValue.Text = currentSpeed.ToString();
 
         }
 
         private void TbZControl_ValueChanged(object sender, EventArgs e)
         {
-            LbYCoorValue.Text = TbZControl.Value.ToString();
+
+            float currentZCoor = ((TbZControl.Value / (float)100 * (ZDistanceMax - ZDistanceMin)) + ZDistanceMin); // Map to range of Working distance
+            LbXCoorValue.Text = (currentZCoor * 2500).ToString();
+            WriteCMToPLC("8010", "8011", currentZCoor * 2500);
         }
 
+        private float ReadFloatFromPLC(string lowerWord, string upperWord)
+        {
+            try
+            {
+                // Read the lower and upper 16-bit words from the PLC
+                int lower = axDBCommManager1.ReadDevice(DATABUILDERAXLibLB.DBPlcDevice.DKVNano_DM, lowerWord);
+                int upper = axDBCommManager1.ReadDevice(DATABUILDERAXLibLB.DBPlcDevice.DKVNano_DM, upperWord);
 
+                // Combine the two 16-bit words into a single 32-bit integer (Big-Endian order)
+                int intValue = (upper << 16) | (lower & 0xFFFF);
 
-        private void WriteSpeedToPLC(string lowerWord, string upperWord, float value)
+                // Convert the 32-bit integer to a byte array
+                byte[] bytes = BitConverter.GetBytes(intValue);
+
+                // Convert the byte array to a float
+                float floatValue = BitConverter.ToSingle(bytes, 0);
+
+                return floatValue;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error reading from device: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return 0; // Return a default value in case of failure
+            }
+        }
+
+        private void OnBitMR(string bitAddress)
+        {
+            try
+            {
+                axDBCommManager1.WriteDevice(DATABUILDERAXLibLB.DBPlcDevice.DKVNano_MR, bitAddress, 1);
+            }
+            catch (Exception ex)
+            {
+                // Notify the user of an error
+                MessageBox.Show($"Error writing to PLC: {ex.Message}",
+                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void OffBitMR(string bitAddress)
+        {
+            try
+            {
+                axDBCommManager1.WriteDevice(DATABUILDERAXLibLB.DBPlcDevice.DKVNano_MR, bitAddress, 0);
+            }
+            catch (Exception ex)
+            {
+                // Notify the user of an error
+                MessageBox.Show($"Error writing to PLC: {ex.Message}",
+                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void WriteDMToPLC(string lowerWord, string upperWord, float value)
         {
             try
             {
@@ -1492,10 +1470,62 @@ forcecurve = 0
             catch (Exception ex)
             {
                 // Notify the user of an error
-                MessageBox.Show($"Error writing to device: {ex.Message}",
+                MessageBox.Show($"Error writing to PLC: {ex.Message}",
                                 "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
+        }
+        //private void WriteCMToPLC(string lowerWord, string upperWord, float value)
+        //{
+        //    try
+        //    {
+        //        // Convert the float value to a 32-bit integer representation
+        //        int intValue = BitConverter.ToInt32(BitConverter.GetBytes(value), 0);
+
+        //        // Split the 32-bit integer into two 16-bit words
+        //        int lower = intValue & 0xFFFF;       // Lower 16 bits
+        //        int upper = (intValue >> 16) & 0xFFFF; // Upper 16 bits
+        //                                               // Write the lower word to the lower address
+        //        axDBCommManager1.WriteDevice(DATABUILDERAXLibLB.DBPlcDevice.DKVNano_CM, lowerWord, lower);
+
+        //        // Write the upper word to the upper address
+        //        axDBCommManager1.WriteDevice(DATABUILDERAXLibLB.DBPlcDevice.DKVNano_CM, upperWord, upper);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // Notify the user of an error
+        //        MessageBox.Show($"Error writing to PLC: {ex.Message}",
+        //                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //    }
+
+        //}
+
+        private void WriteCMToPLC(string lowerWord, string upperWord, float value)
+        {
+            try
+            {
+                // Convert the float value to a 32-bit signed integer.
+                // Here we use Math.Round to round the float value; 
+                // you could also use a simple cast ((int)value) if you prefer truncation.
+                int intValue = (int)Math.Round(value);
+
+                // Split the 32-bit integer into two 16-bit words.
+                // The lower 16 bits:
+                int lower = intValue & 0xFFFF;
+                // The upper 16 bits:
+                int upper = (intValue >> 16) & 0xFFFF;
+
+                // Write the lower 16-bit word to the PLC address given by lowerWord.
+                axDBCommManager1.WriteDevice(DATABUILDERAXLibLB.DBPlcDevice.DKVNano_CM, lowerWord, lower);
+                // Write the upper 16-bit word to the PLC address given by upperWord.
+                axDBCommManager1.WriteDevice(DATABUILDERAXLibLB.DBPlcDevice.DKVNano_CM, upperWord, upper);
+            }
+            catch (Exception ex)
+            {
+                // Notify the user if there's an error writing to the PLC.
+                MessageBox.Show($"Error writing to PLC: {ex.Message}",
+                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void axDBDeviceManager1_BeforeRead(object sender, EventArgs e)
@@ -1506,7 +1536,7 @@ forcecurve = 0
 
         private void GetCurrentCoordinate()
         {
-            
+
             ushort CM8830 = ushort.Parse(axDBDeviceManager1.Devices[1].ValueRead.ToString().ToString());
             ushort CM8831 = ushort.Parse(axDBDeviceManager1.Devices[2].ValueRead.ToString().ToString());
 
@@ -1544,7 +1574,7 @@ forcecurve = 0
             catch (Exception ex)
             {
                 // Notify the user of an error
-                MessageBox.Show($"Error writing to device: MR400 {ex.Message}",
+                MessageBox.Show($"Error writing to PLC: MR400 {ex.Message}",
                                 "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -1563,7 +1593,7 @@ forcecurve = 0
             catch (Exception ex)
             {
                 // Notify the user of an error
-                MessageBox.Show($"Error writing to device: MR409 {ex.Message}",
+                MessageBox.Show($"Error writing to PLC: MR409 {ex.Message}",
                                 "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -1576,7 +1606,7 @@ forcecurve = 0
             catch (Exception ex)
             {
                 // Notify the user of an error
-                MessageBox.Show($"Error writing to device: MR409 {ex.Message}",
+                MessageBox.Show($"Error writing to PLC: MR409 {ex.Message}",
                                 "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -1628,7 +1658,7 @@ forcecurve = 0
             catch (Exception ex)
             {
                 // Notify the user of an error
-                MessageBox.Show($"Error writing to device: MR300 {ex.Message}",
+                MessageBox.Show($"Error writing to PLC: MR300 {ex.Message}",
                                 "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -1642,7 +1672,7 @@ forcecurve = 0
             catch (Exception ex)
             {
                 // Notify the user of an error
-                MessageBox.Show($"Error writing to device: MR300 {ex.Message}",
+                MessageBox.Show($"Error writing to PLC: MR300 {ex.Message}",
                                 "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -1656,7 +1686,7 @@ forcecurve = 0
             catch (Exception ex)
             {
                 // Notify the user of an error
-                MessageBox.Show($"Error writing to device: MR301 {ex.Message}",
+                MessageBox.Show($"Error writing to PLC: MR301 {ex.Message}",
                                 "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -1670,7 +1700,7 @@ forcecurve = 0
             catch (Exception ex)
             {
                 // Notify the user of an error
-                MessageBox.Show($"Error writing to device: MR301 {ex.Message}",
+                MessageBox.Show($"Error writing to PLC: MR301 {ex.Message}",
                                 "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -1685,7 +1715,7 @@ forcecurve = 0
             catch (Exception ex)
             {
                 // Notify the user of an error
-                MessageBox.Show($"Error writing to device: MR200 {ex.Message}",
+                MessageBox.Show($"Error writing to PLC: MR200 {ex.Message}",
                                 "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -1700,7 +1730,7 @@ forcecurve = 0
             catch (Exception ex)
             {
                 // Notify the user of an error
-                MessageBox.Show($"Error writing to device: MR200 {ex.Message}",
+                MessageBox.Show($"Error writing to PLC: MR200 {ex.Message}",
                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -1714,7 +1744,7 @@ forcecurve = 0
             catch (Exception ex)
             {
                 // Notify the user of an error
-                MessageBox.Show($"Error writing to device: MR201 {ex.Message}",
+                MessageBox.Show($"Error writing to PLC: MR201 {ex.Message}",
                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -1728,7 +1758,7 @@ forcecurve = 0
             catch (Exception ex)
             {
                 // Notify the user of an error
-                MessageBox.Show($"Error writing to device: MR201 {ex.Message}",
+                MessageBox.Show($"Error writing to PLC: MR201 {ex.Message}",
                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -1744,7 +1774,7 @@ forcecurve = 0
             catch (Exception ex)
             {
                 // Notify the user of an error
-                MessageBox.Show($"Error writing to device: MR200, MR300 {ex.Message}",
+                MessageBox.Show($"Error writing to PLC: MR200, MR300 {ex.Message}",
                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -1759,7 +1789,7 @@ forcecurve = 0
             catch (Exception ex)
             {
                 // Notify the user of an error
-                MessageBox.Show($"Error writing to device: MR200, MR300 {ex.Message}",
+                MessageBox.Show($"Error writing to PLC: MR200, MR300 {ex.Message}",
                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
@@ -1776,7 +1806,7 @@ forcecurve = 0
             catch (Exception ex)
             {
                 // Notify the user of an error
-                MessageBox.Show($"Error writing to device: MR201, MR301 {ex.Message}",
+                MessageBox.Show($"Error writing to PLC: MR201, MR301 {ex.Message}",
                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -1792,7 +1822,7 @@ forcecurve = 0
             catch (Exception ex)
             {
                 // Notify the user of an error
-                MessageBox.Show($"Error writing to device: MR200, MR301 {ex.Message}",
+                MessageBox.Show($"Error writing to PLC: MR200, MR301 {ex.Message}",
                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -1808,7 +1838,7 @@ forcecurve = 0
             catch (Exception ex)
             {
                 // Notify the user of an error
-                MessageBox.Show($"Error writing to device: MR201, MR301 {ex.Message}",
+                MessageBox.Show($"Error writing to PLC: MR201, MR301 {ex.Message}",
                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -1824,7 +1854,7 @@ forcecurve = 0
             catch (Exception ex)
             {
                 // Notify the user of an error
-                MessageBox.Show($"Error writing to device: MR201, MR301 {ex.Message}",
+                MessageBox.Show($"Error writing to PLC: MR201, MR301 {ex.Message}",
                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -1840,7 +1870,7 @@ forcecurve = 0
             catch (Exception ex)
             {
                 // Notify the user of an error
-                MessageBox.Show($"Error writing to device: MR201, MR300 {ex.Message}",
+                MessageBox.Show($"Error writing to PLC: MR201, MR300 {ex.Message}",
                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -1856,7 +1886,7 @@ forcecurve = 0
             catch (Exception ex)
             {
                 // Notify the user of an error
-                MessageBox.Show($"Error writing to device: MR201, MR300 {ex.Message}",
+                MessageBox.Show($"Error writing to PLC: MR201, MR300 {ex.Message}",
                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -1869,6 +1899,16 @@ forcecurve = 0
         private void BtnXYDownSpeed_Click(object sender, EventArgs e)
         {
             ConnectToPLC();
+        }
+
+        private void TbZControl_MouseUp(object sender, MouseEventArgs e)
+        {
+            OnBitMR("110");
+        }
+
+        private void TbZControl_MouseDown(object sender, MouseEventArgs e)
+        {
+            OffBitMR("110");
         }
 
         //private void PnlXYMap_MouseMove(object sender, MouseEventArgs e)

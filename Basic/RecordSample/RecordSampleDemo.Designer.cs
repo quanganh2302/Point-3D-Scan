@@ -144,17 +144,17 @@
             this.BtnRsTch = new TCHRLibBasicRecordSample.CustomUi.DSM_Button();
             this.BtnRunScan = new TCHRLibBasicRecordSample.CustomUi.DSM_Button();
             this.BtnSetPos4 = new TCHRLibBasicRecordSample.CustomUi.DSM_Button();
-            this.dsM_TextBox4 = new TCHRLibBasicRecordSample.CustomUi.DSM_TextBox();
+            this.TbPos4 = new TCHRLibBasicRecordSample.CustomUi.DSM_TextBox();
             this.BtnRunPos4 = new TCHRLibBasicRecordSample.CustomUi.DSM_Button();
             this.BtnRunPos3 = new TCHRLibBasicRecordSample.CustomUi.DSM_Button();
             this.BtnSetPos3 = new TCHRLibBasicRecordSample.CustomUi.DSM_Button();
-            this.dsM_TextBox3 = new TCHRLibBasicRecordSample.CustomUi.DSM_TextBox();
+            this.TbPos3 = new TCHRLibBasicRecordSample.CustomUi.DSM_TextBox();
             this.BtnRunPos1 = new TCHRLibBasicRecordSample.CustomUi.DSM_Button();
             this.BtnSetPos1 = new TCHRLibBasicRecordSample.CustomUi.DSM_Button();
             this.BtnRunPos2 = new TCHRLibBasicRecordSample.CustomUi.DSM_Button();
             this.BtnSetPos2 = new TCHRLibBasicRecordSample.CustomUi.DSM_Button();
-            this.dsM_TextBox2 = new TCHRLibBasicRecordSample.CustomUi.DSM_TextBox();
-            this.dsM_TextBox1 = new TCHRLibBasicRecordSample.CustomUi.DSM_TextBox();
+            this.TbPos2 = new TCHRLibBasicRecordSample.CustomUi.DSM_TextBox();
+            this.TbPos1 = new TCHRLibBasicRecordSample.CustomUi.DSM_TextBox();
             this.PnlSetting.SuspendLayout();
             this.PnlNavSetting.SuspendLayout();
             this.PnlAdvanceSetting.SuspendLayout();
@@ -476,7 +476,7 @@
             // 
             this.tabPage1.BackColor = System.Drawing.Color.DimGray;
             this.tabPage1.Controls.Add(this.panel10);
-            this.tabPage1.Location = new System.Drawing.Point(4, 25);
+            this.tabPage1.Location = new System.Drawing.Point(4, 28);
             this.tabPage1.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(2, 4, 2, 4);
@@ -509,7 +509,7 @@
             this.RBCHRC.Location = new System.Drawing.Point(170, 65);
             this.RBCHRC.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.RBCHRC.Name = "RBCHRC";
-            this.RBCHRC.Size = new System.Drawing.Size(62, 20);
+            this.RBCHRC.Size = new System.Drawing.Size(75, 23);
             this.RBCHRC.TabIndex = 16;
             this.RBCHRC.TabStop = true;
             this.RBCHRC.Text = "CHR C";
@@ -542,7 +542,7 @@
             this.RBCLS.Location = new System.Drawing.Point(9, 65);
             this.RBCLS.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.RBCLS.Name = "RBCLS";
-            this.RBCLS.Size = new System.Drawing.Size(130, 20);
+            this.RBCLS.Size = new System.Drawing.Size(162, 23);
             this.RBCLS.TabIndex = 13;
             this.RBCLS.Text = "Multi-Channel CHR";
             this.RBCLS.UseVisualStyleBackColor = true;
@@ -553,7 +553,7 @@
             this.RBCHR2.Location = new System.Drawing.Point(170, 41);
             this.RBCHR2.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.RBCHR2.Name = "RBCHR2";
-            this.RBCHR2.Size = new System.Drawing.Size(54, 20);
+            this.RBCHR2.Size = new System.Drawing.Size(65, 23);
             this.RBCHR2.TabIndex = 12;
             this.RBCHR2.Text = "CHR²";
             this.RBCHR2.UseVisualStyleBackColor = true;
@@ -564,7 +564,7 @@
             this.RBCHR1.Location = new System.Drawing.Point(9, 41);
             this.RBCHR1.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.RBCHR1.Name = "RBCHR1";
-            this.RBCHR1.Size = new System.Drawing.Size(136, 20);
+            this.RBCHR1.Size = new System.Drawing.Size(171, 23);
             this.RBCHR1.TabIndex = 11;
             this.RBCHR1.Text = "First Generation CHR";
             this.RBCHR1.UseVisualStyleBackColor = true;
@@ -574,7 +574,7 @@
             this.TbConInfo.Location = new System.Drawing.Point(107, 15);
             this.TbConInfo.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.TbConInfo.Name = "TbConInfo";
-            this.TbConInfo.Size = new System.Drawing.Size(2, 21);
+            this.TbConInfo.Size = new System.Drawing.Size(2, 24);
             this.TbConInfo.TabIndex = 10;
             this.TbConInfo.Text = "192.168.170.2";
             // 
@@ -584,7 +584,7 @@
             this.label1.Location = new System.Drawing.Point(9, 15);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(95, 16);
+            this.label1.Size = new System.Drawing.Size(120, 19);
             this.label1.TabIndex = 9;
             this.label1.Text = "Connection Info";
             // 
@@ -593,7 +593,7 @@
             this.tabPage2.BackColor = System.Drawing.Color.Silver;
             this.tabPage2.Controls.Add(this.panel9);
             this.tabPage2.Controls.Add(this.panel2);
-            this.tabPage2.Location = new System.Drawing.Point(4, 25);
+            this.tabPage2.Location = new System.Drawing.Point(4, 28);
             this.tabPage2.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(2, 4, 2, 4);
@@ -624,7 +624,7 @@
             this.RBInterfero.Location = new System.Drawing.Point(201, 9);
             this.RBInterfero.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.RBInterfero.Name = "RBInterfero";
-            this.RBInterfero.Size = new System.Drawing.Size(103, 20);
+            this.RBInterfero.Size = new System.Drawing.Size(129, 23);
             this.RBInterfero.TabIndex = 6;
             this.RBInterfero.Text = "Interferometric";
             this.RBInterfero.UseVisualStyleBackColor = true;
@@ -636,7 +636,7 @@
             this.RBConfocal.Location = new System.Drawing.Point(121, 9);
             this.RBConfocal.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.RBConfocal.Name = "RBConfocal";
-            this.RBConfocal.Size = new System.Drawing.Size(76, 20);
+            this.RBConfocal.Size = new System.Drawing.Size(94, 23);
             this.RBConfocal.TabIndex = 5;
             this.RBConfocal.TabStop = true;
             this.RBConfocal.Text = "Confocal";
@@ -648,7 +648,7 @@
             this.label6.Location = new System.Drawing.Point(5, 11);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(110, 16);
+            this.label6.Size = new System.Drawing.Size(138, 19);
             this.label6.TabIndex = 4;
             this.label6.Text = "Measuring Methos:";
             // 
@@ -657,7 +657,7 @@
             this.TBSHZ.Location = new System.Drawing.Point(107, 31);
             this.TBSHZ.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.TBSHZ.Name = "TBSHZ";
-            this.TBSHZ.Size = new System.Drawing.Size(2, 21);
+            this.TBSHZ.Size = new System.Drawing.Size(2, 24);
             this.TBSHZ.TabIndex = 3;
             this.TBSHZ.Text = "2000";
             // 
@@ -667,7 +667,7 @@
             this.label5.Location = new System.Drawing.Point(5, 33);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(61, 16);
+            this.label5.Size = new System.Drawing.Size(76, 19);
             this.label5.TabIndex = 2;
             this.label5.Text = "Scanrate:";
             // 
@@ -676,7 +676,7 @@
             this.TBSODX.Location = new System.Drawing.Point(107, 57);
             this.TBSODX.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.TBSODX.Name = "TBSODX";
-            this.TBSODX.Size = new System.Drawing.Size(2, 21);
+            this.TBSODX.Size = new System.Drawing.Size(2, 24);
             this.TBSODX.TabIndex = 1;
             this.TBSODX.Text = "83, 65, 66";
             // 
@@ -686,7 +686,7 @@
             this.label4.Location = new System.Drawing.Point(5, 59);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(96, 16);
+            this.label4.Size = new System.Drawing.Size(122, 19);
             this.label4.TabIndex = 0;
             this.label4.Text = "Selected signals:";
             // 
@@ -735,7 +735,7 @@
             this.CBFlush.Location = new System.Drawing.Point(2, 57);
             this.CBFlush.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.CBFlush.Name = "CBFlush";
-            this.CBFlush.Size = new System.Drawing.Size(106, 20);
+            this.CBFlush.Size = new System.Drawing.Size(132, 23);
             this.CBFlush.TabIndex = 5;
             this.CBFlush.Text = "Flush Old Data";
             this.CBFlush.UseVisualStyleBackColor = true;
@@ -745,7 +745,7 @@
             this.TBSampleCount.Location = new System.Drawing.Point(6, 23);
             this.TBSampleCount.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.TBSampleCount.Name = "TBSampleCount";
-            this.TBSampleCount.Size = new System.Drawing.Size(2, 21);
+            this.TBSampleCount.Size = new System.Drawing.Size(2, 24);
             this.TBSampleCount.TabIndex = 4;
             this.TBSampleCount.Text = "10000";
             // 
@@ -755,7 +755,7 @@
             this.label2.Location = new System.Drawing.Point(0, 5);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(89, 16);
+            this.label2.Size = new System.Drawing.Size(112, 19);
             this.label2.TabIndex = 3;
             this.label2.Text = "Sample Count:";
             // 
@@ -802,10 +802,10 @@
             this.LbNameChart.AutoSize = true;
             this.LbNameChart.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LbNameChart.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LbNameChart.Location = new System.Drawing.Point(38, 232);
+            this.LbNameChart.Location = new System.Drawing.Point(38, 228);
             this.LbNameChart.Margin = new System.Windows.Forms.Padding(2, 16, 2, 0);
             this.LbNameChart.Name = "LbNameChart";
-            this.LbNameChart.Size = new System.Drawing.Size(771, 19);
+            this.LbNameChart.Size = new System.Drawing.Size(771, 23);
             this.LbNameChart.TabIndex = 63;
             this.LbNameChart.Text = "Line Chart";
             this.LbNameChart.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -837,10 +837,10 @@
             // 
             this.PnlSettingGrid.BackColor = System.Drawing.Color.MistyRose;
             this.PnlSettingGrid.ColumnCount = 4;
-            this.PnlSettingGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 26F));
+            this.PnlSettingGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.PnlSettingGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 44F));
             this.PnlSettingGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 17F));
-            this.PnlSettingGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 13F));
+            this.PnlSettingGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14F));
             this.PnlSettingGrid.Controls.Add(this.PnlInfoCoorGrid, 3, 0);
             this.PnlSettingGrid.Controls.Add(this.PnlZCoorGird, 2, 0);
             this.PnlSettingGrid.Controls.Add(this.PnlXYCoorGrid, 1, 0);
@@ -867,7 +867,7 @@
             this.PnlInfoCoorGrid.Controls.Add(this.LbXCoorValue, 1, 1);
             this.PnlInfoCoorGrid.Controls.Add(this.LbXAxisCoor, 0, 1);
             this.PnlInfoCoorGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PnlInfoCoorGrid.Location = new System.Drawing.Point(576, 24);
+            this.PnlInfoCoorGrid.Location = new System.Drawing.Point(570, 24);
             this.PnlInfoCoorGrid.Margin = new System.Windows.Forms.Padding(0);
             this.PnlInfoCoorGrid.Name = "PnlInfoCoorGrid";
             this.PnlInfoCoorGrid.RowCount = 5;
@@ -876,17 +876,17 @@
             this.PnlInfoCoorGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.PnlInfoCoorGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.PnlInfoCoorGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.PnlInfoCoorGrid.Size = new System.Drawing.Size(83, 260);
+            this.PnlInfoCoorGrid.Size = new System.Drawing.Size(89, 260);
             this.PnlInfoCoorGrid.TabIndex = 27;
             // 
             // LbZCoorValue
             // 
             this.LbZCoorValue.AutoSize = true;
             this.LbZCoorValue.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LbZCoorValue.Location = new System.Drawing.Point(24, 208);
+            this.LbZCoorValue.Location = new System.Drawing.Point(28, 208);
             this.LbZCoorValue.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LbZCoorValue.Name = "LbZCoorValue";
-            this.LbZCoorValue.Size = new System.Drawing.Size(57, 26);
+            this.LbZCoorValue.Size = new System.Drawing.Size(59, 26);
             this.LbZCoorValue.TabIndex = 32;
             this.LbZCoorValue.Text = "0.00 mm";
             this.LbZCoorValue.TextAlign = System.Drawing.ContentAlignment.BottomRight;
@@ -898,7 +898,7 @@
             this.LbZAxisCoor.Location = new System.Drawing.Point(2, 208);
             this.LbZAxisCoor.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LbZAxisCoor.Name = "LbZAxisCoor";
-            this.LbZAxisCoor.Size = new System.Drawing.Size(18, 26);
+            this.LbZAxisCoor.Size = new System.Drawing.Size(22, 26);
             this.LbZAxisCoor.TabIndex = 32;
             this.LbZAxisCoor.Text = "Z:";
             this.LbZAxisCoor.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
@@ -907,10 +907,10 @@
             // 
             this.LbYCoorValue.AutoSize = true;
             this.LbYCoorValue.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LbYCoorValue.Location = new System.Drawing.Point(24, 182);
+            this.LbYCoorValue.Location = new System.Drawing.Point(28, 182);
             this.LbYCoorValue.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LbYCoorValue.Name = "LbYCoorValue";
-            this.LbYCoorValue.Size = new System.Drawing.Size(57, 26);
+            this.LbYCoorValue.Size = new System.Drawing.Size(59, 26);
             this.LbYCoorValue.TabIndex = 32;
             this.LbYCoorValue.Text = "0.00 mm";
             this.LbYCoorValue.TextAlign = System.Drawing.ContentAlignment.BottomRight;
@@ -922,7 +922,7 @@
             this.LbYAxisCoor.Location = new System.Drawing.Point(2, 182);
             this.LbYAxisCoor.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LbYAxisCoor.Name = "LbYAxisCoor";
-            this.LbYAxisCoor.Size = new System.Drawing.Size(18, 26);
+            this.LbYAxisCoor.Size = new System.Drawing.Size(22, 26);
             this.LbYAxisCoor.TabIndex = 32;
             this.LbYAxisCoor.Text = "Y:";
             this.LbYAxisCoor.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
@@ -931,10 +931,10 @@
             // 
             this.LbXCoorValue.AutoSize = true;
             this.LbXCoorValue.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LbXCoorValue.Location = new System.Drawing.Point(24, 156);
+            this.LbXCoorValue.Location = new System.Drawing.Point(28, 156);
             this.LbXCoorValue.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LbXCoorValue.Name = "LbXCoorValue";
-            this.LbXCoorValue.Size = new System.Drawing.Size(57, 26);
+            this.LbXCoorValue.Size = new System.Drawing.Size(59, 26);
             this.LbXCoorValue.TabIndex = 24;
             this.LbXCoorValue.Text = "0.00 mm";
             this.LbXCoorValue.TextAlign = System.Drawing.ContentAlignment.BottomRight;
@@ -946,7 +946,7 @@
             this.LbXAxisCoor.Location = new System.Drawing.Point(2, 156);
             this.LbXAxisCoor.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LbXAxisCoor.Name = "LbXAxisCoor";
-            this.LbXAxisCoor.Size = new System.Drawing.Size(18, 26);
+            this.LbXAxisCoor.Size = new System.Drawing.Size(22, 26);
             this.LbXAxisCoor.TabIndex = 24;
             this.LbXAxisCoor.Text = "X:";
             this.LbXAxisCoor.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
@@ -958,7 +958,7 @@
             this.PnlZCoorGird.Controls.Add(this.LbZCoor, 0, 1);
             this.PnlZCoorGird.Controls.Add(this.PnlZMap, 0, 0);
             this.PnlZCoorGird.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PnlZCoorGird.Location = new System.Drawing.Point(471, 24);
+            this.PnlZCoorGird.Location = new System.Drawing.Point(465, 24);
             this.PnlZCoorGird.Margin = new System.Windows.Forms.Padding(0);
             this.PnlZCoorGird.Name = "PnlZCoorGird";
             this.PnlZCoorGird.RowCount = 2;
@@ -986,7 +986,7 @@
             this.PnlXYCoorGrid.Controls.Add(this.LbXYCoor, 0, 1);
             this.PnlXYCoorGrid.Controls.Add(this.PnlXYMap, 0, 0);
             this.PnlXYCoorGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PnlXYCoorGrid.Location = new System.Drawing.Point(197, 24);
+            this.PnlXYCoorGrid.Location = new System.Drawing.Point(191, 24);
             this.PnlXYCoorGrid.Margin = new System.Windows.Forms.Padding(0);
             this.PnlXYCoorGrid.Name = "PnlXYCoorGrid";
             this.PnlXYCoorGrid.RowCount = 2;
@@ -1030,7 +1030,7 @@
             this.PnlListBtnSetting.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16F));
             this.PnlListBtnSetting.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
             this.PnlListBtnSetting.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16F));
-            this.PnlListBtnSetting.Size = new System.Drawing.Size(153, 260);
+            this.PnlListBtnSetting.Size = new System.Drawing.Size(147, 260);
             this.PnlListBtnSetting.TabIndex = 33;
             // 
             // PnlControlGrid
@@ -1071,7 +1071,7 @@
             this.LbZAxis.Location = new System.Drawing.Point(10, 0);
             this.LbZAxis.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LbZAxis.Name = "LbZAxis";
-            this.LbZAxis.Size = new System.Drawing.Size(63, 19);
+            this.LbZAxis.Size = new System.Drawing.Size(80, 23);
             this.LbZAxis.TabIndex = 62;
             this.LbZAxis.Text = "Z - Axis";
             // 
@@ -1139,7 +1139,7 @@
             this.axDBDeviceManager1.Location = new System.Drawing.Point(273, 63);
             this.axDBDeviceManager1.Name = "axDBDeviceManager1";
             this.axDBDeviceManager1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axDBDeviceManager1.OcxState")));
-            this.axDBDeviceManager1.Size = new System.Drawing.Size(24, 24);
+            this.axDBDeviceManager1.Size = new System.Drawing.Size(30, 30);
             this.axDBDeviceManager1.TabIndex = 65;
             this.axDBDeviceManager1.BeforeRead += new System.EventHandler(this.axDBDeviceManager1_BeforeRead);
             // 
@@ -1149,7 +1149,7 @@
             this.axDBTriggerManager1.Location = new System.Drawing.Point(273, 33);
             this.axDBTriggerManager1.Name = "axDBTriggerManager1";
             this.axDBTriggerManager1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axDBTriggerManager1.OcxState")));
-            this.axDBTriggerManager1.Size = new System.Drawing.Size(24, 24);
+            this.axDBTriggerManager1.Size = new System.Drawing.Size(30, 30);
             this.axDBTriggerManager1.TabIndex = 64;
             // 
             // axDBCommManager1
@@ -1158,7 +1158,7 @@
             this.axDBCommManager1.Location = new System.Drawing.Point(273, 3);
             this.axDBCommManager1.Name = "axDBCommManager1";
             this.axDBCommManager1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axDBCommManager1.OcxState")));
-            this.axDBCommManager1.Size = new System.Drawing.Size(24, 24);
+            this.axDBCommManager1.Size = new System.Drawing.Size(30, 30);
             this.axDBCommManager1.TabIndex = 63;
             // 
             // LbXYSpeed
@@ -1168,7 +1168,7 @@
             this.LbXYSpeed.Location = new System.Drawing.Point(-4, 196);
             this.LbXYSpeed.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LbXYSpeed.Name = "LbXYSpeed";
-            this.LbXYSpeed.Size = new System.Drawing.Size(84, 19);
+            this.LbXYSpeed.Size = new System.Drawing.Size(104, 23);
             this.LbXYSpeed.TabIndex = 62;
             this.LbXYSpeed.Text = "XY Speed";
             // 
@@ -1179,7 +1179,7 @@
             this.LbXYAxis.Location = new System.Drawing.Point(0, 0);
             this.LbXYAxis.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LbXYAxis.Name = "LbXYAxis";
-            this.LbXYAxis.Size = new System.Drawing.Size(76, 19);
+            this.LbXYAxis.Size = new System.Drawing.Size(96, 23);
             this.LbXYAxis.TabIndex = 61;
             this.LbXYAxis.Text = "XY - Axis";
             // 
@@ -1213,19 +1213,19 @@
             this.PnlTchGrid.Controls.Add(this.LbPos4, 0, 3);
             this.PnlTchGrid.Controls.Add(this.LbPos1, 0, 0);
             this.PnlTchGrid.Controls.Add(this.BtnSetPos4, 3, 3);
-            this.PnlTchGrid.Controls.Add(this.dsM_TextBox4, 1, 3);
+            this.PnlTchGrid.Controls.Add(this.TbPos4, 1, 3);
             this.PnlTchGrid.Controls.Add(this.BtnRunPos4, 2, 3);
             this.PnlTchGrid.Controls.Add(this.LbPos3, 0, 2);
             this.PnlTchGrid.Controls.Add(this.LbPos2, 0, 1);
             this.PnlTchGrid.Controls.Add(this.BtnRunPos3, 2, 2);
             this.PnlTchGrid.Controls.Add(this.BtnSetPos3, 3, 2);
-            this.PnlTchGrid.Controls.Add(this.dsM_TextBox3, 1, 2);
+            this.PnlTchGrid.Controls.Add(this.TbPos3, 1, 2);
             this.PnlTchGrid.Controls.Add(this.BtnRunPos1, 2, 0);
             this.PnlTchGrid.Controls.Add(this.BtnSetPos1, 3, 0);
             this.PnlTchGrid.Controls.Add(this.BtnRunPos2, 2, 1);
             this.PnlTchGrid.Controls.Add(this.BtnSetPos2, 3, 1);
-            this.PnlTchGrid.Controls.Add(this.dsM_TextBox2, 1, 1);
-            this.PnlTchGrid.Controls.Add(this.dsM_TextBox1, 1, 0);
+            this.PnlTchGrid.Controls.Add(this.TbPos2, 1, 1);
+            this.PnlTchGrid.Controls.Add(this.TbPos1, 1, 0);
             this.PnlTchGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PnlTchGrid.Location = new System.Drawing.Point(3, 39);
             this.PnlTchGrid.Name = "PnlTchGrid";
@@ -1370,28 +1370,29 @@
             // 
             // PnlZMap
             // 
-            this.PnlZMap.BackGroundColor = System.Drawing.Color.Gray;
+            this.PnlZMap.BackGroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
             this.PnlZMap.BorderColor = System.Drawing.Color.SlateBlue;
             this.PnlZMap.BorderSize = 2;
             this.PnlZMap.CoordinateX = 0D;
             this.PnlZMap.CoordinateY = 0D;
             this.PnlZMap.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PnlZMap.DragEnabled = false;
             this.PnlZMap.GridSize = 25;
             this.PnlZMap.LineColor = System.Drawing.Color.White;
             this.PnlZMap.LineSize = 1;
-            this.PnlZMap.Location = new System.Drawing.Point(12, 0);
+            this.PnlZMap.Location = new System.Drawing.Point(3, 3);
             this.PnlZMap.MainLineColor = System.Drawing.Color.White;
             this.PnlZMap.MainLineSizeX = 2;
-            this.PnlZMap.MainLineSizeY = 2;
-            this.PnlZMap.Margin = new System.Windows.Forms.Padding(12, 0, 12, 0);
+            this.PnlZMap.MainLineSizeY = 4;
             this.PnlZMap.Name = "PnlZMap";
             this.PnlZMap.PointColor = System.Drawing.Color.Orange;
+            this.PnlZMap.PointDisplayStyle = TCHRLibBasicRecordSample.CustomUi.PointDisplayStyle.Circle;
             this.PnlZMap.PointSize = 20;
-            this.PnlZMap.PointX = 0;
-            this.PnlZMap.PointY = 0;
-            this.PnlZMap.Size = new System.Drawing.Size(81, 234);
+            this.PnlZMap.PointX = 50;
+            this.PnlZMap.PointY = 50;
+            this.PnlZMap.Size = new System.Drawing.Size(99, 228);
             this.PnlZMap.TabIndex = 23;
-            this.PnlZMap.Text = "dsM_GridMap2";
+            this.PnlZMap.Text = "dsM_GridMap1";
             // 
             // PnlXYMap
             // 
@@ -1401,6 +1402,7 @@
             this.PnlXYMap.CoordinateX = 0D;
             this.PnlXYMap.CoordinateY = 0D;
             this.PnlXYMap.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PnlXYMap.DragEnabled = true;
             this.PnlXYMap.GridSize = 25;
             this.PnlXYMap.LineColor = System.Drawing.Color.White;
             this.PnlXYMap.LineSize = 1;
@@ -1410,9 +1412,10 @@
             this.PnlXYMap.MainLineSizeY = 2;
             this.PnlXYMap.Name = "PnlXYMap";
             this.PnlXYMap.PointColor = System.Drawing.Color.Orange;
-            this.PnlXYMap.PointSize = 24;
-            this.PnlXYMap.PointX = 0;
-            this.PnlXYMap.PointY = 0;
+            this.PnlXYMap.PointDisplayStyle = TCHRLibBasicRecordSample.CustomUi.PointDisplayStyle.Plus;
+            this.PnlXYMap.PointSize = 20;
+            this.PnlXYMap.PointX = 50;
+            this.PnlXYMap.PointY = 50;
             this.PnlXYMap.Size = new System.Drawing.Size(268, 228);
             this.PnlXYMap.TabIndex = 23;
             this.PnlXYMap.Text = "dsM_GridMap1";
@@ -1437,7 +1440,7 @@
             this.CbbRunMode.MinimumSize = new System.Drawing.Size(40, 26);
             this.CbbRunMode.Name = "CbbRunMode";
             this.CbbRunMode.Padding = new System.Windows.Forms.Padding(1);
-            this.CbbRunMode.Size = new System.Drawing.Size(147, 35);
+            this.CbbRunMode.Size = new System.Drawing.Size(141, 35);
             this.CbbRunMode.TabIndex = 6;
             this.CbbRunMode.Texts = "Run mode";
             // 
@@ -1463,7 +1466,7 @@
             this.CbbSignalMode.MinimumSize = new System.Drawing.Size(40, 26);
             this.CbbSignalMode.Name = "CbbSignalMode";
             this.CbbSignalMode.Padding = new System.Windows.Forms.Padding(1);
-            this.CbbSignalMode.Size = new System.Drawing.Size(147, 35);
+            this.CbbSignalMode.Size = new System.Drawing.Size(141, 35);
             this.CbbSignalMode.TabIndex = 8;
             this.CbbSignalMode.Texts = "Chart Info";
             // 
@@ -1488,7 +1491,7 @@
             this.CbbScanArea.MinimumSize = new System.Drawing.Size(40, 26);
             this.CbbScanArea.Name = "CbbScanArea";
             this.CbbScanArea.Padding = new System.Windows.Forms.Padding(1);
-            this.CbbScanArea.Size = new System.Drawing.Size(147, 35);
+            this.CbbScanArea.Size = new System.Drawing.Size(141, 35);
             this.CbbScanArea.TabIndex = 29;
             this.CbbScanArea.Texts = "Scan area";
             // 
@@ -1513,7 +1516,7 @@
             this.CbbSaveMode.MinimumSize = new System.Drawing.Size(40, 26);
             this.CbbSaveMode.Name = "CbbSaveMode";
             this.CbbSaveMode.Padding = new System.Windows.Forms.Padding(1);
-            this.CbbSaveMode.Size = new System.Drawing.Size(147, 35);
+            this.CbbSaveMode.Size = new System.Drawing.Size(141, 35);
             this.CbbSaveMode.TabIndex = 32;
             this.CbbSaveMode.Texts = "Save mode";
             // 
@@ -1532,7 +1535,7 @@
             this.BtnSaveData.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
             this.BtnSaveData.Location = new System.Drawing.Point(3, 219);
             this.BtnSaveData.Name = "BtnSaveData";
-            this.BtnSaveData.Size = new System.Drawing.Size(147, 38);
+            this.BtnSaveData.Size = new System.Drawing.Size(141, 38);
             this.BtnSaveData.TabIndex = 33;
             this.BtnSaveData.Text = "SAVE";
             this.BtnSaveData.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
@@ -1565,6 +1568,8 @@
             this.TbZControl.TrackColorRight = System.Drawing.Color.Gray;
             this.TbZControl.Value = 0;
             this.TbZControl.VerticalReversed = true;
+            this.TbZControl.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TbZControl_MouseDown);
+            this.TbZControl.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TbZControl_MouseUp);
             // 
             // TbXYspeed
             // 
@@ -1905,23 +1910,23 @@
             this.BtnSetPos4.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
             this.BtnSetPos4.UseVisualStyleBackColor = false;
             // 
-            // dsM_TextBox4
+            // TbPos4
             // 
-            this.dsM_TextBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(89)))), ((int)(((byte)(89)))));
-            this.dsM_TextBox4.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.dsM_TextBox4.BorderForcusColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(106)))), ((int)(((byte)(17)))));
-            this.dsM_TextBox4.BorderSize = 1;
-            this.dsM_TextBox4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dsM_TextBox4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.dsM_TextBox4.Location = new System.Drawing.Point(76, 134);
-            this.dsM_TextBox4.Margin = new System.Windows.Forms.Padding(5);
-            this.dsM_TextBox4.Multiline = false;
-            this.dsM_TextBox4.Name = "dsM_TextBox4";
-            this.dsM_TextBox4.Padding = new System.Windows.Forms.Padding(9, 10, 9, 10);
-            this.dsM_TextBox4.PasswordChar = false;
-            this.dsM_TextBox4.Size = new System.Drawing.Size(61, 37);
-            this.dsM_TextBox4.TabIndex = 57;
-            this.dsM_TextBox4.UnderlineStyle = false;
+            this.TbPos4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(89)))), ((int)(((byte)(89)))));
+            this.TbPos4.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.TbPos4.BorderForcusColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(106)))), ((int)(((byte)(17)))));
+            this.TbPos4.BorderSize = 1;
+            this.TbPos4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TbPos4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.TbPos4.Location = new System.Drawing.Point(76, 134);
+            this.TbPos4.Margin = new System.Windows.Forms.Padding(5);
+            this.TbPos4.Multiline = false;
+            this.TbPos4.Name = "TbPos4";
+            this.TbPos4.Padding = new System.Windows.Forms.Padding(9, 10, 9, 10);
+            this.TbPos4.PasswordChar = false;
+            this.TbPos4.Size = new System.Drawing.Size(61, 40);
+            this.TbPos4.TabIndex = 57;
+            this.TbPos4.UnderlineStyle = false;
             // 
             // BtnRunPos4
             // 
@@ -1986,23 +1991,23 @@
             this.BtnSetPos3.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
             this.BtnSetPos3.UseVisualStyleBackColor = false;
             // 
-            // dsM_TextBox3
+            // TbPos3
             // 
-            this.dsM_TextBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(89)))), ((int)(((byte)(89)))));
-            this.dsM_TextBox3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.dsM_TextBox3.BorderForcusColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(106)))), ((int)(((byte)(17)))));
-            this.dsM_TextBox3.BorderSize = 1;
-            this.dsM_TextBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dsM_TextBox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.dsM_TextBox3.Location = new System.Drawing.Point(76, 91);
-            this.dsM_TextBox3.Margin = new System.Windows.Forms.Padding(5);
-            this.dsM_TextBox3.Multiline = false;
-            this.dsM_TextBox3.Name = "dsM_TextBox3";
-            this.dsM_TextBox3.Padding = new System.Windows.Forms.Padding(9, 10, 9, 10);
-            this.dsM_TextBox3.PasswordChar = false;
-            this.dsM_TextBox3.Size = new System.Drawing.Size(61, 37);
-            this.dsM_TextBox3.TabIndex = 55;
-            this.dsM_TextBox3.UnderlineStyle = false;
+            this.TbPos3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(89)))), ((int)(((byte)(89)))));
+            this.TbPos3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.TbPos3.BorderForcusColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(106)))), ((int)(((byte)(17)))));
+            this.TbPos3.BorderSize = 1;
+            this.TbPos3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TbPos3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.TbPos3.Location = new System.Drawing.Point(76, 91);
+            this.TbPos3.Margin = new System.Windows.Forms.Padding(5);
+            this.TbPos3.Multiline = false;
+            this.TbPos3.Name = "TbPos3";
+            this.TbPos3.Padding = new System.Windows.Forms.Padding(9, 10, 9, 10);
+            this.TbPos3.PasswordChar = false;
+            this.TbPos3.Size = new System.Drawing.Size(61, 40);
+            this.TbPos3.TabIndex = 55;
+            this.TbPos3.UnderlineStyle = false;
             // 
             // BtnRunPos1
             // 
@@ -2094,45 +2099,45 @@
             this.BtnSetPos2.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
             this.BtnSetPos2.UseVisualStyleBackColor = false;
             // 
-            // dsM_TextBox2
+            // TbPos2
             // 
-            this.dsM_TextBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(89)))), ((int)(((byte)(89)))));
-            this.dsM_TextBox2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.dsM_TextBox2.BorderForcusColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(106)))), ((int)(((byte)(17)))));
-            this.dsM_TextBox2.BorderSize = 1;
-            this.dsM_TextBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dsM_TextBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.dsM_TextBox2.Location = new System.Drawing.Point(76, 48);
-            this.dsM_TextBox2.Margin = new System.Windows.Forms.Padding(5);
-            this.dsM_TextBox2.Multiline = false;
-            this.dsM_TextBox2.Name = "dsM_TextBox2";
-            this.dsM_TextBox2.Padding = new System.Windows.Forms.Padding(9, 10, 9, 10);
-            this.dsM_TextBox2.PasswordChar = false;
-            this.dsM_TextBox2.Size = new System.Drawing.Size(61, 37);
-            this.dsM_TextBox2.TabIndex = 54;
-            this.dsM_TextBox2.UnderlineStyle = false;
+            this.TbPos2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(89)))), ((int)(((byte)(89)))));
+            this.TbPos2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.TbPos2.BorderForcusColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(106)))), ((int)(((byte)(17)))));
+            this.TbPos2.BorderSize = 1;
+            this.TbPos2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TbPos2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.TbPos2.Location = new System.Drawing.Point(76, 48);
+            this.TbPos2.Margin = new System.Windows.Forms.Padding(5);
+            this.TbPos2.Multiline = false;
+            this.TbPos2.Name = "TbPos2";
+            this.TbPos2.Padding = new System.Windows.Forms.Padding(9, 10, 9, 10);
+            this.TbPos2.PasswordChar = false;
+            this.TbPos2.Size = new System.Drawing.Size(61, 40);
+            this.TbPos2.TabIndex = 54;
+            this.TbPos2.UnderlineStyle = false;
             // 
-            // dsM_TextBox1
+            // TbPos1
             // 
-            this.dsM_TextBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(89)))), ((int)(((byte)(89)))));
-            this.dsM_TextBox1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.dsM_TextBox1.BorderForcusColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(106)))), ((int)(((byte)(17)))));
-            this.dsM_TextBox1.BorderSize = 1;
-            this.dsM_TextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dsM_TextBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.dsM_TextBox1.Location = new System.Drawing.Point(76, 5);
-            this.dsM_TextBox1.Margin = new System.Windows.Forms.Padding(5);
-            this.dsM_TextBox1.Multiline = false;
-            this.dsM_TextBox1.Name = "dsM_TextBox1";
-            this.dsM_TextBox1.Padding = new System.Windows.Forms.Padding(9, 10, 9, 10);
-            this.dsM_TextBox1.PasswordChar = false;
-            this.dsM_TextBox1.Size = new System.Drawing.Size(61, 37);
-            this.dsM_TextBox1.TabIndex = 56;
-            this.dsM_TextBox1.UnderlineStyle = false;
+            this.TbPos1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(89)))), ((int)(((byte)(89)))));
+            this.TbPos1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.TbPos1.BorderForcusColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(106)))), ((int)(((byte)(17)))));
+            this.TbPos1.BorderSize = 1;
+            this.TbPos1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TbPos1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.TbPos1.Location = new System.Drawing.Point(76, 5);
+            this.TbPos1.Margin = new System.Windows.Forms.Padding(5);
+            this.TbPos1.Multiline = false;
+            this.TbPos1.Name = "TbPos1";
+            this.TbPos1.Padding = new System.Windows.Forms.Padding(9, 10, 9, 10);
+            this.TbPos1.PasswordChar = false;
+            this.TbPos1.Size = new System.Drawing.Size(61, 40);
+            this.TbPos1.TabIndex = 56;
+            this.TbPos1.UnderlineStyle = false;
             // 
             // TRecordSample
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1540, 845);
             this.Controls.Add(this.PnlMain);
@@ -2215,7 +2220,6 @@
         private System.Windows.Forms.Panel PnlControlBar;
         private System.Windows.Forms.PictureBox BtnClose;
         private System.Windows.Forms.Panel PnlMain;
-        private System.Windows.Forms.Label LbXYCoor;
         private System.Windows.Forms.Label LbZCoorValue;
         private System.Windows.Forms.Label LbYCoorValue;
         private System.Windows.Forms.Label LbXCoorValue;
@@ -2235,10 +2239,10 @@
         private System.Windows.Forms.Label LbZAxisCoor;
         private CustomUi.TabControl.DSM_ComboBox CbbSaveMode;
         private CustomUi.DSM_Button BtnSaveData;
-        private CustomUi.DSM_TextBox dsM_TextBox4;
-        private CustomUi.DSM_TextBox dsM_TextBox1;
-        private CustomUi.DSM_TextBox dsM_TextBox3;
-        private CustomUi.DSM_TextBox dsM_TextBox2;
+        private CustomUi.DSM_TextBox TbPos4;
+        private CustomUi.DSM_TextBox TbPos1;
+        private CustomUi.DSM_TextBox TbPos3;
+        private CustomUi.DSM_TextBox TbPos2;
         private CustomUi.DSM_Button BtnSetPos4;
         private CustomUi.DSM_Button BtnRunPos4;
         private CustomUi.DSM_Button BtnSetPos3;
@@ -2253,7 +2257,6 @@
         private System.Windows.Forms.TableLayoutPanel PnlXYControl;
         private System.Windows.Forms.Panel PnlXYBtn;
         private System.Windows.Forms.Panel PnlZControl;
-        private System.Windows.Forms.TableLayoutPanel PnlXYCoorGrid;
         private System.Windows.Forms.TableLayoutPanel PnlZCoorGird;
         private System.Windows.Forms.Label LbZCoor;
         private System.Windows.Forms.TableLayoutPanel PnlInfoCoorGrid;
@@ -2319,12 +2322,14 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.ComponentModel.BackgroundWorker backgroundWorker2;
         private CustomUi.DSM_TrackBarImg TbZControl;
-        private CustomUi.DSM_GridMap PnlZMap;
         private System.ComponentModel.IContainer components;
         private AxDATABUILDERAXLibLB.AxDBDeviceManager axDBDeviceManager1;
         private AxDATABUILDERAXLibLB.AxDBTriggerManager axDBTriggerManager1;
         private AxDATABUILDERAXLibLB.AxDBCommManager axDBCommManager1;
+        private System.Windows.Forms.TableLayoutPanel PnlXYCoorGrid;
+        private System.Windows.Forms.Label LbXYCoor;
         private CustomUi.DSM_GridMap PnlXYMap;
+        private CustomUi.DSM_GridMap PnlZMap;
     }
 }
 
