@@ -18,12 +18,13 @@ namespace TCHRLibBasicRecordSample.CustomUi
     }
     public class DSM_GridMap : Control
     {
+
         // Custom EventArgs to pass point coordinates.
-        public class PointChangedEventArgs : EventArgs
+        public class PointClickedEventArgs : EventArgs
         {
             public int X { get; }
             public int Y { get; }
-            public PointChangedEventArgs(int x, int y)
+            public PointClickedEventArgs(int x, int y)
             {
                 X = x;
                 Y = y;
@@ -61,6 +62,8 @@ namespace TCHRLibBasicRecordSample.CustomUi
 
         // Timer that repaints the control while dragging
         private Timer gridTimer;
+        // Custom event to notify when the point is clicked
+        public event EventHandler<PointClickedEventArgs> PointClicked;
 
         // Dragging fields
         private bool isDragging = false;
@@ -249,6 +252,8 @@ namespace TCHRLibBasicRecordSample.CustomUi
         // Contructor
         public DSM_GridMap()
         {
+
+
             this.DoubleBuffered = true;
             // Optimized painting styles for smooth redrawing
             this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
@@ -356,7 +361,8 @@ namespace TCHRLibBasicRecordSample.CustomUi
         private void DSM_GridMap_Click(object sender, EventArgs e)
         {
             Point mousePosition = this.PointToClient(Cursor.Position);
-            //MessageBox.Show($"Mouse Position Relative to Form: X={mousePosition.X}, Y={mousePosition.Y}");
+            // Raise the custom event with the new coordinates.
+            PointClicked?.Invoke(this, new PointClickedEventArgs(mousePosition.X, mousePosition.Y));
         }
 
         // Method

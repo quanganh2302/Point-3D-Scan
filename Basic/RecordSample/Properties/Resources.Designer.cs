@@ -113,6 +113,16 @@ namespace TCHRLibBasicRecordSample.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icon_delete {
+            get {
+                object obj = ResourceManager.GetObject("icon-delete", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icon_down {
             get {
                 object obj = ResourceManager.GetObject("icon-down", resourceCulture);
@@ -146,6 +156,26 @@ namespace TCHRLibBasicRecordSample.Properties {
         internal static System.Drawing.Bitmap icon_right {
             get {
                 object obj = ResourceManager.GetObject("icon-right", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icon_run {
+            get {
+                object obj = ResourceManager.GetObject("icon-run", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icon_save {
+            get {
+                object obj = ResourceManager.GetObject("icon-save", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

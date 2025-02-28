@@ -17,11 +17,16 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using FSSCommon;
 using System.Runtime.InteropServices;
+using TCHRLibBasicRecordSample.CustomUi;
 
 namespace TCHRLibBasicRecordSample
 {
     public partial class TRecordSample : Form
     {
+        //Data config
+        private string configsFolderPath = Path.Combine(Application.StartupPath, "Configs");
+        private string filePath;
+
         // Fields
         #region Color
         public static Color ForeGroundWhite = ColorTranslator.FromHtml("#E4E4E4");
@@ -57,9 +62,15 @@ namespace TCHRLibBasicRecordSample
         float maxSpeed = 10; // Max speed of track bar (m/s)
         float XWorkingRange = 300;// distance of 2 limit X (mm)
         float YWorkingRange = 300;// distance of 2 limit X (mm)
-        float ZDistanceMin = -5;// distance of 2 limit X (mm)
-        float ZDistanceMax = -40;// distance of 2 limit X (mm)
 
+        float ZDistanceMin = -5;// distance of 2 limit Z (mm)
+        float ZDistanceMax = -40;// distance of 2 limit Z (mm)
+
+        float XDistanceMin = 0;// distance of 2 limit X (mm)
+        float XDistanceMax = 160;// distance of 2 limit X (mm)
+
+        float YDistanceMin = 0;// distance of 2 limit Y (mm)
+        float YDistanceMax = -160;// distance of 2 limit Y (mm)
 
         int threadPitch = 3; // Bước ren
         int pulsesPerRevolution = 3600; // xung/vòng
@@ -69,6 +80,8 @@ namespace TCHRLibBasicRecordSample
         float currentZCoor = 0F;
 
         private Timer blinkTimer;
+        private Timer xyCoorTimer;
+
 
         #endregion
 
@@ -162,10 +175,16 @@ namespace TCHRLibBasicRecordSample
         public TRecordSample()
         {
             InitializeComponent();
+            this.Load += new EventHandler(TRecordSample_Load);
+            filePath = Path.Combine(configsFolderPath, "config_data.txt");
             // Initialize and start the blink timer
             blinkTimer = new Timer();
             blinkTimer.Interval = 1; // set delay time
             blinkTimer.Tick += BlinkTimer_Tick; // create funtion that performs a task when called
+
+            xyCoorTimer = new Timer();
+            xyCoorTimer.Interval = 1; // set delay time
+            xyCoorTimer.Tick += xyCoorTimer_Tick; // create funtion that performs a task when called
             //axDBCommManager1.Connect();
             this.SetStyle(ControlStyles.Selectable, true);
             this.TabStop = true;
@@ -181,7 +200,6 @@ namespace TCHRLibBasicRecordSample
             PnlMainGrid.Dock = DockStyle.Fill;
             PnlRightSite.Dock = DockStyle.Fill;
             PnlLeftSite.Dock = DockStyle.Fill;
-
 
             // Layout
             PnlControlBar.BackColor = NavbarBg;
@@ -243,15 +261,12 @@ namespace TCHRLibBasicRecordSample
             PnlZMap.PointX = PnlZMap.Width / 2;
             PnlZMap.PointY = 0 + PnlZMap.PointSize / 2;
 
-
-
-
             PnlXYMap.BorderColor = ForeGroundWhite;
             PnlXYMap.MainLineColor = ForeGroundWhite;
             PnlXYMap.LineColor = ForeGroundWhite;
             PnlXYMap.BackColor = GridBg;
             PnlXYMap.GridSize = PnlXYMap.Width / 2;
-
+            PnlXYMap.PointClicked += PostDataToPLC;
             // Control area
             if (SystemInformation.WorkingArea.Width < 1600)
             {
@@ -374,9 +389,6 @@ namespace TCHRLibBasicRecordSample
                 PnlZControl.Padding = new Padding(14, 20, 14, 8);
                 LbZAxis.Location = new Point(0);
                 LbXYSpeed.Location = new Point(-4, 196);
-
-
-
             }
             else
             {
@@ -395,7 +407,7 @@ namespace TCHRLibBasicRecordSample
             TbZControl.VerticalReversed = true;
             TbZControl.Dock = DockStyle.Fill;
             TbZControl.ValueChanged += TbZControl_ValueChanged;
-
+            TbZControl.MouseWheel += TbZControl_MouseWheel;
 
 
             if (SystemInformation.WorkingArea.Width < 1600)
@@ -449,6 +461,10 @@ namespace TCHRLibBasicRecordSample
 
             }
 
+            BtnRunPos1.Click += BtnRunPos_Click;
+            BtnRunPos2.Click += BtnRunPos_Click;
+            BtnRunPos3.Click += BtnRunPos_Click;
+            BtnRunPos4.Click += BtnRunPos_Click;
 
 
 
@@ -516,39 +532,49 @@ namespace TCHRLibBasicRecordSample
             RbCHR2 = (selectedRadioButtonName == "RbCHR2");
             RbCHRC = (selectedRadioButtonName == "RbCHRC");
             RbCLS = (selectedRadioButtonName == "RbCLS");
-            // Now you have the name of the radio button that was checked.
         }
 
+        private void xyCoorTimer_Tick(object sender, EventArgs e)
+        {
+
+
+            PnlXYMap.PointY = (int)(((ReadFloatFromPLC("340", "341") - YDistanceMin) / (float)(YDistanceMax - YDistanceMin)) * PnlXYMap.Height);
+            PnlXYMap.PointX = (int)(((ReadFloatFromPLC("240", "241") - XDistanceMin) / (float)(XDistanceMax - XDistanceMin)) * PnlXYMap.Width);
+
+            LbXCoorValue.Text = PnlXYMap.PointX.ToString();
+            LbYCoorValue.Text = PnlXYMap.PointY.ToString();
+
+            Invalidate();
+        }
+
+
         #region Draw Z coordiante area 
-
-
         private void BlinkTimer_Tick(object sender, EventArgs e)
         {
+            LbXCoorValue.Text = ReadFloatFromPLC("240", "241").ToString("F2") + "mm";
+            LbYCoorValue.Text = ReadFloatFromPLC("340", "341").ToString("F2") + "mm";
             LbZCoorValue.Text = ReadFloatFromPLC("140", "141").ToString("F2") + "mm";
+
+            PnlXYMap.PointY = (int)(((ReadFloatFromPLC("340", "341") - YDistanceMin) / (float)(YDistanceMax - YDistanceMin)) * PnlXYMap.Height);
+            PnlXYMap.PointX = (int)(((ReadFloatFromPLC("240", "241") - XDistanceMin) / (float)(XDistanceMax - XDistanceMin)) * PnlXYMap.Width);
             PnlZMap.PointY = (int)(((ReadFloatFromPLC("140", "141") - ZDistanceMin) / (float)(ZDistanceMax - ZDistanceMin)) * (PnlZMap.Height - PnlZMap.PointSize));
+
+            if (PnlZMap.PointY < PnlZMap.PointSize / 2)
+                PnlZMap.PointY = PnlZMap.PointSize / 2;
+            else if (PnlZMap.PointY > PnlZMap.Height - PnlZMap.PointSize / 2)
+                PnlZMap.PointY = PnlZMap.Height - PnlZMap.PointSize / 2;
+
             Invalidate();
         }
 
         #endregion
 
-
-
         private void BtnClose_Click(object sender, EventArgs e)
         {
-            try
-            {
-                axDBCommManager1.WriteDevice(DATABUILDERAXLibLB.DBPlcDevice.DKVNano_MR, "407", 1);
-            }
-            catch (Exception ex)
-            {
-                // Notify the user of an error
-                MessageBox.Show($"Error writing to PLC: MR407 {ex.Message}",
-                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+          
             Close();
 
         }
-
         private void StartTimer()
         {
             timer = new Timer
@@ -636,7 +662,6 @@ namespace TCHRLibBasicRecordSample
 
         }
 
-
         private void SetupDevice()
         {
             //default signals are: Sample counter, peak 1 value, peak 1 quality/intensity
@@ -669,7 +694,6 @@ namespace TCHRLibBasicRecordSample
             minSpeed = ReadFloatFromPLC("224", "225");
 
         }
-
         private void SetUpMeasuringMethod()
         {
             try
@@ -1353,12 +1377,214 @@ forcecurve = 0
 
         private void TRecordSample_Load(object sender, EventArgs e)
         {
-            //ShowDefaultSetting();
+            // Ensure the "Configs" folder exists.
+            if (!Directory.Exists(configsFolderPath))
+            {
+                Directory.CreateDirectory(configsFolderPath);
+
+            }
+
+            // Check if user_config.txt exists; if not, create it with 4 empty lines.
+            if (!File.Exists(filePath))
+            {
+                string[] defaultData = { "", "", "", "" };
+                File.WriteAllLines(filePath, defaultData);
+                MessageBox.Show("user_config.txt was created with default content.");
+            }
+
+            // Load the data into the textboxes
+            LoadAllTextBoxes();
+
+            // Update the button images based on whether each textbox has data
+            UpdateAllButtonImages();
+
+        }
+        private void LoadAllTextBoxes()
+        {
+            if (File.Exists(filePath))
+            {
+                string[] lines = File.ReadAllLines(filePath);
+
+                if (lines.Length >= 4) // Ensure enough lines exist in the file
+                {
+                    TbPos1.Text = lines[0];
+                    TbPos2.Text = lines[1];
+                    TbPos3.Text = lines[2];
+                    TbPos4.Text = lines[3];
+                }
+            }
+        }
+        private void UpdateAllButtonImages()
+        {
+            UpdateButtonImage(BtnSetPos1, TbPos1.Text);
+            UpdateButtonImage(BtnSetPos2, TbPos2.Text);
+            UpdateButtonImage(BtnSetPos3, TbPos3.Text);
+            UpdateButtonImage(BtnSetPos4, TbPos4.Text);
+        }
+
+        private void UpdateButtonImage(CustomUi.DSM_Button button, string text)
+        {
+            //// If text is NOT empty, use imageA; otherwise, use imageB
+            //if (!string.IsNullOrWhiteSpace(text))
+            //{
+            //    button.Image = Properties.Resources.icon_delete;
+            //    button.ImageAlign = ContentAlignment.MiddleCenter;
+            //}
+            //else
+            //{
+            //    button.Image = Properties.Resources.icon_save;
+            //    button.ImageAlign = ContentAlignment.MiddleCenter;
+            //}
+            button.Image = Properties.Resources.icon_save;
+            button.ImageAlign = ContentAlignment.MiddleCenter;
+        }
+        // Validate that the input string follows the format "x,y,z" where x, y, and z are numbers.
+        private bool IsValidXYZ(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                MessageBox.Show("Invalid input format. Please enter values in the format 'x,y,z' (e.g., 10,20,30).");
+                return false;
+            }
+
+            string[] parts = input.Split(',');
+            if (parts.Length != 3)
+            {
+                MessageBox.Show("Invalid input format. Please enter values in the format 'x,y,z' (e.g., 10,20,30).");
+                return false;
+            }
+
+            // Try parsing each value.
+            if (!float.TryParse(parts[0].Trim(), out float x) ||
+                !float.TryParse(parts[1].Trim(), out float y) ||
+                !float.TryParse(parts[2].Trim(), out float z))
+                return false;
+
+            // Specify desired ranges for each axis.
+            float minX = 0, maxX = 100;   // Example: x must be between 0 and 100
+            float minY = -50, maxY = 50;    // Example: y must be between -50 and 50
+            float minZ = 10, maxZ = 200;   // Example: z must be between 10 and 200
+
+            if (x < minX || x > maxX)
+            {
+                MessageBox.Show($"x value must be between {minX} and {maxX}.");
+                return false;
+            }
+
+            if (y < minY || y > maxY)
+            {
+                MessageBox.Show($"y value must be between {minY} and {maxY}.");
+                return false;
+            }
+
+            if (z < minZ || z > maxZ)
+            {
+                MessageBox.Show($"z value must be between {minZ} and {maxZ}.");
+                return false;
+            }
+
+            return true;
+        }
+        private void SaveOrDeleteTextBox(int index, CustomUi.DSM_TextBox textBox, CustomUi.DSM_Button button)
+        {
+            string[] data = { "", "", "", "" };
+
+            // Load existing data if the file exists.
+            if (File.Exists(filePath))
+            {
+                string[] existingData = File.ReadAllLines(filePath);
+                for (int i = 0; i < existingData.Length && i < 4; i++)
+                {
+                    data[i] = existingData[i];
+                }
+            }
 
 
+            // Validate and save only if there is text.
+            if (!string.IsNullOrWhiteSpace(textBox.Text))
+            {
+                if (!IsValidXYZ(textBox.Text))
+                {
+                    // Validation failed; exit without saving.
+                    return;
+                }
+
+                data[index] = textBox.Text;
+                MessageBox.Show($"Data saved for TextBox {index + 1}!");
+            }
+            else
+            {
+                // If textbox is empty, treat it as deletion.
+                data[index] = "";
+                MessageBox.Show($"Data deleted for TextBox {index + 1}!");
+            }
+
+            // Write back all 4 lines
+            File.WriteAllLines(filePath, data);
+
+            // Update button images
+            UpdateButtonImage(button, textBox.Text);
+        }
+
+        private void BtnSetPos1_Click(object sender, EventArgs e)
+        {
+            SaveOrDeleteTextBox(0, TbPos1, BtnSetPos1);
+        }
+        private void BtnSetPos2_Click(object sender, EventArgs e)
+        {
+            SaveOrDeleteTextBox(1, TbPos2, BtnSetPos2);
+        }
+
+        private void BtnSetPos3_Click(object sender, EventArgs e)
+        {
+            SaveOrDeleteTextBox(2, TbPos3, BtnSetPos3);
+        }
+
+        private void BtnSetPos4_Click(object sender, EventArgs e)
+        {
+            SaveOrDeleteTextBox(3, TbPos4, BtnSetPos4);
         }
 
 
+        private void PostPosScanToPLC(int index, CustomUi.DSM_TextBox textBox, CustomUi.DSM_Button button)
+        {
+            if (!IsValidXYZ(textBox.Text))
+            {
+                // Validation failed; exit without saving.
+                return;
+            }
+            string[] parts = textBox.Text.Split(',');
+            // Try parsing each value.
+            if (!float.TryParse(parts[0].Trim(), out float x) ||
+                !float.TryParse(parts[1].Trim(), out float y) ||
+                !float.TryParse(parts[2].Trim(), out float z))
+                return;
+            WriteCMToPLC("8200", "8201", x * 2500);
+            WriteCMToPLC("8400", "8401", y * 2500);
+            WriteCMToPLC("8000", "8001", z * 2500);
+            OnBitMR("410");
+            OffBitMR("410");
+        }
+
+        private void BtnRunPos_Click(object sender, EventArgs e)
+        {
+            if (sender == BtnRunPos1)
+            {
+                PostPosScanToPLC(0, TbPos1, BtnRunPos1);
+            }
+            else if (sender == BtnRunPos2)
+            {
+                PostPosScanToPLC(1, TbPos2, BtnRunPos2);
+            }
+            else if (sender == BtnRunPos3)
+            {
+                PostPosScanToPLC(2, TbPos3, BtnRunPos3);
+            }
+            else if (sender == BtnRunPos4)
+            {
+                PostPosScanToPLC(3, TbPos4, BtnRunPos4);
+            }
+        }
         private void ConnectToPLC()
         {
             // Connect to device
@@ -1367,7 +1593,7 @@ forcecurve = 0
                 axDBCommManager1.Connect();
                 axDBTriggerManager1.Active = true;
                 TbZControl.Value = (int)(((ReadFloatFromPLC("140", "141") - ZDistanceMin) / (float)(ZDistanceMax - ZDistanceMin)) * 100);
-                PnlZMap.PointY = (int)(((ReadFloatFromPLC("140", "141") - ZDistanceMin) / (float)(ZDistanceMax - ZDistanceMin)) * (PnlZMap.Height - PnlZMap.PointSize)) ;
+                PnlZMap.PointY = (int)(((ReadFloatFromPLC("140", "141") - ZDistanceMin) / (float)(ZDistanceMax - ZDistanceMin)) * (PnlZMap.Height - PnlZMap.PointSize));
                 LbZCoorValue.Text = ReadFloatFromPLC("140", "141").ToString("F2") + "mm";
                 blinkTimer.Start(); // start delay time
 
@@ -1379,6 +1605,23 @@ forcecurve = 0
         MessageBoxDefaultButton.Button1);
             }
         }
+        private void PostDataToPLC(object sender, DSM_GridMap.PointClickedEventArgs e)
+        {
+            OnBitMR("208");
+            OnBitMR("308");
+            
+            float currentYCoor = ((((float)e.Y / PnlXYMap.Height) * 100 / (float)100 * (YDistanceMax - YDistanceMin)) - YDistanceMin);
+            float currentXCoor = ((((float)e.X / PnlXYMap.Width) *100 / (float)100 * (XDistanceMax - XDistanceMin)) + XDistanceMin);
+
+            WriteCMToPLC("8230", "8231", currentXCoor * 2500);
+            WriteCMToPLC("8430", "8431", currentYCoor * 2500);
+            OnBitMR("210");
+            OnBitMR("310");
+            OffBitMR("210");
+            OffBitMR("310");
+            OffBitMR("208");
+            OffBitMR("308");
+        }
         private void TbXYspeed_ValueChanged(object sender, EventArgs e)
         {
 
@@ -1386,6 +1629,8 @@ forcecurve = 0
             float currentSpeed = ((TbXYspeed.Value / (float)100 * (maxSpeed - minSpeed)) + minSpeed); // Map to range of speed
             WriteDMToPLC("204", "205", currentSpeed); // Write speed value in register
             WriteDMToPLC("304", "305", currentSpeed); // Write speed value in register
+            WriteCMToPLC("8234", "8235", currentSpeed * 2500); // Write speed value in register
+            WriteCMToPLC("8434", "8435", currentSpeed * 2500); // Write speed value in register
             //LbXCoorValue.Text = currentSpeed.ToString();
 
         }
@@ -1393,11 +1638,19 @@ forcecurve = 0
         private void TbZControl_ValueChanged(object sender, EventArgs e)
         {
 
-            float currentZCoor = ((TbZControl.Value / (float)100 * (ZDistanceMax - ZDistanceMin)) + ZDistanceMin); // Map to range of Working distance
+            OnBitMR("108");
+            OffBitMR("108");
+            float currentZCoor = ((TbZControl.Value / (float)100 * (ZDistanceMax - ZDistanceMin)) + ZDistanceMin); // Map to range of Working distance (mm)
             LbXCoorValue.Text = (currentZCoor * 2500).ToString();
             WriteCMToPLC("8010", "8011", currentZCoor * 2500);
-        }
 
+        }
+        private void TbZControl_MouseWheel(object sender, MouseEventArgs e)
+        {
+            LbYCoorValue.Text = TbZControl.Value.ToString();
+            OnBitMR("110");
+            OffBitMR("110");
+        }
         private float ReadFloatFromPLC(string lowerWord, string upperWord)
         {
             try
@@ -1433,7 +1686,7 @@ forcecurve = 0
             catch (Exception ex)
             {
                 // Notify the user of an error
-                MessageBox.Show($"Error writing to PLC: {ex.Message}",
+                MessageBox.Show($"Error writing to PLC: {bitAddress} {ex.Message}",
                                 "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -1446,7 +1699,7 @@ forcecurve = 0
             catch (Exception ex)
             {
                 // Notify the user of an error
-                MessageBox.Show($"Error writing to PLC: {ex.Message}",
+                MessageBox.Show($"Error writing to PLC: {bitAddress} {ex.Message}",
                                 "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -1566,49 +1819,41 @@ forcecurve = 0
 
         private void BtnHome_Click(object sender, EventArgs e)
         {
-            try
-            {
-                axDBCommManager1.WriteDevice(DATABUILDERAXLibLB.DBPlcDevice.DKVNano_MR, "400", 1);
-
-            }
-            catch (Exception ex)
-            {
-                // Notify the user of an error
-                MessageBox.Show($"Error writing to PLC: MR400 {ex.Message}",
-                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+        }
+        private void BtnHome_MouseDown(object sender, MouseEventArgs e)
+        {
+            OnBitMR("410");
         }
 
-        private void BtnSetPos1_Click(object sender, EventArgs e)
+        private void BtnHome_MouseUp(object sender, MouseEventArgs e)
         {
-
-
+            OffBitMR("410");
         }
         private void BtnSetPos1_MouseDown(object sender, MouseEventArgs e)
         {
-            try
-            {
-                axDBCommManager1.WriteDevice(DATABUILDERAXLibLB.DBPlcDevice.DKVNano_MR, "409", 1);
-            }
-            catch (Exception ex)
-            {
-                // Notify the user of an error
-                MessageBox.Show($"Error writing to PLC: MR409 {ex.Message}",
-                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            //try
+            //{
+            //    axDBCommManager1.WriteDevice(DATABUILDERAXLibLB.DBPlcDevice.DKVNano_MR, "409", 1);
+            //}
+            //catch (Exception ex)
+            //{
+            //    // Notify the user of an error
+            //    MessageBox.Show($"Error writing to PLC: MR409 {ex.Message}",
+            //                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
         }
         private void BtnSetPos1_MouseUp(object sender, MouseEventArgs e)
         {
-            try
-            {
-                axDBCommManager1.WriteDevice(DATABUILDERAXLibLB.DBPlcDevice.DKVNano_MR, "409", 0);
-            }
-            catch (Exception ex)
-            {
-                // Notify the user of an error
-                MessageBox.Show($"Error writing to PLC: MR409 {ex.Message}",
-                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            //try
+            //{
+            //    axDBCommManager1.WriteDevice(DATABUILDERAXLibLB.DBPlcDevice.DKVNano_MR, "409", 0);
+            //}
+            //catch (Exception ex)
+            //{
+            //    // Notify the user of an error
+            //    MessageBox.Show($"Error writing to PLC: MR409 {ex.Message}",
+            //                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
         }
 
 
@@ -1904,19 +2149,39 @@ forcecurve = 0
         private void TbZControl_MouseUp(object sender, MouseEventArgs e)
         {
             OnBitMR("110");
+            OffBitMR("110");
+
         }
 
         private void TbZControl_MouseDown(object sender, MouseEventArgs e)
         {
-            OffBitMR("110");
+            //OnBitMR("108");
+            //OffBitMR("108");
         }
 
-        //private void PnlXYMap_MouseMove(object sender, MouseEventArgs e)
-        //{
-        //    Point mousePosition = this.PointToClient(Cursor.Position);
-        //    PnlXYMap.PointX = mousePosition.X;
-        //    PnlXYMap.PointY = mousePosition.Y;
-        //}
+        private void TbPos4_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void TbPos3_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void TbPos2_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void TbPos1_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void PnlXYMap_Click(object sender, EventArgs e)
+        {
+        }
     }
 
 

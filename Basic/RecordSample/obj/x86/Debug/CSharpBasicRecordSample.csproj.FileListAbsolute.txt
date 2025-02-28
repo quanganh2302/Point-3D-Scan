@@ -60,3 +60,4 @@ E:\Dynamic\1. Work_Space\On_Going\5. Point Scanner\Point scanner\chrocolib-T5-5-
 E:\Dynamic\1. Work_Space\On_Going\5. Point Scanner\Point scanner\chrocolib-T5-5-0-59-517aeeb0\chrocodilelib\CSharpDemo\Basic\RecordSample\obj\x86\Debug\TCHRLibBasicRecordSample.CustomUi.TabControl.UC_AdvanceSetting.resources
 E:\Dynamic\1. Work_Space\On_Going\5. Point Scanner\Point scanner\chrocolib-T5-5-0-59-517aeeb0\chrocodilelib\CSharpDemo\Basic\RecordSample\obj\x86\Debug\TCHRLibBasicRecordSample.CustomUi.TabControl.UC_DefaultSetting.resources
 E:\Dynamic\1. Work_Space\On_Going\5. Point Scanner\Point scanner\chrocolib-T5-5-0-59-517aeeb0\chrocodilelib\CSharpDemo\Basic\RecordSample\obj\x86\Debug\TCHRLibBasicRecordSample.CustomUi.DSM_TextBox.resources
+E:\Dynamic\1. Work_Space\On_Going\5. Point Scanner\Point scanner\chrocolib-T5-5-0-59-517aeeb0\chrocodilelib\CSharpDemo\Basic\RecordSample\obj\x86\Debug\CSharpBasicRecordSample.csproj.AssemblyReference.cache

@@ -216,5 +216,10 @@ namespace TCHRLibBasicRecordSample.CustomUi
             isFocused = false;
             this.Invalidate();
         }
+
+        private void textBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            this.OnKeyDown(e);
+        }
     }
 }

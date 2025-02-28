@@ -196,7 +196,9 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Configs\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Accents\icon-triangle-right.png" />
     <Content Include="Accents\icon-triangle-left.png" />
@@ -213,8 +215,11 @@
     <Content Include="Accents\Icon-Z-up.png" />
     <Content Include="Accents\icon-Zmove-40.png" />
     <Content Include="Accents\icon-Zmove.png" />
+    <Content Include="Accents\icon-delete.png" />
+    <Content Include="Accents\icon-run.png" />
     <Content Include="Accents\icons8-record-96.png" />
     <Content Include="Accents\icon-right.png" />
+    <Content Include="Accents\icon-save.png" />
     <Content Include="Accents\logo-01.png" />
     <Content Include="Accents\logo-DSM.png" />
     <Content Include="Accents\logo_01_Hts_icon.ico" />

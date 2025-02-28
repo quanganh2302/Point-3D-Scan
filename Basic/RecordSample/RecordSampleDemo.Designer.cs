@@ -1419,6 +1419,7 @@
             this.PnlXYMap.Size = new System.Drawing.Size(268, 228);
             this.PnlXYMap.TabIndex = 23;
             this.PnlXYMap.Text = "dsM_GridMap1";
+            this.PnlXYMap.Click += new System.EventHandler(this.PnlXYMap_Click);
             // 
             // CbbRunMode
             // 
@@ -1562,7 +1563,7 @@
             this.TbZControl.Size = new System.Drawing.Size(45, 211);
             this.TbZControl.TabIndex = 63;
             this.TbZControl.ThumbColor = System.Drawing.Color.Red;
-            this.TbZControl.ThumbImage = global::TCHRLibBasicRecordSample.Properties.Resources.icon_Zmove;
+            this.TbZControl.ThumbImage = global::TCHRLibBasicRecordSample.Properties.Resources.icon_Zmove_40;
             this.TbZControl.ThumbSize = 40;
             this.TbZControl.TrackColorLeft = System.Drawing.Color.Blue;
             this.TbZControl.TrackColorRight = System.Drawing.Color.Gray;
@@ -1613,7 +1614,7 @@
             this.BtnXYUpSpeed.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(67)))), ((int)(((byte)(63)))));
             this.BtnXYUpSpeed.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
             this.BtnXYUpSpeed.BorderRadius = 1;
-            this.BtnXYUpSpeed.BorderSize = 1;
+            this.BtnXYUpSpeed.BorderSize = 0;
             this.BtnXYUpSpeed.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BtnXYUpSpeed.FlatAppearance.BorderSize = 0;
             this.BtnXYUpSpeed.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -1696,6 +1697,8 @@
             this.BtnHome.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
             this.BtnHome.UseVisualStyleBackColor = false;
             this.BtnHome.Click += new System.EventHandler(this.BtnHome_Click);
+            this.BtnHome.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnHome_MouseDown);
+            this.BtnHome.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BtnHome_MouseUp);
             // 
             // BtnRightDown
             // 
@@ -1906,9 +1909,9 @@
             this.BtnSetPos4.Name = "BtnSetPos4";
             this.BtnSetPos4.Size = new System.Drawing.Size(44, 37);
             this.BtnSetPos4.TabIndex = 52;
-            this.BtnSetPos4.Text = "Set";
             this.BtnSetPos4.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
             this.BtnSetPos4.UseVisualStyleBackColor = false;
+            this.BtnSetPos4.Click += new System.EventHandler(this.BtnSetPos4_Click);
             // 
             // TbPos4
             // 
@@ -1941,11 +1944,11 @@
             this.BtnRunPos4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnRunPos4.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold);
             this.BtnRunPos4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.BtnRunPos4.Image = global::TCHRLibBasicRecordSample.Properties.Resources.icon_run;
             this.BtnRunPos4.Location = new System.Drawing.Point(145, 132);
             this.BtnRunPos4.Name = "BtnRunPos4";
             this.BtnRunPos4.Size = new System.Drawing.Size(42, 37);
             this.BtnRunPos4.TabIndex = 53;
-            this.BtnRunPos4.Text = "Run";
             this.BtnRunPos4.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
             this.BtnRunPos4.UseVisualStyleBackColor = false;
             // 
@@ -1962,11 +1965,11 @@
             this.BtnRunPos3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnRunPos3.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold);
             this.BtnRunPos3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.BtnRunPos3.Image = global::TCHRLibBasicRecordSample.Properties.Resources.icon_run;
             this.BtnRunPos3.Location = new System.Drawing.Point(145, 89);
             this.BtnRunPos3.Name = "BtnRunPos3";
             this.BtnRunPos3.Size = new System.Drawing.Size(42, 37);
             this.BtnRunPos3.TabIndex = 49;
-            this.BtnRunPos3.Text = "Run";
             this.BtnRunPos3.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
             this.BtnRunPos3.UseVisualStyleBackColor = false;
             // 
@@ -1987,9 +1990,9 @@
             this.BtnSetPos3.Name = "BtnSetPos3";
             this.BtnSetPos3.Size = new System.Drawing.Size(44, 37);
             this.BtnSetPos3.TabIndex = 48;
-            this.BtnSetPos3.Text = "Set";
             this.BtnSetPos3.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
             this.BtnSetPos3.UseVisualStyleBackColor = false;
+            this.BtnSetPos3.Click += new System.EventHandler(this.BtnSetPos3_Click);
             // 
             // TbPos3
             // 
@@ -2022,11 +2025,11 @@
             this.BtnRunPos1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnRunPos1.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold);
             this.BtnRunPos1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.BtnRunPos1.Image = global::TCHRLibBasicRecordSample.Properties.Resources.icon_run;
             this.BtnRunPos1.Location = new System.Drawing.Point(145, 3);
             this.BtnRunPos1.Name = "BtnRunPos1";
             this.BtnRunPos1.Size = new System.Drawing.Size(42, 37);
             this.BtnRunPos1.TabIndex = 41;
-            this.BtnRunPos1.Text = "Run";
             this.BtnRunPos1.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
             this.BtnRunPos1.UseVisualStyleBackColor = false;
             this.BtnRunPos1.Click += new System.EventHandler(this.BtnRunPos1_Click);
@@ -2050,7 +2053,6 @@
             this.BtnSetPos1.Name = "BtnSetPos1";
             this.BtnSetPos1.Size = new System.Drawing.Size(44, 37);
             this.BtnSetPos1.TabIndex = 41;
-            this.BtnSetPos1.Text = "Set";
             this.BtnSetPos1.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
             this.BtnSetPos1.UseVisualStyleBackColor = false;
             this.BtnSetPos1.Click += new System.EventHandler(this.BtnSetPos1_Click);
@@ -2070,11 +2072,11 @@
             this.BtnRunPos2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnRunPos2.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold);
             this.BtnRunPos2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.BtnRunPos2.Image = global::TCHRLibBasicRecordSample.Properties.Resources.icon_run;
             this.BtnRunPos2.Location = new System.Drawing.Point(145, 46);
             this.BtnRunPos2.Name = "BtnRunPos2";
             this.BtnRunPos2.Size = new System.Drawing.Size(42, 37);
             this.BtnRunPos2.TabIndex = 45;
-            this.BtnRunPos2.Text = "Run";
             this.BtnRunPos2.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
             this.BtnRunPos2.UseVisualStyleBackColor = false;
             // 
@@ -2095,9 +2097,9 @@
             this.BtnSetPos2.Name = "BtnSetPos2";
             this.BtnSetPos2.Size = new System.Drawing.Size(44, 37);
             this.BtnSetPos2.TabIndex = 44;
-            this.BtnSetPos2.Text = "Set";
             this.BtnSetPos2.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
             this.BtnSetPos2.UseVisualStyleBackColor = false;
+            this.BtnSetPos2.Click += new System.EventHandler(this.BtnSetPos2_Click);
             // 
             // TbPos2
             // 
