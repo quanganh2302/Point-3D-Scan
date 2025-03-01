@@ -14,14 +14,21 @@ namespace TCHRLibBasicRecordSample.CustomUi.TabControl
     {
 
         private string connectAddress = "192.168.170.2";
+        private string contentOfBtn = "Disconnect";
 
         // Declare the instance without initializing immediately.
         private TRecordSample _tRecordSample;
 
-        public string ConnectAddress 
-        { 
-            get => InConnect.Text; 
-            set => InConnect.Text = value; 
+        public string ConnectAddress
+        {
+            get => InConnect.Text;
+            set => InConnect.Text = value;
+        }
+
+        public string ContentOfBtn
+        {
+            get => contentOfBtn;
+            set => contentOfBtn = value;
         }
 
         public event EventHandler<string> RadioButtonChanged; // Event to notify changes
@@ -29,6 +36,9 @@ namespace TCHRLibBasicRecordSample.CustomUi.TabControl
         public UC_DefaultSetting()
         {
             InitializeComponent();
+            connectAddress = "192.168.170.2";
+            contentOfBtn = "Connect";
+            BtnConnect.Text = contentOfBtn;
             // Optional: Set up other initialization here.
             this.BackColor = TRecordSample.CardBg;
             this.ForeColor = TRecordSample.ForeGroundWhite;
@@ -55,12 +65,12 @@ namespace TCHRLibBasicRecordSample.CustomUi.TabControl
             _tRecordSample = new TRecordSample();
 
             // Now you can access properties that require a valid handle.
-
-
             InConnect.Text = connectAddress;
 
             // Wire up the event handler.
+
             BtnConnect.Click += _tRecordSample.BtConnect_Click;
+
         }
 
         private void BtnConnect_Click(object sender, EventArgs e)

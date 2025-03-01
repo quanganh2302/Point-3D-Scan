@@ -27,6 +27,7 @@ namespace TCHRLibBasicRecordSample.CustomUi.TabControl
 
         private TRecordSample _tRecordSample;
         public event EventHandler<string> RadioButtonChanged; // Event to notify changes
+
         public UC_AdvanceSetting()
         {
             InitializeComponent();
@@ -57,6 +58,23 @@ namespace TCHRLibBasicRecordSample.CustomUi.TabControl
             RbConfocal.CheckedChanged += RadioButton_CheckedChanged;
             RbInterfero.CheckedChanged += RadioButton_CheckedChanged;
 
+            this.Load += UC_AdvanceSetting_Load;
+        }
+
+        private void UC_AdvanceSetting_Load(object sender, EventArgs e)
+        {
+            // Now that the UserControl is loaded, create the TRecordSample instance.
+            _tRecordSample = new TRecordSample();
+
+
+            // Wire up the event handler.
+            InSR.KeyPress += _tRecordSample.TBSHZ_KeyPress;
+            InSS.KeyPress += _tRecordSample.TBSODX_KeyPress;
+            //InSC.KeyPress += _tRecordSample.BtConnect_Click;
+
+            RbConfocal.Click += _tRecordSample.RBConfocal_Click;
+            RbInterfero.Click += _tRecordSample.RBConfocal_Click;
+
         }
 
         private void RadioButton_CheckedChanged(object sender, EventArgs e)
@@ -83,8 +101,6 @@ namespace TCHRLibBasicRecordSample.CustomUi.TabControl
 
         private void label3_Click(object sender, EventArgs e)
         {
-            //string selected = SelectedRadioButtonName;
-            //MessageBox.Show("Currently checked: " + selected);
         }
     }
 }

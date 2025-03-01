@@ -120,6 +120,14 @@
             this.chart4 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.timerComboBox = new System.Windows.Forms.Timer(this.components);
             this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
             this.PbScan = new TCHRLibBasicRecordSample.CustomUi.DSM_ProgressBar();
             this.PnlZMap = new TCHRLibBasicRecordSample.CustomUi.DSM_GridMap();
             this.PnlXYMap = new TCHRLibBasicRecordSample.CustomUi.DSM_GridMap();
@@ -193,6 +201,7 @@
             this.PnlTchAreaGrid.SuspendLayout();
             this.PnlTchGrid.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart4)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // timerData
@@ -324,7 +333,6 @@
             // 
             this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(8, 0);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(46, 42);
@@ -386,7 +394,7 @@
             this.PnlLeftSite.Margin = new System.Windows.Forms.Padding(0, 0, 10, 0);
             this.PnlLeftSite.Name = "PnlLeftSite";
             this.PnlLeftSite.RowCount = 6;
-            this.PnlLeftSite.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
+            this.PnlLeftSite.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 240F));
             this.PnlLeftSite.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.PnlLeftSite.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 2F));
             this.PnlLeftSite.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 96F));
@@ -400,11 +408,11 @@
             this.PnlScanArea.AutoSize = true;
             this.PnlScanArea.Controls.Add(this.ImgAreaScan);
             this.PnlScanArea.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PnlScanArea.Location = new System.Drawing.Point(0, 24);
+            this.PnlScanArea.Location = new System.Drawing.Point(0, 240);
             this.PnlScanArea.Margin = new System.Windows.Forms.Padding(0);
             this.PnlScanArea.Name = "PnlScanArea";
             this.PnlScanArea.Padding = new System.Windows.Forms.Padding(36, 0, 36, 24);
-            this.PnlScanArea.Size = new System.Drawing.Size(847, 404);
+            this.PnlScanArea.Size = new System.Drawing.Size(847, 188);
             this.PnlScanArea.TabIndex = 62;
             // 
             // ImgAreaScan
@@ -414,7 +422,7 @@
             this.ImgAreaScan.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ImgAreaScan.Location = new System.Drawing.Point(36, 0);
             this.ImgAreaScan.Name = "ImgAreaScan";
-            this.ImgAreaScan.Size = new System.Drawing.Size(775, 380);
+            this.ImgAreaScan.Size = new System.Drawing.Size(775, 164);
             this.ImgAreaScan.TabIndex = 34;
             this.ImgAreaScan.TabStop = false;
             // 
@@ -456,7 +464,7 @@
             this.PnlHidden.Location = new System.Drawing.Point(0, 0);
             this.PnlHidden.Margin = new System.Windows.Forms.Padding(0);
             this.PnlHidden.Name = "PnlHidden";
-            this.PnlHidden.Size = new System.Drawing.Size(847, 24);
+            this.PnlHidden.Size = new System.Drawing.Size(847, 240);
             this.PnlHidden.TabIndex = 31;
             // 
             // tabControl1
@@ -468,9 +476,8 @@
             this.tabControl1.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(847, 24);
+            this.tabControl1.Size = new System.Drawing.Size(847, 240);
             this.tabControl1.TabIndex = 25;
-            this.tabControl1.Visible = false;
             // 
             // tabPage1
             // 
@@ -480,7 +487,7 @@
             this.tabPage1.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(2, 4, 2, 4);
-            this.tabPage1.Size = new System.Drawing.Size(839, 0);
+            this.tabPage1.Size = new System.Drawing.Size(839, 208);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Default setting";
             // 
@@ -499,7 +506,7 @@
             this.panel10.Location = new System.Drawing.Point(2, 4);
             this.panel10.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(835, 0);
+            this.panel10.Size = new System.Drawing.Size(835, 200);
             this.panel10.TabIndex = 11;
             // 
             // RBCHRC
@@ -574,7 +581,7 @@
             this.TbConInfo.Location = new System.Drawing.Point(107, 15);
             this.TbConInfo.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.TbConInfo.Name = "TbConInfo";
-            this.TbConInfo.Size = new System.Drawing.Size(2, 24);
+            this.TbConInfo.Size = new System.Drawing.Size(108, 24);
             this.TbConInfo.TabIndex = 10;
             this.TbConInfo.Text = "192.168.170.2";
             // 
@@ -597,13 +604,14 @@
             this.tabPage2.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(2, 4, 2, 4);
-            this.tabPage2.Size = new System.Drawing.Size(839, 0);
+            this.tabPage2.Size = new System.Drawing.Size(839, 208);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Advance setting";
             // 
             // panel9
             // 
             this.panel9.BackColor = System.Drawing.Color.DarkGray;
+            this.panel9.Controls.Add(this.panel1);
             this.panel9.Controls.Add(this.RBInterfero);
             this.panel9.Controls.Add(this.RBConfocal);
             this.panel9.Controls.Add(this.label6);
@@ -615,7 +623,7 @@
             this.panel9.Location = new System.Drawing.Point(2, 4);
             this.panel9.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(835, 0);
+            this.panel9.Size = new System.Drawing.Size(835, 200);
             this.panel9.TabIndex = 11;
             // 
             // RBInterfero
@@ -657,7 +665,7 @@
             this.TBSHZ.Location = new System.Drawing.Point(107, 31);
             this.TBSHZ.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.TBSHZ.Name = "TBSHZ";
-            this.TBSHZ.Size = new System.Drawing.Size(2, 24);
+            this.TBSHZ.Size = new System.Drawing.Size(129, 24);
             this.TBSHZ.TabIndex = 3;
             this.TBSHZ.Text = "2000";
             // 
@@ -676,7 +684,7 @@
             this.TBSODX.Location = new System.Drawing.Point(107, 57);
             this.TBSODX.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.TBSODX.Name = "TBSODX";
-            this.TBSODX.Size = new System.Drawing.Size(2, 24);
+            this.TBSODX.Size = new System.Drawing.Size(129, 24);
             this.TBSODX.TabIndex = 1;
             this.TBSODX.Text = "83, 65, 66";
             // 
@@ -704,7 +712,7 @@
             this.panel2.Location = new System.Drawing.Point(2, 4);
             this.panel2.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(835, 0);
+            this.panel2.Size = new System.Drawing.Size(835, 200);
             this.panel2.TabIndex = 13;
             // 
             // button1
@@ -1349,6 +1357,92 @@
             // 
             this.timerComboBox.Interval = 1;
             this.timerComboBox.Tick += new System.EventHandler(this.timerComboBox_Tick);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.button2);
+            this.panel1.Controls.Add(this.button3);
+            this.panel1.Controls.Add(this.checkBox1);
+            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.button4);
+            this.panel1.Controls.Add(this.button5);
+            this.panel1.Location = new System.Drawing.Point(9, 91);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(497, 91);
+            this.panel1.TabIndex = 14;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(260, 22);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 7;
+            this.button2.Text = "Save csv";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(260, 54);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(92, 29);
+            this.button3.TabIndex = 6;
+            this.button3.Text = "Action";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Checked = true;
+            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox1.Location = new System.Drawing.Point(4, 57);
+            this.checkBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(132, 23);
+            this.checkBox1.TabIndex = 5;
+            this.checkBox1.Text = "Flush Old Data";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(7, 23);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(124, 24);
+            this.textBox1.TabIndex = 4;
+            this.textBox1.Text = "10000";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(0, 5);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(112, 19);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "Sample Count:";
+            // 
+            // button4
+            // 
+            this.button4.Enabled = false;
+            this.button4.Location = new System.Drawing.Point(147, 55);
+            this.button4.Margin = new System.Windows.Forms.Padding(4);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(97, 28);
+            this.button4.TabIndex = 1;
+            this.button4.Text = "Save Data";
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(147, 4);
+            this.button5.Margin = new System.Windows.Forms.Padding(4);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(97, 47);
+            this.button5.TabIndex = 0;
+            this.button5.Tag = "0";
+            this.button5.Text = "Start Recording";
+            this.button5.UseVisualStyleBackColor = true;
             // 
             // PbScan
             // 
@@ -2204,6 +2298,8 @@
             this.PnlTchGrid.ResumeLayout(false);
             this.PnlTchGrid.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart4)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -2332,6 +2428,14 @@
         private System.Windows.Forms.Label LbXYCoor;
         private CustomUi.DSM_GridMap PnlXYMap;
         private CustomUi.DSM_GridMap PnlZMap;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button5;
     }
 }
 

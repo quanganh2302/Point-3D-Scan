@@ -175,6 +175,8 @@ namespace TCHRLibBasicRecordSample
         public TRecordSample()
         {
             InitializeComponent();
+
+
             this.Load += new EventHandler(TRecordSample_Load);
             filePath = Path.Combine(configsFolderPath, "config_data.txt");
             // Initialize and start the blink timer
@@ -219,6 +221,7 @@ namespace TCHRLibBasicRecordSample
             ucAdvanceSetting = new CustomUi.TabControl.UC_AdvanceSetting();
 
             ucAdvanceSetting.RadioButtonChanged += UcAdvanceSetting_RadioButtonChanged;
+
 
             PnlNavSetting.BackColor = CardBg;
             PnlDefaultSetting.BackColor = orange;
@@ -472,7 +475,7 @@ namespace TCHRLibBasicRecordSample
             PnlHidden.BackColor = CardBg;
 
             // -> Scan area
-            ImgAreaScan.BackColor = MainBg;
+            //ImgAreaScan.BackColor = MainBg;
             PnlScanArea.BackColor = CardBg;
             if (SystemInformation.WorkingArea.Width < 1600)
             {
@@ -587,78 +590,12 @@ namespace TCHRLibBasicRecordSample
         private void OnTimedEvent(object sender, EventArgs e)
         {
             // Your function to be called every 2 seconds
-            ImgAreaScan.Image = RawDataToBitmapRGB(256, 65, 66, 512, 512);
+            ImgAreaScan.Image = RawDataToBitmapRGB(256, 65, 66, ImgAreaScan.Width, ImgAreaScan.Height);
+            //ImgAreaScan.Image = RawDataToBitmapRGB(256, 65, 66, 512, 512);
+
         }
         public void BtConnect_Click(object sender, EventArgs e)
         {
-            //bool bConnect = false;
-            ////connect to device
-            //if (sender == BtConnect)
-            //{
-            //    try
-            //    {
-            //        var DeviceType = CHRocodileLib.DeviceType.Chr1;
-            //        if (RBCHR2.Checked)
-            //            DeviceType = CHRocodileLib.DeviceType.Chr2;
-            //        else if (RBCLS.Checked)
-            //            DeviceType = CHRocodileLib.DeviceType.MultiChannel;
-            //        else if (RBCHRC.Checked)
-            //            DeviceType = CHRocodileLib.DeviceType.ChrCMini;
-            //        string strConInfo = TbConInfo.Text;
-            //        Conn = new CHRocodileLib.SynchronousConnection(strConInfo, DeviceType);
-            //        //set up device
-            //        SetupDevice();
-            //        bConnect = true;
-            //        //labelRecordingHint.Visible = true;
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        MessageBox.Show(ex.Message);
-            //    }
-            //}
-            ////close connection to device
-            //else
-            //{
-            //    StopRecording();
-            //    Conn.Close();
-            //    Conn = null;
-            //}
-            //EnableGui(bConnect);
-
-            bool bConnect = false;
-            //connect to device
-            if (sender == BtConnect)
-            {
-                ConnectToPLC();
-                try
-                {
-                    var DeviceType = CHRocodileLib.DeviceType.ChrCMini;
-                    if (RbCHR2)
-                        DeviceType = CHRocodileLib.DeviceType.Chr2;
-                    else if (RbCLS)
-                        DeviceType = CHRocodileLib.DeviceType.MultiChannel;
-                    else if (RbCHR1)
-                        DeviceType = CHRocodileLib.DeviceType.Chr1;
-                    string strConInfo = TbConInfo.Text;
-                    Conn = new CHRocodileLib.SynchronousConnection(strConInfo, DeviceType);
-                    //set up device
-                    SetupDevice();
-                    bConnect = true;
-                    //labelRecordingHint.Visible = true;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
-            //close connection to device
-            else
-            {
-                StopRecording();
-                Conn.Close();
-                Conn = null;
-            }
-            EnableGui(bConnect);
 
         }
 
@@ -672,11 +609,12 @@ namespace TCHRLibBasicRecordSample
             else
                 SignalIDs = new int[] { 65, 66, 256 };
             //Update TextBox
-            TBSODX.Text = String.Join(",", SignalIDs.Select(p => p.ToString()).ToArray());
+            ucAdvanceSetting.SelectedSignals = String.Join(",", SignalIDs.Select(p => p.ToString()).ToArray());
             ScanRate = 4000;
             //CLS device, normally maximum scan rate ist 2000
             //ScanRate = 2000;
             TBSHZ.Text = ScanRate.ToString();
+            ucAdvanceSetting.ScanRate = ScanRate.ToString();
             if (!RbCLS && !RbCHRC)
             {
                 //set up measuring method (confocal or interferometric)
@@ -720,7 +658,7 @@ namespace TCHRLibBasicRecordSample
             {
                 //Set device output signals
                 char[] delimiters = new char[] { ' ', ',', ';' };
-                int[] signals = TBSODX.Text.Split(delimiters, StringSplitOptions.RemoveEmptyEntries).
+                int[] signals = ucAdvanceSetting.SelectedSignals.Split(delimiters, StringSplitOptions.RemoveEmptyEntries).
                     Select(int.Parse).ToArray();
                 var oRsp = Conn.Exec(CHRocodileLib.CmdID.OutputSignals, signals);
                 SignalIDs = oRsp.GetParam<int[]>(0);
@@ -729,14 +667,14 @@ namespace TCHRLibBasicRecordSample
             {
                 Debug.Fail("Cannot set output signals");
             }
-            TBSODX.Text = String.Join(",", SignalIDs.Select(p => p.ToString()).ToArray());
+            ucAdvanceSetting.SelectedSignals = String.Join(",", SignalIDs.Select(p => p.ToString()).ToArray());
         }
 
         private void SetUpScanrate()
         {
             try
             {
-                float nSHZ = float.Parse(TBSHZ.Text);
+                float nSHZ = float.Parse(ucAdvanceSetting.ScanRate);
                 var oRsp = Conn.Exec(CHRocodileLib.CmdID.ScanRate, nSHZ);
                 ScanRate = oRsp.GetParam<float>(0);
             }
@@ -744,7 +682,7 @@ namespace TCHRLibBasicRecordSample
             {
                 Debug.Fail("Cannot set scan rate");
             }
-            TBSHZ.Text = ScanRate.ToString();
+            ucAdvanceSetting.ScanRate = ScanRate.ToString();
         }
 
 
@@ -758,24 +696,24 @@ namespace TCHRLibBasicRecordSample
 
         private void EnableSetting(bool _bEnabled)
         {
-            RBConfocal.Enabled = _bEnabled && (RBCHR1.Checked || RBCHR2.Checked);
-            RBInterfero.Enabled = _bEnabled && (RBCHR1.Checked || RBCHR2.Checked);
+            //RBConfocal.Enabled = _bEnabled && (RbCHR1 || RbCHR2);
+            //RBInterfero.Enabled = _bEnabled && (RbCHR1 || RbCHR2);
             TBSHZ.Enabled = _bEnabled;
             TBSODX.Enabled = _bEnabled;
         }
 
-        private void RBConfocal_Click(object sender, EventArgs e)
+        public void RBConfocal_Click(object sender, EventArgs e)
         {
             SetUpMeasuringMethod();
         }
 
-        private void TBSHZ_KeyPress(object sender, KeyPressEventArgs e)
+        public void TBSHZ_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Return)
                 SetUpScanrate();
         }
 
-        private void TBSODX_KeyPress(object sender, KeyPressEventArgs e)
+        public void TBSODX_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Return)
                 SetUpOutputSignals();
@@ -783,14 +721,13 @@ namespace TCHRLibBasicRecordSample
 
         private void StartRecording()
         {
-            axDBCommManager1.WriteDevice(DATABUILDERAXLibLB.DBPlcDevice.DKVNano_MR, "401", 1);
+            //axDBCommManager1.WriteDevice(DATABUILDERAXLibLB.DBPlcDevice.DKVNano_MR, "401", 1);
             StartTimer();
-            //labelRecordingHint.Visible = false;
             //throw away the old data
             if (CBFlush.Checked)
                 Conn.FlushConnectionBuffer();
             //recording sample count
-            SampleCount = int.Parse(TBSampleCount.Text);
+            SampleCount = int.Parse(ucAdvanceSetting.SampleCount);
             //start recording, enter recording modes
             Conn.StartRecording(SampleCount);
             initDataChart();
@@ -941,73 +878,6 @@ namespace TCHRLibBasicRecordSample
                 StartRecording();
             else
                 StopRecording();
-        }
-
-        //here save the recorded data into a file 
-        private void BtSave_Click(object sender, EventArgs e)
-        {
-            if (SaveDlg.ShowDialog() == DialogResult.OK)
-            {
-                StreamWriter writer = new StreamWriter(SaveDlg.OpenFile());
-                var nSigCount = RecordData.Info.SignalGenInfo.GlobalSignalCount
-                    + RecordData.Info.SignalGenInfo.PeakSignalCount;
-
-                //reread all the samples, save...
-                RecordData.Rewind();
-                foreach (var s in RecordData.Samples())
-                {
-                    StringBuilder sb = new StringBuilder();
-                    for (int j = 0; j < nSigCount; j++)
-                    {
-                        if (j < RecordData.Info.SignalGenInfo.GlobalSignalCount)
-                            sb.Append(s.Get(j) + ", ");
-                        else
-                        {
-                            for (int k = 0; k < RecordData.Info.SignalGenInfo.ChannelCount; k++)
-                                sb.Append(s.Get(j, k) + ", ");
-                        }
-                    }
-                    writer.WriteLine(sb.ToString());
-                }
-                writer.Dispose();
-            }
-        }
-
-        private void action_Click(object sender, EventArgs e)
-        {
-            //Open a SaveFileDialog to choose the output file name.
-            using (SaveFileDialog sfd = new SaveFileDialog())
-            {
-                sfd.Filter = "BCRF Files (*.bcrf)|*.bcrf";
-                sfd.Title = "Save as BCRF";
-                if (sfd.ShowDialog() == DialogResult.OK)
-                {
-                    // You can adjust the grid resolution as needed.
-                    int gridWidth = 512;
-                    int gridHeight = 512;
-                    SaveAsBCRFFile(sfd.FileName, gridWidth, gridHeight);
-                }
-            }
-
-            //using (SaveFileDialog saveFileDialog = new SaveFileDialog())
-            //{
-            //    saveFileDialog.Filter = "BCRF Files (*.bcrf)|*.bcrf";
-            //    saveFileDialog.Title = "Save BCRF File";
-            //    saveFileDialog.FileName = "DSM_" + DateTime.Now.ToString("yyyyMMdd_HHmmss");
-
-            //    if (saveFileDialog.ShowDialog() == DialogResult.OK)
-            //    {
-            //        string selectedPath = saveFileDialog.FileName;
-            //        string directoryPath = Path.GetDirectoryName(selectedPath);
-            //        string baseFileName = Path.GetFileNameWithoutExtension(selectedPath);
-            //            // Tự động thêm số thứ tự (_0, _1, ...)
-            //            string fileName = $"{baseFileName}.bcrf";
-            //            string filePath = Path.Combine(directoryPath, fileName);
-            //    int gridWidth = 512;
-            //    int gridHeight = 512;
-            //    SaveAsBCRF(filePath, gridWidth, gridHeight);
-            //    }
-            //}
         }
 
         /// <summary>
@@ -2180,6 +2050,10 @@ forcecurve = 0
         }
 
         private void PnlXYMap_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void BtnXYUpSpeed_Click(object sender, EventArgs e)
         {
         }
     }
