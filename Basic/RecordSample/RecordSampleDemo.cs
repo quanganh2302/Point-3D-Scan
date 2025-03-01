@@ -594,8 +594,44 @@ namespace TCHRLibBasicRecordSample
             //ImgAreaScan.Image = RawDataToBitmapRGB(256, 65, 66, 512, 512);
 
         }
-        public void BtConnect_Click(object sender, EventArgs e)
+        private void BtConnect_Click(object sender, EventArgs e)
         {
+            ucDefaultSetting.ContentOfBtn = "Connect";
+            bool bConnect = false;
+            //connect to device
+            if (Conn == null)
+            {
+                try
+                {
+                    var DeviceType = CHRocodileLib.DeviceType.Chr1;
+                    if (RbCHR2)
+                        DeviceType = CHRocodileLib.DeviceType.Chr2;
+                    else if (RbCLS)
+                        DeviceType = CHRocodileLib.DeviceType.MultiChannel;
+                    else if (RbCHRC)
+                        DeviceType = CHRocodileLib.DeviceType.ChrCMini;
+                    string strConInfo = ucDefaultSetting.ConnectAddress;
+                    ucDefaultSetting.ContentOfBtn = "Disconnect";
+                    Conn = new CHRocodileLib.SynchronousConnection(strConInfo, DeviceType);
+                    //set up device
+                    SetupDevice();
+                    bConnect = true;
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            // If already connected, disconnect
+            else
+            {
+                StopRecording();
+                Conn.Close();
+                Conn = null;
+
+            }
+            EnableGui(bConnect);
 
         }
 
@@ -879,7 +915,72 @@ namespace TCHRLibBasicRecordSample
             else
                 StopRecording();
         }
+        //here save the recorded data into a file 
+        private void BtSave_Click(object sender, EventArgs e)
+        {
+            if (SaveDlg.ShowDialog() == DialogResult.OK)
+            {
+                StreamWriter writer = new StreamWriter(SaveDlg.OpenFile());
+                var nSigCount = RecordData.Info.SignalGenInfo.GlobalSignalCount
+                    + RecordData.Info.SignalGenInfo.PeakSignalCount;
 
+                //reread all the samples, save...
+                RecordData.Rewind();
+                foreach (var s in RecordData.Samples())
+                {
+                    StringBuilder sb = new StringBuilder();
+                    for (int j = 0; j < nSigCount; j++)
+                    {
+                        if (j < RecordData.Info.SignalGenInfo.GlobalSignalCount)
+                            sb.Append(s.Get(j) + ", ");
+                        else
+                        {
+                            for (int k = 0; k < RecordData.Info.SignalGenInfo.ChannelCount; k++)
+                                sb.Append(s.Get(j, k) + ", ");
+                        }
+                    }
+                    writer.WriteLine(sb.ToString());
+                }
+                writer.Dispose();
+            }
+        }
+
+        private void action_Click(object sender, EventArgs e)
+        {
+            //Open a SaveFileDialog to choose the output file name.
+            using (SaveFileDialog sfd = new SaveFileDialog())
+            {
+                sfd.Filter = "BCRF Files (*.bcrf)|*.bcrf";
+                sfd.Title = "Save as BCRF";
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    // You can adjust the grid resolution as needed.
+                    int gridWidth = 512;
+                    int gridHeight = 512;
+                    SaveAsBCRFFile(sfd.FileName, gridWidth, gridHeight);
+                }
+            }
+
+            //using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+            //{
+            //    saveFileDialog.Filter = "BCRF Files (*.bcrf)|*.bcrf";
+            //    saveFileDialog.Title = "Save BCRF File";
+            //    saveFileDialog.FileName = "DSM_" + DateTime.Now.ToString("yyyyMMdd_HHmmss");
+
+            //    if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            //    {
+            //        string selectedPath = saveFileDialog.FileName;
+            //        string directoryPath = Path.GetDirectoryName(selectedPath);
+            //        string baseFileName = Path.GetFileNameWithoutExtension(selectedPath);
+            //            // Tự động thêm số thứ tự (_0, _1, ...)
+            //            string fileName = $"{baseFileName}.bcrf";
+            //            string filePath = Path.Combine(directoryPath, fileName);
+            //    int gridWidth = 512;
+            //    int gridHeight = 512;
+            //    SaveAsBCRF(filePath, gridWidth, gridHeight);
+            //    }
+            //}
+        }
         /// <summary>
         /// Saves the recorded 3D points as a BCRF file.
         /// The points are interpolated into a regular grid (via simple binning/averaging).
@@ -2029,26 +2130,6 @@ forcecurve = 0
             //OffBitMR("108");
         }
 
-        private void TbPos4_KeyDown(object sender, KeyEventArgs e)
-        {
-
-        }
-
-        private void TbPos3_KeyDown(object sender, KeyEventArgs e)
-        {
-
-        }
-
-        private void TbPos2_KeyDown(object sender, KeyEventArgs e)
-        {
-
-        }
-
-        private void TbPos1_KeyDown(object sender, KeyEventArgs e)
-        {
-
-        }
-
         private void PnlXYMap_Click(object sender, EventArgs e)
         {
         }
@@ -2056,6 +2137,8 @@ forcecurve = 0
         private void BtnXYUpSpeed_Click(object sender, EventArgs e)
         {
         }
+
+
     }
 
 
