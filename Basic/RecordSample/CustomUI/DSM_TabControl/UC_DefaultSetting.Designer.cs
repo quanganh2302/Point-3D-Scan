@@ -34,9 +34,9 @@ namespace TCHRLibBasicRecordSample.CustomUi.TabControl
             this.PnlContentGrid = new System.Windows.Forms.TableLayoutPanel();
             this.PnlCol1 = new System.Windows.Forms.TableLayoutPanel();
             this.LbConnect = new System.Windows.Forms.Label();
-            this.PnlListRb = new System.Windows.Forms.Panel();
             this.InConnect = new TCHRLibBasicRecordSample.CustomUi.DSM_TextBox();
             this.BtnConnect = new TCHRLibBasicRecordSample.CustomUi.DSM_Button();
+            this.PnlListRb = new System.Windows.Forms.Panel();
             this.RbCHR1 = new TCHRLibBasicRecordSample.CustomUi.DSM_RadioButton();
             this.RbCHR2 = new TCHRLibBasicRecordSample.CustomUi.DSM_RadioButton();
             this.RbCLS = new TCHRLibBasicRecordSample.CustomUi.DSM_RadioButton();
@@ -94,7 +94,7 @@ namespace TCHRLibBasicRecordSample.CustomUi.TabControl
             this.PnlCol1.ColumnCount = 3;
             this.PnlCol1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.95786F));
             this.PnlCol1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.04214F));
-            this.PnlCol1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 104F));
+            this.PnlCol1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 108F));
             this.PnlCol1.Controls.Add(this.LbConnect, 0, 0);
             this.PnlCol1.Controls.Add(this.InConnect, 1, 0);
             this.PnlCol1.Controls.Add(this.BtnConnect, 2, 0);
@@ -113,22 +113,10 @@ namespace TCHRLibBasicRecordSample.CustomUi.TabControl
             this.LbConnect.Margin = new System.Windows.Forms.Padding(0);
             this.LbConnect.Name = "LbConnect";
             this.LbConnect.Padding = new System.Windows.Forms.Padding(36, 0, 0, 0);
-            this.LbConnect.Size = new System.Drawing.Size(139, 60);
+            this.LbConnect.Size = new System.Drawing.Size(137, 60);
             this.LbConnect.TabIndex = 2;
             this.LbConnect.Text = "Connection info";
             this.LbConnect.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // PnlListRb
-            // 
-            this.PnlListRb.Controls.Add(this.RbCHR1);
-            this.PnlListRb.Controls.Add(this.RbCHR2);
-            this.PnlListRb.Controls.Add(this.RbCLS);
-            this.PnlListRb.Controls.Add(this.RbCHRC);
-            this.PnlListRb.Dock = System.Windows.Forms.DockStyle.Left;
-            this.PnlListRb.Location = new System.Drawing.Point(385, 3);
-            this.PnlListRb.Name = "PnlListRb";
-            this.PnlListRb.Size = new System.Drawing.Size(282, 60);
-            this.PnlListRb.TabIndex = 11;
             // 
             // InConnect
             // 
@@ -138,13 +126,13 @@ namespace TCHRLibBasicRecordSample.CustomUi.TabControl
             this.InConnect.BorderForcusColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(106)))), ((int)(((byte)(17)))));
             this.InConnect.BorderSize = 1;
             this.InConnect.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.InConnect.Location = new System.Drawing.Point(141, 12);
+            this.InConnect.Location = new System.Drawing.Point(139, 13);
             this.InConnect.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.InConnect.Multiline = false;
             this.InConnect.Name = "InConnect";
-            this.InConnect.Padding = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.InConnect.Padding = new System.Windows.Forms.Padding(8);
             this.InConnect.PasswordChar = false;
-            this.InConnect.Size = new System.Drawing.Size(130, 36);
+            this.InConnect.Size = new System.Drawing.Size(128, 34);
             this.InConnect.TabIndex = 7;
             this.InConnect.UnderlineStyle = false;
             this.InConnect._TextChange += new System.EventHandler(this.InConnect__TextChange);
@@ -162,14 +150,26 @@ namespace TCHRLibBasicRecordSample.CustomUi.TabControl
             this.BtnConnect.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnConnect.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold);
             this.BtnConnect.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.BtnConnect.Location = new System.Drawing.Point(277, 12);
+            this.BtnConnect.Location = new System.Drawing.Point(275, 12);
             this.BtnConnect.Name = "BtnConnect";
             this.BtnConnect.Size = new System.Drawing.Size(97, 36);
             this.BtnConnect.TabIndex = 8;
-            this.BtnConnect.Text = "Disconnect";
             this.BtnConnect.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.BtnConnect.TextContent = "Connect";
             this.BtnConnect.UseVisualStyleBackColor = false;
             this.BtnConnect.Click += new System.EventHandler(this.BtnConnect_Click);
+            // 
+            // PnlListRb
+            // 
+            this.PnlListRb.Controls.Add(this.RbCHR1);
+            this.PnlListRb.Controls.Add(this.RbCHR2);
+            this.PnlListRb.Controls.Add(this.RbCLS);
+            this.PnlListRb.Controls.Add(this.RbCHRC);
+            this.PnlListRb.Dock = System.Windows.Forms.DockStyle.Left;
+            this.PnlListRb.Location = new System.Drawing.Point(387, 3);
+            this.PnlListRb.Name = "PnlListRb";
+            this.PnlListRb.Size = new System.Drawing.Size(282, 60);
+            this.PnlListRb.TabIndex = 11;
             // 
             // RbCHR1
             // 

@@ -14,7 +14,7 @@ namespace TCHRLibBasicRecordSample.CustomUi.TabControl
     {
 
         private string connectAddress = "192.168.170.2";
-        private string contentOfBtn = "Disconnect";
+        private string contentOfBtn = "Connect";
 
         // Declare the instance without initializing immediately.
         private TRecordSample _tRecordSample;
@@ -27,18 +27,31 @@ namespace TCHRLibBasicRecordSample.CustomUi.TabControl
 
         public string ContentOfBtn
         {
-            get => contentOfBtn;
-            set => contentOfBtn = value;
+            get => BtnConnect.TextContent ;
+            set
+            {
+                BtnConnect.TextContent = value;
+            }
         }
+
+        public bool IsCHRC { get => RbCHRC.Checked; set => RbCHRC.Checked = value; }
+        public bool IsCLS { get => RbCLS.Checked; set => RbCLS.Checked = value; }
+
+        public bool IsCHR1 { get => RbCHR1.Checked; set => RbCHR1.Checked = value; }
+        public bool IsCHR2 { get => RbCHR2.Checked; set => RbCHR2.Checked = value; }
+
 
         public event EventHandler<string> RadioButtonChanged; // Event to notify changes
 
+        public void ToggleButtonText()
+        {
+           
+        }
         public UC_DefaultSetting()
         {
             InitializeComponent();
-            connectAddress = "192.168.170.2";
-            contentOfBtn = "Connect";
-            BtnConnect.Text = contentOfBtn;
+            InConnect.Text = connectAddress;
+            BtnConnect.TextContent = contentOfBtn;
             // Optional: Set up other initialization here.
             this.BackColor = TRecordSample.CardBg;
             this.ForeColor = TRecordSample.ForeGroundWhite;
@@ -61,6 +74,7 @@ namespace TCHRLibBasicRecordSample.CustomUi.TabControl
 
         private void UC_DefaultSetting_Load(object sender, EventArgs e)
         {
+
             // Now that the UserControl is loaded, create the TRecordSample instance.
             _tRecordSample = new TRecordSample();
 
@@ -71,11 +85,9 @@ namespace TCHRLibBasicRecordSample.CustomUi.TabControl
 
             BtnConnect.Click += _tRecordSample.BtConnect_Click;
 
+
         }
 
-        private void BtnConnect_Click(object sender, EventArgs e)
-        {
-        }
         private void RadioButton_CheckedChanged(object sender, EventArgs e)
         {
             if (sender is RadioButton rb && rb.Checked)
@@ -88,6 +100,21 @@ namespace TCHRLibBasicRecordSample.CustomUi.TabControl
         private void InConnect__TextChange(object sender, EventArgs e)
         {
 
+        }
+
+        private void BtnConnect_Click(object sender, EventArgs e)
+        {
+            if (BtnConnect.TextContent == "Connect")
+            {
+                BtnConnect.TextContent = "Disconnect";
+                Invalidate();
+            }
+            else
+            {
+                BtnConnect.TextContent = "Connect";
+                Invalidate();
+
+            }
         }
     }
 }

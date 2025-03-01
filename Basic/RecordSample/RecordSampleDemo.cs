@@ -172,11 +172,22 @@ namespace TCHRLibBasicRecordSample
         private Timer timer;
 
 
+        private void UpdateRbcustom ()
+        {
+
+            RbCLS = ucDefaultSetting.IsCLS;
+            RbCHR1 = ucDefaultSetting.IsCHR1;
+            RbCHR2 = ucDefaultSetting.IsCHR2;
+            RbCHRC = ucDefaultSetting.IsCHRC;
+
+            RbConfocal = ucAdvanceSetting.IsConfocal;
+            RbInterfero = ucAdvanceSetting.IsInterfero;
+        }
+
+
         public TRecordSample()
         {
             InitializeComponent();
-
-
             this.Load += new EventHandler(TRecordSample_Load);
             filePath = Path.Combine(configsFolderPath, "config_data.txt");
             // Initialize and start the blink timer
@@ -218,10 +229,13 @@ namespace TCHRLibBasicRecordSample
 
             add_UControls(ucDefaultSetting);
 
+            
+
             ucAdvanceSetting = new CustomUi.TabControl.UC_AdvanceSetting();
 
             ucAdvanceSetting.RadioButtonChanged += UcAdvanceSetting_RadioButtonChanged;
 
+            UpdateRbcustom();
 
             PnlNavSetting.BackColor = CardBg;
             PnlDefaultSetting.BackColor = orange;
@@ -521,20 +535,25 @@ namespace TCHRLibBasicRecordSample
 
         }
 
-
+        private void UpdateContentBtn()
+        {
+            throw new NotImplementedException();
+        }
 
         private void UcAdvanceSetting_RadioButtonChanged(object sender, string selectedRadioButtonName)
         {
-            RbConfocal = (selectedRadioButtonName == "RbConfocal");
-            RbInterfero = (selectedRadioButtonName == "RbInterfero");
+            //RbConfocal = (selectedRadioButtonName == "RbConfocal");
+            //RbInterfero = (selectedRadioButtonName == "RbInterfero");
+            UpdateRbcustom();
         }
 
         private void UcDefaultSetting_RadioButtonChanged(object sender, string selectedRadioButtonName)
         {
-            RbCHR1 = (selectedRadioButtonName == "RbCHR1");
-            RbCHR2 = (selectedRadioButtonName == "RbCHR2");
-            RbCHRC = (selectedRadioButtonName == "RbCHRC");
-            RbCLS = (selectedRadioButtonName == "RbCLS");
+            //RbCHR1 = (selectedRadioButtonName == "RbCHR1");
+            //RbCHR2 = (selectedRadioButtonName == "RbCHR2");
+            //RbCHRC = (selectedRadioButtonName == "RbCHRC");
+            //RbCLS = (selectedRadioButtonName == "RbCLS");
+            UpdateRbcustom();
         }
 
         private void xyCoorTimer_Tick(object sender, EventArgs e)
@@ -594,13 +613,15 @@ namespace TCHRLibBasicRecordSample
             //ImgAreaScan.Image = RawDataToBitmapRGB(256, 65, 66, 512, 512);
 
         }
-        private void BtConnect_Click(object sender, EventArgs e)
+        public void BtConnect_Click(object sender, EventArgs e)
         {
-            ucDefaultSetting.ContentOfBtn = "Connect";
+
             bool bConnect = false;
+          //  ucDefaultSetting.ContentOfBtn = "Connect";
             //connect to device
             if (Conn == null)
             {
+
                 try
                 {
                     var DeviceType = CHRocodileLib.DeviceType.Chr1;
@@ -611,12 +632,11 @@ namespace TCHRLibBasicRecordSample
                     else if (RbCHRC)
                         DeviceType = CHRocodileLib.DeviceType.ChrCMini;
                     string strConInfo = ucDefaultSetting.ConnectAddress;
-                    ucDefaultSetting.ContentOfBtn = "Disconnect";
+
                     Conn = new CHRocodileLib.SynchronousConnection(strConInfo, DeviceType);
                     //set up device
                     SetupDevice();
                     bConnect = true;
-
                 }
                 catch (Exception ex)
                 {
@@ -647,6 +667,7 @@ namespace TCHRLibBasicRecordSample
             //Update TextBox
             ucAdvanceSetting.SelectedSignals = String.Join(",", SignalIDs.Select(p => p.ToString()).ToArray());
             ScanRate = 4000;
+
             //CLS device, normally maximum scan rate ist 2000
             //ScanRate = 2000;
             TBSHZ.Text = ScanRate.ToString();
@@ -732,8 +753,8 @@ namespace TCHRLibBasicRecordSample
 
         private void EnableSetting(bool _bEnabled)
         {
-            //RBConfocal.Enabled = _bEnabled && (RbCHR1 || RbCHR2);
-            //RBInterfero.Enabled = _bEnabled && (RbCHR1 || RbCHR2);
+            RBConfocal.Enabled = _bEnabled && (RbCHR1 || RbCHR2);
+            RBInterfero.Enabled = _bEnabled && (RbCHR1 || RbCHR2);
             TBSHZ.Enabled = _bEnabled;
             TBSODX.Enabled = _bEnabled;
         }
@@ -2138,7 +2159,11 @@ forcecurve = 0
         {
         }
 
+        private void BtnXYUpSpeed_Click_1(object sender, EventArgs e)
+        {
+            ucDefaultSetting.ContentOfBtn = "Disconnect";
 
+        }
     }
 
 

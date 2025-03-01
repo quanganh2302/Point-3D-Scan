@@ -24,6 +24,10 @@ namespace TCHRLibBasicRecordSample.CustomUi.TabControl
         public string SelectedSignals { get => InSS.Text; set => InSS.Text = value; }
         public string SampleCount { get => InSC.Text; set => InSC.Text = value; }
 
+        public bool IsConfocal { get => RbConfocal.Checked; set => RbConfocal.Checked = value; }
+        public bool IsInterfero { get => RbInterfero.Checked; set => RbInterfero.Checked = value; }
+
+
 
         private TRecordSample _tRecordSample;
         public event EventHandler<string> RadioButtonChanged; // Event to notify changes

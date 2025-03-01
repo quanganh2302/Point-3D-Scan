@@ -17,6 +17,7 @@ namespace TCHRLibBasicRecordSample.CustomUi
         private int borderSize = 1;
         private int borderRadius = 8;
         private Color borderColor = Color.PaleVioletRed;
+        private string textContent = "";
 
         [Category("DSM properties")]
 
@@ -69,6 +70,18 @@ namespace TCHRLibBasicRecordSample.CustomUi
 
         }
 
+        [Category("DSM properties")]
+
+        public string TextContent
+        {
+            get => textContent;
+            set
+            {
+                textContent = value;
+                this.Invalidate();
+            }
+        }
+
         // Contructor
         public DSM_Button()
         {
@@ -81,7 +94,7 @@ namespace TCHRLibBasicRecordSample.CustomUi
             this.borderColor = TRecordSample.ForeGroundWhite;
             this.Resize += new EventHandler(Button_Resize);
             this.Font = new Font(TRecordSample.CenturyGothic, this.Font.Size, FontStyle.Bold);
-            
+            this.Text = TextContent;
         }
 
 
@@ -102,6 +115,7 @@ namespace TCHRLibBasicRecordSample.CustomUi
 
         protected override void OnPaint(PaintEventArgs pevent)
         {
+            this.Text = TextContent;
             base.OnPaint(pevent);
             pevent.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
 
