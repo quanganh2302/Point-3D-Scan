@@ -18,11 +18,16 @@ using System.Drawing.Imaging;
 using FSSCommon;
 using System.Runtime.InteropServices;
 using TCHRLibBasicRecordSample.CustomUi;
+using System.IO.Ports;
 
 namespace TCHRLibBasicRecordSample
 {
     public partial class TRecordSample : Form
     {
+        // Connect to PLC keyence
+        SerialPort sp_main = new SerialPort();
+
+
         //Data config
         private string configsFolderPath = Path.Combine(Application.StartupPath, "Configs");
         private string filePath;
@@ -159,10 +164,19 @@ namespace TCHRLibBasicRecordSample
         }
 
 
-        CHRocodileLib.SynchronousConnection Conn;
+        SynchronousConnection Conn;
+        SynchronousConnection ConnSync;
+        AsynchronousConnection ConnAsync;
+
         //record 1000 samples
         int SampleCount;
+        int SampleCount83;
+
+        int DataAverage;
+        const int Spec_Length = 1024;
+
         MeasurementMode MeasuringMethod = MeasurementMode.Confocal;
+
         System.Int32[] SignalIDs;
         float ScanRate;
 
@@ -172,7 +186,7 @@ namespace TCHRLibBasicRecordSample
         private Timer timer;
 
 
-        private void UpdateRbcustom ()
+        private void UpdateRbcustom()
         {
 
             RbCLS = ucDefaultSetting.IsCLS;
@@ -184,12 +198,29 @@ namespace TCHRLibBasicRecordSample
             RbInterfero = ucAdvanceSetting.IsInterfero;
         }
 
+        private void Init()
+        {
+            //initialize specturm display
+            for (int i = 0; i < Spec_Length; i++)
+                chart1.Series[0].Points.AddY(0);
+        }
 
         public TRecordSample()
         {
             InitializeComponent();
+            // PLC with HOTLINK
+            //sp_main.BaudRate = 9600;
+            //sp_main.DataBits = 8;
+            //sp_main.StopBits = StopBits.One;
+            //sp_main.Parity = Parity.Even;
+
+            // PLC with KV COM+
+            axDBTriggerManager1.Active = true;
+
+
             this.Load += new EventHandler(TRecordSample_Load);
             filePath = Path.Combine(configsFolderPath, "config_data.txt");
+            Init();
             // Initialize and start the blink timer
             blinkTimer = new Timer();
             blinkTimer.Interval = 1; // set delay time
@@ -545,15 +576,8 @@ namespace TCHRLibBasicRecordSample
             PnlChartGrid.BackColor = CardBg;
             //PnlLineChartArea.BackColor = CardBg;
             LbNameChart.ForeColor = ForeGroundBlack;
-            axDBTriggerManager1.Active = true;
-
-        }
 
 
-
-        private void UpdateContentBtn()
-        {
-            throw new NotImplementedException();
         }
 
         private void UcAdvanceSetting_RadioButtonChanged(object sender, string selectedRadioButtonName)
@@ -575,8 +599,8 @@ namespace TCHRLibBasicRecordSample
         private void xyCoorTimer_Tick(object sender, EventArgs e)
         {
 
-            PnlXYMap.PointY = (int)(((ReadFloatFromPLC("340", "341") - YDistanceMin) / (float)(YDistanceMax - YDistanceMin)) * PnlXYMap.Height);
-            PnlXYMap.PointX = (int)(((ReadFloatFromPLC("240", "241") - XDistanceMin) / (float)(XDistanceMax - XDistanceMin)) * PnlXYMap.Width);
+            PnlXYMap.PointY = (int)(((ReadFloatKvCom("340", "341") - YDistanceMin) / (float)(YDistanceMax - YDistanceMin)) * PnlXYMap.Height);
+            PnlXYMap.PointX = (int)(((ReadFloatKvCom("240", "241") - XDistanceMin) / (float)(XDistanceMax - XDistanceMin)) * PnlXYMap.Width);
 
             LbXCoorValue.Text = PnlXYMap.PointX.ToString();
             LbYCoorValue.Text = PnlXYMap.PointY.ToString();
@@ -592,13 +616,13 @@ namespace TCHRLibBasicRecordSample
         private void BlinkTimer_Tick(object sender, EventArgs e)
         {
 
-            LbXCoorValue.Text = ReadFloatFromPLC("240", "241").ToString("F2") + "mm";
-            LbYCoorValue.Text = ReadFloatFromPLC("340", "341").ToString("F2") + "mm";
-            LbZCoorValue.Text = ReadFloatFromPLC("140", "141").ToString("F2") + "mm";
+            LbXCoorValue.Text = ReadFloatKvCom("240", "241").ToString("F2") + "mm";
+            LbYCoorValue.Text = ReadFloatKvCom("340", "341").ToString("F2") + "mm";
+            LbZCoorValue.Text = ReadFloatKvCom("140", "141").ToString("F2") + "mm";
 
-            PnlXYMap.PointY = (int)(((ReadFloatFromPLC("340", "341") - YDistanceMin) / (float)(YDistanceMax - YDistanceMin)) * PnlXYMap.Height);
-            PnlXYMap.PointX = (int)(((ReadFloatFromPLC("240", "241") - XDistanceMin) / (float)(XDistanceMax - XDistanceMin)) * PnlXYMap.Width);
-            PnlZMap.PointY = (int)(((ReadFloatFromPLC("140", "141") - ZDistanceMin) / (float)(ZDistanceMax - ZDistanceMin)) * (PnlZMap.Height - PnlZMap.PointSize));
+            PnlXYMap.PointY = (int)(((ReadFloatKvCom("340", "341") - YDistanceMin) / (float)(YDistanceMax - YDistanceMin)) * PnlXYMap.Height);
+            PnlXYMap.PointX = (int)(((ReadFloatKvCom("240", "241") - XDistanceMin) / (float)(XDistanceMax - XDistanceMin)) * PnlXYMap.Width);
+            PnlZMap.PointY = (int)(((ReadFloatKvCom("140", "141") - ZDistanceMin) / (float)(ZDistanceMax - ZDistanceMin)) * (PnlZMap.Height - PnlZMap.PointSize));
 
             if (PnlZMap.PointY < PnlZMap.PointSize / 2)
                 PnlZMap.PointY = PnlZMap.PointSize / 2;
@@ -612,9 +636,7 @@ namespace TCHRLibBasicRecordSample
 
         private void BtnClose_Click(object sender, EventArgs e)
         {
-          
             Close();
-
         }
         private void StartTimer()
         {
@@ -640,7 +662,6 @@ namespace TCHRLibBasicRecordSample
             //connect to device
             if (Conn == null)
             {
-
                 try
                 {
                     var DeviceType = CHRocodileLib.DeviceType.Chr1;
@@ -652,9 +673,39 @@ namespace TCHRLibBasicRecordSample
                         DeviceType = CHRocodileLib.DeviceType.ChrCMini;
                     string strConInfo = ucDefaultSetting.ConnectAddress;
 
-                    Conn = new CHRocodileLib.SynchronousConnection(strConInfo, DeviceType);
                     //set up device
+                    ConnAsync = new AsynchronousConnection(strConInfo, DeviceType);
+
+                    //Set output signals 
+                    SetOutputSignals();
+
+                    //Start to download spectrum.
+                    timer1.Enabled = true;
+
+                    //Open connection in asynchoronous mode
+                    //register callback function
+                    //data callback function: maximum read in 1000 samples every time and maximum wait for 10ms  
+                    ConnAsync.SetDataCallback(OnData, 1000, 10);
+                    //general command callback function, which will be called for all the responses/updates from the device
+                    ConnAsync.SetGeneralResponseCallback(GenCmdCbFct);
+                    //set connection to automatically process device output, 
+                    //i.e. let CHRocodileLib to create an internal thread for output processing
+                    //all the reponses and data are delivered through callback function withing CHRocodileLib internal thread 
+                    ConnAsync.AutomaticMode = true;
+
+
+                    //Open up the shared connection in synchronous mode based on the first connection
+                    //The shared connection is responsible for synchronous spectrum downloading
+                    ConnSync = new SynchronousConnection(ConnAsync);
+
+                    Conn = new CHRocodileLib.SynchronousConnection(strConInfo, DeviceType);
+
                     SetupDevice();
+
+                    SampleCount83 = 0;
+
+                    //TBCMD.Enabled = true;
+                    //BtnSendCmd.Enabled = true;
 
                     bConnect = true;
                 }
@@ -702,14 +753,12 @@ namespace TCHRLibBasicRecordSample
             SetUpScanrate();
             SetUpOutputSignals();
             SetUpPLCSignals();
-
         }
 
         private void SetUpPLCSignals()
         {
-            maxSpeed = ReadFloatFromPLC("212", "213");
-            minSpeed = ReadFloatFromPLC("224", "225");
-
+            maxSpeed = ReadFloatKvCom("212", "213");
+            minSpeed = ReadFloatKvCom("224", "225");
         }
         private void SetUpMeasuringMethod()
         {
@@ -765,6 +814,164 @@ namespace TCHRLibBasicRecordSample
         }
 
 
+        //Data callback function
+        private void OnData(AsyncDataStatus status, Data _oData)
+        {
+
+            if (_oData.NumSamples > 0)
+            {
+                List<string> dataList = new List<string>();
+                //display every 100th sample 
+                foreach (var s in _oData.Samples())
+                {
+                    if (SampleCount83 % 100 == 0)
+                    {
+                        string strTemp = "";
+                        for (int j = 0; j < _oData.Info.SignalGenInfo.GlobalSignalCount; j++)
+                        {
+                            double nTemp = s.Get(j);
+                            if (double.IsNaN(nTemp))
+                                strTemp += "Nan ";
+                            else
+                                strTemp += nTemp.ToString() + " ";
+                        }
+                        for (int k = 0; k < _oData.Info.SignalGenInfo.ChannelCount; k++)
+                            for (int j = 0; j < _oData.Info.SignalGenInfo.PeakSignalCount; j++)
+                            {
+                                double nTemp = s.Get(j + _oData.Info.SignalGenInfo.GlobalSignalCount, k);
+                                if (double.IsNaN(nTemp))
+                                    strTemp += "Nan ";
+                                else
+                                    strTemp += nTemp.ToString() + " ";
+                            }
+                        dataList.Add(strTemp);
+                    }
+                    SampleCount83++;
+                }
+
+                this.BeginInvoke((Action<List<string>, Int64>)delegate (List<string> _DataList, Int64 _nSampleCount)
+                {
+                    //foreach (var str in _DataList)
+                    //{
+                    //    RTSample.AppendText(str);
+                    //    RTSample.AppendText(Environment.NewLine);
+                    //}
+                    //TBSampleNumber.Text = _nSampleCount.ToString();
+                }, dataList, _oData.NumSamples);
+            }
+
+            if (_oData.Status == DataStatus.Error)
+            {
+                Console.WriteLine("Error in processing device output!");
+            }
+        }
+
+        private void GenCmdCbFct(Response _Rsp)
+        {
+            try
+            {
+                //based on the response ID, interprete 
+                switch (_Rsp.Info.CmdID)
+                {
+                    case CmdID.MeasuringMethod:
+                        {
+                            MeasuringMethod = (MeasurementMode)_Rsp.GetParam<int>(0);
+                            //this.BeginInvoke((Action)delegate { TBMOD.Text = MeasuringMethod.ToString(); });
+                            break;
+                        }
+                    case CmdID.ScanRate:
+                        {
+                            ScanRate = _Rsp.GetParam<float>(0);
+                            this.BeginInvoke((Action)delegate { ucAdvanceSetting.ScanRate = ScanRate.ToString(); });
+                            break;
+                        }
+                    case CmdID.DataAverage:
+                        {
+                            DataAverage = _Rsp.GetParam<int>(0);
+                            //this.BeginInvoke((Action)delegate { TBAVD.Text = DataAverage.ToString(); });
+                            break;
+                        }
+                    case CmdID.OutputSignals:
+                        {
+                            if (_Rsp.ParamCount > 0)
+                                SignalIDs = _Rsp.GetParam<int[]>(0);
+                            else
+                                SignalIDs = new int[0];
+                            //this.BeginInvoke((Action)delegate { TBSODX.Text = String.Join(",", SignalIDs.Select(p => p.ToString()).ToArray()); });
+                            break;
+                        }
+                }
+            }
+            catch
+            {
+                // TODO
+            }
+
+            //if (_Rsp.Info.CmdID != CmdID.DownloadSpectrum)
+            //{
+            //    //get response in string form and update response text box
+            //    string strRsp = (_Rsp.IsUpdate() ? "(U) " : "    ") + _Rsp.ToString();
+            //    this.BeginInvoke((Action<string>)delegate (string _strRsp)
+            //    {
+            //        RTRsp.AppendText(_strRsp);
+            //        RTRsp.AppendText(Environment.NewLine);
+            //    }, strRsp);
+            //}
+        }
+
+        private void SetOutputSignals()
+        {
+            try
+            {
+                //Set device output signals
+
+                    SignalIDs = new int[] { 83 };
+                ConnAsync.Exec(CmdID.OutputSignals, null, SignalIDs);
+            }
+            catch
+            {
+                Debug.Fail("Cannot set output signals");
+            }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            //Synchronously download spectrum.
+            try
+            {
+                var specType = SpecType.Raw;
+   
+
+                Response oRsp;
+                //for downloading spectra of several channles from multi-channel device,  needs to add start channel index and channel count
+                //here only download the specturm of the first channel
+                if (RBCLS.Checked)
+                    oRsp = ConnSync.Exec(CmdID.DownloadSpectrum, specType, 0, 1);
+                else
+                    oRsp = ConnSync.Exec(CmdID.DownloadSpectrum, specType);
+                //the last parameter of the response is the spectrum data
+                var aBytes = oRsp.GetParam<byte[]>(oRsp.ParamCount - 1);
+                //convert to 16bit data
+                Int16[] SpecData = new Int16[aBytes.Length / 2];
+                Buffer.BlockCopy(aBytes, 0, SpecData, 0, aBytes.Length);
+
+                for (int i = 0; i < SpecData.Length; i++)
+                    chart1.Series[0].Points[i].YValues[0] = SpecData[i];
+                // TODO: check why!?
+                //for (int i = SpecData.Length / 2; i < 1024; i++)
+                //    chart1.Series[0].Points[i].YValues[0] = 0;
+                chart1.ChartAreas[0].RecalculateAxesScale();
+                chart1.Invalidate();
+            }
+            catch
+            {
+                Debug.Fail("Cannot set download spectrum");
+                timer1.Enabled = false;
+            }
+        }
+
+
+
         private void EnableGui(bool _bEnabled)
         {
             BtConnect.Enabled = !_bEnabled;
@@ -792,7 +999,6 @@ namespace TCHRLibBasicRecordSample
                 SetUpScanrate();
         }
 
-
         public void TBSODX_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Return)
@@ -811,7 +1017,7 @@ namespace TCHRLibBasicRecordSample
             SampleCount = int.Parse(ucAdvanceSetting.SampleCount);
             //start recording, enter recording modes
             Conn.StartRecording(SampleCount);
-            initDataChart();
+            //initDataChart();
             CurrentDataPos = 0;
             timerData.Enabled = true;
             EnableSetting(false);
@@ -827,7 +1033,7 @@ namespace TCHRLibBasicRecordSample
             chart1.Series[0].Points.Clear();
             //chart2.Series[0].Points.Clear();
             //chart3.Series[0].Points.Clear();
-            for (int i = 0; i < SampleCount; i++)
+            for (int i = 0; i < SampleCount83; i++)
             {
                 chart1.Series[0].Points.AddY(0);
                 //chart2.Series[0].Points.AddY(0);
@@ -933,7 +1139,6 @@ namespace TCHRLibBasicRecordSample
                         else if (oData.Info.SignalGenInfo.GlobalSignalCount + oData.Info.SignalGenInfo.PeakSignalCount > i)
                             aData[i] = s.Get(i, 0);
                     }
-                    chart1.Series[0].Points[CurrentDataPos].YValues[0] = Double.IsNaN(aData[0]) ? 0 : aData[0];
                     //chart2.Series[0].Points[CurrentDataPos].YValues[0] = Double.IsNaN(aData[1]) ? 0 : aData[1];
                     //chart3.Series[0].Points[CurrentDataPos].YValues[0] = Double.IsNaN(aData[2]) ? 0 : aData[2];
                     double signalXValue = (Double.IsNaN(aData[0]) ? 0 : aData[0]);
@@ -942,8 +1147,6 @@ namespace TCHRLibBasicRecordSample
                     recordedPoints.Add(new Point3D(signalXValue, signalYValue, signalZValue));
                     CurrentDataPos++;
                 }
-                chart1.ChartAreas[0].RecalculateAxesScale();
-                chart1.Invalidate();
                 PbScan.Value = (int)(CurrentDataPos * 100 / (SampleCount));
                 if (PbScan.Value == 0)
                     LbScanProgress.Text = "Initializing scan...";
@@ -1610,12 +1813,18 @@ forcecurve = 0
             // Connect to device
             try
             {
+                // Connect with HOTLINK
+                //sp_main.PortName = "COM5";
+                //sp_main.Open();
+                //sp_main.Write("CR\r");
+                // Connect with KV CM+ 
                 axDBCommManager1.Connect();
                 axDBTriggerManager1.Active = true;
-                TbZControl.Value = (int)(((ReadFloatFromPLC("140", "141") - ZDistanceMin) / (float)(ZDistanceMax - ZDistanceMin)) * 100);
-                PnlZMap.PointY = (int)(((ReadFloatFromPLC("140", "141") - ZDistanceMin) / (float)(ZDistanceMax - ZDistanceMin)) * (PnlZMap.Height - PnlZMap.PointSize));
-                LbZCoorValue.Text = ReadFloatFromPLC("140", "141").ToString("F2") + "mm";
+                TbZControl.Value = (int)(((ReadFloatKvCom("140", "141") - ZDistanceMin) / (float)(ZDistanceMax - ZDistanceMin)) * 100);
+                PnlZMap.PointY = (int)(((ReadFloatKvCom("140", "141") - ZDistanceMin) / (float)(ZDistanceMax - ZDistanceMin)) * (PnlZMap.Height - PnlZMap.PointSize));
+                LbZCoorValue.Text = ReadFloatKvCom("140", "141").ToString("F2") + "mm";
                 blinkTimer.Start(); // start delay time
+                MessageBox.Show("Connection PLC successful ", "Connection status", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             }
             catch (Exception ex)
@@ -1629,9 +1838,9 @@ forcecurve = 0
         {
             OnBitMR("208");
             OnBitMR("308");
-            
+
             float currentYCoor = ((((float)e.Y / PnlXYMap.Height) * 100 / (float)100 * (YDistanceMax - YDistanceMin)) - YDistanceMin);
-            float currentXCoor = ((((float)e.X / PnlXYMap.Width) *100 / (float)100 * (XDistanceMax - XDistanceMin)) + XDistanceMin);
+            float currentXCoor = ((((float)e.X / PnlXYMap.Width) * 100 / (float)100 * (XDistanceMax - XDistanceMin)) + XDistanceMin);
 
             WriteCMToPLC("8230", "8231", currentXCoor * 2500);
             WriteCMToPLC("8430", "8431", currentYCoor * 2500);
@@ -1671,7 +1880,7 @@ forcecurve = 0
             OnBitMR("110");
             OffBitMR("110");
         }
-        private float ReadFloatFromPLC(string lowerWord, string upperWord)
+        private float ReadFloatKvCom(string lowerWord, string upperWord)
         {
             try
             {
@@ -1696,6 +1905,22 @@ forcecurve = 0
                 return 0; // Return a default value in case of failure
             }
         }
+
+        private string ReadFloatHotLink(string bitAddress)
+        {
+            try
+            {
+                sp_main.Write("RD" + "" + "CM" + bitAddress + ".L" + "" + "\r");
+                string floatValue = sp_main.ReadLine();
+                return floatValue;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error reading and from device: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return "0"; // Return a default value in case of failure
+            }
+        }
+
 
         private void OnBitMR(string bitAddress)
         {
