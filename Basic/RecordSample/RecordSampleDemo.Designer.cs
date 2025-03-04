@@ -33,6 +33,9 @@
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.timerData = new System.Windows.Forms.Timer(this.components);
             this.SaveDlg = new System.Windows.Forms.SaveFileDialog();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
@@ -84,6 +87,7 @@
             this.BtSave = new System.Windows.Forms.Button();
             this.BtRecord = new System.Windows.Forms.Button();
             this.PnlChartGrid = new System.Windows.Forms.TableLayoutPanel();
+            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.LbNameChart = new System.Windows.Forms.Label();
             this.PnlRightSite = new System.Windows.Forms.TableLayoutPanel();
             this.PnlSettingGrid = new System.Windows.Forms.TableLayoutPanel();
@@ -176,6 +180,7 @@
             this.panel9.SuspendLayout();
             this.panel2.SuspendLayout();
             this.PnlChartGrid.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.PnlRightSite.SuspendLayout();
             this.PnlSettingGrid.SuspendLayout();
             this.PnlInfoCoorGrid.SuspendLayout();
@@ -385,10 +390,10 @@
             this.PnlLeftSite.Margin = new System.Windows.Forms.Padding(0, 0, 10, 0);
             this.PnlLeftSite.Name = "PnlLeftSite";
             this.PnlLeftSite.RowCount = 6;
-            this.PnlLeftSite.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 240F));
+            this.PnlLeftSite.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
             this.PnlLeftSite.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.PnlLeftSite.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 2F));
-            this.PnlLeftSite.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 96F));
+            this.PnlLeftSite.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 108F));
             this.PnlLeftSite.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 2F));
             this.PnlLeftSite.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 275F));
             this.PnlLeftSite.Size = new System.Drawing.Size(837, 803);
@@ -399,19 +404,19 @@
             this.PnlScanArea.AutoSize = true;
             this.PnlScanArea.Controls.Add(this.ImgAreaScan);
             this.PnlScanArea.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PnlScanArea.Location = new System.Drawing.Point(0, 240);
+            this.PnlScanArea.Location = new System.Drawing.Point(0, 24);
             this.PnlScanArea.Margin = new System.Windows.Forms.Padding(0);
             this.PnlScanArea.Name = "PnlScanArea";
             this.PnlScanArea.Padding = new System.Windows.Forms.Padding(36, 0, 36, 24);
-            this.PnlScanArea.Size = new System.Drawing.Size(847, 188);
+            this.PnlScanArea.Size = new System.Drawing.Size(847, 392);
             this.PnlScanArea.TabIndex = 62;
             // 
             // ImgAreaScan
             // 
-            this.ImgAreaScan.BackColor = System.Drawing.Color.Gold;
+            this.ImgAreaScan.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.ImgAreaScan.BackColor = System.Drawing.Color.Transparent;
             this.ImgAreaScan.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ImgAreaScan.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ImgAreaScan.Location = new System.Drawing.Point(36, 0);
+            this.ImgAreaScan.Location = new System.Drawing.Point(34, 0);
             this.ImgAreaScan.Name = "ImgAreaScan";
             this.ImgAreaScan.Size = new System.Drawing.Size(775, 164);
             this.ImgAreaScan.TabIndex = 34;
@@ -421,18 +426,17 @@
             // 
             this.PnlProgressGrid.ColumnCount = 1;
             this.PnlProgressGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.PnlProgressGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.PnlProgressGrid.Controls.Add(this.LbScanProgress, 0, 1);
             this.PnlProgressGrid.Controls.Add(this.PbScan, 0, 0);
             this.PnlProgressGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PnlProgressGrid.Location = new System.Drawing.Point(0, 430);
+            this.PnlProgressGrid.Location = new System.Drawing.Point(0, 418);
             this.PnlProgressGrid.Margin = new System.Windows.Forms.Padding(0);
             this.PnlProgressGrid.Name = "PnlProgressGrid";
             this.PnlProgressGrid.Padding = new System.Windows.Forms.Padding(36, 8, 36, 8);
             this.PnlProgressGrid.RowCount = 2;
-            this.PnlProgressGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 51.54639F));
-            this.PnlProgressGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 48.45361F));
-            this.PnlProgressGrid.Size = new System.Drawing.Size(847, 96);
+            this.PnlProgressGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 60F));
+            this.PnlProgressGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
+            this.PnlProgressGrid.Size = new System.Drawing.Size(847, 108);
             this.PnlProgressGrid.TabIndex = 62;
             // 
             // LbScanProgress
@@ -440,10 +444,10 @@
             this.LbScanProgress.AutoSize = true;
             this.LbScanProgress.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LbScanProgress.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LbScanProgress.Location = new System.Drawing.Point(38, 49);
-            this.LbScanProgress.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LbScanProgress.Location = new System.Drawing.Point(36, 63);
+            this.LbScanProgress.Margin = new System.Windows.Forms.Padding(0);
             this.LbScanProgress.Name = "LbScanProgress";
-            this.LbScanProgress.Size = new System.Drawing.Size(771, 39);
+            this.LbScanProgress.Size = new System.Drawing.Size(775, 37);
             this.LbScanProgress.TabIndex = 62;
             this.LbScanProgress.Text = "Scanning ...";
             this.LbScanProgress.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -453,13 +457,14 @@
             this.PbScan.ChannelColor = System.Drawing.Color.LightSteelBlue;
             this.PbScan.ChannelHeight = 24;
             this.PbScan.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PbScan.ForeBackColor = System.Drawing.Color.RosyBrown;
+            this.PbScan.Font = new System.Drawing.Font("Century Gothic", 8.25F);
+            this.PbScan.ForeBackColor = System.Drawing.Color.Transparent;
             this.PbScan.ForeColor = System.Drawing.Color.White;
             this.PbScan.Location = new System.Drawing.Point(39, 11);
             this.PbScan.Name = "PbScan";
             this.PbScan.ShowMaximun = false;
             this.PbScan.ShowValue = TCHRLibBasicRecordSample.CustomUi.TextPosition.Sliding;
-            this.PbScan.Size = new System.Drawing.Size(769, 35);
+            this.PbScan.Size = new System.Drawing.Size(769, 49);
             this.PbScan.SliderColor = System.Drawing.Color.RosyBrown;
             this.PbScan.SliderHeight = 24;
             this.PbScan.SymbolAfter = "%";
@@ -473,7 +478,7 @@
             this.PnlHidden.Location = new System.Drawing.Point(0, 0);
             this.PnlHidden.Margin = new System.Windows.Forms.Padding(0);
             this.PnlHidden.Name = "PnlHidden";
-            this.PnlHidden.Size = new System.Drawing.Size(847, 240);
+            this.PnlHidden.Size = new System.Drawing.Size(847, 24);
             this.PnlHidden.TabIndex = 31;
             // 
             // tabControl1
@@ -485,7 +490,7 @@
             this.tabControl1.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(847, 240);
+            this.tabControl1.Size = new System.Drawing.Size(847, 24);
             this.tabControl1.TabIndex = 25;
             // 
             // tabPage1
@@ -496,7 +501,7 @@
             this.tabPage1.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(2, 4, 2, 4);
-            this.tabPage1.Size = new System.Drawing.Size(839, 208);
+            this.tabPage1.Size = new System.Drawing.Size(839, 0);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Default setting";
             // 
@@ -515,7 +520,7 @@
             this.panel10.Location = new System.Drawing.Point(2, 4);
             this.panel10.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(835, 200);
+            this.panel10.Size = new System.Drawing.Size(835, 0);
             this.panel10.TabIndex = 11;
             // 
             // RBCHRC
@@ -615,7 +620,7 @@
             this.tabPage2.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(2, 4, 2, 4);
-            this.tabPage2.Size = new System.Drawing.Size(839, 208);
+            this.tabPage2.Size = new System.Drawing.Size(839, 0);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Advance setting";
             // 
@@ -809,6 +814,7 @@
             // 
             this.PnlChartGrid.ColumnCount = 1;
             this.PnlChartGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.PnlChartGrid.Controls.Add(this.chart1, 0, 0);
             this.PnlChartGrid.Controls.Add(this.LbNameChart, 0, 1);
             this.PnlChartGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PnlChartGrid.Location = new System.Drawing.Point(0, 528);
@@ -818,8 +824,45 @@
             this.PnlChartGrid.RowCount = 2;
             this.PnlChartGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.PnlChartGrid.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.PnlChartGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.PnlChartGrid.Size = new System.Drawing.Size(847, 275);
             this.PnlChartGrid.TabIndex = 63;
+            // 
+            // chart1
+            // 
+            chartArea1.AxisX.IsLabelAutoFit = false;
+            chartArea1.AxisX.LabelStyle.Font = new System.Drawing.Font("Modern No. 20", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            chartArea1.AxisX.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+            chartArea1.AxisX.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+            chartArea1.AxisX.MajorTickMark.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+            chartArea1.AxisX.MinorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+            chartArea1.AxisX.MinorTickMark.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+            chartArea1.AxisY.IsLabelAutoFit = false;
+            chartArea1.AxisY.IsStartedFromZero = false;
+            chartArea1.AxisY.LabelStyle.Font = new System.Drawing.Font("Modern No. 20", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            chartArea1.AxisY.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+            chartArea1.AxisY.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+            chartArea1.AxisY.MajorTickMark.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+            chartArea1.AxisY.MinorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+            chartArea1.AxisY.MinorTickMark.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
+            this.chart1.Dock = System.Windows.Forms.DockStyle.Fill;
+            legend1.Enabled = false;
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
+            this.chart1.Location = new System.Drawing.Point(37, 25);
+            this.chart1.Margin = new System.Windows.Forms.Padding(1);
+            this.chart1.Name = "chart1";
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
+            series1.IsVisibleInLegend = false;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chart1.Series.Add(series1);
+            this.chart1.Size = new System.Drawing.Size(773, 186);
+            this.chart1.TabIndex = 64;
+            this.chart1.Text = "chart2";
             // 
             // LbNameChart
             // 
@@ -1227,8 +1270,8 @@
             this.BtnSaveData.Name = "BtnSaveData";
             this.BtnSaveData.Size = new System.Drawing.Size(141, 38);
             this.BtnSaveData.TabIndex = 33;
-            this.BtnSaveData.Text = "SAVE";
             this.BtnSaveData.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.BtnSaveData.TextContent = "";
             this.BtnSaveData.UseVisualStyleBackColor = false;
             // 
             // PnlControlGrid
@@ -1371,6 +1414,7 @@
             this.BtnXYDownSpeed.Size = new System.Drawing.Size(36, 36);
             this.BtnXYDownSpeed.TabIndex = 28;
             this.BtnXYDownSpeed.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.BtnXYDownSpeed.TextContent = "";
             this.BtnXYDownSpeed.UseVisualStyleBackColor = false;
             this.BtnXYDownSpeed.Click += new System.EventHandler(this.BtnXYDownSpeed_Click);
             // 
@@ -1392,6 +1436,7 @@
             this.BtnXYUpSpeed.Size = new System.Drawing.Size(36, 36);
             this.BtnXYUpSpeed.TabIndex = 29;
             this.BtnXYUpSpeed.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.BtnXYUpSpeed.TextContent = "";
             this.BtnXYUpSpeed.UseVisualStyleBackColor = false;
             this.BtnXYUpSpeed.Click += new System.EventHandler(this.BtnXYUpSpeed_Click_1);
             // 
@@ -1535,6 +1580,7 @@
             this.BtnHome.Size = new System.Drawing.Size(48, 48);
             this.BtnHome.TabIndex = 3;
             this.BtnHome.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.BtnHome.TextContent = "";
             this.BtnHome.UseVisualStyleBackColor = false;
             this.BtnHome.Click += new System.EventHandler(this.BtnHome_Click);
             this.BtnHome.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnHome_MouseDown);
@@ -1585,6 +1631,7 @@
             this.BtnLeft.Size = new System.Drawing.Size(64, 48);
             this.BtnLeft.TabIndex = 4;
             this.BtnLeft.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.BtnLeft.TextContent = "";
             this.BtnLeft.UseVisualStyleBackColor = false;
             this.BtnLeft.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnLeft_MouseDown);
             this.BtnLeft.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BtnLeft_MouseUp);
@@ -1634,6 +1681,7 @@
             this.BtnRight.Size = new System.Drawing.Size(64, 48);
             this.BtnRight.TabIndex = 5;
             this.BtnRight.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.BtnRight.TextContent = "";
             this.BtnRight.UseVisualStyleBackColor = false;
             this.BtnRight.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnRight_MouseDown);
             this.BtnRight.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BtnRight_MouseUp);
@@ -1659,6 +1707,7 @@
             this.BtnDown.Size = new System.Drawing.Size(48, 64);
             this.BtnDown.TabIndex = 6;
             this.BtnDown.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.BtnDown.TextContent = "";
             this.BtnDown.UseVisualStyleBackColor = false;
             this.BtnDown.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnDown_MouseDown);
             this.BtnDown.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BtnDown_MouseUp);
@@ -1684,6 +1733,7 @@
             this.BtnUp.Size = new System.Drawing.Size(48, 64);
             this.BtnUp.TabIndex = 7;
             this.BtnUp.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.BtnUp.TextContent = "";
             this.BtnUp.UseVisualStyleBackColor = false;
             this.BtnUp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnUp_MouseDown);
             this.BtnUp.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BtnUp_MouseUp);
@@ -1725,8 +1775,8 @@
             this.BtnRsTch.Name = "BtnRsTch";
             this.BtnRsTch.Size = new System.Drawing.Size(240, 4);
             this.BtnRsTch.TabIndex = 59;
-            this.BtnRsTch.Text = "Reset Teaching Point";
             this.BtnRsTch.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.BtnRsTch.TextContent = "";
             this.BtnRsTch.UseVisualStyleBackColor = false;
             // 
             // BtnRunScan
@@ -1747,8 +1797,8 @@
             this.BtnRunScan.Name = "BtnRunScan";
             this.BtnRunScan.Size = new System.Drawing.Size(240, 8);
             this.BtnRunScan.TabIndex = 58;
-            this.BtnRunScan.Text = "START SCAN";
             this.BtnRunScan.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.BtnRunScan.TextContent = "";
             this.BtnRunScan.UseVisualStyleBackColor = false;
             this.BtnRunScan.Click += new System.EventHandler(this.BtRecord_Click);
             // 
@@ -1828,6 +1878,7 @@
             this.BtnSetPos4.Size = new System.Drawing.Size(44, 37);
             this.BtnSetPos4.TabIndex = 52;
             this.BtnSetPos4.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.BtnSetPos4.TextContent = "";
             this.BtnSetPos4.UseVisualStyleBackColor = false;
             this.BtnSetPos4.Click += new System.EventHandler(this.BtnSetPos4_Click);
             // 
@@ -1868,6 +1919,7 @@
             this.BtnRunPos4.Size = new System.Drawing.Size(42, 37);
             this.BtnRunPos4.TabIndex = 53;
             this.BtnRunPos4.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.BtnRunPos4.TextContent = "";
             this.BtnRunPos4.UseVisualStyleBackColor = false;
             // 
             // LbPos3
@@ -1913,6 +1965,7 @@
             this.BtnRunPos3.Size = new System.Drawing.Size(42, 37);
             this.BtnRunPos3.TabIndex = 49;
             this.BtnRunPos3.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.BtnRunPos3.TextContent = "";
             this.BtnRunPos3.UseVisualStyleBackColor = false;
             // 
             // BtnSetPos3
@@ -1933,6 +1986,7 @@
             this.BtnSetPos3.Size = new System.Drawing.Size(44, 37);
             this.BtnSetPos3.TabIndex = 48;
             this.BtnSetPos3.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.BtnSetPos3.TextContent = "";
             this.BtnSetPos3.UseVisualStyleBackColor = false;
             this.BtnSetPos3.Click += new System.EventHandler(this.BtnSetPos3_Click);
             // 
@@ -1973,6 +2027,7 @@
             this.BtnRunPos1.Size = new System.Drawing.Size(42, 37);
             this.BtnRunPos1.TabIndex = 41;
             this.BtnRunPos1.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.BtnRunPos1.TextContent = "";
             this.BtnRunPos1.UseVisualStyleBackColor = false;
             this.BtnRunPos1.Click += new System.EventHandler(this.BtnRunPos1_Click);
             this.BtnRunPos1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnRunPos1_MouseDown);
@@ -1996,6 +2051,7 @@
             this.BtnSetPos1.Size = new System.Drawing.Size(44, 37);
             this.BtnSetPos1.TabIndex = 41;
             this.BtnSetPos1.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.BtnSetPos1.TextContent = "";
             this.BtnSetPos1.UseVisualStyleBackColor = false;
             this.BtnSetPos1.Click += new System.EventHandler(this.BtnSetPos1_Click);
             this.BtnSetPos1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnSetPos1_MouseDown);
@@ -2020,6 +2076,7 @@
             this.BtnRunPos2.Size = new System.Drawing.Size(42, 37);
             this.BtnRunPos2.TabIndex = 45;
             this.BtnRunPos2.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.BtnRunPos2.TextContent = "";
             this.BtnRunPos2.UseVisualStyleBackColor = false;
             // 
             // BtnSetPos2
@@ -2040,6 +2097,7 @@
             this.BtnSetPos2.Size = new System.Drawing.Size(44, 37);
             this.BtnSetPos2.TabIndex = 44;
             this.BtnSetPos2.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.BtnSetPos2.TextContent = "";
             this.BtnSetPos2.UseVisualStyleBackColor = false;
             this.BtnSetPos2.Click += new System.EventHandler(this.BtnSetPos2_Click);
             // 
@@ -2105,36 +2163,36 @@
             // 
             // chart4
             // 
-            chartArea1.AxisX.IsLabelAutoFit = false;
-            chartArea1.AxisX.LabelStyle.Font = new System.Drawing.Font("Modern No. 20", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            chartArea1.AxisX.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
-            chartArea1.AxisX.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
-            chartArea1.AxisX.MajorTickMark.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
-            chartArea1.AxisX.MinorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
-            chartArea1.AxisX.MinorTickMark.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
-            chartArea1.AxisY.IsLabelAutoFit = false;
-            chartArea1.AxisY.IsStartedFromZero = false;
-            chartArea1.AxisY.LabelStyle.Font = new System.Drawing.Font("Modern No. 20", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            chartArea1.AxisY.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
-            chartArea1.AxisY.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
-            chartArea1.AxisY.MajorTickMark.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
-            chartArea1.AxisY.MinorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
-            chartArea1.AxisY.MinorTickMark.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
-            chartArea1.Name = "ChartArea1";
-            this.chart4.ChartAreas.Add(chartArea1);
+            chartArea2.AxisX.IsLabelAutoFit = false;
+            chartArea2.AxisX.LabelStyle.Font = new System.Drawing.Font("Modern No. 20", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            chartArea2.AxisX.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+            chartArea2.AxisX.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+            chartArea2.AxisX.MajorTickMark.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+            chartArea2.AxisX.MinorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+            chartArea2.AxisX.MinorTickMark.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+            chartArea2.AxisY.IsLabelAutoFit = false;
+            chartArea2.AxisY.IsStartedFromZero = false;
+            chartArea2.AxisY.LabelStyle.Font = new System.Drawing.Font("Modern No. 20", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            chartArea2.AxisY.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+            chartArea2.AxisY.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+            chartArea2.AxisY.MajorTickMark.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+            chartArea2.AxisY.MinorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+            chartArea2.AxisY.MinorTickMark.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+            chartArea2.Name = "ChartArea1";
+            this.chart4.ChartAreas.Add(chartArea2);
             this.chart4.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend1.Enabled = false;
-            legend1.Name = "Legend1";
-            this.chart4.Legends.Add(legend1);
+            legend2.Enabled = false;
+            legend2.Name = "Legend1";
+            this.chart4.Legends.Add(legend2);
             this.chart4.Location = new System.Drawing.Point(0, 0);
             this.chart4.Margin = new System.Windows.Forms.Padding(1);
             this.chart4.Name = "chart4";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
-            series1.IsVisibleInLegend = false;
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chart4.Series.Add(series1);
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
+            series2.IsVisibleInLegend = false;
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chart4.Series.Add(series2);
             this.chart4.Size = new System.Drawing.Size(775, 192);
             this.chart4.TabIndex = 34;
             this.chart4.Text = "chart4";
@@ -2187,6 +2245,7 @@
             this.panel2.PerformLayout();
             this.PnlChartGrid.ResumeLayout(false);
             this.PnlChartGrid.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.PnlRightSite.ResumeLayout(false);
             this.PnlRightSite.PerformLayout();
             this.PnlSettingGrid.ResumeLayout(false);
@@ -2339,6 +2398,7 @@
         private System.Windows.Forms.Label LbXYCoor;
         private CustomUi.DSM_GridMap PnlXYMap;
         private CustomUi.DSM_GridMap PnlZMap;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
     }
 }
 

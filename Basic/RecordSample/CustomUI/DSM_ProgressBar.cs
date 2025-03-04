@@ -147,7 +147,7 @@ namespace TCHRLibBasicRecordSample.CustomUi
             }
         }
 
-        // -> Paint the background & channel
+        //-> Paint the background & channel
         protected override void OnPaintBackground(PaintEventArgs pevent)
         {
             if (stopPainting == false)
@@ -162,22 +162,20 @@ namespace TCHRLibBasicRecordSample.CustomUi
                         if (channelHeight >= sliderHeight)
                             rectChannel.Y = this.Height - channelHeight;
                         else rectChannel.Y = this.Height - ((channelHeight + sliderHeight) / 2);
-
-                        // Painting 
-                        graph.Clear(this.Parent.BackColor); // Surface
-                        graph.FillRectangle(brushChannel, rectChannel); // Channel
-
-                        //Stop painting the back & Channel
+                        //Painting
+                        graph.Clear(this.Parent.BackColor);//Surface
+                        graph.FillRectangle(brushChannel, rectChannel);//Channel
+                                                                       //Stop painting the back & Channel
                         if (this.DesignMode == false)
                             paintedBack = true;
                     }
                 }
-                // Reset painthing the back & channel
+                //Reset painting the back & channel
                 if (this.Value == this.Maximum || this.Value == this.Minimum)
                     paintedBack = false;
             }
         }
-        // -> Paint slider
+        //-> Paint slider
         protected override void OnPaint(PaintEventArgs e)
         {
             if (stopPainting == false)
@@ -192,27 +190,28 @@ namespace TCHRLibBasicRecordSample.CustomUi
                     if (sliderHeight >= channelHeight)
                         rectSlider.Y = this.Height - sliderHeight;
                     else rectSlider.Y = this.Height - ((sliderHeight + channelHeight) / 2);
-
                     //Painting
-                    if (sliderWidth > 1) // Slider
+                    if (sliderWidth > 1) //Slider
                         graph.FillRectangle(brushSlider, rectSlider);
-                    if (showValue != TextPosition.None) // Text
+                    if (showValue != TextPosition.None) //Text
                         DrawValueText(graph, sliderWidth, rectSlider);
                 }
             }
-            if (this.Value == this.Maximum) stopPainting = true; // StopPainting
-            else stopPainting = false; // Keep painting
+            if (this.Value == this.Maximum) stopPainting = true;//Stop painting
+            else stopPainting = false; //Keep painting
         }
 
+        //-> Paint value text
         private void DrawValueText(Graphics graph, int sliderWidth, Rectangle rectSlider)
         {
-            // Fields
+            //Fields
+            this.Font = new Font(TRecordSample.CenturyGothic, this.Font.Size, this.Font.Style);
             string text = symbolBefore + this.Value.ToString() + symbolAfter;
             if (showMaximun) text = text + "/" + symbolBefore + this.Maximum.ToString() + symbolAfter;
             var textSize = TextRenderer.MeasureText(text, this.Font);
             var rectText = new Rectangle(0, 0, textSize.Width, textSize.Height + 2);
             using (var brushText = new SolidBrush(this.ForeColor))
-            using (var brushTextBack = new SolidBrush(this.foreBackColor))
+            using (var brushTextBack = new SolidBrush(foreBackColor))
             using (var textFormat = new StringFormat())
             {
                 switch (showValue)
@@ -232,17 +231,17 @@ namespace TCHRLibBasicRecordSample.CustomUi
                     case TextPosition.Sliding:
                         rectText.X = sliderWidth - textSize.Width;
                         textFormat.Alignment = StringAlignment.Center;
-                        // Clean previous text surface
+                        //Clean previous text surface
                         using (var brushClear = new SolidBrush(this.Parent.BackColor))
                         {
                             var rect = rectSlider;
-                            rect.Y = rectSlider.Y;
-                            rect.Height = rect.Height;
+                            rect.Y = rectText.Y;
+                            rect.Height = rectText.Height;
                             graph.FillRectangle(brushClear, rect);
                         }
                         break;
                 }
-                // Painting
+                //Painting
                 graph.FillRectangle(brushTextBack, rectText);
                 graph.DrawString(text, this.Font, brushText, rectText, textFormat);
             }

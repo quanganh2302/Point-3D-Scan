@@ -6,13 +6,13 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CHRocodileLib;
 using System.Windows.Forms;
 
 namespace TCHRLibBasicRecordSample.CustomUi.TabControl
 {
     public partial class UC_DefaultSetting : UserControl
     {
-
         private string connectAddress = "192.168.170.2";
         private string contentOfBtn = "Connect";
 
@@ -42,10 +42,23 @@ namespace TCHRLibBasicRecordSample.CustomUi.TabControl
 
 
         public event EventHandler<string> RadioButtonChanged; // Event to notify changes
+                                                              // In uc_DefaultSetting:
+        public event EventHandler ConnectButtonClicked;
 
-        public void ToggleButtonText()
+        // In your BtnConnect_Click within uc_DefaultSetting:
+        private void BtnConnect_Click(object sender, EventArgs e)
         {
-           
+            ConnectButtonClicked?.Invoke(this, e);
+            if (BtnConnect.TextContent == "Connect")
+            {
+                BtnConnect.TextContent = "Disconnect";
+                BtnConnect.Invalidate();
+            }
+            else
+            {
+                BtnConnect.TextContent = "Connect";
+                BtnConnect.Invalidate();
+            }
         }
         public UC_DefaultSetting()
         {
@@ -83,7 +96,7 @@ namespace TCHRLibBasicRecordSample.CustomUi.TabControl
 
             // Wire up the event handler.
 
-            BtnConnect.Click += _tRecordSample.BtConnect_Click;
+            //BtnConnect.Click += _tRecordSample.BtConnect_Click;
 
 
         }
@@ -100,21 +113,6 @@ namespace TCHRLibBasicRecordSample.CustomUi.TabControl
         private void InConnect__TextChange(object sender, EventArgs e)
         {
 
-        }
-
-        private void BtnConnect_Click(object sender, EventArgs e)
-        {
-            if (BtnConnect.TextContent == "Connect")
-            {
-                BtnConnect.TextContent = "Disconnect";
-                Invalidate();
-            }
-            else
-            {
-                BtnConnect.TextContent = "Connect";
-                Invalidate();
-
-            }
         }
     }
 }

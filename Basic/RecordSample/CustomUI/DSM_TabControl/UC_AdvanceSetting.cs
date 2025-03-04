@@ -31,7 +31,18 @@ namespace TCHRLibBasicRecordSample.CustomUi.TabControl
 
         private TRecordSample _tRecordSample;
         public event EventHandler<string> RadioButtonChanged; // Event to notify changes
+        public event EventHandler SRKeyPress;
+        public event EventHandler SSKeyPress;
 
+
+        private void InSR_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            SRKeyPress?.Invoke(this, e);
+        }
+        private void InSS_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            SSKeyPress?.Invoke(this, e);
+        }
         public UC_AdvanceSetting()
         {
             InitializeComponent();
@@ -71,9 +82,10 @@ namespace TCHRLibBasicRecordSample.CustomUi.TabControl
             _tRecordSample = new TRecordSample();
 
 
+
             // Wire up the event handler.
-            InSR.KeyPress += _tRecordSample.TBSHZ_KeyPress;
-            InSS.KeyPress += _tRecordSample.TBSODX_KeyPress;
+            //InSR.KeyPress += _tRecordSample.TBSHZ_KeyPress;
+            //InSS.KeyPress += _tRecordSample.TBSODX_KeyPress;
             //InSC.KeyPress += _tRecordSample.BtConnect_Click;
 
             RbConfocal.Click += _tRecordSample.RBConfocal_Click;
@@ -105,6 +117,9 @@ namespace TCHRLibBasicRecordSample.CustomUi.TabControl
 
         private void label3_Click(object sender, EventArgs e)
         {
+  
         }
+
+
     }
 }

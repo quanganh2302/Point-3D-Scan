@@ -120,15 +120,16 @@ namespace TCHRLibBasicRecordSample.CustomUi.TabControl
             this.InSR.BorderForcusColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(106)))), ((int)(((byte)(17)))));
             this.InSR.BorderSize = 1;
             this.InSR.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.InSR.Location = new System.Drawing.Point(84, 15);
+            this.InSR.Location = new System.Drawing.Point(84, 13);
             this.InSR.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.InSR.Multiline = false;
             this.InSR.Name = "InSR";
             this.InSR.Padding = new System.Windows.Forms.Padding(8);
             this.InSR.PasswordChar = false;
-            this.InSR.Size = new System.Drawing.Size(79, 30);
+            this.InSR.Size = new System.Drawing.Size(79, 34);
             this.InSR.TabIndex = 7;
             this.InSR.UnderlineStyle = false;
+            this.InSR.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.InSR_KeyPress);
             // 
             // LbSR
             // 
@@ -164,13 +165,13 @@ namespace TCHRLibBasicRecordSample.CustomUi.TabControl
             this.InSC.BorderForcusColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(106)))), ((int)(((byte)(17)))));
             this.InSC.BorderSize = 1;
             this.InSC.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.InSC.Location = new System.Drawing.Point(56, 15);
+            this.InSC.Location = new System.Drawing.Point(56, 13);
             this.InSC.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.InSC.Multiline = false;
             this.InSC.Name = "InSC";
             this.InSC.Padding = new System.Windows.Forms.Padding(8);
             this.InSC.PasswordChar = false;
-            this.InSC.Size = new System.Drawing.Size(51, 30);
+            this.InSC.Size = new System.Drawing.Size(51, 34);
             this.InSC.TabIndex = 7;
             this.InSC.UnderlineStyle = false;
             // 
@@ -208,15 +209,16 @@ namespace TCHRLibBasicRecordSample.CustomUi.TabControl
             this.InSS.BorderForcusColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(106)))), ((int)(((byte)(17)))));
             this.InSS.BorderSize = 1;
             this.InSS.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.InSS.Location = new System.Drawing.Point(68, 15);
+            this.InSS.Location = new System.Drawing.Point(68, 13);
             this.InSS.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.InSS.Multiline = false;
             this.InSS.Name = "InSS";
             this.InSS.Padding = new System.Windows.Forms.Padding(8);
             this.InSS.PasswordChar = false;
-            this.InSS.Size = new System.Drawing.Size(62, 30);
+            this.InSS.Size = new System.Drawing.Size(62, 34);
             this.InSS.TabIndex = 7;
             this.InSS.UnderlineStyle = false;
+            this.InSS.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.InSS_KeyPress);
             // 
             // LbSS
             // 
@@ -250,7 +252,7 @@ namespace TCHRLibBasicRecordSample.CustomUi.TabControl
             this.RbConfocal.MinimumSize = new System.Drawing.Size(0, 21);
             this.RbConfocal.Name = "RbConfocal";
             this.RbConfocal.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.RbConfocal.Size = new System.Drawing.Size(86, 21);
+            this.RbConfocal.Size = new System.Drawing.Size(104, 23);
             this.RbConfocal.TabIndex = 4;
             this.RbConfocal.TabStop = true;
             this.RbConfocal.Text = "Confocal";
@@ -265,7 +267,7 @@ namespace TCHRLibBasicRecordSample.CustomUi.TabControl
             this.RbInterfero.MinimumSize = new System.Drawing.Size(0, 21);
             this.RbInterfero.Name = "RbInterfero";
             this.RbInterfero.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.RbInterfero.Size = new System.Drawing.Size(113, 21);
+            this.RbInterfero.Size = new System.Drawing.Size(139, 23);
             this.RbInterfero.TabIndex = 3;
             this.RbInterfero.TabStop = true;
             this.RbInterfero.Text = "Interferometric";
@@ -277,14 +279,14 @@ namespace TCHRLibBasicRecordSample.CustomUi.TabControl
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(3, 5);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(118, 16);
+            this.label3.Size = new System.Drawing.Size(148, 19);
             this.label3.TabIndex = 2;
             this.label3.Text = "Measuring Methods:";
             this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // UC_AdvanceSetting
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(89)))), ((int)(((byte)(89)))));
             this.Controls.Add(this.PnlMainGrid);

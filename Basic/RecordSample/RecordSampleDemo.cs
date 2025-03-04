@@ -81,7 +81,7 @@ namespace TCHRLibBasicRecordSample
 
         private Timer blinkTimer;
         private Timer xyCoorTimer;
-
+        private Timer progressTimer;
 
         #endregion
 
@@ -195,8 +195,12 @@ namespace TCHRLibBasicRecordSample
             blinkTimer.Interval = 1; // set delay time
             blinkTimer.Tick += BlinkTimer_Tick; // create funtion that performs a task when called
 
+            progressTimer = new Timer();
+            progressTimer.Interval = 1; // set delay time
+            progressTimer.Tick += ProgressTimer_Tick; // create funtion that performs a task when called
+
             xyCoorTimer = new Timer();
-            xyCoorTimer.Interval = 1; // set delay time
+            xyCoorTimer.Interval = 2000; // set delay time
             xyCoorTimer.Tick += xyCoorTimer_Tick; // create funtion that performs a task when called
             //axDBCommManager1.Connect();
             this.SetStyle(ControlStyles.Selectable, true);
@@ -229,13 +233,18 @@ namespace TCHRLibBasicRecordSample
 
             add_UControls(ucDefaultSetting);
 
-            
+            ucDefaultSetting.ConnectButtonClicked += (s, e) => BtConnect_Click(this, e);
 
             ucAdvanceSetting = new CustomUi.TabControl.UC_AdvanceSetting();
 
             ucAdvanceSetting.RadioButtonChanged += UcAdvanceSetting_RadioButtonChanged;
 
             UpdateRbcustom();
+
+            ucAdvanceSetting.SRKeyPress += (s, e) => TBSHZ_KeyPress(this, (KeyPressEventArgs)e);
+            ucAdvanceSetting.SSKeyPress += (s, e) => TBSODX_KeyPress(this, (KeyPressEventArgs)e);
+
+
 
             PnlNavSetting.BackColor = CardBg;
             PnlDefaultSetting.BackColor = orange;
@@ -518,7 +527,12 @@ namespace TCHRLibBasicRecordSample
             PnlProgressGrid.BackColor = CardBg;
             PbScan.ChannelColor = MainBg;
             PbScan.SliderColor = orange;
+            PbScan.Value = 0;
+            PbScan.ForeBackColor = CardBg;
+            LbScanProgress.Text = "Start Scan";
             LbScanProgress.ForeColor = ForeGroundBlack;
+
+
             // -> Chart area
             if (SystemInformation.WorkingArea.Width < 1600)
             {
@@ -534,6 +548,8 @@ namespace TCHRLibBasicRecordSample
             axDBTriggerManager1.Active = true;
 
         }
+
+
 
         private void UpdateContentBtn()
         {
@@ -559,7 +575,6 @@ namespace TCHRLibBasicRecordSample
         private void xyCoorTimer_Tick(object sender, EventArgs e)
         {
 
-
             PnlXYMap.PointY = (int)(((ReadFloatFromPLC("340", "341") - YDistanceMin) / (float)(YDistanceMax - YDistanceMin)) * PnlXYMap.Height);
             PnlXYMap.PointX = (int)(((ReadFloatFromPLC("240", "241") - XDistanceMin) / (float)(XDistanceMax - XDistanceMin)) * PnlXYMap.Width);
 
@@ -568,11 +583,15 @@ namespace TCHRLibBasicRecordSample
 
             Invalidate();
         }
+        private void ProgressTimer_Tick(object sender, EventArgs e)
+        {
 
+        }
 
         #region Draw Z coordiante area 
         private void BlinkTimer_Tick(object sender, EventArgs e)
         {
+
             LbXCoorValue.Text = ReadFloatFromPLC("240", "241").ToString("F2") + "mm";
             LbYCoorValue.Text = ReadFloatFromPLC("340", "341").ToString("F2") + "mm";
             LbZCoorValue.Text = ReadFloatFromPLC("140", "141").ToString("F2") + "mm";
@@ -617,7 +636,7 @@ namespace TCHRLibBasicRecordSample
         {
 
             bool bConnect = false;
-          //  ucDefaultSetting.ContentOfBtn = "Connect";
+            //  ucDefaultSetting.ContentOfBtn = "Connect";
             //connect to device
             if (Conn == null)
             {
@@ -636,6 +655,7 @@ namespace TCHRLibBasicRecordSample
                     Conn = new CHRocodileLib.SynchronousConnection(strConInfo, DeviceType);
                     //set up device
                     SetupDevice();
+
                     bConnect = true;
                 }
                 catch (Exception ex)
@@ -649,10 +669,9 @@ namespace TCHRLibBasicRecordSample
                 StopRecording();
                 Conn.Close();
                 Conn = null;
-
+                MessageBox.Show("Conn.Close()");
             }
             EnableGui(bConnect);
-
         }
 
         private void SetupDevice()
@@ -669,9 +688,11 @@ namespace TCHRLibBasicRecordSample
             ScanRate = 4000;
 
             //CLS device, normally maximum scan rate ist 2000
-            //ScanRate = 2000;
+            //scanrate = 2000;
             TBSHZ.Text = ScanRate.ToString();
             ucAdvanceSetting.ScanRate = ScanRate.ToString();
+            MessageBox.Show(ucAdvanceSetting.ScanRate.ToString());
+
             if (!RbCLS && !RbCHRC)
             {
                 //set up measuring method (confocal or interferometric)
@@ -681,6 +702,7 @@ namespace TCHRLibBasicRecordSample
             SetUpScanrate();
             SetUpOutputSignals();
             SetUpPLCSignals();
+
         }
 
         private void SetUpPLCSignals()
@@ -770,6 +792,7 @@ namespace TCHRLibBasicRecordSample
                 SetUpScanrate();
         }
 
+
         public void TBSODX_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Return)
@@ -778,8 +801,9 @@ namespace TCHRLibBasicRecordSample
 
         private void StartRecording()
         {
-            //axDBCommManager1.WriteDevice(DATABUILDERAXLibLB.DBPlcDevice.DKVNano_MR, "401", 1);
+            OnBitMR("401");
             StartTimer();
+            progressTimer.Start();
             //throw away the old data
             if (CBFlush.Checked)
                 Conn.FlushConnectionBuffer();
@@ -800,28 +824,30 @@ namespace TCHRLibBasicRecordSample
 
         private void initDataChart()
         {
-            //chart1.Series[0].Points.Clear();
+            chart1.Series[0].Points.Clear();
             //chart2.Series[0].Points.Clear();
             //chart3.Series[0].Points.Clear();
-            //for (int i = 0; i < SampleCount; i++)
-            //{
-            //    chart1.Series[0].Points.AddY(0);
-            //    chart2.Series[0].Points.AddY(0);
-            //    chart3.Series[0].Points.AddY(0);
-            //}
+            for (int i = 0; i < SampleCount; i++)
+            {
+                chart1.Series[0].Points.AddY(0);
+                //chart2.Series[0].Points.AddY(0);
+                //chart3.Series[0].Points.AddY(0);
+            }
         }
 
 
         private void StopRecording()
         {
+            OffBitMR("401");
             timerData.Enabled = false;
             //stop recording, get recorded data buffer/object
             RecordData = Conn.StopRecording();
-
+            progressTimer.Stop();
             EnableSetting(true);
             BtRecord.Text = "Start Recording";
             BtRecord.Tag = 0;
             BtSave.Enabled = true;
+
         }
         public Color GetColorForValue(double val, double minDist, double maxDist)
         {
@@ -907,7 +933,7 @@ namespace TCHRLibBasicRecordSample
                         else if (oData.Info.SignalGenInfo.GlobalSignalCount + oData.Info.SignalGenInfo.PeakSignalCount > i)
                             aData[i] = s.Get(i, 0);
                     }
-                    //chart1.Series[0].Points[CurrentDataPos].YValues[0] = Double.IsNaN(aData[0]) ? 0 : aData[0];
+                    chart1.Series[0].Points[CurrentDataPos].YValues[0] = Double.IsNaN(aData[0]) ? 0 : aData[0];
                     //chart2.Series[0].Points[CurrentDataPos].YValues[0] = Double.IsNaN(aData[1]) ? 0 : aData[1];
                     //chart3.Series[0].Points[CurrentDataPos].YValues[0] = Double.IsNaN(aData[2]) ? 0 : aData[2];
                     double signalXValue = (Double.IsNaN(aData[0]) ? 0 : aData[0]);
@@ -916,12 +942,15 @@ namespace TCHRLibBasicRecordSample
                     recordedPoints.Add(new Point3D(signalXValue, signalYValue, signalZValue));
                     CurrentDataPos++;
                 }
-                //chart1.ChartAreas[0].RecalculateAxesScale();
-                //chart1.Invalidate();
-                //chart2.ChartAreas[0].RecalculateAxesScale();
-                //chart2.Invalidate();
-                //chart3.ChartAreas[0].RecalculateAxesScale();
-                //chart3.Invalidate();
+                chart1.ChartAreas[0].RecalculateAxesScale();
+                chart1.Invalidate();
+                PbScan.Value = (int)(CurrentDataPos * 100 / (SampleCount));
+                if (PbScan.Value == 0)
+                    LbScanProgress.Text = "Initializing scan...";
+                else if (PbScan.Value == 100)
+                    LbScanProgress.Text = "Scan completed.";
+                else
+                    LbScanProgress.Text = "Scanning in progress...";
             }
             //enough samples have been acquired, stop recording
             if (CurrentDataPos >= SampleCount)
@@ -1389,7 +1418,6 @@ forcecurve = 0
 
             // Update the button images based on whether each textbox has data
             UpdateAllButtonImages();
-
         }
         private void LoadAllTextBoxes()
         {
@@ -1664,7 +1692,7 @@ forcecurve = 0
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error reading from device: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error reading {lowerWord} and {upperWord} from device: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return 0; // Return a default value in case of failure
             }
         }
@@ -2161,9 +2189,8 @@ forcecurve = 0
 
         private void BtnXYUpSpeed_Click_1(object sender, EventArgs e)
         {
-            ucDefaultSetting.ContentOfBtn = "Disconnect";
-
         }
+
     }
 
 
