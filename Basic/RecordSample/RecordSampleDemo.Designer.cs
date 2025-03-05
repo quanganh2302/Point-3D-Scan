@@ -330,6 +330,8 @@
             // 
             this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pictureBox1.Image = global::TCHRLibBasicRecordSample.Properties.Resources.logo_01;
+            this.pictureBox1.InitialImage = global::TCHRLibBasicRecordSample.Properties.Resources.logo_01;
             this.pictureBox1.Location = new System.Drawing.Point(8, 0);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(46, 42);
@@ -394,7 +396,7 @@
             this.PnlLeftSite.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
             this.PnlLeftSite.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.PnlLeftSite.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 2F));
-            this.PnlLeftSite.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 108F));
+            this.PnlLeftSite.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 96F));
             this.PnlLeftSite.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 2F));
             this.PnlLeftSite.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 275F));
             this.PnlLeftSite.Size = new System.Drawing.Size(837, 803);
@@ -409,7 +411,7 @@
             this.PnlScanArea.Margin = new System.Windows.Forms.Padding(0);
             this.PnlScanArea.Name = "PnlScanArea";
             this.PnlScanArea.Padding = new System.Windows.Forms.Padding(36, 0, 36, 24);
-            this.PnlScanArea.Size = new System.Drawing.Size(847, 392);
+            this.PnlScanArea.Size = new System.Drawing.Size(847, 404);
             this.PnlScanArea.TabIndex = 62;
             // 
             // ImgAreaScan
@@ -417,7 +419,7 @@
             this.ImgAreaScan.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.ImgAreaScan.BackColor = System.Drawing.Color.Transparent;
             this.ImgAreaScan.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ImgAreaScan.Location = new System.Drawing.Point(34, 0);
+            this.ImgAreaScan.Location = new System.Drawing.Point(34, 6);
             this.ImgAreaScan.Name = "ImgAreaScan";
             this.ImgAreaScan.Size = new System.Drawing.Size(775, 164);
             this.ImgAreaScan.TabIndex = 34;
@@ -430,14 +432,14 @@
             this.PnlProgressGrid.Controls.Add(this.LbScanProgress, 0, 1);
             this.PnlProgressGrid.Controls.Add(this.PbScan, 0, 0);
             this.PnlProgressGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PnlProgressGrid.Location = new System.Drawing.Point(0, 418);
+            this.PnlProgressGrid.Location = new System.Drawing.Point(0, 430);
             this.PnlProgressGrid.Margin = new System.Windows.Forms.Padding(0);
             this.PnlProgressGrid.Name = "PnlProgressGrid";
             this.PnlProgressGrid.Padding = new System.Windows.Forms.Padding(36, 8, 36, 8);
             this.PnlProgressGrid.RowCount = 2;
             this.PnlProgressGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 60F));
             this.PnlProgressGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.PnlProgressGrid.Size = new System.Drawing.Size(847, 108);
+            this.PnlProgressGrid.Size = new System.Drawing.Size(847, 96);
             this.PnlProgressGrid.TabIndex = 62;
             // 
             // LbScanProgress
@@ -445,10 +447,10 @@
             this.LbScanProgress.AutoSize = true;
             this.LbScanProgress.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LbScanProgress.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LbScanProgress.Location = new System.Drawing.Point(36, 63);
+            this.LbScanProgress.Location = new System.Drawing.Point(36, 56);
             this.LbScanProgress.Margin = new System.Windows.Forms.Padding(0);
             this.LbScanProgress.Name = "LbScanProgress";
-            this.LbScanProgress.Size = new System.Drawing.Size(775, 37);
+            this.LbScanProgress.Size = new System.Drawing.Size(775, 32);
             this.LbScanProgress.TabIndex = 62;
             this.LbScanProgress.Text = "Scanning ...";
             this.LbScanProgress.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -456,7 +458,7 @@
             // PbScan
             // 
             this.PbScan.ChannelColor = System.Drawing.Color.LightSteelBlue;
-            this.PbScan.ChannelHeight = 24;
+            this.PbScan.ChannelHeight = 18;
             this.PbScan.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PbScan.Font = new System.Drawing.Font("Century Gothic", 8.25F);
             this.PbScan.ForeBackColor = System.Drawing.Color.Transparent;
@@ -465,9 +467,9 @@
             this.PbScan.Name = "PbScan";
             this.PbScan.ShowMaximun = false;
             this.PbScan.ShowValue = TCHRLibBasicRecordSample.CustomUi.TextPosition.Sliding;
-            this.PbScan.Size = new System.Drawing.Size(769, 49);
+            this.PbScan.Size = new System.Drawing.Size(769, 42);
             this.PbScan.SliderColor = System.Drawing.Color.RosyBrown;
-            this.PbScan.SliderHeight = 24;
+            this.PbScan.SliderHeight = 18;
             this.PbScan.SymbolAfter = "%";
             this.PbScan.SymbolBefore = "";
             this.PbScan.TabIndex = 35;
@@ -493,6 +495,7 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(847, 24);
             this.tabControl1.TabIndex = 25;
+            this.tabControl1.Visible = false;
             // 
             // tabPage1
             // 
@@ -839,7 +842,7 @@
             this.LbNameChart.Name = "LbNameChart";
             this.LbNameChart.Size = new System.Drawing.Size(771, 23);
             this.LbNameChart.TabIndex = 63;
-            this.LbNameChart.Text = "Line Chart";
+            this.LbNameChart.Text = "Spectrum view";
             this.LbNameChart.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // chart1
@@ -1294,8 +1297,9 @@
             this.BtnSaveData.Name = "BtnSaveData";
             this.BtnSaveData.Size = new System.Drawing.Size(141, 38);
             this.BtnSaveData.TabIndex = 33;
+            this.BtnSaveData.Text = "Save";
             this.BtnSaveData.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.BtnSaveData.TextContent = "";
+            this.BtnSaveData.TextContent = "Save";
             this.BtnSaveData.UseVisualStyleBackColor = false;
             // 
             // PnlControlGrid
@@ -1821,8 +1825,9 @@
             this.BtnRunScan.Name = "BtnRunScan";
             this.BtnRunScan.Size = new System.Drawing.Size(240, 8);
             this.BtnRunScan.TabIndex = 58;
+            this.BtnRunScan.Text = "SCAN";
             this.BtnRunScan.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.BtnRunScan.TextContent = "";
+            this.BtnRunScan.TextContent = "SCAN";
             this.BtnRunScan.UseVisualStyleBackColor = false;
             this.BtnRunScan.Click += new System.EventHandler(this.BtRecord_Click);
             // 

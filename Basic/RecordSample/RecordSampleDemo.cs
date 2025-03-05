@@ -65,20 +65,28 @@ namespace TCHRLibBasicRecordSample
         #region Control
         float minSpeed = 2; // Min speed of track bar (m/s)
         float maxSpeed = 10; // Max speed of track bar (m/s)
-        float XWorkingRange = 300;// distance of 2 limit X (mm)
-        float YWorkingRange = 300;// distance of 2 limit X (mm)
+
 
         float ZDistanceMin = -5;// distance of 2 limit Z (mm)
-        float ZDistanceMax = -40;// distance of 2 limit Z (mm)
+        float ZDistanceMax = -240;// distance of 2 limit Z (mm)
 
         float XDistanceMin = 0;// distance of 2 limit X (mm)
-        float XDistanceMax = 160;// distance of 2 limit X (mm)
+        float XDistanceMax = 200;// distance of 2 limit X (mm)
 
         float YDistanceMin = 0;// distance of 2 limit Y (mm)
-        float YDistanceMax = -160;// distance of 2 limit Y (mm)
+        float YDistanceMax = -200;// distance of 2 limit Y (mm)
 
-        int threadPitch = 3; // Bước ren
-        int pulsesPerRevolution = 3600; // xung/vòng
+        float XWorkingRange = 200;// distance of 2 limit X (mm)
+        float YWorkingRange = 200;// distance of 2 limit X (mm)
+        float ZWorkingRange = 240;// distance of 2 limit X (mm)
+
+
+        int threadPitch = 2; // Bước ren (mm)
+        int pulsesPerRev = 5000; // xung/vòng
+        int ZpulPerMM = 5000;
+        int XYpulPerMM;
+
+
 
         float currentXCoor = 0F;
         float currentYCoor = 0F;
@@ -200,6 +208,8 @@ namespace TCHRLibBasicRecordSample
 
         private void Init()
         {
+            XYpulPerMM = pulsesPerRev / threadPitch;
+
             //initialize specturm display
             for (int i = 0; i < Spec_Length; i++)
                 chart1.Series[0].Points.AddY(0);
@@ -599,13 +609,13 @@ namespace TCHRLibBasicRecordSample
         private void xyCoorTimer_Tick(object sender, EventArgs e)
         {
 
-            PnlXYMap.PointY = (int)(((ReadFloatKvCom("340", "341") - YDistanceMin) / (float)(YDistanceMax - YDistanceMin)) * PnlXYMap.Height);
-            PnlXYMap.PointX = (int)(((ReadFloatKvCom("240", "241") - XDistanceMin) / (float)(XDistanceMax - XDistanceMin)) * PnlXYMap.Width);
+            //PnlXYMap.PointY = (int)(((ReadCMFromPLC_KV("8910", "8911") / XYpulPerMM) / YWorkingRange) * PnlXYMap.Height);
+            //PnlXYMap.PointX = (int)(((ReadCMFromPLC_KV("8870", "8871") / XYpulPerMM) / XWorkingRange) * PnlXYMap.Width);
 
-            LbXCoorValue.Text = PnlXYMap.PointX.ToString();
-            LbYCoorValue.Text = PnlXYMap.PointY.ToString();
+            //LbXCoorValue.Text = PnlXYMap.PointX.ToString();
+            //LbYCoorValue.Text = PnlXYMap.PointY.ToString();
 
-            Invalidate();
+            //Invalidate();
         }
         private void ProgressTimer_Tick(object sender, EventArgs e)
         {
@@ -616,13 +626,13 @@ namespace TCHRLibBasicRecordSample
         private void BlinkTimer_Tick(object sender, EventArgs e)
         {
 
-            LbXCoorValue.Text = ReadFloatKvCom("240", "241").ToString("F2") + "mm";
-            LbYCoorValue.Text = ReadFloatKvCom("340", "341").ToString("F2") + "mm";
-            LbZCoorValue.Text = ReadFloatKvCom("140", "141").ToString("F2") + "mm";
+            LbXCoorValue.Text = (ReadCMFromPLC_KV("8870", "8871") / XYpulPerMM).ToString("F2") + "mm";
+            LbYCoorValue.Text = (ReadCMFromPLC_KV("8910", "8911") / XYpulPerMM).ToString("F2") + "mm";
+            LbZCoorValue.Text = (ReadCMFromPLC_KV("8830", "8831") / ZpulPerMM).ToString("F2") + "mm";
 
-            PnlXYMap.PointY = (int)(((ReadFloatKvCom("340", "341") - YDistanceMin) / (float)(YDistanceMax - YDistanceMin)) * PnlXYMap.Height);
-            PnlXYMap.PointX = (int)(((ReadFloatKvCom("240", "241") - XDistanceMin) / (float)(XDistanceMax - XDistanceMin)) * PnlXYMap.Width);
-            PnlZMap.PointY = (int)(((ReadFloatKvCom("140", "141") - ZDistanceMin) / (float)(ZDistanceMax - ZDistanceMin)) * (PnlZMap.Height - PnlZMap.PointSize));
+            PnlXYMap.PointY = (int)(((ReadCMFromPLC_KV("8910", "8911") / XYpulPerMM) / YWorkingRange) *  -PnlXYMap.Height);
+            PnlXYMap.PointX = (int)(((ReadCMFromPLC_KV("8870", "8871") / XYpulPerMM) / XWorkingRange) * PnlXYMap.Width);
+            PnlZMap.PointY = (int)((ReadCMFromPLC_KV("8830", "8831") * 10 / ZpulPerMM) / -ZWorkingRange * PnlZMap.Height);
 
             if (PnlZMap.PointY < PnlZMap.PointSize / 2)
                 PnlZMap.PointY = PnlZMap.PointSize / 2;
@@ -656,7 +666,7 @@ namespace TCHRLibBasicRecordSample
         }
         public void BtConnect_Click(object sender, EventArgs e)
         {
-
+            ConnectToPLC();
             bool bConnect = false;
             //  ucDefaultSetting.ContentOfBtn = "Connect";
             //connect to device
@@ -712,6 +722,7 @@ namespace TCHRLibBasicRecordSample
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
+                    timer1.Enabled = false;
                 }
             }
             // If already connected, disconnect
@@ -742,7 +753,6 @@ namespace TCHRLibBasicRecordSample
             //scanrate = 2000;
             TBSHZ.Text = ScanRate.ToString();
             ucAdvanceSetting.ScanRate = ScanRate.ToString();
-            MessageBox.Show(ucAdvanceSetting.ScanRate.ToString());
 
             if (!RbCLS && !RbCHRC)
             {
@@ -757,8 +767,8 @@ namespace TCHRLibBasicRecordSample
 
         private void SetUpPLCSignals()
         {
-            maxSpeed = ReadFloatKvCom("212", "213");
-            minSpeed = ReadFloatKvCom("224", "225");
+            maxSpeed = ReadDMFromPLC_KV("212", "213");
+            minSpeed = ReadDMFromPLC_KV("224", "225");
         }
         private void SetUpMeasuringMethod()
         {
@@ -925,7 +935,7 @@ namespace TCHRLibBasicRecordSample
             {
                 //Set device output signals
 
-                    SignalIDs = new int[] { 83 };
+                SignalIDs = new int[] { 83 };
                 ConnAsync.Exec(CmdID.OutputSignals, null, SignalIDs);
             }
             catch
@@ -940,7 +950,7 @@ namespace TCHRLibBasicRecordSample
             try
             {
                 var specType = SpecType.Raw;
-   
+
 
                 Response oRsp;
                 //for downloading spectra of several channles from multi-channel device,  needs to add start channel index and channel count
@@ -1033,7 +1043,7 @@ namespace TCHRLibBasicRecordSample
             chart1.Series[0].Points.Clear();
             //chart2.Series[0].Points.Clear();
             //chart3.Series[0].Points.Clear();
-            for (int i = 0; i < SampleCount83; i++)
+            for (int i = 0; i < SampleCount; i++)
             {
                 chart1.Series[0].Points.AddY(0);
                 //chart2.Series[0].Points.AddY(0);
@@ -1044,7 +1054,7 @@ namespace TCHRLibBasicRecordSample
 
         private void StopRecording()
         {
-            OffBitMR("401");
+            OnBitMR("402");
             timerData.Enabled = false;
             //stop recording, get recorded data buffer/object
             RecordData = Conn.StopRecording();
@@ -1782,9 +1792,9 @@ forcecurve = 0
                 !float.TryParse(parts[1].Trim(), out float y) ||
                 !float.TryParse(parts[2].Trim(), out float z))
                 return;
-            WriteCMToPLC("8200", "8201", x * 2500);
-            WriteCMToPLC("8400", "8401", y * 2500);
-            WriteCMToPLC("8000", "8001", z * 2500);
+            WriteCMToPLC("8200", "8201", x * pulsesPerRev / threadPitch);
+            WriteCMToPLC("8400", "8401", y * pulsesPerRev / threadPitch);
+            WriteCMToPLC("8000", "8001", z * ZpulPerMM);
             OnBitMR("410");
             OffBitMR("410");
         }
@@ -1820,9 +1830,9 @@ forcecurve = 0
                 // Connect with KV CM+ 
                 axDBCommManager1.Connect();
                 axDBTriggerManager1.Active = true;
-                TbZControl.Value = (int)(((ReadFloatKvCom("140", "141") - ZDistanceMin) / (float)(ZDistanceMax - ZDistanceMin)) * 100);
-                PnlZMap.PointY = (int)(((ReadFloatKvCom("140", "141") - ZDistanceMin) / (float)(ZDistanceMax - ZDistanceMin)) * (PnlZMap.Height - PnlZMap.PointSize));
-                LbZCoorValue.Text = ReadFloatKvCom("140", "141").ToString("F2") + "mm";
+                TbZControl.Value = (int)((ReadCMFromPLC_KV("8830", "8831") * 10 / ZpulPerMM) / -ZWorkingRange * 100);
+                LbZCoorValue.Text = (ReadCMFromPLC_KV("8830", "8831") / ZpulPerMM).ToString("F2") + "mm";
+                PnlZMap.PointY = (int)((ReadCMFromPLC_KV("8830", "8831") * 10 / ZpulPerMM) / -ZWorkingRange * PnlZMap.Height);
                 blinkTimer.Start(); // start delay time
                 MessageBox.Show("Connection PLC successful ", "Connection status", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -1832,6 +1842,7 @@ forcecurve = 0
                 MessageBox.Show("Connection Failed: " + ex.Message, "Error",
         MessageBoxButtons.RetryCancel, MessageBoxIcon.Error,
         MessageBoxDefaultButton.Button1);
+                blinkTimer.Stop();
             }
         }
         private void PostDataToPLC(object sender, DSM_GridMap.PointClickedEventArgs e)
@@ -1839,11 +1850,11 @@ forcecurve = 0
             OnBitMR("208");
             OnBitMR("308");
 
-            float currentYCoor = ((((float)e.Y / PnlXYMap.Height) * 100 / (float)100 * (YDistanceMax - YDistanceMin)) - YDistanceMin);
-            float currentXCoor = ((((float)e.X / PnlXYMap.Width) * 100 / (float)100 * (XDistanceMax - XDistanceMin)) + XDistanceMin);
+            float currentYCoor = ((float)e.Y / PnlXYMap.Height) * -YWorkingRange;
+            float currentXCoor = ((float)e.X / PnlXYMap.Width) * XWorkingRange ;
 
-            WriteCMToPLC("8230", "8231", currentXCoor * 2500);
-            WriteCMToPLC("8430", "8431", currentYCoor * 2500);
+            WriteCMToPLC("8230", "8231", currentXCoor * XYpulPerMM);
+            WriteCMToPLC("8430", "8431", currentYCoor * XYpulPerMM);
             OnBitMR("210");
             OnBitMR("310");
             OffBitMR("210");
@@ -1858,8 +1869,8 @@ forcecurve = 0
             float currentSpeed = ((TbXYspeed.Value / (float)100 * (maxSpeed - minSpeed)) + minSpeed); // Map to range of speed
             WriteDMToPLC("204", "205", currentSpeed); // Write speed value in register
             WriteDMToPLC("304", "305", currentSpeed); // Write speed value in register
-            WriteCMToPLC("8234", "8235", currentSpeed * 2500); // Write speed value in register
-            WriteCMToPLC("8434", "8435", currentSpeed * 2500); // Write speed value in register
+            WriteCMToPLC("8234", "8235", currentSpeed); // Write speed value in register
+            WriteCMToPLC("8434", "8435", currentSpeed); // Write speed value in register
             //LbXCoorValue.Text = currentSpeed.ToString();
 
         }
@@ -1869,9 +1880,8 @@ forcecurve = 0
 
             OnBitMR("108");
             OffBitMR("108");
-            float currentZCoor = ((TbZControl.Value / (float)100 * (ZDistanceMax - ZDistanceMin)) + ZDistanceMin); // Map to range of Working distance (mm)
-            LbXCoorValue.Text = (currentZCoor * 2500).ToString();
-            WriteCMToPLC("8010", "8011", currentZCoor * 2500);
+            float currentZCoor = (float)TbZControl.Value / 100 * -ZWorkingRange/10; // Map to range of Working distance (mm)
+            WriteCMToPLC("8010", "8011", currentZCoor * ZpulPerMM);
 
         }
         private void TbZControl_MouseWheel(object sender, MouseEventArgs e)
@@ -1880,7 +1890,7 @@ forcecurve = 0
             OnBitMR("110");
             OffBitMR("110");
         }
-        private float ReadFloatKvCom(string lowerWord, string upperWord)
+        private float ReadDMFromPLC_KV(string lowerWord, string upperWord)
         {
             try
             {
@@ -1902,9 +1912,39 @@ forcecurve = 0
             catch (Exception ex)
             {
                 MessageBox.Show($"Error reading {lowerWord} and {upperWord} from device: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                blinkTimer.Stop();
                 return 0; // Return a default value in case of failure
             }
         }
+
+        private float ReadCMFromPLC_KV(string lowerWord, string upperWord)
+        {
+            try
+            {
+                // Read the two 16-bit unsigned words from the PLC.
+                // In this example, lowerWord holds the high-order bits,
+                // and upperWord holds the low-order bits.
+                ushort lower = ushort.Parse(axDBCommManager1.ReadDevice(DATABUILDERAXLibLB.DBPlcDevice.DKVNano_CM, lowerWord).ToString());
+                ushort upper = ushort.Parse(axDBCommManager1.ReadDevice(DATABUILDERAXLibLB.DBPlcDevice.DKVNano_CM, upperWord).ToString());
+
+                // Combine the two 16-bit words into a single 32-bit unsigned integer.
+                float combined = (upper << 16) | lower;
+
+                // Convert the 32-bit integer's bit pattern to a float.
+                float result = BitConverter.ToSingle(BitConverter.GetBytes(combined), 0);
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error reading {lowerWord} and {upperWord} from device: {ex.Message}",
+                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                blinkTimer.Stop();
+                return 0;
+            }
+        }
+
+
 
         private string ReadFloatHotLink(string bitAddress)
         {
@@ -2049,9 +2089,9 @@ forcecurve = 0
             float zCoordinate = (CM8831 << 16) | CM8830;
 
             //string currentCoordinate = (combined2 / (pulsesPerRevolution / threadPitch)).ToString("F2");
-            currentXCoor = (xCoordinate / -(pulsesPerRevolution / threadPitch));
-            currentYCoor = (yCoordinate / -(pulsesPerRevolution / threadPitch));
-            currentZCoor = (zCoordinate / -(pulsesPerRevolution / threadPitch));
+            currentXCoor = (xCoordinate / -(pulsesPerRev / threadPitch));
+            currentYCoor = (yCoordinate / -(pulsesPerRev / threadPitch));
+            currentZCoor = (zCoordinate / -(pulsesPerRev / threadPitch));
 
             //if (currentXCoor > XWorkingRange || currentYCoor> YWorkingRange || currentZCoor > ZWorkingRange)
             //{
@@ -2388,7 +2428,7 @@ forcecurve = 0
 
         private void BtnXYDownSpeed_Click(object sender, EventArgs e)
         {
-            ConnectToPLC();
+            //ConnectToPLC();
         }
 
         private void TbZControl_MouseUp(object sender, MouseEventArgs e)
