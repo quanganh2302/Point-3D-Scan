@@ -47,6 +47,7 @@ namespace TCHRLibBasicRecordSample
         public static Color BorderBtn = ColorTranslator.FromHtml("#343434");
         public static Color GridBg = ColorTranslator.FromHtml("#2B2926");
 
+
         public static int MarginYScreenXl = 24;
         public static int MarginYScreenLg = 12;
         #endregion
@@ -71,13 +72,13 @@ namespace TCHRLibBasicRecordSample
         float ZDistanceMax = -240;// distance of 2 limit Z (mm)
 
         float XDistanceMin = 0;// distance of 2 limit X (mm)
-        float XDistanceMax = 200;// distance of 2 limit X (mm)
+        float XDistanceMax = 190;// distance of 2 limit X (mm)
 
         float YDistanceMin = 0;// distance of 2 limit Y (mm)
-        float YDistanceMax = -200;// distance of 2 limit Y (mm)
+        float YDistanceMax = -190;// distance of 2 limit Y (mm)
 
-        float XWorkingRange = 200;// distance of 2 limit X (mm)
-        float YWorkingRange = 200;// distance of 2 limit X (mm)
+        float XWorkingRange = 190;// distance of 2 limit X (mm)
+        float YWorkingRange = 190;// distance of 2 limit X (mm)
         float ZWorkingRange = 240;// distance of 2 limit X (mm)
 
 
@@ -99,6 +100,11 @@ namespace TCHRLibBasicRecordSample
         #endregion
 
         public static readonly FontFamily CenturyGothic = new FontFamily("Century Gothic");
+        Font FontSM = new Font(CenturyGothic, 8);
+        Font FontMD = new Font(CenturyGothic, 10);
+        Font FontLG = new Font(CenturyGothic, 12, FontStyle.Bold);
+        Font FontXL = new Font(CenturyGothic, 14, FontStyle.Bold);
+
 
         bool expand = false;
         private void timerComboBox_Tick(object sender, EventArgs e)
@@ -438,6 +444,17 @@ namespace TCHRLibBasicRecordSample
 
             BtnRsTch.BorderColor = EmergencyRed;
             BtnRunScan.BackColor = orange;
+            BtnRunScan.Text = "CONNECT TO PLC";
+
+            if (SystemInformation.WorkingArea.Width < 1600)
+            {
+                BtnRunScan.Font = FontLG;
+            }
+            else
+            {
+                BtnRunScan.Font = FontXL;
+
+            }
             BtnXYDownSpeed.BorderColor = Color.Transparent;
 
             TbXYspeed.ThumbColor = orange;
@@ -566,7 +583,7 @@ namespace TCHRLibBasicRecordSample
                 PnlProgressGrid.Padding = new Padding(36, MarginYScreenXl, 36, MarginYScreenXl);
             }
             PnlProgressGrid.BackColor = CardBg;
-            PbScan.ChannelColor = MainBg;
+            PbScan.ChannelColor = BorderBtn;
             PbScan.SliderColor = orange;
             PbScan.Value = 0;
             PbScan.ForeBackColor = CardBg;
@@ -584,8 +601,11 @@ namespace TCHRLibBasicRecordSample
                 PnlChartGrid.Padding = new Padding(36, MarginYScreenXl, 36, MarginYScreenXl);
             }
             PnlChartGrid.BackColor = CardBg;
+            //chart1.BackColor = BorderBtn;
+            //chart1.BorderlineColor = orange;
             //PnlLineChartArea.BackColor = CardBg;
             LbNameChart.ForeColor = ForeGroundBlack;
+
 
 
         }
@@ -630,7 +650,7 @@ namespace TCHRLibBasicRecordSample
             LbYCoorValue.Text = (ReadCMFromPLC_KV("8910", "8911") / XYpulPerMM).ToString("F2") + "mm";
             LbZCoorValue.Text = (ReadCMFromPLC_KV("8830", "8831") / ZpulPerMM).ToString("F2") + "mm";
 
-            PnlXYMap.PointY = (int)(((ReadCMFromPLC_KV("8910", "8911") / XYpulPerMM) / YWorkingRange) *  -PnlXYMap.Height);
+            PnlXYMap.PointY = (int)(((ReadCMFromPLC_KV("8910", "8911") / XYpulPerMM) / YWorkingRange) * -PnlXYMap.Height);
             PnlXYMap.PointX = (int)(((ReadCMFromPLC_KV("8870", "8871") / XYpulPerMM) / XWorkingRange) * PnlXYMap.Width);
             PnlZMap.PointY = (int)((ReadCMFromPLC_KV("8830", "8831") * 10 / ZpulPerMM) / -ZWorkingRange * PnlZMap.Height);
 
@@ -990,6 +1010,16 @@ namespace TCHRLibBasicRecordSample
             EnableSetting(_bEnabled);
         }
 
+        private void EnableGUIPLC(bool _bEnabled)
+        {
+            // axDBCommManager1.Active
+            if (_bEnabled)
+                BtnRunScan.Text = "START SCANNING";
+            else
+                BtnRunScan.Text = "CONNECT TO PLC";
+        }
+
+
         private void EnableSetting(bool _bEnabled)
         {
             RBConfocal.Enabled = _bEnabled && (RbCHR1 || RbCHR2);
@@ -1035,6 +1065,8 @@ namespace TCHRLibBasicRecordSample
             BtRecord.Tag = 1;
             BtSave.Enabled = false;
             recordedPoints.Clear();
+            BtnRunScan.Text = "STOP RECORDING";
+            BtnRunScan.Tag = 1;
         }
 
 
@@ -1061,7 +1093,9 @@ namespace TCHRLibBasicRecordSample
             progressTimer.Stop();
             EnableSetting(true);
             BtRecord.Text = "Start Recording";
+            BtnRunScan.Text = "START SCANNING";
             BtRecord.Tag = 0;
+            BtnRunScan.Tag = 0;
             BtSave.Enabled = true;
 
         }
@@ -1173,10 +1207,19 @@ namespace TCHRLibBasicRecordSample
 
         private void BtRecord_Click(object sender, EventArgs e)
         {
-            if (Convert.ToInt32((sender as Button).Tag) == 0)
-                StartRecording();
-            else
-                StopRecording();
+
+            if (axDBCommManager1.Active)
+            {
+                if (Convert.ToInt32((sender as Button).Tag) == 0)
+                    StartRecording();
+                else
+                    StopRecording();
+            } else
+            {
+                ConnectToPLC();
+            }
+
+            EnableGUIPLC(axDBCommManager1.Active);
         }
         //here save the recorded data into a file 
         private void BtSave_Click(object sender, EventArgs e)
@@ -1657,7 +1700,7 @@ forcecurve = 0
 
         private void UpdateButtonImage(CustomUi.DSM_Button button, string text)
         {
-            //// If text is NOT empty, use imageA; otherwise, use imageB
+            // If text is NOT empty, use imageA; otherwise, use imageB
             //if (!string.IsNullOrWhiteSpace(text))
             //{
             //    button.Image = Properties.Resources.icon_delete;
@@ -1851,7 +1894,7 @@ forcecurve = 0
             OnBitMR("308");
 
             float currentYCoor = ((float)e.Y / PnlXYMap.Height) * -YWorkingRange;
-            float currentXCoor = ((float)e.X / PnlXYMap.Width) * XWorkingRange ;
+            float currentXCoor = ((float)e.X / PnlXYMap.Width) * XWorkingRange;
 
             WriteCMToPLC("8230", "8231", currentXCoor * XYpulPerMM);
             WriteCMToPLC("8430", "8431", currentYCoor * XYpulPerMM);
@@ -1880,7 +1923,7 @@ forcecurve = 0
 
             OnBitMR("108");
             OffBitMR("108");
-            float currentZCoor = (float)TbZControl.Value / 100 * -ZWorkingRange/10; // Map to range of Working distance (mm)
+            float currentZCoor = (float)TbZControl.Value / 100 * -ZWorkingRange / 10; // Map to range of Working distance (mm)
             WriteCMToPLC("8010", "8011", currentZCoor * ZpulPerMM);
 
         }

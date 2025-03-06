@@ -56,7 +56,6 @@
             this.ImgAreaScan = new System.Windows.Forms.PictureBox();
             this.PnlProgressGrid = new System.Windows.Forms.TableLayoutPanel();
             this.LbScanProgress = new System.Windows.Forms.Label();
-            this.PbScan = new TCHRLibBasicRecordSample.CustomUi.DSM_ProgressBar();
             this.PnlHidden = new System.Windows.Forms.Panel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -100,32 +99,45 @@
             this.LbXAxisCoor = new System.Windows.Forms.Label();
             this.PnlZCoorGird = new System.Windows.Forms.TableLayoutPanel();
             this.LbZCoor = new System.Windows.Forms.Label();
-            this.PnlZMap = new TCHRLibBasicRecordSample.CustomUi.DSM_GridMap();
             this.PnlXYCoorGrid = new System.Windows.Forms.TableLayoutPanel();
             this.LbXYCoor = new System.Windows.Forms.Label();
-            this.PnlXYMap = new TCHRLibBasicRecordSample.CustomUi.DSM_GridMap();
             this.PnlListBtnSetting = new System.Windows.Forms.TableLayoutPanel();
+            this.PnlControlGrid = new System.Windows.Forms.TableLayoutPanel();
+            this.PnlZControl = new System.Windows.Forms.Panel();
+            this.LbZAxis = new System.Windows.Forms.Label();
+            this.PnlXYControl = new System.Windows.Forms.TableLayoutPanel();
+            this.PnlChangeSpeedArea = new System.Windows.Forms.TableLayoutPanel();
+            this.PnlXYBtn = new System.Windows.Forms.Panel();
+            this.axDBDeviceManager1 = new AxDATABUILDERAXLibLB.AxDBDeviceManager();
+            this.axDBTriggerManager1 = new AxDATABUILDERAXLibLB.AxDBTriggerManager();
+            this.axDBCommManager1 = new AxDATABUILDERAXLibLB.AxDBCommManager();
+            this.LbXYSpeed = new System.Windows.Forms.Label();
+            this.LbXYAxis = new System.Windows.Forms.Label();
+            this.PnlTchAreaGrid = new System.Windows.Forms.TableLayoutPanel();
+            this.PnlTchGrid = new System.Windows.Forms.TableLayoutPanel();
+            this.LbPos4 = new System.Windows.Forms.Label();
+            this.LbPos1 = new System.Windows.Forms.Label();
+            this.LbPos3 = new System.Windows.Forms.Label();
+            this.LbPos2 = new System.Windows.Forms.Label();
+            this.LbTitleSetting = new System.Windows.Forms.Label();
+            this.LbTitleControl = new System.Windows.Forms.Label();
+            this.chart4 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.timerComboBox = new System.Windows.Forms.Timer(this.components);
+            this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.PbScan = new TCHRLibBasicRecordSample.CustomUi.DSM_ProgressBar();
+            this.PnlZMap = new TCHRLibBasicRecordSample.CustomUi.DSM_GridMap();
+            this.PnlXYMap = new TCHRLibBasicRecordSample.CustomUi.DSM_GridMap();
             this.CbbRunMode = new TCHRLibBasicRecordSample.CustomUi.TabControl.DSM_ComboBox();
             this.CbbSignalMode = new TCHRLibBasicRecordSample.CustomUi.TabControl.DSM_ComboBox();
             this.CbbScanArea = new TCHRLibBasicRecordSample.CustomUi.TabControl.DSM_ComboBox();
             this.CbbSaveMode = new TCHRLibBasicRecordSample.CustomUi.TabControl.DSM_ComboBox();
             this.BtnSaveData = new TCHRLibBasicRecordSample.CustomUi.DSM_Button();
-            this.PnlControlGrid = new System.Windows.Forms.TableLayoutPanel();
-            this.PnlZControl = new System.Windows.Forms.Panel();
             this.TbZControl = new TCHRLibBasicRecordSample.CustomUi.DSM_TrackBarImg();
-            this.LbZAxis = new System.Windows.Forms.Label();
-            this.PnlXYControl = new System.Windows.Forms.TableLayoutPanel();
-            this.PnlChangeSpeedArea = new System.Windows.Forms.TableLayoutPanel();
             this.TbXYspeed = new TCHRLibBasicRecordSample.CustomUi.DSM_Trackbar();
             this.BtnXYDownSpeed = new TCHRLibBasicRecordSample.CustomUi.DSM_Button();
             this.BtnXYUpSpeed = new TCHRLibBasicRecordSample.CustomUi.DSM_Button();
-            this.PnlXYBtn = new System.Windows.Forms.Panel();
-            this.axDBDeviceManager1 = new AxDATABUILDERAXLibLB.AxDBDeviceManager();
-            this.axDBTriggerManager1 = new AxDATABUILDERAXLibLB.AxDBTriggerManager();
-            this.axDBCommManager1 = new AxDATABUILDERAXLibLB.AxDBCommManager();
             this.BtnDownLeft = new TCHRLibBasicRecordSample.CustomUi.DSM_SpecialButton();
-            this.LbXYSpeed = new System.Windows.Forms.Label();
-            this.LbXYAxis = new System.Windows.Forms.Label();
             this.BtnLeftUp = new TCHRLibBasicRecordSample.CustomUi.DSM_SpecialButton();
             this.BtnHome = new TCHRLibBasicRecordSample.CustomUi.DSM_Button();
             this.BtnRightDown = new TCHRLibBasicRecordSample.CustomUi.DSM_SpecialButton();
@@ -134,17 +146,11 @@
             this.BtnRight = new TCHRLibBasicRecordSample.CustomUi.DSM_Button();
             this.BtnDown = new TCHRLibBasicRecordSample.CustomUi.DSM_Button();
             this.BtnUp = new TCHRLibBasicRecordSample.CustomUi.DSM_Button();
-            this.PnlTchAreaGrid = new System.Windows.Forms.TableLayoutPanel();
             this.BtnRsTch = new TCHRLibBasicRecordSample.CustomUi.DSM_Button();
             this.BtnRunScan = new TCHRLibBasicRecordSample.CustomUi.DSM_Button();
-            this.PnlTchGrid = new System.Windows.Forms.TableLayoutPanel();
-            this.LbPos4 = new System.Windows.Forms.Label();
-            this.LbPos1 = new System.Windows.Forms.Label();
             this.BtnSetPos4 = new TCHRLibBasicRecordSample.CustomUi.DSM_Button();
             this.TbPos4 = new TCHRLibBasicRecordSample.CustomUi.DSM_TextBox();
             this.BtnRunPos4 = new TCHRLibBasicRecordSample.CustomUi.DSM_Button();
-            this.LbPos3 = new System.Windows.Forms.Label();
-            this.LbPos2 = new System.Windows.Forms.Label();
             this.BtnRunPos3 = new TCHRLibBasicRecordSample.CustomUi.DSM_Button();
             this.BtnSetPos3 = new TCHRLibBasicRecordSample.CustomUi.DSM_Button();
             this.TbPos3 = new TCHRLibBasicRecordSample.CustomUi.DSM_TextBox();
@@ -154,12 +160,6 @@
             this.BtnSetPos2 = new TCHRLibBasicRecordSample.CustomUi.DSM_Button();
             this.TbPos2 = new TCHRLibBasicRecordSample.CustomUi.DSM_TextBox();
             this.TbPos1 = new TCHRLibBasicRecordSample.CustomUi.DSM_TextBox();
-            this.LbTitleSetting = new System.Windows.Forms.Label();
-            this.LbTitleControl = new System.Windows.Forms.Label();
-            this.chart4 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.timerComboBox = new System.Windows.Forms.Timer(this.components);
-            this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.PnlSetting.SuspendLayout();
             this.PnlNavSetting.SuspendLayout();
             this.PnlAdvanceSetting.SuspendLayout();
@@ -218,7 +218,7 @@
             this.PnlSetting.Location = new System.Drawing.Point(0, 0);
             this.PnlSetting.Margin = new System.Windows.Forms.Padding(0);
             this.PnlSetting.Name = "PnlSetting";
-            this.PnlSetting.Size = new System.Drawing.Size(683, 130);
+            this.PnlSetting.Size = new System.Drawing.Size(693, 130);
             this.PnlSetting.TabIndex = 25;
             // 
             // PnlDSPage
@@ -227,7 +227,7 @@
             this.PnlDSPage.Location = new System.Drawing.Point(0, 64);
             this.PnlDSPage.Margin = new System.Windows.Forms.Padding(0);
             this.PnlDSPage.Name = "PnlDSPage";
-            this.PnlDSPage.Size = new System.Drawing.Size(683, 66);
+            this.PnlDSPage.Size = new System.Drawing.Size(693, 66);
             this.PnlDSPage.TabIndex = 1;
             // 
             // PnlNavSetting
@@ -245,7 +245,7 @@
             this.PnlNavSetting.Name = "PnlNavSetting";
             this.PnlNavSetting.RowCount = 1;
             this.PnlNavSetting.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.PnlNavSetting.Size = new System.Drawing.Size(683, 64);
+            this.PnlNavSetting.Size = new System.Drawing.Size(693, 64);
             this.PnlNavSetting.TabIndex = 0;
             // 
             // PnlAdvanceSetting
@@ -254,11 +254,11 @@
             this.PnlAdvanceSetting.Controls.Add(this.BtnAdvanceSetting);
             this.PnlAdvanceSetting.Cursor = System.Windows.Forms.Cursors.Hand;
             this.PnlAdvanceSetting.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PnlAdvanceSetting.Location = new System.Drawing.Point(141, 5);
+            this.PnlAdvanceSetting.Location = new System.Drawing.Point(143, 5);
             this.PnlAdvanceSetting.Margin = new System.Windows.Forms.Padding(5, 5, 5, 0);
             this.PnlAdvanceSetting.Name = "PnlAdvanceSetting";
             this.PnlAdvanceSetting.Padding = new System.Windows.Forms.Padding(0, 0, 0, 6);
-            this.PnlAdvanceSetting.Size = new System.Drawing.Size(140, 59);
+            this.PnlAdvanceSetting.Size = new System.Drawing.Size(142, 59);
             this.PnlAdvanceSetting.TabIndex = 1;
             // 
             // BtnAdvanceSetting
@@ -274,7 +274,7 @@
             this.BtnAdvanceSetting.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.BtnAdvanceSetting.Location = new System.Drawing.Point(0, 0);
             this.BtnAdvanceSetting.Name = "BtnAdvanceSetting";
-            this.BtnAdvanceSetting.Size = new System.Drawing.Size(140, 53);
+            this.BtnAdvanceSetting.Size = new System.Drawing.Size(142, 53);
             this.BtnAdvanceSetting.TabIndex = 28;
             this.BtnAdvanceSetting.Text = "Advance setting";
             this.BtnAdvanceSetting.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -291,7 +291,7 @@
             this.PnlDefaultSetting.Margin = new System.Windows.Forms.Padding(5, 5, 5, 0);
             this.PnlDefaultSetting.Name = "PnlDefaultSetting";
             this.PnlDefaultSetting.Padding = new System.Windows.Forms.Padding(0, 0, 0, 6);
-            this.PnlDefaultSetting.Size = new System.Drawing.Size(126, 59);
+            this.PnlDefaultSetting.Size = new System.Drawing.Size(128, 59);
             this.PnlDefaultSetting.TabIndex = 0;
             // 
             // BtnDefaultSetting
@@ -307,7 +307,7 @@
             this.BtnDefaultSetting.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.BtnDefaultSetting.Location = new System.Drawing.Point(0, 0);
             this.BtnDefaultSetting.Name = "BtnDefaultSetting";
-            this.BtnDefaultSetting.Size = new System.Drawing.Size(126, 53);
+            this.BtnDefaultSetting.Size = new System.Drawing.Size(128, 53);
             this.BtnDefaultSetting.TabIndex = 28;
             this.BtnDefaultSetting.Text = "Default setting";
             this.BtnDefaultSetting.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -365,11 +365,12 @@
             // 
             // PnlMainGrid
             // 
-            this.PnlMainGrid.ColumnCount = 2;
+            this.PnlMainGrid.ColumnCount = 3;
             this.PnlMainGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 55F));
+            this.PnlMainGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.PnlMainGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45F));
             this.PnlMainGrid.Controls.Add(this.PnlLeftSite, 0, 0);
-            this.PnlMainGrid.Controls.Add(this.PnlRightSite, 1, 0);
+            this.PnlMainGrid.Controls.Add(this.PnlRightSite, 2, 0);
             this.PnlMainGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PnlMainGrid.Location = new System.Drawing.Point(0, 42);
             this.PnlMainGrid.Margin = new System.Windows.Forms.Padding(0);
@@ -390,7 +391,7 @@
             this.PnlLeftSite.Controls.Add(this.PnlChartGrid, 0, 5);
             this.PnlLeftSite.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PnlLeftSite.Location = new System.Drawing.Point(0, 0);
-            this.PnlLeftSite.Margin = new System.Windows.Forms.Padding(0, 0, 10, 0);
+            this.PnlLeftSite.Margin = new System.Windows.Forms.Padding(0);
             this.PnlLeftSite.Name = "PnlLeftSite";
             this.PnlLeftSite.RowCount = 6;
             this.PnlLeftSite.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
@@ -399,7 +400,7 @@
             this.PnlLeftSite.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 96F));
             this.PnlLeftSite.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 2F));
             this.PnlLeftSite.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 275F));
-            this.PnlLeftSite.Size = new System.Drawing.Size(837, 803);
+            this.PnlLeftSite.Size = new System.Drawing.Size(836, 803);
             this.PnlLeftSite.TabIndex = 28;
             // 
             // PnlScanArea
@@ -455,25 +456,6 @@
             this.LbScanProgress.Text = "Scanning ...";
             this.LbScanProgress.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // PbScan
-            // 
-            this.PbScan.ChannelColor = System.Drawing.Color.LightSteelBlue;
-            this.PbScan.ChannelHeight = 18;
-            this.PbScan.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PbScan.Font = new System.Drawing.Font("Century Gothic", 8.25F);
-            this.PbScan.ForeBackColor = System.Drawing.Color.Transparent;
-            this.PbScan.ForeColor = System.Drawing.Color.White;
-            this.PbScan.Location = new System.Drawing.Point(39, 11);
-            this.PbScan.Name = "PbScan";
-            this.PbScan.ShowMaximun = false;
-            this.PbScan.ShowValue = TCHRLibBasicRecordSample.CustomUi.TextPosition.Sliding;
-            this.PbScan.Size = new System.Drawing.Size(769, 42);
-            this.PbScan.SliderColor = System.Drawing.Color.RosyBrown;
-            this.PbScan.SliderHeight = 18;
-            this.PbScan.SymbolAfter = "%";
-            this.PbScan.SymbolBefore = "";
-            this.PbScan.TabIndex = 35;
-            // 
             // PnlHidden
             // 
             this.PnlHidden.Controls.Add(this.tabControl1);
@@ -501,7 +483,7 @@
             // 
             this.tabPage1.BackColor = System.Drawing.Color.DimGray;
             this.tabPage1.Controls.Add(this.panel10);
-            this.tabPage1.Location = new System.Drawing.Point(4, 28);
+            this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(2, 4, 2, 4);
@@ -534,7 +516,7 @@
             this.RBCHRC.Location = new System.Drawing.Point(170, 65);
             this.RBCHRC.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.RBCHRC.Name = "RBCHRC";
-            this.RBCHRC.Size = new System.Drawing.Size(75, 23);
+            this.RBCHRC.Size = new System.Drawing.Size(62, 20);
             this.RBCHRC.TabIndex = 16;
             this.RBCHRC.TabStop = true;
             this.RBCHRC.Text = "CHR C";
@@ -569,7 +551,7 @@
             this.RBCLS.Location = new System.Drawing.Point(9, 65);
             this.RBCLS.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.RBCLS.Name = "RBCLS";
-            this.RBCLS.Size = new System.Drawing.Size(162, 23);
+            this.RBCLS.Size = new System.Drawing.Size(130, 20);
             this.RBCLS.TabIndex = 13;
             this.RBCLS.Text = "Multi-Channel CHR";
             this.RBCLS.UseVisualStyleBackColor = true;
@@ -580,7 +562,7 @@
             this.RBCHR2.Location = new System.Drawing.Point(170, 41);
             this.RBCHR2.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.RBCHR2.Name = "RBCHR2";
-            this.RBCHR2.Size = new System.Drawing.Size(65, 23);
+            this.RBCHR2.Size = new System.Drawing.Size(54, 20);
             this.RBCHR2.TabIndex = 12;
             this.RBCHR2.Text = "CHR²";
             this.RBCHR2.UseVisualStyleBackColor = true;
@@ -591,7 +573,7 @@
             this.RBCHR1.Location = new System.Drawing.Point(9, 41);
             this.RBCHR1.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.RBCHR1.Name = "RBCHR1";
-            this.RBCHR1.Size = new System.Drawing.Size(171, 23);
+            this.RBCHR1.Size = new System.Drawing.Size(136, 20);
             this.RBCHR1.TabIndex = 11;
             this.RBCHR1.Text = "First Generation CHR";
             this.RBCHR1.UseVisualStyleBackColor = true;
@@ -601,7 +583,7 @@
             this.TbConInfo.Location = new System.Drawing.Point(107, 15);
             this.TbConInfo.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.TbConInfo.Name = "TbConInfo";
-            this.TbConInfo.Size = new System.Drawing.Size(108, 24);
+            this.TbConInfo.Size = new System.Drawing.Size(108, 21);
             this.TbConInfo.TabIndex = 10;
             this.TbConInfo.Text = "192.168.170.2";
             // 
@@ -611,7 +593,7 @@
             this.label1.Location = new System.Drawing.Point(9, 15);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(120, 19);
+            this.label1.Size = new System.Drawing.Size(95, 16);
             this.label1.TabIndex = 9;
             this.label1.Text = "Connection Info";
             // 
@@ -620,7 +602,7 @@
             this.tabPage2.BackColor = System.Drawing.Color.Silver;
             this.tabPage2.Controls.Add(this.panel9);
             this.tabPage2.Controls.Add(this.panel2);
-            this.tabPage2.Location = new System.Drawing.Point(4, 28);
+            this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(2, 4, 2, 4);
@@ -650,7 +632,7 @@
             this.RBInterfero.Location = new System.Drawing.Point(201, 9);
             this.RBInterfero.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.RBInterfero.Name = "RBInterfero";
-            this.RBInterfero.Size = new System.Drawing.Size(129, 23);
+            this.RBInterfero.Size = new System.Drawing.Size(103, 20);
             this.RBInterfero.TabIndex = 6;
             this.RBInterfero.Text = "Interferometric";
             this.RBInterfero.UseVisualStyleBackColor = true;
@@ -663,7 +645,7 @@
             this.RBConfocal.Location = new System.Drawing.Point(121, 9);
             this.RBConfocal.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.RBConfocal.Name = "RBConfocal";
-            this.RBConfocal.Size = new System.Drawing.Size(94, 23);
+            this.RBConfocal.Size = new System.Drawing.Size(76, 20);
             this.RBConfocal.TabIndex = 5;
             this.RBConfocal.TabStop = true;
             this.RBConfocal.Text = "Confocal";
@@ -676,7 +658,7 @@
             this.label6.Location = new System.Drawing.Point(5, 11);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(138, 19);
+            this.label6.Size = new System.Drawing.Size(110, 16);
             this.label6.TabIndex = 4;
             this.label6.Text = "Measuring Methos:";
             // 
@@ -685,7 +667,7 @@
             this.TBSHZ.Location = new System.Drawing.Point(107, 31);
             this.TBSHZ.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.TBSHZ.Name = "TBSHZ";
-            this.TBSHZ.Size = new System.Drawing.Size(129, 24);
+            this.TBSHZ.Size = new System.Drawing.Size(129, 21);
             this.TBSHZ.TabIndex = 3;
             this.TBSHZ.Text = "2000";
             this.TBSHZ.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TBSHZ_KeyPress);
@@ -696,7 +678,7 @@
             this.label5.Location = new System.Drawing.Point(5, 33);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(76, 19);
+            this.label5.Size = new System.Drawing.Size(61, 16);
             this.label5.TabIndex = 2;
             this.label5.Text = "Scanrate:";
             // 
@@ -705,7 +687,7 @@
             this.TBSODX.Location = new System.Drawing.Point(107, 57);
             this.TBSODX.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.TBSODX.Name = "TBSODX";
-            this.TBSODX.Size = new System.Drawing.Size(129, 24);
+            this.TBSODX.Size = new System.Drawing.Size(129, 21);
             this.TBSODX.TabIndex = 1;
             this.TBSODX.Text = "83, 65, 66";
             this.TBSODX.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TBSODX_KeyPress);
@@ -716,7 +698,7 @@
             this.label4.Location = new System.Drawing.Point(5, 59);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(122, 19);
+            this.label4.Size = new System.Drawing.Size(96, 16);
             this.label4.TabIndex = 0;
             this.label4.Text = "Selected signals:";
             // 
@@ -766,7 +748,7 @@
             this.CBFlush.Location = new System.Drawing.Point(2, 57);
             this.CBFlush.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.CBFlush.Name = "CBFlush";
-            this.CBFlush.Size = new System.Drawing.Size(132, 23);
+            this.CBFlush.Size = new System.Drawing.Size(106, 20);
             this.CBFlush.TabIndex = 5;
             this.CBFlush.Text = "Flush Old Data";
             this.CBFlush.UseVisualStyleBackColor = true;
@@ -776,7 +758,7 @@
             this.TBSampleCount.Location = new System.Drawing.Point(6, 23);
             this.TBSampleCount.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.TBSampleCount.Name = "TBSampleCount";
-            this.TBSampleCount.Size = new System.Drawing.Size(118, 24);
+            this.TBSampleCount.Size = new System.Drawing.Size(118, 21);
             this.TBSampleCount.TabIndex = 4;
             this.TBSampleCount.Text = "10000";
             // 
@@ -786,7 +768,7 @@
             this.label2.Location = new System.Drawing.Point(0, 5);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(112, 19);
+            this.label2.Size = new System.Drawing.Size(89, 16);
             this.label2.TabIndex = 3;
             this.label2.Text = "Sample Count:";
             // 
@@ -837,10 +819,10 @@
             this.LbNameChart.AutoSize = true;
             this.LbNameChart.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LbNameChart.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LbNameChart.Location = new System.Drawing.Point(38, 208);
+            this.LbNameChart.Location = new System.Drawing.Point(38, 212);
             this.LbNameChart.Margin = new System.Windows.Forms.Padding(2, 16, 2, 0);
             this.LbNameChart.Name = "LbNameChart";
-            this.LbNameChart.Size = new System.Drawing.Size(771, 23);
+            this.LbNameChart.Size = new System.Drawing.Size(771, 19);
             this.LbNameChart.TabIndex = 63;
             this.LbNameChart.Text = "Spectrum view";
             this.LbNameChart.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -900,7 +882,7 @@
             series1.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Square;
             series1.Name = "Series1";
             this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(775, 168);
+            this.chart1.Size = new System.Drawing.Size(775, 172);
             this.chart1.TabIndex = 65;
             this.chart1.Text = "chart1";
             // 
@@ -915,8 +897,8 @@
             this.PnlRightSite.Controls.Add(this.LbTitleSetting, 0, 1);
             this.PnlRightSite.Controls.Add(this.LbTitleControl, 0, 3);
             this.PnlRightSite.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PnlRightSite.Location = new System.Drawing.Point(857, 0);
-            this.PnlRightSite.Margin = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.PnlRightSite.Location = new System.Drawing.Point(856, 0);
+            this.PnlRightSite.Margin = new System.Windows.Forms.Padding(0);
             this.PnlRightSite.Name = "PnlRightSite";
             this.PnlRightSite.RowCount = 5;
             this.PnlRightSite.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -924,7 +906,7 @@
             this.PnlRightSite.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.PnlRightSite.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.PnlRightSite.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.PnlRightSite.Size = new System.Drawing.Size(683, 803);
+            this.PnlRightSite.Size = new System.Drawing.Size(684, 803);
             this.PnlRightSite.TabIndex = 28;
             // 
             // PnlSettingGrid
@@ -946,7 +928,7 @@
             this.PnlSettingGrid.Padding = new System.Windows.Forms.Padding(36, 24, 24, 24);
             this.PnlSettingGrid.RowCount = 1;
             this.PnlSettingGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.PnlSettingGrid.Size = new System.Drawing.Size(683, 308);
+            this.PnlSettingGrid.Size = new System.Drawing.Size(693, 308);
             this.PnlSettingGrid.TabIndex = 34;
             // 
             // PnlInfoCoorGrid
@@ -961,7 +943,7 @@
             this.PnlInfoCoorGrid.Controls.Add(this.LbXCoorValue, 1, 1);
             this.PnlInfoCoorGrid.Controls.Add(this.LbXAxisCoor, 0, 1);
             this.PnlInfoCoorGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PnlInfoCoorGrid.Location = new System.Drawing.Point(570, 24);
+            this.PnlInfoCoorGrid.Location = new System.Drawing.Point(579, 24);
             this.PnlInfoCoorGrid.Margin = new System.Windows.Forms.Padding(0);
             this.PnlInfoCoorGrid.Name = "PnlInfoCoorGrid";
             this.PnlInfoCoorGrid.RowCount = 5;
@@ -970,17 +952,17 @@
             this.PnlInfoCoorGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.PnlInfoCoorGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.PnlInfoCoorGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.PnlInfoCoorGrid.Size = new System.Drawing.Size(89, 260);
+            this.PnlInfoCoorGrid.Size = new System.Drawing.Size(90, 260);
             this.PnlInfoCoorGrid.TabIndex = 27;
             // 
             // LbZCoorValue
             // 
             this.LbZCoorValue.AutoSize = true;
             this.LbZCoorValue.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LbZCoorValue.Location = new System.Drawing.Point(28, 208);
+            this.LbZCoorValue.Location = new System.Drawing.Point(24, 208);
             this.LbZCoorValue.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LbZCoorValue.Name = "LbZCoorValue";
-            this.LbZCoorValue.Size = new System.Drawing.Size(59, 26);
+            this.LbZCoorValue.Size = new System.Drawing.Size(64, 26);
             this.LbZCoorValue.TabIndex = 32;
             this.LbZCoorValue.Text = "0.00 mm";
             this.LbZCoorValue.TextAlign = System.Drawing.ContentAlignment.BottomRight;
@@ -992,7 +974,7 @@
             this.LbZAxisCoor.Location = new System.Drawing.Point(2, 208);
             this.LbZAxisCoor.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LbZAxisCoor.Name = "LbZAxisCoor";
-            this.LbZAxisCoor.Size = new System.Drawing.Size(22, 26);
+            this.LbZAxisCoor.Size = new System.Drawing.Size(18, 26);
             this.LbZAxisCoor.TabIndex = 32;
             this.LbZAxisCoor.Text = "Z:";
             this.LbZAxisCoor.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
@@ -1001,10 +983,10 @@
             // 
             this.LbYCoorValue.AutoSize = true;
             this.LbYCoorValue.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LbYCoorValue.Location = new System.Drawing.Point(28, 182);
+            this.LbYCoorValue.Location = new System.Drawing.Point(24, 182);
             this.LbYCoorValue.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LbYCoorValue.Name = "LbYCoorValue";
-            this.LbYCoorValue.Size = new System.Drawing.Size(59, 26);
+            this.LbYCoorValue.Size = new System.Drawing.Size(64, 26);
             this.LbYCoorValue.TabIndex = 32;
             this.LbYCoorValue.Text = "0.00 mm";
             this.LbYCoorValue.TextAlign = System.Drawing.ContentAlignment.BottomRight;
@@ -1016,7 +998,7 @@
             this.LbYAxisCoor.Location = new System.Drawing.Point(2, 182);
             this.LbYAxisCoor.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LbYAxisCoor.Name = "LbYAxisCoor";
-            this.LbYAxisCoor.Size = new System.Drawing.Size(22, 26);
+            this.LbYAxisCoor.Size = new System.Drawing.Size(18, 26);
             this.LbYAxisCoor.TabIndex = 32;
             this.LbYAxisCoor.Text = "Y:";
             this.LbYAxisCoor.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
@@ -1025,10 +1007,10 @@
             // 
             this.LbXCoorValue.AutoSize = true;
             this.LbXCoorValue.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LbXCoorValue.Location = new System.Drawing.Point(28, 156);
+            this.LbXCoorValue.Location = new System.Drawing.Point(24, 156);
             this.LbXCoorValue.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LbXCoorValue.Name = "LbXCoorValue";
-            this.LbXCoorValue.Size = new System.Drawing.Size(59, 26);
+            this.LbXCoorValue.Size = new System.Drawing.Size(64, 26);
             this.LbXCoorValue.TabIndex = 24;
             this.LbXCoorValue.Text = "0.00 mm";
             this.LbXCoorValue.TextAlign = System.Drawing.ContentAlignment.BottomRight;
@@ -1040,7 +1022,7 @@
             this.LbXAxisCoor.Location = new System.Drawing.Point(2, 156);
             this.LbXAxisCoor.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LbXAxisCoor.Name = "LbXAxisCoor";
-            this.LbXAxisCoor.Size = new System.Drawing.Size(22, 26);
+            this.LbXAxisCoor.Size = new System.Drawing.Size(18, 26);
             this.LbXAxisCoor.TabIndex = 24;
             this.LbXAxisCoor.Text = "X:";
             this.LbXAxisCoor.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
@@ -1052,13 +1034,13 @@
             this.PnlZCoorGird.Controls.Add(this.LbZCoor, 0, 1);
             this.PnlZCoorGird.Controls.Add(this.PnlZMap, 0, 0);
             this.PnlZCoorGird.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PnlZCoorGird.Location = new System.Drawing.Point(465, 24);
+            this.PnlZCoorGird.Location = new System.Drawing.Point(472, 24);
             this.PnlZCoorGird.Margin = new System.Windows.Forms.Padding(0);
             this.PnlZCoorGird.Name = "PnlZCoorGird";
             this.PnlZCoorGird.RowCount = 2;
             this.PnlZCoorGird.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90F));
             this.PnlZCoorGird.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.PnlZCoorGird.Size = new System.Drawing.Size(105, 260);
+            this.PnlZCoorGird.Size = new System.Drawing.Size(107, 260);
             this.PnlZCoorGird.TabIndex = 28;
             // 
             // LbZCoor
@@ -1068,36 +1050,10 @@
             this.LbZCoor.Location = new System.Drawing.Point(2, 234);
             this.LbZCoor.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LbZCoor.Name = "LbZCoor";
-            this.LbZCoor.Size = new System.Drawing.Size(101, 26);
+            this.LbZCoor.Size = new System.Drawing.Size(103, 26);
             this.LbZCoor.TabIndex = 22;
             this.LbZCoor.Text = "Z Coordinate";
             this.LbZCoor.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            // 
-            // PnlZMap
-            // 
-            this.PnlZMap.BackGroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
-            this.PnlZMap.BorderColor = System.Drawing.Color.SlateBlue;
-            this.PnlZMap.BorderSize = 2;
-            this.PnlZMap.CoordinateX = 0D;
-            this.PnlZMap.CoordinateY = 0D;
-            this.PnlZMap.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PnlZMap.DragEnabled = false;
-            this.PnlZMap.GridSize = 25;
-            this.PnlZMap.LineColor = System.Drawing.Color.White;
-            this.PnlZMap.LineSize = 1;
-            this.PnlZMap.Location = new System.Drawing.Point(3, 3);
-            this.PnlZMap.MainLineColor = System.Drawing.Color.White;
-            this.PnlZMap.MainLineSizeX = 2;
-            this.PnlZMap.MainLineSizeY = 4;
-            this.PnlZMap.Name = "PnlZMap";
-            this.PnlZMap.PointColor = System.Drawing.Color.Orange;
-            this.PnlZMap.PointDisplayStyle = TCHRLibBasicRecordSample.CustomUi.PointDisplayStyle.Circle;
-            this.PnlZMap.PointSize = 20;
-            this.PnlZMap.PointX = 50;
-            this.PnlZMap.PointY = 50;
-            this.PnlZMap.Size = new System.Drawing.Size(99, 228);
-            this.PnlZMap.TabIndex = 23;
-            this.PnlZMap.Text = "dsM_GridMap1";
             // 
             // PnlXYCoorGrid
             // 
@@ -1106,13 +1062,13 @@
             this.PnlXYCoorGrid.Controls.Add(this.LbXYCoor, 0, 1);
             this.PnlXYCoorGrid.Controls.Add(this.PnlXYMap, 0, 0);
             this.PnlXYCoorGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PnlXYCoorGrid.Location = new System.Drawing.Point(191, 24);
+            this.PnlXYCoorGrid.Location = new System.Drawing.Point(194, 24);
             this.PnlXYCoorGrid.Margin = new System.Windows.Forms.Padding(0);
             this.PnlXYCoorGrid.Name = "PnlXYCoorGrid";
             this.PnlXYCoorGrid.RowCount = 2;
             this.PnlXYCoorGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90F));
             this.PnlXYCoorGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.PnlXYCoorGrid.Size = new System.Drawing.Size(274, 260);
+            this.PnlXYCoorGrid.Size = new System.Drawing.Size(278, 260);
             this.PnlXYCoorGrid.TabIndex = 27;
             // 
             // LbXYCoor
@@ -1122,37 +1078,10 @@
             this.LbXYCoor.Location = new System.Drawing.Point(2, 234);
             this.LbXYCoor.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LbXYCoor.Name = "LbXYCoor";
-            this.LbXYCoor.Size = new System.Drawing.Size(270, 26);
+            this.LbXYCoor.Size = new System.Drawing.Size(274, 26);
             this.LbXYCoor.TabIndex = 22;
             this.LbXYCoor.Text = "X,Y Coordinate";
             this.LbXYCoor.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            // 
-            // PnlXYMap
-            // 
-            this.PnlXYMap.BackGroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
-            this.PnlXYMap.BorderColor = System.Drawing.Color.SlateBlue;
-            this.PnlXYMap.BorderSize = 2;
-            this.PnlXYMap.CoordinateX = 0D;
-            this.PnlXYMap.CoordinateY = 0D;
-            this.PnlXYMap.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PnlXYMap.DragEnabled = true;
-            this.PnlXYMap.GridSize = 25;
-            this.PnlXYMap.LineColor = System.Drawing.Color.White;
-            this.PnlXYMap.LineSize = 1;
-            this.PnlXYMap.Location = new System.Drawing.Point(3, 3);
-            this.PnlXYMap.MainLineColor = System.Drawing.Color.White;
-            this.PnlXYMap.MainLineSizeX = 2;
-            this.PnlXYMap.MainLineSizeY = 2;
-            this.PnlXYMap.Name = "PnlXYMap";
-            this.PnlXYMap.PointColor = System.Drawing.Color.Orange;
-            this.PnlXYMap.PointDisplayStyle = TCHRLibBasicRecordSample.CustomUi.PointDisplayStyle.Plus;
-            this.PnlXYMap.PointSize = 20;
-            this.PnlXYMap.PointX = 50;
-            this.PnlXYMap.PointY = 50;
-            this.PnlXYMap.Size = new System.Drawing.Size(268, 228);
-            this.PnlXYMap.TabIndex = 23;
-            this.PnlXYMap.Text = "dsM_GridMap1";
-            this.PnlXYMap.Click += new System.EventHandler(this.PnlXYMap_Click);
             // 
             // PnlListBtnSetting
             // 
@@ -1177,130 +1106,8 @@
             this.PnlListBtnSetting.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16F));
             this.PnlListBtnSetting.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
             this.PnlListBtnSetting.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16F));
-            this.PnlListBtnSetting.Size = new System.Drawing.Size(147, 260);
+            this.PnlListBtnSetting.Size = new System.Drawing.Size(150, 260);
             this.PnlListBtnSetting.TabIndex = 33;
-            // 
-            // CbbRunMode
-            // 
-            this.CbbRunMode.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(67)))), ((int)(((byte)(63)))));
-            this.CbbRunMode.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.CbbRunMode.BorderSize = 1;
-            this.CbbRunMode.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CbbRunMode.DropDownHeight = 200;
-            this.CbbRunMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
-            this.CbbRunMode.DropDownWidth = 200;
-            this.CbbRunMode.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.CbbRunMode.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.CbbRunMode.Items.AddRange(new object[] {
-            "Zigzac mode",
-            "Raster mode"});
-            this.CbbRunMode.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(92)))), ((int)(((byte)(86)))));
-            this.CbbRunMode.ListTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.CbbRunMode.Location = new System.Drawing.Point(3, 3);
-            this.CbbRunMode.MinimumSize = new System.Drawing.Size(40, 26);
-            this.CbbRunMode.Name = "CbbRunMode";
-            this.CbbRunMode.Padding = new System.Windows.Forms.Padding(1);
-            this.CbbRunMode.Size = new System.Drawing.Size(141, 35);
-            this.CbbRunMode.TabIndex = 6;
-            this.CbbRunMode.Texts = "Run mode";
-            // 
-            // CbbSignalMode
-            // 
-            this.CbbSignalMode.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(67)))), ((int)(((byte)(63)))));
-            this.CbbSignalMode.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.CbbSignalMode.BorderSize = 1;
-            this.CbbSignalMode.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CbbSignalMode.DropDownHeight = 200;
-            this.CbbSignalMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
-            this.CbbSignalMode.DropDownWidth = 200;
-            this.CbbSignalMode.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.CbbSignalMode.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.CbbSignalMode.Items.AddRange(new object[] {
-            "Z axis",
-            "X axis",
-            "Y axis",
-            "Incentive"});
-            this.CbbSignalMode.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(92)))), ((int)(((byte)(86)))));
-            this.CbbSignalMode.ListTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.CbbSignalMode.Location = new System.Drawing.Point(3, 111);
-            this.CbbSignalMode.MinimumSize = new System.Drawing.Size(40, 26);
-            this.CbbSignalMode.Name = "CbbSignalMode";
-            this.CbbSignalMode.Padding = new System.Windows.Forms.Padding(1);
-            this.CbbSignalMode.Size = new System.Drawing.Size(141, 35);
-            this.CbbSignalMode.TabIndex = 8;
-            this.CbbSignalMode.Texts = "Chart Info";
-            // 
-            // CbbScanArea
-            // 
-            this.CbbScanArea.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(67)))), ((int)(((byte)(63)))));
-            this.CbbScanArea.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.CbbScanArea.BorderSize = 1;
-            this.CbbScanArea.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CbbScanArea.DropDownHeight = 200;
-            this.CbbScanArea.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
-            this.CbbScanArea.DropDownWidth = 200;
-            this.CbbScanArea.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.CbbScanArea.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.CbbScanArea.Items.AddRange(new object[] {
-            "30x30 mm",
-            "40x40 mm",
-            "60x60 mm"});
-            this.CbbScanArea.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(92)))), ((int)(((byte)(86)))));
-            this.CbbScanArea.ListTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.CbbScanArea.Location = new System.Drawing.Point(3, 57);
-            this.CbbScanArea.MinimumSize = new System.Drawing.Size(40, 26);
-            this.CbbScanArea.Name = "CbbScanArea";
-            this.CbbScanArea.Padding = new System.Windows.Forms.Padding(1);
-            this.CbbScanArea.Size = new System.Drawing.Size(141, 35);
-            this.CbbScanArea.TabIndex = 29;
-            this.CbbScanArea.Texts = "Scan area";
-            // 
-            // CbbSaveMode
-            // 
-            this.CbbSaveMode.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(67)))), ((int)(((byte)(63)))));
-            this.CbbSaveMode.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.CbbSaveMode.BorderSize = 1;
-            this.CbbSaveMode.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CbbSaveMode.DropDownHeight = 200;
-            this.CbbSaveMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
-            this.CbbSaveMode.DropDownWidth = 200;
-            this.CbbSaveMode.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.CbbSaveMode.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.CbbSaveMode.Items.AddRange(new object[] {
-            "Save as CSV",
-            "Save as BCRF",
-            "Save as SUR"});
-            this.CbbSaveMode.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(92)))), ((int)(((byte)(86)))));
-            this.CbbSaveMode.ListTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.CbbSaveMode.Location = new System.Drawing.Point(3, 165);
-            this.CbbSaveMode.MinimumSize = new System.Drawing.Size(40, 26);
-            this.CbbSaveMode.Name = "CbbSaveMode";
-            this.CbbSaveMode.Padding = new System.Windows.Forms.Padding(1);
-            this.CbbSaveMode.Size = new System.Drawing.Size(141, 35);
-            this.CbbSaveMode.TabIndex = 32;
-            this.CbbSaveMode.Texts = "Save mode";
-            // 
-            // BtnSaveData
-            // 
-            this.BtnSaveData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(67)))), ((int)(((byte)(63)))));
-            this.BtnSaveData.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(67)))), ((int)(((byte)(63)))));
-            this.BtnSaveData.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.BtnSaveData.BorderRadius = 8;
-            this.BtnSaveData.BorderSize = 1;
-            this.BtnSaveData.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BtnSaveData.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BtnSaveData.FlatAppearance.BorderSize = 0;
-            this.BtnSaveData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnSaveData.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnSaveData.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.BtnSaveData.Location = new System.Drawing.Point(3, 219);
-            this.BtnSaveData.Name = "BtnSaveData";
-            this.BtnSaveData.Size = new System.Drawing.Size(141, 38);
-            this.BtnSaveData.TabIndex = 33;
-            this.BtnSaveData.Text = "Save";
-            this.BtnSaveData.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.BtnSaveData.TextContent = "Save";
-            this.BtnSaveData.UseVisualStyleBackColor = false;
             // 
             // PnlControlGrid
             // 
@@ -1319,7 +1126,7 @@
             this.PnlControlGrid.Padding = new System.Windows.Forms.Padding(36, 24, 24, 24);
             this.PnlControlGrid.RowCount = 1;
             this.PnlControlGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.PnlControlGrid.Size = new System.Drawing.Size(683, 309);
+            this.PnlControlGrid.Size = new System.Drawing.Size(693, 309);
             this.PnlControlGrid.TabIndex = 27;
             // 
             // PnlZControl
@@ -1330,38 +1137,8 @@
             this.PnlZControl.Location = new System.Drawing.Point(339, 27);
             this.PnlZControl.Name = "PnlZControl";
             this.PnlZControl.Padding = new System.Windows.Forms.Padding(10, 36, 10, 8);
-            this.PnlZControl.Size = new System.Drawing.Size(65, 255);
+            this.PnlZControl.Size = new System.Drawing.Size(67, 255);
             this.PnlZControl.TabIndex = 39;
-            // 
-            // TbZControl
-            // 
-            this.TbZControl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(67)))), ((int)(((byte)(63)))));
-            this.TbZControl.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(67)))), ((int)(((byte)(63)))));
-            this.TbZControl.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.TbZControl.BorderInColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.TbZControl.BorderRadius = 8;
-            this.TbZControl.BorderSize = 1;
-            this.TbZControl.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.TbZControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TbZControl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.TbZControl.LimitImageEnd = global::TCHRLibBasicRecordSample.Properties.Resources.Icon_Z_down;
-            this.TbZControl.LimitImageStart = global::TCHRLibBasicRecordSample.Properties.Resources.Icon_Z_up;
-            this.TbZControl.Location = new System.Drawing.Point(10, 36);
-            this.TbZControl.MaximumPercent = 100;
-            this.TbZControl.MinimumPercent = 0;
-            this.TbZControl.Name = "TbZControl";
-            this.TbZControl.Orientation = TCHRLibBasicRecordSample.CustomUi.DSM_TrackBarImg.TrackbarOrientation.Vertical;
-            this.TbZControl.Size = new System.Drawing.Size(45, 211);
-            this.TbZControl.TabIndex = 63;
-            this.TbZControl.ThumbColor = System.Drawing.Color.Red;
-            this.TbZControl.ThumbImage = global::TCHRLibBasicRecordSample.Properties.Resources.icon_Zmove_40;
-            this.TbZControl.ThumbSize = 40;
-            this.TbZControl.TrackColorLeft = System.Drawing.Color.Blue;
-            this.TbZControl.TrackColorRight = System.Drawing.Color.Gray;
-            this.TbZControl.Value = 0;
-            this.TbZControl.VerticalReversed = true;
-            this.TbZControl.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TbZControl_MouseDown);
-            this.TbZControl.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TbZControl_MouseUp);
             // 
             // LbZAxis
             // 
@@ -1370,7 +1147,7 @@
             this.LbZAxis.Location = new System.Drawing.Point(10, 0);
             this.LbZAxis.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LbZAxis.Name = "LbZAxis";
-            this.LbZAxis.Size = new System.Drawing.Size(80, 23);
+            this.LbZAxis.Size = new System.Drawing.Size(63, 19);
             this.LbZAxis.TabIndex = 62;
             this.LbZAxis.Text = "Z - Axis";
             // 
@@ -1408,6 +1185,474 @@
             this.PnlChangeSpeedArea.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.PnlChangeSpeedArea.Size = new System.Drawing.Size(300, 42);
             this.PnlChangeSpeedArea.TabIndex = 27;
+            // 
+            // PnlXYBtn
+            // 
+            this.PnlXYBtn.Controls.Add(this.axDBDeviceManager1);
+            this.PnlXYBtn.Controls.Add(this.axDBTriggerManager1);
+            this.PnlXYBtn.Controls.Add(this.axDBCommManager1);
+            this.PnlXYBtn.Controls.Add(this.BtnDownLeft);
+            this.PnlXYBtn.Controls.Add(this.LbXYSpeed);
+            this.PnlXYBtn.Controls.Add(this.LbXYAxis);
+            this.PnlXYBtn.Controls.Add(this.BtnLeftUp);
+            this.PnlXYBtn.Controls.Add(this.BtnHome);
+            this.PnlXYBtn.Controls.Add(this.BtnRightDown);
+            this.PnlXYBtn.Controls.Add(this.BtnLeft);
+            this.PnlXYBtn.Controls.Add(this.BtnUpRight);
+            this.PnlXYBtn.Controls.Add(this.BtnRight);
+            this.PnlXYBtn.Controls.Add(this.BtnDown);
+            this.PnlXYBtn.Controls.Add(this.BtnUp);
+            this.PnlXYBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PnlXYBtn.Location = new System.Drawing.Point(0, 0);
+            this.PnlXYBtn.Margin = new System.Windows.Forms.Padding(0);
+            this.PnlXYBtn.Name = "PnlXYBtn";
+            this.PnlXYBtn.Size = new System.Drawing.Size(300, 219);
+            this.PnlXYBtn.TabIndex = 27;
+            // 
+            // axDBDeviceManager1
+            // 
+            this.axDBDeviceManager1.Enabled = true;
+            this.axDBDeviceManager1.Location = new System.Drawing.Point(270, 57);
+            this.axDBDeviceManager1.Name = "axDBDeviceManager1";
+            this.axDBDeviceManager1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axDBDeviceManager1.OcxState")));
+            this.axDBDeviceManager1.Size = new System.Drawing.Size(24, 24);
+            this.axDBDeviceManager1.TabIndex = 65;
+            this.axDBDeviceManager1.BeforeRead += new System.EventHandler(this.axDBDeviceManager1_BeforeRead);
+            // 
+            // axDBTriggerManager1
+            // 
+            this.axDBTriggerManager1.Enabled = true;
+            this.axDBTriggerManager1.Location = new System.Drawing.Point(273, 33);
+            this.axDBTriggerManager1.Name = "axDBTriggerManager1";
+            this.axDBTriggerManager1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axDBTriggerManager1.OcxState")));
+            this.axDBTriggerManager1.Size = new System.Drawing.Size(24, 24);
+            this.axDBTriggerManager1.TabIndex = 64;
+            // 
+            // axDBCommManager1
+            // 
+            this.axDBCommManager1.Enabled = true;
+            this.axDBCommManager1.Location = new System.Drawing.Point(273, 3);
+            this.axDBCommManager1.Name = "axDBCommManager1";
+            this.axDBCommManager1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axDBCommManager1.OcxState")));
+            this.axDBCommManager1.Size = new System.Drawing.Size(24, 24);
+            this.axDBCommManager1.TabIndex = 63;
+            // 
+            // LbXYSpeed
+            // 
+            this.LbXYSpeed.AutoSize = true;
+            this.LbXYSpeed.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LbXYSpeed.Location = new System.Drawing.Point(-4, 196);
+            this.LbXYSpeed.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LbXYSpeed.Name = "LbXYSpeed";
+            this.LbXYSpeed.Size = new System.Drawing.Size(84, 19);
+            this.LbXYSpeed.TabIndex = 62;
+            this.LbXYSpeed.Text = "XY Speed";
+            // 
+            // LbXYAxis
+            // 
+            this.LbXYAxis.AutoSize = true;
+            this.LbXYAxis.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LbXYAxis.Location = new System.Drawing.Point(0, 0);
+            this.LbXYAxis.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LbXYAxis.Name = "LbXYAxis";
+            this.LbXYAxis.Size = new System.Drawing.Size(76, 19);
+            this.LbXYAxis.TabIndex = 61;
+            this.LbXYAxis.Text = "XY - Axis";
+            // 
+            // PnlTchAreaGrid
+            // 
+            this.PnlTchAreaGrid.BackColor = System.Drawing.Color.Pink;
+            this.PnlTchAreaGrid.ColumnCount = 1;
+            this.PnlTchAreaGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.PnlTchAreaGrid.Controls.Add(this.BtnRsTch, 0, 3);
+            this.PnlTchAreaGrid.Controls.Add(this.BtnRunScan, 0, 4);
+            this.PnlTchAreaGrid.Controls.Add(this.PnlTchGrid, 0, 1);
+            this.PnlTchAreaGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PnlTchAreaGrid.Location = new System.Drawing.Point(412, 27);
+            this.PnlTchAreaGrid.Name = "PnlTchAreaGrid";
+            this.PnlTchAreaGrid.RowCount = 5;
+            this.PnlTchAreaGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.PnlTchAreaGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 175F));
+            this.PnlTchAreaGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
+            this.PnlTchAreaGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.PnlTchAreaGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70F));
+            this.PnlTchAreaGrid.Size = new System.Drawing.Size(254, 255);
+            this.PnlTchAreaGrid.TabIndex = 40;
+            // 
+            // PnlTchGrid
+            // 
+            this.PnlTchGrid.ColumnCount = 4;
+            this.PnlTchGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.90654F));
+            this.PnlTchGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.90654F));
+            this.PnlTchGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.PnlTchGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.PnlTchGrid.Controls.Add(this.LbPos4, 0, 3);
+            this.PnlTchGrid.Controls.Add(this.LbPos1, 0, 0);
+            this.PnlTchGrid.Controls.Add(this.BtnSetPos4, 3, 3);
+            this.PnlTchGrid.Controls.Add(this.TbPos4, 1, 3);
+            this.PnlTchGrid.Controls.Add(this.BtnRunPos4, 2, 3);
+            this.PnlTchGrid.Controls.Add(this.LbPos3, 0, 2);
+            this.PnlTchGrid.Controls.Add(this.LbPos2, 0, 1);
+            this.PnlTchGrid.Controls.Add(this.BtnRunPos3, 2, 2);
+            this.PnlTchGrid.Controls.Add(this.BtnSetPos3, 3, 2);
+            this.PnlTchGrid.Controls.Add(this.TbPos3, 1, 2);
+            this.PnlTchGrid.Controls.Add(this.BtnRunPos1, 2, 0);
+            this.PnlTchGrid.Controls.Add(this.BtnSetPos1, 3, 0);
+            this.PnlTchGrid.Controls.Add(this.BtnRunPos2, 2, 1);
+            this.PnlTchGrid.Controls.Add(this.BtnSetPos2, 3, 1);
+            this.PnlTchGrid.Controls.Add(this.TbPos2, 1, 1);
+            this.PnlTchGrid.Controls.Add(this.TbPos1, 1, 0);
+            this.PnlTchGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PnlTchGrid.Location = new System.Drawing.Point(3, 39);
+            this.PnlTchGrid.Name = "PnlTchGrid";
+            this.PnlTchGrid.RowCount = 4;
+            this.PnlTchGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 43F));
+            this.PnlTchGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 43F));
+            this.PnlTchGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 43F));
+            this.PnlTchGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 43F));
+            this.PnlTchGrid.Size = new System.Drawing.Size(248, 169);
+            this.PnlTchGrid.TabIndex = 27;
+            // 
+            // LbPos4
+            // 
+            this.LbPos4.AutoSize = true;
+            this.LbPos4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LbPos4.Location = new System.Drawing.Point(2, 129);
+            this.LbPos4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LbPos4.Name = "LbPos4";
+            this.LbPos4.Size = new System.Drawing.Size(70, 43);
+            this.LbPos4.TabIndex = 60;
+            this.LbPos4.Text = "Position 4:";
+            this.LbPos4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // LbPos1
+            // 
+            this.LbPos1.AutoSize = true;
+            this.LbPos1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LbPos1.Location = new System.Drawing.Point(2, 0);
+            this.LbPos1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LbPos1.Name = "LbPos1";
+            this.LbPos1.Size = new System.Drawing.Size(70, 43);
+            this.LbPos1.TabIndex = 60;
+            this.LbPos1.Text = "Position 1:";
+            this.LbPos1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // LbPos3
+            // 
+            this.LbPos3.AutoSize = true;
+            this.LbPos3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LbPos3.Location = new System.Drawing.Point(2, 86);
+            this.LbPos3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LbPos3.Name = "LbPos3";
+            this.LbPos3.Size = new System.Drawing.Size(70, 43);
+            this.LbPos3.TabIndex = 60;
+            this.LbPos3.Text = "Position 3:";
+            this.LbPos3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // LbPos2
+            // 
+            this.LbPos2.AutoSize = true;
+            this.LbPos2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LbPos2.Location = new System.Drawing.Point(2, 43);
+            this.LbPos2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LbPos2.Name = "LbPos2";
+            this.LbPos2.Size = new System.Drawing.Size(70, 43);
+            this.LbPos2.TabIndex = 60;
+            this.LbPos2.Text = "Position 2:";
+            this.LbPos2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // LbTitleSetting
+            // 
+            this.LbTitleSetting.AutoSize = true;
+            this.LbTitleSetting.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LbTitleSetting.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LbTitleSetting.Location = new System.Drawing.Point(3, 130);
+            this.LbTitleSetting.Name = "LbTitleSetting";
+            this.LbTitleSetting.Size = new System.Drawing.Size(687, 28);
+            this.LbTitleSetting.TabIndex = 26;
+            this.LbTitleSetting.Text = "Setting up";
+            this.LbTitleSetting.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // LbTitleControl
+            // 
+            this.LbTitleControl.AutoSize = true;
+            this.LbTitleControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LbTitleControl.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LbTitleControl.Location = new System.Drawing.Point(3, 466);
+            this.LbTitleControl.Name = "LbTitleControl";
+            this.LbTitleControl.Size = new System.Drawing.Size(687, 28);
+            this.LbTitleControl.TabIndex = 27;
+            this.LbTitleControl.Text = "Control";
+            this.LbTitleControl.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // chart4
+            // 
+            chartArea2.AxisX.IsLabelAutoFit = false;
+            chartArea2.AxisX.LabelStyle.Font = new System.Drawing.Font("Modern No. 20", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            chartArea2.AxisX.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+            chartArea2.AxisX.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+            chartArea2.AxisX.MajorTickMark.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+            chartArea2.AxisX.MinorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+            chartArea2.AxisX.MinorTickMark.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+            chartArea2.AxisY.IsLabelAutoFit = false;
+            chartArea2.AxisY.IsStartedFromZero = false;
+            chartArea2.AxisY.LabelStyle.Font = new System.Drawing.Font("Modern No. 20", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            chartArea2.AxisY.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+            chartArea2.AxisY.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+            chartArea2.AxisY.MajorTickMark.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+            chartArea2.AxisY.MinorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+            chartArea2.AxisY.MinorTickMark.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+            chartArea2.Name = "ChartArea1";
+            this.chart4.ChartAreas.Add(chartArea2);
+            this.chart4.Dock = System.Windows.Forms.DockStyle.Fill;
+            legend2.Enabled = false;
+            legend2.Name = "Legend1";
+            this.chart4.Legends.Add(legend2);
+            this.chart4.Location = new System.Drawing.Point(0, 0);
+            this.chart4.Margin = new System.Windows.Forms.Padding(1);
+            this.chart4.Name = "chart4";
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
+            series2.IsVisibleInLegend = false;
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chart4.Series.Add(series2);
+            this.chart4.Size = new System.Drawing.Size(775, 192);
+            this.chart4.TabIndex = 34;
+            this.chart4.Text = "chart4";
+            // 
+            // timerComboBox
+            // 
+            this.timerComboBox.Interval = 1;
+            this.timerComboBox.Tick += new System.EventHandler(this.timerComboBox_Tick);
+            // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // PbScan
+            // 
+            this.PbScan.ChannelColor = System.Drawing.Color.LightSteelBlue;
+            this.PbScan.ChannelHeight = 18;
+            this.PbScan.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PbScan.Font = new System.Drawing.Font("Century Gothic", 8.25F);
+            this.PbScan.ForeBackColor = System.Drawing.Color.Transparent;
+            this.PbScan.ForeColor = System.Drawing.Color.White;
+            this.PbScan.Location = new System.Drawing.Point(39, 11);
+            this.PbScan.Name = "PbScan";
+            this.PbScan.ShowMaximun = false;
+            this.PbScan.ShowValue = TCHRLibBasicRecordSample.CustomUi.TextPosition.Sliding;
+            this.PbScan.Size = new System.Drawing.Size(769, 42);
+            this.PbScan.SliderColor = System.Drawing.Color.RosyBrown;
+            this.PbScan.SliderHeight = 18;
+            this.PbScan.SymbolAfter = "%";
+            this.PbScan.SymbolBefore = "";
+            this.PbScan.TabIndex = 35;
+            // 
+            // PnlZMap
+            // 
+            this.PnlZMap.BackGroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
+            this.PnlZMap.BorderColor = System.Drawing.Color.SlateBlue;
+            this.PnlZMap.BorderSize = 2;
+            this.PnlZMap.CoordinateX = 0D;
+            this.PnlZMap.CoordinateY = 0D;
+            this.PnlZMap.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PnlZMap.DragEnabled = false;
+            this.PnlZMap.GridSize = 25;
+            this.PnlZMap.LineColor = System.Drawing.Color.White;
+            this.PnlZMap.LineSize = 1;
+            this.PnlZMap.Location = new System.Drawing.Point(3, 3);
+            this.PnlZMap.MainLineColor = System.Drawing.Color.White;
+            this.PnlZMap.MainLineSizeX = 2;
+            this.PnlZMap.MainLineSizeY = 4;
+            this.PnlZMap.Name = "PnlZMap";
+            this.PnlZMap.PointColor = System.Drawing.Color.Orange;
+            this.PnlZMap.PointDisplayStyle = TCHRLibBasicRecordSample.CustomUi.PointDisplayStyle.Circle;
+            this.PnlZMap.PointSize = 20;
+            this.PnlZMap.PointX = 50;
+            this.PnlZMap.PointY = 50;
+            this.PnlZMap.Size = new System.Drawing.Size(101, 228);
+            this.PnlZMap.TabIndex = 23;
+            this.PnlZMap.Text = "dsM_GridMap1";
+            // 
+            // PnlXYMap
+            // 
+            this.PnlXYMap.BackGroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(52)))), ((int)(((byte)(52)))));
+            this.PnlXYMap.BorderColor = System.Drawing.Color.SlateBlue;
+            this.PnlXYMap.BorderSize = 2;
+            this.PnlXYMap.CoordinateX = 0D;
+            this.PnlXYMap.CoordinateY = 0D;
+            this.PnlXYMap.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PnlXYMap.DragEnabled = true;
+            this.PnlXYMap.GridSize = 25;
+            this.PnlXYMap.LineColor = System.Drawing.Color.White;
+            this.PnlXYMap.LineSize = 1;
+            this.PnlXYMap.Location = new System.Drawing.Point(3, 3);
+            this.PnlXYMap.MainLineColor = System.Drawing.Color.White;
+            this.PnlXYMap.MainLineSizeX = 2;
+            this.PnlXYMap.MainLineSizeY = 2;
+            this.PnlXYMap.Name = "PnlXYMap";
+            this.PnlXYMap.PointColor = System.Drawing.Color.Orange;
+            this.PnlXYMap.PointDisplayStyle = TCHRLibBasicRecordSample.CustomUi.PointDisplayStyle.Plus;
+            this.PnlXYMap.PointSize = 20;
+            this.PnlXYMap.PointX = 50;
+            this.PnlXYMap.PointY = 50;
+            this.PnlXYMap.Size = new System.Drawing.Size(272, 228);
+            this.PnlXYMap.TabIndex = 23;
+            this.PnlXYMap.Text = "dsM_GridMap1";
+            this.PnlXYMap.Click += new System.EventHandler(this.PnlXYMap_Click);
+            // 
+            // CbbRunMode
+            // 
+            this.CbbRunMode.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(67)))), ((int)(((byte)(63)))));
+            this.CbbRunMode.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.CbbRunMode.BorderSize = 1;
+            this.CbbRunMode.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CbbRunMode.DropDownHeight = 200;
+            this.CbbRunMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
+            this.CbbRunMode.DropDownWidth = 200;
+            this.CbbRunMode.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.CbbRunMode.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.CbbRunMode.Items.AddRange(new object[] {
+            "Zigzac mode",
+            "Raster mode"});
+            this.CbbRunMode.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(92)))), ((int)(((byte)(86)))));
+            this.CbbRunMode.ListTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.CbbRunMode.Location = new System.Drawing.Point(3, 3);
+            this.CbbRunMode.MinimumSize = new System.Drawing.Size(40, 26);
+            this.CbbRunMode.Name = "CbbRunMode";
+            this.CbbRunMode.Padding = new System.Windows.Forms.Padding(1);
+            this.CbbRunMode.Size = new System.Drawing.Size(144, 35);
+            this.CbbRunMode.TabIndex = 6;
+            this.CbbRunMode.Texts = "Run mode";
+            // 
+            // CbbSignalMode
+            // 
+            this.CbbSignalMode.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(67)))), ((int)(((byte)(63)))));
+            this.CbbSignalMode.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.CbbSignalMode.BorderSize = 1;
+            this.CbbSignalMode.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CbbSignalMode.DropDownHeight = 200;
+            this.CbbSignalMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
+            this.CbbSignalMode.DropDownWidth = 200;
+            this.CbbSignalMode.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.CbbSignalMode.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.CbbSignalMode.Items.AddRange(new object[] {
+            "Z axis",
+            "X axis",
+            "Y axis",
+            "Incentive"});
+            this.CbbSignalMode.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(92)))), ((int)(((byte)(86)))));
+            this.CbbSignalMode.ListTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.CbbSignalMode.Location = new System.Drawing.Point(3, 111);
+            this.CbbSignalMode.MinimumSize = new System.Drawing.Size(40, 26);
+            this.CbbSignalMode.Name = "CbbSignalMode";
+            this.CbbSignalMode.Padding = new System.Windows.Forms.Padding(1);
+            this.CbbSignalMode.Size = new System.Drawing.Size(144, 35);
+            this.CbbSignalMode.TabIndex = 8;
+            this.CbbSignalMode.Texts = "Chart Info";
+            // 
+            // CbbScanArea
+            // 
+            this.CbbScanArea.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(67)))), ((int)(((byte)(63)))));
+            this.CbbScanArea.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.CbbScanArea.BorderSize = 1;
+            this.CbbScanArea.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CbbScanArea.DropDownHeight = 200;
+            this.CbbScanArea.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
+            this.CbbScanArea.DropDownWidth = 200;
+            this.CbbScanArea.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.CbbScanArea.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.CbbScanArea.Items.AddRange(new object[] {
+            "30x30 mm",
+            "40x40 mm",
+            "60x60 mm"});
+            this.CbbScanArea.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(92)))), ((int)(((byte)(86)))));
+            this.CbbScanArea.ListTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.CbbScanArea.Location = new System.Drawing.Point(3, 57);
+            this.CbbScanArea.MinimumSize = new System.Drawing.Size(40, 26);
+            this.CbbScanArea.Name = "CbbScanArea";
+            this.CbbScanArea.Padding = new System.Windows.Forms.Padding(1);
+            this.CbbScanArea.Size = new System.Drawing.Size(144, 35);
+            this.CbbScanArea.TabIndex = 29;
+            this.CbbScanArea.Texts = "Scan area";
+            // 
+            // CbbSaveMode
+            // 
+            this.CbbSaveMode.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(67)))), ((int)(((byte)(63)))));
+            this.CbbSaveMode.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.CbbSaveMode.BorderSize = 1;
+            this.CbbSaveMode.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CbbSaveMode.DropDownHeight = 200;
+            this.CbbSaveMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
+            this.CbbSaveMode.DropDownWidth = 200;
+            this.CbbSaveMode.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.CbbSaveMode.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.CbbSaveMode.Items.AddRange(new object[] {
+            "Save as CSV",
+            "Save as BCRF",
+            "Save as SUR"});
+            this.CbbSaveMode.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(92)))), ((int)(((byte)(86)))));
+            this.CbbSaveMode.ListTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.CbbSaveMode.Location = new System.Drawing.Point(3, 165);
+            this.CbbSaveMode.MinimumSize = new System.Drawing.Size(40, 26);
+            this.CbbSaveMode.Name = "CbbSaveMode";
+            this.CbbSaveMode.Padding = new System.Windows.Forms.Padding(1);
+            this.CbbSaveMode.Size = new System.Drawing.Size(144, 35);
+            this.CbbSaveMode.TabIndex = 32;
+            this.CbbSaveMode.Texts = "Save mode";
+            // 
+            // BtnSaveData
+            // 
+            this.BtnSaveData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(67)))), ((int)(((byte)(63)))));
+            this.BtnSaveData.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(67)))), ((int)(((byte)(63)))));
+            this.BtnSaveData.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.BtnSaveData.BorderRadius = 8;
+            this.BtnSaveData.BorderSize = 1;
+            this.BtnSaveData.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnSaveData.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnSaveData.FlatAppearance.BorderSize = 0;
+            this.BtnSaveData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnSaveData.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnSaveData.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.BtnSaveData.Location = new System.Drawing.Point(3, 219);
+            this.BtnSaveData.Name = "BtnSaveData";
+            this.BtnSaveData.Size = new System.Drawing.Size(144, 38);
+            this.BtnSaveData.TabIndex = 33;
+            this.BtnSaveData.Text = "Save";
+            this.BtnSaveData.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.BtnSaveData.TextContent = "Save";
+            this.BtnSaveData.UseVisualStyleBackColor = false;
+            // 
+            // TbZControl
+            // 
+            this.TbZControl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(67)))), ((int)(((byte)(63)))));
+            this.TbZControl.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(67)))), ((int)(((byte)(63)))));
+            this.TbZControl.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.TbZControl.BorderInColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.TbZControl.BorderRadius = 8;
+            this.TbZControl.BorderSize = 1;
+            this.TbZControl.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.TbZControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TbZControl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.TbZControl.LimitImageEnd = global::TCHRLibBasicRecordSample.Properties.Resources.Icon_Z_down;
+            this.TbZControl.LimitImageStart = global::TCHRLibBasicRecordSample.Properties.Resources.Icon_Z_up;
+            this.TbZControl.Location = new System.Drawing.Point(10, 36);
+            this.TbZControl.MaximumPercent = 100;
+            this.TbZControl.MinimumPercent = 0;
+            this.TbZControl.Name = "TbZControl";
+            this.TbZControl.Orientation = TCHRLibBasicRecordSample.CustomUi.DSM_TrackBarImg.TrackbarOrientation.Vertical;
+            this.TbZControl.Size = new System.Drawing.Size(47, 211);
+            this.TbZControl.TabIndex = 63;
+            this.TbZControl.ThumbColor = System.Drawing.Color.Red;
+            this.TbZControl.ThumbImage = global::TCHRLibBasicRecordSample.Properties.Resources.icon_Zmove_40;
+            this.TbZControl.ThumbSize = 40;
+            this.TbZControl.TrackColorLeft = System.Drawing.Color.Blue;
+            this.TbZControl.TrackColorRight = System.Drawing.Color.Gray;
+            this.TbZControl.Value = 0;
+            this.TbZControl.VerticalReversed = true;
+            this.TbZControl.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TbZControl_MouseDown);
+            this.TbZControl.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TbZControl_MouseUp);
             // 
             // TbXYspeed
             // 
@@ -1468,57 +1713,6 @@
             this.BtnXYUpSpeed.UseVisualStyleBackColor = false;
             this.BtnXYUpSpeed.Click += new System.EventHandler(this.BtnXYUpSpeed_Click_1);
             // 
-            // PnlXYBtn
-            // 
-            this.PnlXYBtn.Controls.Add(this.axDBDeviceManager1);
-            this.PnlXYBtn.Controls.Add(this.axDBTriggerManager1);
-            this.PnlXYBtn.Controls.Add(this.axDBCommManager1);
-            this.PnlXYBtn.Controls.Add(this.BtnDownLeft);
-            this.PnlXYBtn.Controls.Add(this.LbXYSpeed);
-            this.PnlXYBtn.Controls.Add(this.LbXYAxis);
-            this.PnlXYBtn.Controls.Add(this.BtnLeftUp);
-            this.PnlXYBtn.Controls.Add(this.BtnHome);
-            this.PnlXYBtn.Controls.Add(this.BtnRightDown);
-            this.PnlXYBtn.Controls.Add(this.BtnLeft);
-            this.PnlXYBtn.Controls.Add(this.BtnUpRight);
-            this.PnlXYBtn.Controls.Add(this.BtnRight);
-            this.PnlXYBtn.Controls.Add(this.BtnDown);
-            this.PnlXYBtn.Controls.Add(this.BtnUp);
-            this.PnlXYBtn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PnlXYBtn.Location = new System.Drawing.Point(0, 0);
-            this.PnlXYBtn.Margin = new System.Windows.Forms.Padding(0);
-            this.PnlXYBtn.Name = "PnlXYBtn";
-            this.PnlXYBtn.Size = new System.Drawing.Size(300, 219);
-            this.PnlXYBtn.TabIndex = 27;
-            // 
-            // axDBDeviceManager1
-            // 
-            this.axDBDeviceManager1.Enabled = true;
-            this.axDBDeviceManager1.Location = new System.Drawing.Point(273, 63);
-            this.axDBDeviceManager1.Name = "axDBDeviceManager1";
-            this.axDBDeviceManager1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axDBDeviceManager1.OcxState")));
-            this.axDBDeviceManager1.Size = new System.Drawing.Size(30, 30);
-            this.axDBDeviceManager1.TabIndex = 65;
-            this.axDBDeviceManager1.BeforeRead += new System.EventHandler(this.axDBDeviceManager1_BeforeRead);
-            // 
-            // axDBTriggerManager1
-            // 
-            this.axDBTriggerManager1.Enabled = true;
-            this.axDBTriggerManager1.Location = new System.Drawing.Point(273, 33);
-            this.axDBTriggerManager1.Name = "axDBTriggerManager1";
-            this.axDBTriggerManager1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axDBTriggerManager1.OcxState")));
-            this.axDBTriggerManager1.Size = new System.Drawing.Size(30, 30);
-            this.axDBTriggerManager1.TabIndex = 64;
-            // 
-            // axDBCommManager1
-            // 
-            this.axDBCommManager1.Enabled = true;
-            this.axDBCommManager1.Location = new System.Drawing.Point(273, 3);
-            this.axDBCommManager1.Name = "axDBCommManager1";
-            this.axDBCommManager1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axDBCommManager1.OcxState")));
-            this.axDBCommManager1.Size = new System.Drawing.Size(30, 30);
-            this.axDBCommManager1.TabIndex = 63;
-            // 
             // BtnDownLeft
             // 
             this.BtnDownLeft.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(67)))), ((int)(((byte)(63)))));
@@ -1542,28 +1736,6 @@
             this.BtnDownLeft.UseVisualStyleBackColor = false;
             this.BtnDownLeft.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnDownLeft_MouseDown);
             this.BtnDownLeft.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BtnDownLeft_MouseUp);
-            // 
-            // LbXYSpeed
-            // 
-            this.LbXYSpeed.AutoSize = true;
-            this.LbXYSpeed.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LbXYSpeed.Location = new System.Drawing.Point(-4, 196);
-            this.LbXYSpeed.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.LbXYSpeed.Name = "LbXYSpeed";
-            this.LbXYSpeed.Size = new System.Drawing.Size(104, 23);
-            this.LbXYSpeed.TabIndex = 62;
-            this.LbXYSpeed.Text = "XY Speed";
-            // 
-            // LbXYAxis
-            // 
-            this.LbXYAxis.AutoSize = true;
-            this.LbXYAxis.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LbXYAxis.Location = new System.Drawing.Point(0, 0);
-            this.LbXYAxis.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.LbXYAxis.Name = "LbXYAxis";
-            this.LbXYAxis.Size = new System.Drawing.Size(96, 23);
-            this.LbXYAxis.TabIndex = 61;
-            this.LbXYAxis.Text = "XY - Axis";
             // 
             // BtnLeftUp
             // 
@@ -1766,26 +1938,6 @@
             this.BtnUp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnUp_MouseDown);
             this.BtnUp.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BtnUp_MouseUp);
             // 
-            // PnlTchAreaGrid
-            // 
-            this.PnlTchAreaGrid.BackColor = System.Drawing.Color.Pink;
-            this.PnlTchAreaGrid.ColumnCount = 1;
-            this.PnlTchAreaGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.PnlTchAreaGrid.Controls.Add(this.BtnRsTch, 0, 3);
-            this.PnlTchAreaGrid.Controls.Add(this.BtnRunScan, 0, 4);
-            this.PnlTchAreaGrid.Controls.Add(this.PnlTchGrid, 0, 1);
-            this.PnlTchAreaGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PnlTchAreaGrid.Location = new System.Drawing.Point(410, 27);
-            this.PnlTchAreaGrid.Name = "PnlTchAreaGrid";
-            this.PnlTchAreaGrid.RowCount = 5;
-            this.PnlTchAreaGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
-            this.PnlTchAreaGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 175F));
-            this.PnlTchAreaGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
-            this.PnlTchAreaGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.PnlTchAreaGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70F));
-            this.PnlTchAreaGrid.Size = new System.Drawing.Size(246, 255);
-            this.PnlTchAreaGrid.TabIndex = 40;
-            // 
             // BtnRsTch
             // 
             this.BtnRsTch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(67)))), ((int)(((byte)(63)))));
@@ -1801,10 +1953,11 @@
             this.BtnRsTch.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
             this.BtnRsTch.Location = new System.Drawing.Point(3, 224);
             this.BtnRsTch.Name = "BtnRsTch";
-            this.BtnRsTch.Size = new System.Drawing.Size(240, 4);
+            this.BtnRsTch.Size = new System.Drawing.Size(248, 4);
             this.BtnRsTch.TabIndex = 59;
+            this.BtnRsTch.Text = "Reset teaching point";
             this.BtnRsTch.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.BtnRsTch.TextContent = "";
+            this.BtnRsTch.TextContent = "Reset teaching point";
             this.BtnRsTch.UseVisualStyleBackColor = false;
             // 
             // BtnRunScan
@@ -1823,71 +1976,13 @@
             this.BtnRunScan.Location = new System.Drawing.Point(3, 239);
             this.BtnRunScan.Margin = new System.Windows.Forms.Padding(3, 8, 3, 8);
             this.BtnRunScan.Name = "BtnRunScan";
-            this.BtnRunScan.Size = new System.Drawing.Size(240, 8);
+            this.BtnRunScan.Size = new System.Drawing.Size(248, 8);
             this.BtnRunScan.TabIndex = 58;
             this.BtnRunScan.Text = "SCAN";
             this.BtnRunScan.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
             this.BtnRunScan.TextContent = "SCAN";
             this.BtnRunScan.UseVisualStyleBackColor = false;
             this.BtnRunScan.Click += new System.EventHandler(this.BtRecord_Click);
-            // 
-            // PnlTchGrid
-            // 
-            this.PnlTchGrid.ColumnCount = 4;
-            this.PnlTchGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.90654F));
-            this.PnlTchGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.90654F));
-            this.PnlTchGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.PnlTchGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.PnlTchGrid.Controls.Add(this.LbPos4, 0, 3);
-            this.PnlTchGrid.Controls.Add(this.LbPos1, 0, 0);
-            this.PnlTchGrid.Controls.Add(this.BtnSetPos4, 3, 3);
-            this.PnlTchGrid.Controls.Add(this.TbPos4, 1, 3);
-            this.PnlTchGrid.Controls.Add(this.BtnRunPos4, 2, 3);
-            this.PnlTchGrid.Controls.Add(this.LbPos3, 0, 2);
-            this.PnlTchGrid.Controls.Add(this.LbPos2, 0, 1);
-            this.PnlTchGrid.Controls.Add(this.BtnRunPos3, 2, 2);
-            this.PnlTchGrid.Controls.Add(this.BtnSetPos3, 3, 2);
-            this.PnlTchGrid.Controls.Add(this.TbPos3, 1, 2);
-            this.PnlTchGrid.Controls.Add(this.BtnRunPos1, 2, 0);
-            this.PnlTchGrid.Controls.Add(this.BtnSetPos1, 3, 0);
-            this.PnlTchGrid.Controls.Add(this.BtnRunPos2, 2, 1);
-            this.PnlTchGrid.Controls.Add(this.BtnSetPos2, 3, 1);
-            this.PnlTchGrid.Controls.Add(this.TbPos2, 1, 1);
-            this.PnlTchGrid.Controls.Add(this.TbPos1, 1, 0);
-            this.PnlTchGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PnlTchGrid.Location = new System.Drawing.Point(3, 39);
-            this.PnlTchGrid.Name = "PnlTchGrid";
-            this.PnlTchGrid.RowCount = 4;
-            this.PnlTchGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 43F));
-            this.PnlTchGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 43F));
-            this.PnlTchGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 43F));
-            this.PnlTchGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 43F));
-            this.PnlTchGrid.Size = new System.Drawing.Size(240, 169);
-            this.PnlTchGrid.TabIndex = 27;
-            // 
-            // LbPos4
-            // 
-            this.LbPos4.AutoSize = true;
-            this.LbPos4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LbPos4.Location = new System.Drawing.Point(2, 129);
-            this.LbPos4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.LbPos4.Name = "LbPos4";
-            this.LbPos4.Size = new System.Drawing.Size(67, 43);
-            this.LbPos4.TabIndex = 60;
-            this.LbPos4.Text = "Position 4:";
-            this.LbPos4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // LbPos1
-            // 
-            this.LbPos1.AutoSize = true;
-            this.LbPos1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LbPos1.Location = new System.Drawing.Point(2, 0);
-            this.LbPos1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.LbPos1.Name = "LbPos1";
-            this.LbPos1.Size = new System.Drawing.Size(67, 43);
-            this.LbPos1.TabIndex = 60;
-            this.LbPos1.Text = "Position 1:";
-            this.LbPos1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // BtnSetPos4
             // 
@@ -1902,9 +1997,9 @@
             this.BtnSetPos4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnSetPos4.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold);
             this.BtnSetPos4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.BtnSetPos4.Location = new System.Drawing.Point(193, 132);
+            this.BtnSetPos4.Location = new System.Drawing.Point(200, 132);
             this.BtnSetPos4.Name = "BtnSetPos4";
-            this.BtnSetPos4.Size = new System.Drawing.Size(44, 37);
+            this.BtnSetPos4.Size = new System.Drawing.Size(45, 37);
             this.BtnSetPos4.TabIndex = 52;
             this.BtnSetPos4.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
             this.BtnSetPos4.TextContent = "";
@@ -1919,13 +2014,13 @@
             this.TbPos4.BorderSize = 1;
             this.TbPos4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TbPos4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.TbPos4.Location = new System.Drawing.Point(76, 134);
+            this.TbPos4.Location = new System.Drawing.Point(79, 134);
             this.TbPos4.Margin = new System.Windows.Forms.Padding(5);
             this.TbPos4.Multiline = false;
             this.TbPos4.Name = "TbPos4";
             this.TbPos4.Padding = new System.Windows.Forms.Padding(9, 10, 9, 10);
             this.TbPos4.PasswordChar = false;
-            this.TbPos4.Size = new System.Drawing.Size(61, 40);
+            this.TbPos4.Size = new System.Drawing.Size(64, 37);
             this.TbPos4.TabIndex = 57;
             this.TbPos4.UnderlineStyle = false;
             // 
@@ -1943,37 +2038,13 @@
             this.BtnRunPos4.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold);
             this.BtnRunPos4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
             this.BtnRunPos4.Image = global::TCHRLibBasicRecordSample.Properties.Resources.icon_run;
-            this.BtnRunPos4.Location = new System.Drawing.Point(145, 132);
+            this.BtnRunPos4.Location = new System.Drawing.Point(151, 132);
             this.BtnRunPos4.Name = "BtnRunPos4";
-            this.BtnRunPos4.Size = new System.Drawing.Size(42, 37);
+            this.BtnRunPos4.Size = new System.Drawing.Size(43, 37);
             this.BtnRunPos4.TabIndex = 53;
             this.BtnRunPos4.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
             this.BtnRunPos4.TextContent = "";
             this.BtnRunPos4.UseVisualStyleBackColor = false;
-            // 
-            // LbPos3
-            // 
-            this.LbPos3.AutoSize = true;
-            this.LbPos3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LbPos3.Location = new System.Drawing.Point(2, 86);
-            this.LbPos3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.LbPos3.Name = "LbPos3";
-            this.LbPos3.Size = new System.Drawing.Size(67, 43);
-            this.LbPos3.TabIndex = 60;
-            this.LbPos3.Text = "Position 3:";
-            this.LbPos3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // LbPos2
-            // 
-            this.LbPos2.AutoSize = true;
-            this.LbPos2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LbPos2.Location = new System.Drawing.Point(2, 43);
-            this.LbPos2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.LbPos2.Name = "LbPos2";
-            this.LbPos2.Size = new System.Drawing.Size(67, 43);
-            this.LbPos2.TabIndex = 60;
-            this.LbPos2.Text = "Position 2:";
-            this.LbPos2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // BtnRunPos3
             // 
@@ -1989,9 +2060,9 @@
             this.BtnRunPos3.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold);
             this.BtnRunPos3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
             this.BtnRunPos3.Image = global::TCHRLibBasicRecordSample.Properties.Resources.icon_run;
-            this.BtnRunPos3.Location = new System.Drawing.Point(145, 89);
+            this.BtnRunPos3.Location = new System.Drawing.Point(151, 89);
             this.BtnRunPos3.Name = "BtnRunPos3";
-            this.BtnRunPos3.Size = new System.Drawing.Size(42, 37);
+            this.BtnRunPos3.Size = new System.Drawing.Size(43, 37);
             this.BtnRunPos3.TabIndex = 49;
             this.BtnRunPos3.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
             this.BtnRunPos3.TextContent = "";
@@ -2010,9 +2081,9 @@
             this.BtnSetPos3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnSetPos3.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold);
             this.BtnSetPos3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.BtnSetPos3.Location = new System.Drawing.Point(193, 89);
+            this.BtnSetPos3.Location = new System.Drawing.Point(200, 89);
             this.BtnSetPos3.Name = "BtnSetPos3";
-            this.BtnSetPos3.Size = new System.Drawing.Size(44, 37);
+            this.BtnSetPos3.Size = new System.Drawing.Size(45, 37);
             this.BtnSetPos3.TabIndex = 48;
             this.BtnSetPos3.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
             this.BtnSetPos3.TextContent = "";
@@ -2027,13 +2098,13 @@
             this.TbPos3.BorderSize = 1;
             this.TbPos3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TbPos3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.TbPos3.Location = new System.Drawing.Point(76, 91);
+            this.TbPos3.Location = new System.Drawing.Point(79, 91);
             this.TbPos3.Margin = new System.Windows.Forms.Padding(5);
             this.TbPos3.Multiline = false;
             this.TbPos3.Name = "TbPos3";
             this.TbPos3.Padding = new System.Windows.Forms.Padding(9, 10, 9, 10);
             this.TbPos3.PasswordChar = false;
-            this.TbPos3.Size = new System.Drawing.Size(61, 40);
+            this.TbPos3.Size = new System.Drawing.Size(64, 37);
             this.TbPos3.TabIndex = 55;
             this.TbPos3.UnderlineStyle = false;
             // 
@@ -2051,9 +2122,9 @@
             this.BtnRunPos1.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold);
             this.BtnRunPos1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
             this.BtnRunPos1.Image = global::TCHRLibBasicRecordSample.Properties.Resources.icon_run;
-            this.BtnRunPos1.Location = new System.Drawing.Point(145, 3);
+            this.BtnRunPos1.Location = new System.Drawing.Point(151, 3);
             this.BtnRunPos1.Name = "BtnRunPos1";
-            this.BtnRunPos1.Size = new System.Drawing.Size(42, 37);
+            this.BtnRunPos1.Size = new System.Drawing.Size(43, 37);
             this.BtnRunPos1.TabIndex = 41;
             this.BtnRunPos1.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
             this.BtnRunPos1.TextContent = "";
@@ -2075,9 +2146,9 @@
             this.BtnSetPos1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnSetPos1.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold);
             this.BtnSetPos1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.BtnSetPos1.Location = new System.Drawing.Point(193, 3);
+            this.BtnSetPos1.Location = new System.Drawing.Point(200, 3);
             this.BtnSetPos1.Name = "BtnSetPos1";
-            this.BtnSetPos1.Size = new System.Drawing.Size(44, 37);
+            this.BtnSetPos1.Size = new System.Drawing.Size(45, 37);
             this.BtnSetPos1.TabIndex = 41;
             this.BtnSetPos1.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
             this.BtnSetPos1.TextContent = "";
@@ -2100,9 +2171,9 @@
             this.BtnRunPos2.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold);
             this.BtnRunPos2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
             this.BtnRunPos2.Image = global::TCHRLibBasicRecordSample.Properties.Resources.icon_run;
-            this.BtnRunPos2.Location = new System.Drawing.Point(145, 46);
+            this.BtnRunPos2.Location = new System.Drawing.Point(151, 46);
             this.BtnRunPos2.Name = "BtnRunPos2";
-            this.BtnRunPos2.Size = new System.Drawing.Size(42, 37);
+            this.BtnRunPos2.Size = new System.Drawing.Size(43, 37);
             this.BtnRunPos2.TabIndex = 45;
             this.BtnRunPos2.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
             this.BtnRunPos2.TextContent = "";
@@ -2121,9 +2192,9 @@
             this.BtnSetPos2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnSetPos2.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold);
             this.BtnSetPos2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.BtnSetPos2.Location = new System.Drawing.Point(193, 46);
+            this.BtnSetPos2.Location = new System.Drawing.Point(200, 46);
             this.BtnSetPos2.Name = "BtnSetPos2";
-            this.BtnSetPos2.Size = new System.Drawing.Size(44, 37);
+            this.BtnSetPos2.Size = new System.Drawing.Size(45, 37);
             this.BtnSetPos2.TabIndex = 44;
             this.BtnSetPos2.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
             this.BtnSetPos2.TextContent = "";
@@ -2138,13 +2209,13 @@
             this.TbPos2.BorderSize = 1;
             this.TbPos2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TbPos2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.TbPos2.Location = new System.Drawing.Point(76, 48);
+            this.TbPos2.Location = new System.Drawing.Point(79, 48);
             this.TbPos2.Margin = new System.Windows.Forms.Padding(5);
             this.TbPos2.Multiline = false;
             this.TbPos2.Name = "TbPos2";
             this.TbPos2.Padding = new System.Windows.Forms.Padding(9, 10, 9, 10);
             this.TbPos2.PasswordChar = false;
-            this.TbPos2.Size = new System.Drawing.Size(61, 40);
+            this.TbPos2.Size = new System.Drawing.Size(64, 37);
             this.TbPos2.TabIndex = 54;
             this.TbPos2.UnderlineStyle = false;
             // 
@@ -2156,88 +2227,19 @@
             this.TbPos1.BorderSize = 1;
             this.TbPos1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TbPos1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.TbPos1.Location = new System.Drawing.Point(76, 5);
+            this.TbPos1.Location = new System.Drawing.Point(79, 5);
             this.TbPos1.Margin = new System.Windows.Forms.Padding(5);
             this.TbPos1.Multiline = false;
             this.TbPos1.Name = "TbPos1";
             this.TbPos1.Padding = new System.Windows.Forms.Padding(9, 10, 9, 10);
             this.TbPos1.PasswordChar = false;
-            this.TbPos1.Size = new System.Drawing.Size(61, 40);
+            this.TbPos1.Size = new System.Drawing.Size(64, 37);
             this.TbPos1.TabIndex = 56;
             this.TbPos1.UnderlineStyle = false;
             // 
-            // LbTitleSetting
-            // 
-            this.LbTitleSetting.AutoSize = true;
-            this.LbTitleSetting.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LbTitleSetting.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LbTitleSetting.Location = new System.Drawing.Point(3, 130);
-            this.LbTitleSetting.Name = "LbTitleSetting";
-            this.LbTitleSetting.Size = new System.Drawing.Size(677, 28);
-            this.LbTitleSetting.TabIndex = 26;
-            this.LbTitleSetting.Text = "Setting up";
-            this.LbTitleSetting.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // LbTitleControl
-            // 
-            this.LbTitleControl.AutoSize = true;
-            this.LbTitleControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LbTitleControl.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LbTitleControl.Location = new System.Drawing.Point(3, 466);
-            this.LbTitleControl.Name = "LbTitleControl";
-            this.LbTitleControl.Size = new System.Drawing.Size(677, 28);
-            this.LbTitleControl.TabIndex = 27;
-            this.LbTitleControl.Text = "Control";
-            this.LbTitleControl.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // chart4
-            // 
-            chartArea2.AxisX.IsLabelAutoFit = false;
-            chartArea2.AxisX.LabelStyle.Font = new System.Drawing.Font("Modern No. 20", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            chartArea2.AxisX.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
-            chartArea2.AxisX.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
-            chartArea2.AxisX.MajorTickMark.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
-            chartArea2.AxisX.MinorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
-            chartArea2.AxisX.MinorTickMark.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
-            chartArea2.AxisY.IsLabelAutoFit = false;
-            chartArea2.AxisY.IsStartedFromZero = false;
-            chartArea2.AxisY.LabelStyle.Font = new System.Drawing.Font("Modern No. 20", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            chartArea2.AxisY.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
-            chartArea2.AxisY.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
-            chartArea2.AxisY.MajorTickMark.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
-            chartArea2.AxisY.MinorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
-            chartArea2.AxisY.MinorTickMark.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
-            chartArea2.Name = "ChartArea1";
-            this.chart4.ChartAreas.Add(chartArea2);
-            this.chart4.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend2.Enabled = false;
-            legend2.Name = "Legend1";
-            this.chart4.Legends.Add(legend2);
-            this.chart4.Location = new System.Drawing.Point(0, 0);
-            this.chart4.Margin = new System.Windows.Forms.Padding(1);
-            this.chart4.Name = "chart4";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
-            series2.IsVisibleInLegend = false;
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.chart4.Series.Add(series2);
-            this.chart4.Size = new System.Drawing.Size(775, 192);
-            this.chart4.TabIndex = 34;
-            this.chart4.Text = "chart4";
-            // 
-            // timerComboBox
-            // 
-            this.timerComboBox.Interval = 1;
-            this.timerComboBox.Tick += new System.EventHandler(this.timerComboBox_Tick);
-            // 
-            // timer1
-            // 
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
             // TRecordSample
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1540, 845);
             this.Controls.Add(this.PnlMain);
