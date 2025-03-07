@@ -332,6 +332,7 @@ namespace TCHRLibBasicRecordSample
             DropDown1.PrimaryColor = orange;
             DropDown1.MenuItemTextColor = ForeGroundWhite;
             PnlSelect1.BackColor = EmergencyRed;
+            PnlSelect1.Padding = new Padding(0,0,0,1);
             BtnZZ.Font = FontMD;
             BtnRaster.Font = FontMD;
             BtnOther1.Font = FontMD;
@@ -341,6 +342,7 @@ namespace TCHRLibBasicRecordSample
             DropDown2.IsMainMenu = true;
             DropDown2.PrimaryColor = orange;
             DropDown2.MenuItemTextColor = ForeGroundWhite;
+            PnlSelect2.Padding = new Padding(0,0,0,1);
             PnlSelect2.BackColor = activeColor;
             Btn30mm.Font = FontMD;
             Btn40mm.Font = FontMD;
@@ -351,6 +353,7 @@ namespace TCHRLibBasicRecordSample
             DropDown3.IsMainMenu = true;
             DropDown3.PrimaryColor = orange;
             DropDown3.MenuItemTextColor = ForeGroundWhite;
+            PnlSelect3.Padding = new Padding(0,0,0,1);
             PnlSelect3.BackColor = orange;
             BtnSlow.Font = FontMD;
             BtnNormal.Font = FontMD;
@@ -361,6 +364,7 @@ namespace TCHRLibBasicRecordSample
             DropDown4.PrimaryColor = orange;
             DropDown4.MenuItemTextColor = ForeGroundWhite;
             PnlSelect4.BackColor = EmergencyRed;
+            PnlSelect4.Padding = new Padding(0,0,0,1);
             BtnCSV.Font = FontMD;
             BtnBCRF.Font = FontMD;
             BtnSUR.Font = FontMD;
@@ -400,6 +404,8 @@ namespace TCHRLibBasicRecordSample
             PnlXYMap.LineColor = CardBg;
             PnlXYMap.BackColor = DarkBg;
             PnlXYMap.PointColor = orange;
+            PnlXYMap.PointX = PnlXYMap.Width / 2;
+            PnlXYMap.PointY = PnlXYMap.Height / 2;
 
             //PnlXYMap.GridSize = PnlXYMap.Width / 2;
             if (SystemInformation.WorkingArea.Width < 1600)

@@ -77,4 +77,3 @@ E:\Dynamic\1. Work_Space\On_Going\5. Point Scanner\3. My code\chrocolib-T5-5-0-5
 E:\Dynamic\1. Work_Space\On_Going\5. Point Scanner\3. My code\chrocolib-T5-5-0-59-517aeeb0\chrocodilelib\CSharpDemo\Basic\RecordSample\obj\x86\Debug\CSharpBasicRecordSample.csproj.CoreCompileInputs.cache
 E:\Dynamic\1. Work_Space\On_Going\5. Point Scanner\3. My code\chrocolib-T5-5-0-59-517aeeb0\chrocodilelib\CSharpDemo\Basic\RecordSample\obj\x86\Debug\CSharpBasicRecordSample.exe
 E:\Dynamic\1. Work_Space\On_Going\5. Point Scanner\3. My code\chrocolib-T5-5-0-59-517aeeb0\chrocodilelib\CSharpDemo\Basic\RecordSample\obj\x86\Debug\CSharpBasicRecordSample.pdb
-E:\Dynamic\1. Work_Space\On_Going\5. Point Scanner\3. My code\chrocolib-T5-5-0-59-517aeeb0\chrocodilelib\CSharpDemo\Basic\RecordSample\obj\x86\Debug\CSharpBasicRecordSample.csproj.AssemblyReference.cache

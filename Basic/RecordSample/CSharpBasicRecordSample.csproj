@@ -90,9 +90,6 @@
     <Compile Include="CustomUI\DSM_Button.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="CustomUI\DSM_ComboBox.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Include="CustomUI\DSM_TabControl\UC_AdvanceSetting.cs">
       <SubType>UserControl</SubType>
     </Compile>
