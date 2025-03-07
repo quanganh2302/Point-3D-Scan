@@ -103,6 +103,26 @@ namespace TCHRLibBasicRecordSample.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icon_arrow_down {
+            get {
+                object obj = ResourceManager.GetObject("icon-arrow-down", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icon_arrow_up {
+            get {
+                object obj = ResourceManager.GetObject("icon-arrow-up", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icon_circle {
             get {
                 object obj = ResourceManager.GetObject("icon-circle", resourceCulture);

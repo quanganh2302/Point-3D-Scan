@@ -65,10 +65,11 @@ namespace TCHRLibBasicRecordSample.CustomUi.TabControl
             InitializeComponent();
             InConnect.Text = connectAddress;
             BtnConnect.TextContent = contentOfBtn;
+
             // Optional: Set up other initialization here.
             this.BackColor = TRecordSample.CardBg;
             this.ForeColor = TRecordSample.ForeGroundWhite;
-            panel1.BackColor = TRecordSample.MainBg;
+            panel1.BackColor = TRecordSample.DashColor;
             RbCHR1.CheckedColor = TRecordSample.orange;
             RbCHR2.CheckedColor = TRecordSample.orange;
             RbCHRC.CheckedColor = TRecordSample.orange;

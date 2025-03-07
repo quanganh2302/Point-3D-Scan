@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace TCHRLibBasicRecordSample.CustomUi.TabControl
@@ -16,7 +17,6 @@ namespace TCHRLibBasicRecordSample.CustomUi.TabControl
         private string scanRate = "2000";
         private string selectedSignals = "83, 65, 66";
         private string sampleCount = "10000";
-
 
         // Declare the instance without initializing immediately.
 
@@ -49,7 +49,7 @@ namespace TCHRLibBasicRecordSample.CustomUi.TabControl
             // Optional: Set up other initialization here.
             this.BackColor = TRecordSample.CardBg;
             this.ForeColor = TRecordSample.ForeGroundWhite;
-            panel1.BackColor = TRecordSample.MainBg;
+            panel1.BackColor = TRecordSample.DashColor;
             InSR.Text = scanRate;
             InSS.Text = selectedSignals;
             InSC.Text = sampleCount;
@@ -90,7 +90,6 @@ namespace TCHRLibBasicRecordSample.CustomUi.TabControl
 
             RbConfocal.Click += _tRecordSample.RBConfocal_Click;
             RbInterfero.Click += _tRecordSample.RBConfocal_Click;
-
         }
 
         private void RadioButton_CheckedChanged(object sender, EventArgs e)

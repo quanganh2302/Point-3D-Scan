@@ -15,7 +15,7 @@ namespace TCHRLibBasicRecordSample.CustomUi
     {
         //Fields
         private Color borderColor = TRecordSample.ForeGroundWhite;
-        private int borderSize = 1;
+        private int borderSize = 2;
         private bool underlineStyle = false;
         private Color borderForcusColor = TRecordSample.orange;
         private bool isFocused = false;
@@ -92,6 +92,8 @@ namespace TCHRLibBasicRecordSample.CustomUi
             {
                 base.BackColor = value;
                 textBox1.BackColor = value;
+                this.Invalidate();
+
             }
         }
         [Category("DSM properties")]
@@ -103,6 +105,8 @@ namespace TCHRLibBasicRecordSample.CustomUi
             {
                 base.ForeColor = value;
                 textBox1.ForeColor = value;
+                this.Invalidate();
+
             }
         }
         [Category("DSM properties")]

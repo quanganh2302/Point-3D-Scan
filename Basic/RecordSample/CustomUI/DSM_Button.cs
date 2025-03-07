@@ -89,7 +89,7 @@ namespace TCHRLibBasicRecordSample.CustomUi
             this.Cursor = Cursors.Hand;
             this.FlatAppearance.BorderSize = 0;
             this.Size = new Size(90, 36);
-            this.BackColor = TRecordSample.BtnDefaultBg;
+            this.BackColor = TRecordSample.BtnPrimaryBg;
             this.ForeColor =  TRecordSample.ForeGroundWhite;
             this.borderColor = TRecordSample.ForeGroundWhite;
             this.Resize += new EventHandler(Button_Resize);

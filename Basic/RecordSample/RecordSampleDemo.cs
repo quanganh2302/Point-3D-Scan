@@ -32,24 +32,53 @@ namespace TCHRLibBasicRecordSample
         private string configsFolderPath = Path.Combine(Application.StartupPath, "Configs");
         private string filePath;
 
+        // Importing CreateRoundRectRgn function from gdi32.dll to create rounded rectangle regions
+        [DllImport("gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
+        private static extern IntPtr CreateRoundRectRgn(
+    int nLeftRect, int nTopRect, int nRightRect, int nBottomRect, int nWidthEllipse, int nHeightEllipse);
+
         // Fields
         #region Color
-        public static Color ForeGroundWhite = ColorTranslator.FromHtml("#E4E4E4");
-        public static Color ForeGroundBlack = ColorTranslator.FromHtml("#010B13");
-        public static Color NavbarBg = ColorTranslator.FromHtml("#2F2F2F");
-        public static Color CardBg = ColorTranslator.FromHtml("#595959");
-        public static Color BtnDefaultBg = ColorTranslator.FromHtml("#47433F");
-        public static Color BtnChildBg = ColorTranslator.FromHtml("#615C56");
-        public static Color BtnActiveBg = ColorTranslator.FromHtml("#A5A39E");
-        public static Color MainBg = ColorTranslator.FromHtml("#404040");
+        //public static Color ForeGroundWhite = ColorTranslator.FromHtml("#E4E4E4");
+        //public static Color ForeGroundBlack = ColorTranslator.FromHtml("#010B13");
+        //public static Color NavbarBg = ColorTranslator.FromHtml("#2F2F2F");
+        //public static Color CardBg = ColorTranslator.FromHtml("#595959");
+        //public static Color BtnDefaultBg = ColorTranslator.FromHtml("#47433F");
+        //public static Color BtnChildBg = ColorTranslator.FromHtml("#615C56");
+        //public static Color BtnActiveBg = ColorTranslator.FromHtml("#A5A39E");
+        //public static Color MainBg = ColorTranslator.FromHtml("#404040");
+        //public static Color EmergencyRed = ColorTranslator.FromHtml("#f92f60");
+        //public static Color activeColor = ColorTranslator.FromHtml("#00d26a");
+        //public static Color orange = ColorTranslator.FromHtml("#ed6a11");
+        //public static Color BorderBtnBrown = ColorTranslator.FromHtml("#343434");
+        //public static Color GridBg = ColorTranslator.FromHtml("#2B2926");
+
+        public static Color ForeGroundWhite = ColorTranslator.FromHtml("#ebe9fc");
+        public static Color MainBg = ColorTranslator.FromHtml("#393939");
+        public static Color orange = ColorTranslator.FromHtml("#f1592a");
+        public static Color ForeGroundBlack = ColorTranslator.FromHtml("#000000");
+        public static Color BtnDefaultBg = ColorTranslator.FromHtml("#222222");
+        public static Color BtnPrimaryBg = ColorTranslator.FromHtml("#403E3A");
+        public static Color CardBg = ColorTranslator.FromHtml("#464646");
+        public static Color NavbarBg = ColorTranslator.FromHtml("#292727");
+        public static Color BtnActiveBg = ColorTranslator.FromHtml("#ebe9fc");
+        public static Color DarkBg = ColorTranslator.FromHtml("#222222");
+        public static Color DashColor = ColorTranslator.FromHtml("#616161");
+        public static Color BorderBtnBrown = ColorTranslator.FromHtml("#343434");
+        public static Color BorderBtnWhite = ColorTranslator.FromHtml("#616161");
         public static Color EmergencyRed = ColorTranslator.FromHtml("#f92f60");
-        public static Color orange = ColorTranslator.FromHtml("#ed6a11");
-        public static Color BorderBtn = ColorTranslator.FromHtml("#343434");
+        public static Color activeColor = ColorTranslator.FromHtml("#00d26a");
+
+
+
+        public static Color BtnChildBg = ColorTranslator.FromHtml("#f1592a");
         public static Color GridBg = ColorTranslator.FromHtml("#2B2926");
 
 
         public static int MarginYScreenXl = 24;
         public static int MarginYScreenLg = 12;
+        public static int MainBorderRadius = 24;
+
         #endregion
 
         private CustomUi.TabControl.UC_DefaultSetting ucDefaultSetting;
@@ -107,31 +136,12 @@ namespace TCHRLibBasicRecordSample
 
 
         bool expand = false;
+
+        private bool isDropDownOpen1;
+
         private void timerComboBox_Tick(object sender, EventArgs e)
         {
-            //if (expand == false)
-            //{
-            //    PnlDropDownDevelop.Height += 15;
-            //    if (PnlDropDownDevelop.Height >= PnlDropDownDevelop.MaximumSize.Height)
-            //    {
-            //        timerComboBox.Stop();
-            //        expand = true;
-            //    }
-            //}
-            //else
-            //{
-            //    PnlDropDownDevelop.Height -= 15;
-            //    if (PnlDropDownDevelop.Height <= PnlDropDownDevelop.MinimumSize.Height)
-            //    {
-            //        timerComboBox.Stop();
-            //        expand = false;
-            //    }
-            //}
-        }
-        private void BtnSelectDevelop_Click(object sender, EventArgs e)
-        {
-            timerComboBox.Start();
-
+          
         }
 
 
@@ -143,7 +153,7 @@ namespace TCHRLibBasicRecordSample
             userControl.BringToFront();
         }
 
-        private void Btn_Click(object sender, EventArgs eventArgs)
+        private void BtnNavSet_Click(object sender, EventArgs eventArgs)
         {
             foreach (var pnl in PnlNavSetting.Controls.OfType<Panel>())
             {
@@ -271,7 +281,7 @@ namespace TCHRLibBasicRecordSample
 
             PnlMainGrid.BackColor = MainBg;
             PnlRightSite.BackColor = MainBg;
-            PnlLeftSite.BackColor = MainBg;
+            PnlLeftSite.BackColor = DashColor;
 
             //Connect area
             ucDefaultSetting = new CustomUi.TabControl.UC_DefaultSetting();
@@ -291,9 +301,19 @@ namespace TCHRLibBasicRecordSample
             ucAdvanceSetting.SRKeyPress += (s, e) => TBSHZ_KeyPress(this, (KeyPressEventArgs)e);
             ucAdvanceSetting.SSKeyPress += (s, e) => TBSODX_KeyPress(this, (KeyPressEventArgs)e);
 
-
-
             PnlNavSetting.BackColor = CardBg;
+            if (SystemInformation.WorkingArea.Width < 1600)
+            {
+                PnlNavSetting.ColumnStyles[0].Width = 18;
+                PnlNavSetting.ColumnStyles[1].Width = 20;
+                PnlNavSetting.ColumnStyles[2].Width = 62;
+            }
+            else
+            {
+                PnlNavSetting.ColumnStyles[0].Width = 16;
+                PnlNavSetting.ColumnStyles[1].Width = 18;
+                PnlNavSetting.ColumnStyles[2].Width = 66;
+            }
             PnlDefaultSetting.BackColor = orange;
             PnlAdvanceSetting.BackColor = CardBg;
             BtnAdvanceSetting.BackColor = CardBg;
@@ -304,7 +324,48 @@ namespace TCHRLibBasicRecordSample
 
             // Setting area
             PnlSettingGrid.BackColor = CardBg;
-            BtnSaveData.BorderColor = orange;
+            PnlSettingGrid.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, PnlSettingGrid.Width, PnlSettingGrid.Height, MainBorderRadius, MainBorderRadius));
+            //BtnSaveData.BorderColor = orange;
+            // List of button
+            BtnSelect1.BackColor = BtnPrimaryBg;
+            DropDown1.IsMainMenu = true;
+            DropDown1.PrimaryColor = orange;
+            DropDown1.MenuItemTextColor = ForeGroundWhite;
+            PnlSelect1.BackColor = EmergencyRed;
+            BtnZZ.Font = FontMD;
+            BtnRaster.Font = FontMD;
+            BtnOther1.Font = FontMD;
+
+
+            BtnSelect2.BackColor = BtnPrimaryBg;
+            DropDown2.IsMainMenu = true;
+            DropDown2.PrimaryColor = orange;
+            DropDown2.MenuItemTextColor = ForeGroundWhite;
+            PnlSelect2.BackColor = activeColor;
+            Btn30mm.Font = FontMD;
+            Btn40mm.Font = FontMD;
+            Btn50mm.Font = FontMD;
+            BtnOther2.Font = FontMD;
+
+            BtnSelect3.BackColor = BtnPrimaryBg;
+            DropDown3.IsMainMenu = true;
+            DropDown3.PrimaryColor = orange;
+            DropDown3.MenuItemTextColor = ForeGroundWhite;
+            PnlSelect3.BackColor = orange;
+            BtnSlow.Font = FontMD;
+            BtnNormal.Font = FontMD;
+            BtnFast.Font = FontMD;
+
+            BtnSelect4.BackColor = BtnPrimaryBg;
+            DropDown4.IsMainMenu = true;
+            DropDown4.PrimaryColor = orange;
+            DropDown4.MenuItemTextColor = ForeGroundWhite;
+            PnlSelect4.BackColor = EmergencyRed;
+            BtnCSV.Font = FontMD;
+            BtnBCRF.Font = FontMD;
+            BtnSUR.Font = FontMD;
+
+
             LbXYCoor.ForeColor = ForeGroundWhite;
             LbZCoor.ForeColor = ForeGroundWhite;
 
@@ -314,38 +375,51 @@ namespace TCHRLibBasicRecordSample
             LbYCoorValue.ForeColor = ForeGroundWhite;
             LbZAxisCoor.ForeColor = ForeGroundWhite;
             LbZCoorValue.ForeColor = ForeGroundWhite;
-            LbZCoorValue.Text = "0.00";
+            LbZCoorValue.Text = "0.00 mm";
             if (SystemInformation.WorkingArea.Width < 1600)
             {
                 PnlSettingGrid.Padding = new Padding(36, MarginYScreenLg, 24, MarginYScreenLg);
-                PnlZMap.GridSize = 23;
+                PnlZMap.GridSize = 25;
             }
             else
             {
                 PnlSettingGrid.Padding = new Padding(36, MarginYScreenXl, 24, MarginYScreenXl);
                 PnlZMap.GridSize = 20;
-
             }
-            PnlZMap.BorderColor = ForeGroundWhite;
-            PnlZMap.MainLineColor = ForeGroundWhite;
-            PnlZMap.LineColor = ForeGroundWhite;
-            PnlZMap.BackColor = GridBg;
+            //PnlZMap.GridSize = PnlZMap.Height / 2;
+            PnlZMap.BorderColor = MainBg;
+            PnlZMap.MainLineColor =ForeGroundWhite;
+            PnlZMap.BackColor = DarkBg;
+            PnlZMap.LineColor = CardBg;
             PnlZMap.PointColor = orange;
             PnlZMap.PointX = PnlZMap.Width / 2;
             PnlZMap.PointY = 0 + PnlZMap.PointSize / 2;
 
-            PnlXYMap.BorderColor = ForeGroundWhite;
+            PnlXYMap.BorderColor = MainBg;
             PnlXYMap.MainLineColor = ForeGroundWhite;
-            PnlXYMap.LineColor = ForeGroundWhite;
-            PnlXYMap.BackColor = GridBg;
-            PnlXYMap.GridSize = PnlXYMap.Width / 2;
+            PnlXYMap.LineColor = CardBg;
+            PnlXYMap.BackColor = DarkBg;
+            PnlXYMap.PointColor = orange;
+
+            //PnlXYMap.GridSize = PnlXYMap.Width / 2;
+            if (SystemInformation.WorkingArea.Width < 1600)
+            {
+                PnlXYMap.GridSize = 30;
+            }
+            else
+            {
+                PnlXYMap.GridSize = 20;
+            }
             PnlXYMap.PointClicked += PostDataToPLC;
+
+
             // Control area
             if (SystemInformation.WorkingArea.Width < 1600)
             {
                 PnlControlGrid.Padding = new Padding(36, MarginYScreenLg, 24, MarginYScreenLg);
-                PnlControlGrid.ColumnStyles[1].Width = 23;
-                PnlControlGrid.ColumnStyles[2].Width = 76;
+                PnlControlGrid.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, PnlControlGrid.Width, PnlControlGrid.Height, MainBorderRadius, MainBorderRadius));
+                PnlControlGrid.ColumnStyles[1].Width = 21;
+                PnlControlGrid.ColumnStyles[2].Width = 79;
                 //PnlControlGrid.ColumnStyles[3].Width = 1;
 
                 BtnHome.Size = new Size(48, 48);
@@ -383,7 +457,6 @@ namespace TCHRLibBasicRecordSample
                 BtnLeftUp.Size = new Size(64, 64);
                 BtnLeftUp.Location = new Point(61, 23);
                 BtnLeftUp.BorderRadius = 8;
-
 
             }
             else
@@ -430,19 +503,28 @@ namespace TCHRLibBasicRecordSample
                 BtnLeftUp.BorderRadius = 9;
             }
             PnlControlGrid.BackColor = CardBg;
-            BtnHome.BorderColor = BorderBtn;
-            BtnUp.BorderColor = BorderBtn;
-            BtnDown.BorderColor = BorderBtn;
-            BtnRight.BorderColor = BorderBtn;
-            BtnLeft.BorderColor = BorderBtn;
+            BtnHome.BorderColor = BorderBtnBrown;
+            BtnUp.BorderColor = BorderBtnBrown;
+            BtnDown.BorderColor = BorderBtnBrown;
+            BtnRight.BorderColor = BorderBtnBrown;
+            BtnLeft.BorderColor = BorderBtnBrown;
 
 
+            BtnHome.BackColor = BtnDefaultBg;
+            BtnUp.BackColor = BtnDefaultBg;
+            BtnUpRight.BackColor = BtnDefaultBg;
+            BtnRight.BackColor = BtnDefaultBg;
+            BtnRightDown.BackColor = BtnDefaultBg;
+            BtnDown.BackColor = BtnDefaultBg;
+            BtnDownLeft.BackColor = BtnDefaultBg;
+            BtnLeft.BackColor = BtnDefaultBg;
+            BtnLeftUp.BackColor = BtnDefaultBg;
 
             LbXYAxis.ForeColor = ForeGroundBlack;
             LbXYSpeed.ForeColor = ForeGroundBlack;
+            LbTchPoint.ForeColor = ForeGroundBlack;
             LbZAxis.ForeColor = ForeGroundBlack;
 
-            BtnRsTch.BorderColor = EmergencyRed;
             BtnRunScan.BackColor = orange;
             BtnRunScan.Text = "CONNECT TO PLC";
 
@@ -455,7 +537,10 @@ namespace TCHRLibBasicRecordSample
                 BtnRunScan.Font = FontXL;
 
             }
-            BtnXYDownSpeed.BorderColor = Color.Transparent;
+            BtnXYUpSpeed.BorderColor = BorderBtnWhite;
+            BtnXYDownSpeed.BorderColor = BorderBtnWhite;
+            BtnXYUpSpeed.BackColor = BtnPrimaryBg;
+            BtnXYDownSpeed.BackColor = BtnPrimaryBg;
 
             TbXYspeed.ThumbColor = orange;
             TbXYspeed.TrackColorLeft = orange;
@@ -465,12 +550,12 @@ namespace TCHRLibBasicRecordSample
             //TbZCoor.ThumbColor = orange;
             //TbZCoor.TrackColorLeft = orange;
             //TbZCoor.TrackColorRight = ForeGroundWhite;
-
+            //TbZCoor.BackColor = DarkBg;
 
             if (SystemInformation.WorkingArea.Width < 1600)
             {
                 //TbZCoor.Margin = new Padding(3, 0, 3, 3);
-                PnlZControl.Padding = new Padding(14, 20, 14, 8);
+                PnlZControl.Padding = new Padding(14, 24, 14, 8);
                 LbZAxis.Location = new Point(0);
                 LbXYSpeed.Location = new Point(-4, 196);
             }
@@ -482,9 +567,10 @@ namespace TCHRLibBasicRecordSample
                 LbXYSpeed.Location = new Point(-4, 280);
             }
             TbZControl.TrackColorLeft = orange;
-            TbZControl.TrackColorRight = BorderBtn;
-            TbZControl.BorderColor = BtnDefaultBg;
-            TbZControl.BorderInColor = Color.Gray;
+            TbZControl.TrackColorRight = DarkBg;
+            TbZControl.BorderColor = BtnPrimaryBg;
+            TbZControl.BackColor = BorderBtnBrown;
+            TbZControl.BorderInColor = DashColor;
             TbZControl.BorderSize = 3;
             TbZControl.BorderRadius = 36;
             TbZControl.ThumbSize = 40;
@@ -504,53 +590,11 @@ namespace TCHRLibBasicRecordSample
             }
             PnlChangeSpeedArea.BackColor = CardBg;
             PnlTchAreaGrid.BackColor = CardBg;
-            if (SystemInformation.WorkingArea.Width < 1600)
-            {
-                PnlTchAreaGrid.RowStyles[0].Height = 20;
-                PnlListBtnSetting.Margin = new Padding(0, 0, 8, 0);
-                PnlListBtnSetting.RowStyles[1].Height = 2;
-                PnlListBtnSetting.RowStyles[3].Height = 2;
-                PnlListBtnSetting.RowStyles[5].Height = 2;
-                PnlListBtnSetting.RowStyles[7].Height = 2;
-
-                PnlListBtnSetting.RowStyles[0].Height = 18.4F;
-                PnlListBtnSetting.RowStyles[2].Height = 18.4F;
-                PnlListBtnSetting.RowStyles[4].Height = 18.4F;
-                PnlListBtnSetting.RowStyles[6].Height = 18.4F;
-                PnlListBtnSetting.RowStyles[8].Height = 18.4F;
-
-                BtnRsTch.Visible = false;
-                PnlTchAreaGrid.RowStyles[3].Height = 1;
-                PnlTchAreaGrid.RowStyles[4].Height = 99;
-            }
-            else
-            {
-                PnlTchAreaGrid.RowStyles[0].Height = 36;
-                PnlTchAreaGrid.RowStyles[3].Height = 30;
-                PnlTchAreaGrid.RowStyles[4].Height = 70;
-
-                PnlListBtnSetting.Padding = new Padding(0, 0, 16, 0);
-                PnlListBtnSetting.RowStyles[1].Height = 5;
-                PnlListBtnSetting.RowStyles[3].Height = 5;
-                PnlListBtnSetting.RowStyles[5].Height = 5;
-                PnlListBtnSetting.RowStyles[7].Height = 5;
-
-                PnlListBtnSetting.RowStyles[0].Height = 16;
-                PnlListBtnSetting.RowStyles[2].Height = 16;
-                PnlListBtnSetting.RowStyles[4].Height = 16;
-                PnlListBtnSetting.RowStyles[6].Height = 16;
-                PnlListBtnSetting.RowStyles[8].Height = 16;
-
-                BtnRsTch.Visible = true;
-
-            }
 
             BtnRunPos1.Click += BtnRunPos_Click;
             BtnRunPos2.Click += BtnRunPos_Click;
             BtnRunPos3.Click += BtnRunPos_Click;
             BtnRunPos4.Click += BtnRunPos_Click;
-
-
 
             // Left site
             PnlHidden.BackColor = CardBg;
@@ -558,6 +602,7 @@ namespace TCHRLibBasicRecordSample
             // -> Scan area
             //ImgAreaScan.BackColor = MainBg;
             PnlScanArea.BackColor = CardBg;
+
             if (SystemInformation.WorkingArea.Width < 1600)
             {
                 ImgAreaScan.Width = 500;
@@ -583,7 +628,7 @@ namespace TCHRLibBasicRecordSample
                 PnlProgressGrid.Padding = new Padding(36, MarginYScreenXl, 36, MarginYScreenXl);
             }
             PnlProgressGrid.BackColor = CardBg;
-            PbScan.ChannelColor = BorderBtn;
+            PbScan.ChannelColor = BorderBtnBrown;
             PbScan.SliderColor = orange;
             PbScan.Value = 0;
             PbScan.ForeBackColor = CardBg;
@@ -594,14 +639,15 @@ namespace TCHRLibBasicRecordSample
             // -> Chart area
             if (SystemInformation.WorkingArea.Width < 1600)
             {
-                PnlChartGrid.Padding = new Padding(36, MarginYScreenLg, 36, MarginYScreenLg);
+                PnlChartGrid.Padding = new Padding(36, 24, 36, MarginYScreenLg);
             }
             else
             {
                 PnlChartGrid.Padding = new Padding(36, MarginYScreenXl, 36, MarginYScreenXl);
             }
             PnlChartGrid.BackColor = CardBg;
-            //chart1.BackColor = BorderBtn;
+
+            //chart1.BackColor = BorderBtnBrown;
             //chart1.BorderlineColor = orange;
             //PnlLineChartArea.BackColor = CardBg;
             LbNameChart.ForeColor = ForeGroundBlack;
@@ -2499,6 +2545,121 @@ forcecurve = 0
         {
         }
 
+
+        private void BtnSelect1_Click(object sender, EventArgs e)
+        {
+            DropDown1.Show(BtnSelect1, 0, BtnSelect1.Height);
+        }
+
+        private void BtnZZ_Click(object sender, EventArgs e)
+        {
+            BtnSelect1.TextContent = BtnZZ.Text;
+        }
+
+        private void BtnRaster_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("This feature is currently under development.", "Developer Notification", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void BtnOther1_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("This feature is currently under development." , "Developer Notification", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+        }
+        private void BtnSelect2_Click(object sender, EventArgs e)
+        {
+            DropDown2.Show(BtnSelect2, 0, BtnSelect2.Height);
+        }
+        private void Btn30mm_Click(object sender, EventArgs e)
+        {
+            BtnSelect2.TextContent = Btn30mm.Text;
+        }
+
+        private void Btn40mm_Click(object sender, EventArgs e)
+        {
+            BtnSelect2.TextContent = Btn40mm.Text;
+        }
+
+        private void Btn50mm_Click(object sender, EventArgs e)
+        {
+            BtnSelect2.TextContent = Btn50mm.Text;
+        }
+
+        private void BtnOther2_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("This feature is currently under development.", "Developer Notification", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+        }
+
+        private void BtnSelect3_Click(object sender, EventArgs e)
+        {
+            DropDown3.Show(BtnSelect3, 0, BtnSelect3.Height);
+        }
+
+        private void BtnSlow_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("This feature is currently under development.", "Developer Notification", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void BtnNormal_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("This feature is currently under development.", "Developer Notification", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void BtnFast_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("This feature is currently under development.", "Developer Notification", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void BtnCSV_Click(object sender, EventArgs e)
+        {
+            BtnSelect4.TextContent = BtnCSV.Text;
+        }
+
+        private void BtnBCRF_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("This feature is currently under development.", "Developer Notification", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+        }
+
+        private void BtnSUR_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("This feature is currently under development.", "Developer Notification", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+        }
+
+        private void BtnSelect4_Click(object sender, EventArgs e)
+        {
+            DropDown4.Show(BtnSelect4, 0, BtnSelect4.Height);
+        }
+
+        private void BtnXYDownSpeed_MouseDown(object sender, MouseEventArgs e)
+        {
+            BtnXYDownSpeed.BorderColor = ForeGroundWhite;
+        }
+
+        private void BtnXYUpSpeed_MouseDown(object sender, MouseEventArgs e)
+        {
+            BtnXYUpSpeed.BorderColor = ForeGroundWhite;
+
+        }
+
+        private void BtnXYUpSpeed_MouseUp(object sender, MouseEventArgs e)
+        {
+            BtnXYUpSpeed.BorderColor = DashColor;
+
+        }
+
+        private void BtnXYDownSpeed_MouseUp(object sender, MouseEventArgs e)
+        {
+            BtnXYUpSpeed.BorderColor = DashColor;
+
+        }
+
+        private void BtnXYDownSpeed_MouseLeave(object sender, EventArgs e)
+        {
+
+        }
     }
 
 

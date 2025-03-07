@@ -3,7 +3,7 @@
     "",
     "\\Basic",
     "\\Basic\\RecordSample",
-    "\\Basic\\RecordSample\\Componets"
+    "\\Basic\\RecordSample\\CustomUI"
   ],
   "SelectedNode": "\\Basic\\RecordSample\\RecordSampleDemo.cs",
   "PreviewInSolutionExplorer": false

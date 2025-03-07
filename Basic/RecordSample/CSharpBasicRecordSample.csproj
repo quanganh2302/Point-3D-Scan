@@ -70,9 +70,14 @@
   <ItemGroup>
     <None Include="App.config" />
     <Compile Include="ColorHeatMap.cs" />
+    <Compile Include="CustomUI\DSM_DropDownTable.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="CustomUI\DSM_GridMap.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="CustomUI\DSM_MenuControlTable.cs" />
+    <Compile Include="CustomUI\DSM_MenuRenderer.cs" />
     <Compile Include="CustomUI\DSM_ProgressBar.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -200,6 +205,8 @@
     <Folder Include="Configs\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Accents\icon-arrow-down.png" />
+    <Content Include="Accents\icon-arrow-up.png" />
     <Content Include="Accents\icon-triangle-right.png" />
     <Content Include="Accents\icon-triangle-left.png" />
     <Content Include="Accents\icon-down.png" />

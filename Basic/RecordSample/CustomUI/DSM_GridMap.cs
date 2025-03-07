@@ -53,7 +53,7 @@ namespace TCHRLibBasicRecordSample.CustomUi
         private int pointY;
 
 
-        private Color backGroundColor = TRecordSample.BorderBtn;
+        private Color backGroundColor = TRecordSample.DarkBg;
         private Color borderColor = Color.SlateBlue;
         private Color lineColor = Color.White;
         private Color mainLineColor = Color.White;
@@ -266,6 +266,8 @@ namespace TCHRLibBasicRecordSample.CustomUi
             this.MouseMove += DSM_GridMap_MouseMove;
             this.MouseUp += DSM_GridMap_MouseUp;
             this.Size = new Size(100, 100);
+            this.BackColor = backGroundColor;
+
             gridSize = 25;
 
             borderSize = 2;
@@ -281,10 +283,11 @@ namespace TCHRLibBasicRecordSample.CustomUi
 
             pointSize = 20;
 
-            borderColor = Color.SlateBlue;
-            lineColor = Color.White;
-            mainLineColor = Color.White;
-            pointColor = Color.Orange;
+            borderColor = TRecordSample.DarkBg;
+            lineColor = TRecordSample.DarkBg;
+            mainLineColor = TRecordSample.DarkBg;
+            pointColor = TRecordSample.orange;
+            
             // Create the timer but do not start it immediately.
             gridTimer = new Timer();
             gridTimer.Interval = 1; // Nominally 1 ms (actual interval depends on system)
